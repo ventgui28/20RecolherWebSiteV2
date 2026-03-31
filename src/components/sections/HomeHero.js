@@ -8,26 +8,20 @@ import Button from "@/components/ui/Button";
 
 export default function HomeHero() {
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-green-50/30">
-      {/* Immersive Background Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-green-100/50 to-transparent pointer-events-none" />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-24 -right-24 w-96 h-96 bg-primary-green/10 rounded-full blur-3xl pointer-events-none"
-      />
+    <section className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-white">
+      {/* Soft Ambient Backgrounds */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-green/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-green-50/50 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-2 bg-white text-primary-green font-bold text-sm rounded-full shadow-sm mb-6 border border-green-100">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-primary-green font-bold text-sm rounded-full mb-8 border border-green-100">
+              <span className="w-2 h-2 rounded-full bg-primary-green animate-pulse"></span>
               Líder em Reciclagem Tecnológica
             </span>
             <h1 className="text-5xl md:text-7xl font-heading text-dark-green leading-[1.1] mb-8">
@@ -38,56 +32,71 @@ export default function HomeHero() {
                 </svg>
               </span>
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-xl">
-              {BRAND.description} Soluções circulares para empresas que valorizam o impacto ambiental e a segurança de dados.
+            <p className="text-xl text-gray-500 leading-relaxed mb-12 max-w-xl font-medium">
+              {BRAND.description} Soluções circulares focadas no impacto ambiental e na segurança de dados da sua empresa.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-5">
               <Link href="/contactos">
-                <Button className="h-14 px-10 text-lg rounded-2xl shadow-lg hover:shadow-primary-green/20">
+                <Button className="h-16 px-12 text-lg rounded-2xl shadow-xl shadow-primary-green/20 hover:scale-105 transition-transform">
                   Agendar Recolha
                 </Button>
               </Link>
               <Link href="/servicos">
-                <Button variant="outline" className="h-14 px-10 text-lg rounded-2xl border-green-200">
+                <Button variant="outline" className="h-16 px-12 text-lg rounded-2xl border-green-200 hover:bg-green-50">
                   Ver Serviços
                 </Button>
               </Link>
             </div>
           </motion.div>
 
+          {/* Minimalist Floating Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative"
+            className="relative flex justify-center items-center"
           >
-            <div className="aspect-square w-full max-w-lg mx-auto bg-white p-4 rounded-[3rem] shadow-2xl relative z-10 overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-br from-primary-green to-dark-green opacity-90" />
-               <div className="relative z-20 h-full flex flex-col items-center justify-center text-white p-12 text-center">
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-32 h-32 border-4 border-white/20 border-t-white rounded-full mb-8 flex items-center justify-center"
-                  >
-                    <span className="text-5xl">♻️</span>
-                  </motion.div>
-                  <h2 className="text-3xl font-heading mb-4">{BRAND.slogan}</h2>
-                  <p className="text-green-50 text-lg opacity-80">
-                    Transformamos resíduos em recursos de forma segura e certificada.
-                  </p>
-               </div>
-               
-               {/* Decorative floating elements */}
+            <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
+               {/* Floating Icon with Soft Glow */}
                <motion.div 
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-10 right-10 bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl text-white text-sm font-bold"
+                 animate={{ y: [0, -20, 0] }}
+                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                 className="relative z-20 text-[180px] md:text-[220px] drop-shadow-[0_35px_35px_rgba(142,179,31,0.2)]"
                >
-                 Certified ✅
+                 ♻️
+               </motion.div>
+
+               {/* Soft Organic Orbs behind the icon */}
+               <motion.div 
+                 animate={{ 
+                   scale: [1, 1.1, 1],
+                   rotate: [0, 90, 0]
+                 }}
+                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute w-[120%] h-[120%] bg-gradient-to-br from-primary-green/10 via-mid-green/5 to-transparent rounded-full blur-2xl pointer-events-none"
+               />
+               
+               {/* Minimalist Floating Text Info */}
+               <motion.div 
+                animate={{ x: [0, 10, 0], y: [0, 15, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-10 right-0 bg-white/80 backdrop-blur-md p-6 rounded-[2rem] shadow-xl border border-green-50 z-30 max-w-[200px]"
+               >
+                  <p className="text-sm font-bold text-dark-green leading-tight">
+                    Gestão Segura & Certificada
+                  </p>
+               </motion.div>
+
+               <motion.div 
+                animate={{ x: [0, -10, 0], y: [0, -15, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute bottom-10 left-0 bg-white/80 backdrop-blur-md px-6 py-4 rounded-full shadow-lg border border-green-50 z-30"
+               >
+                  <p className="text-sm font-black text-primary-green uppercase tracking-widest">
+                    Eco Friendly 🌿
+                  </p>
                </motion.div>
             </div>
-            {/* Background shape behind image */}
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-primary-green/20 rounded-full blur-2xl" />
           </motion.div>
         </div>
       </Container>
