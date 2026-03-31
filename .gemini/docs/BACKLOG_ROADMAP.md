@@ -15,5 +15,5 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [ ] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
 
 ## 3. SEO & Visual
-- [ ] **Favicon & Logo:** Definir o favicon e polir o logótipo textual.
+- [x] **Favicon & Logo:** Definir o favicon e polir o logótipo textual.
 - [ ] **Social Share Card:** Design da imagem de partilha para redes sociais.
