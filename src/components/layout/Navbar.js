@@ -16,22 +16,23 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-green-50">
       <Container>
-        <div className="flex justify-between items-center h-16 md:h-20">
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold text-dark-green tracking-tight">
-              20<span className="text-primary-green">recolher</span>
+        <div className="flex justify-between items-center h-20">
+          <div className="flex-shrink-0">
+            <Link href="/" className="text-2xl font-heading font-black text-dark-green tracking-tight flex items-center gap-2">
+              <span className="bg-primary-green text-white w-10 h-10 flex items-center justify-center rounded-xl rotate-12">20</span>
+              <span className="text-primary-green">recolher</span>
             </Link>
           </div>
           
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-12">
             {navLinks.map((link) => (
               <Link 
                 key={link.href}
                 href={link.href} 
-                className="text-gray-600 hover:text-primary-green font-semibold transition-colors relative group"
+                className="text-gray-600 hover:text-primary-green font-bold text-sm uppercase tracking-widest transition-colors relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-green transition-all group-hover:w-full"></span>
@@ -39,24 +40,23 @@ export default function Navbar() {
             ))}
             <Link 
               href="/contactos" 
-              className="bg-primary-green text-white px-7 py-3 rounded-xl hover:bg-dark-green transition-all font-bold shadow-sm hover:shadow-lg active:scale-95 transform"
+              className="bg-primary-green text-white px-8 py-3.5 rounded-2xl hover:bg-dark-green transition-all font-black text-sm uppercase tracking-widest shadow-xl shadow-primary-green/20 hover:scale-105 active:scale-95 transform"
             >
               Contactos
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden">
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 p-2 hover:bg-gray-100 rounded-xl transition-colors outline-none"
-              aria-label="Abrir Menu"
+              className="text-dark-green p-3 bg-green-50 rounded-2xl transition-colors outline-none"
             >
-              <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16m-7 6h7" />
                 )}
               </svg>
             </button>
@@ -68,30 +68,29 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-white border-b border-green-50 shadow-2xl overflow-hidden"
           >
-            <Container className="py-8 space-y-4">
+            <Container className="py-12 space-y-6">
               {navLinks.map((link) => (
                 <Link 
                   key={link.href}
                   href={link.href} 
                   onClick={() => setIsOpen(false)}
-                  className="block text-xl font-bold text-gray-800 hover:text-primary-green transition-colors py-2"
+                  className="block text-3xl font-heading font-black text-dark-green hover:text-primary-green transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4">
+              <div className="pt-6">
                 <Link 
                   href="/contactos" 
                   onClick={() => setIsOpen(false)}
-                  className="block w-full bg-dark-green text-white text-center px-6 py-4 rounded-2xl font-bold shadow-lg"
+                  className="block w-full bg-primary-green text-white text-center px-6 py-5 rounded-[2rem] font-black text-lg shadow-xl"
                 >
-                  Falar Connosco
+                  Agendar Recolha
                 </Link>
               </div>
             </Container>

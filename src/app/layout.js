@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Quicksand, Nunito } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { BRAND } from "@/constants/brand";
@@ -14,9 +14,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -29,8 +36,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable}`}>
-      <body className="antialiased flex flex-col min-h-screen selection:bg-primary-green/20 selection:text-dark-green font-sans">
+    <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${nunito.variable}`}>
+      <body className="antialiased flex flex-col min-h-screen selection:bg-primary-green/20 selection:text-dark-green font-body bg-white text-gray-900">
         <Navbar />
         <main className="flex-grow">
           {children}

@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import Container from "@/components/ui/Container";
 import { useRef, useState, useEffect } from 'react';
 
-function Counter({ value, duration = 2 }) {
+function Counter({ value, duration = 1.5 }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -30,7 +30,7 @@ function Counter({ value, duration = 2 }) {
   }, [isInView, target, duration]);
 
   return (
-    <span ref={ref} className="font-serif italic tracking-tighter">
+    <span ref={ref}>
       {count}{suffix}
     </span>
   );
@@ -45,42 +45,37 @@ export default function HomeStats() {
   ];
 
   return (
-    <section className="py-40 bg-white relative">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent opacity-50"></div>
+    <section className="py-24 bg-dark-green relative overflow-hidden">
+      {/* Decorative background shapes */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green opacity-20 rounded-full -mr-32 -mt-32 blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-green opacity-20 rounded-full -ml-32 -mb-32 blur-3xl" />
       
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-24 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {stats.map((stat, idx) => (
             <motion.div 
               key={idx} 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 1 }}
-              className="relative text-center group"
+              transition={{ delay: idx * 0.1 }}
+              className="text-center group"
             >
-              <div className="flex flex-col items-center">
-                <span className="text-gray-300 font-bold uppercase tracking-widest text-[10px] mb-8 group-hover:text-primary-green transition-colors">
-                  {stat.label}
-                </span>
-                
-                <div className="text-7xl md:text-8xl lg:text-9xl font-serif text-dark-green leading-none mb-4 flex items-baseline">
-                  <Counter value={stat.value} />
-                </div>
-
-                <div className="h-1.5 w-8 bg-green-50 group-hover:w-16 group-hover:bg-primary-green transition-all duration-700 rounded-full"></div>
+              <div className="text-4xl mb-6 transform group-hover:scale-125 transition-transform duration-500">
+                {stat.icon}
+              </div>
+              
+              <div className="text-5xl md:text-6xl font-heading text-white font-black mb-4 tracking-tight">
+                <Counter value={stat.value} />
               </div>
 
-              {/* Decorative side border for editorial feel */}
-              {idx < stats.length - 1 && (
-                <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 h-20 w-px bg-gray-100"></div>
-              )}
+              <div className="text-green-100 font-bold uppercase tracking-[0.2em] text-[10px] opacity-70 group-hover:opacity-100 transition-opacity">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </div>
       </Container>
-      
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent opacity-50"></div>
     </section>
   );
 }
