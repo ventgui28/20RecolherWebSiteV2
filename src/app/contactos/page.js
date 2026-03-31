@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from 'framer-motion';
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
@@ -5,44 +8,57 @@ import { CONTACTS } from "@/constants/contact";
 
 export default function ContactPage() {
   const contactItems = [
-    { label: "Endereço", value: CONTACTS.address, icon: "📍" },
-    { label: "Telefone", value: CONTACTS.phone, icon: "📞" },
-    { label: "Email", value: CONTACTS.email, icon: "✉️" },
-    { label: "Horário", value: CONTACTS.workingHours, icon: "⏰" },
+    { label: "Onde estamos", value: CONTACTS.address, icon: "📍" },
+    { label: "Linha Direta", value: CONTACTS.phone, icon: "📞" },
+    { label: "E-mail Geral", value: CONTACTS.email, icon: "✉️" },
+    { label: "Disponibilidade", value: CONTACTS.workingHours, icon: "⏰" },
   ];
 
   return (
-    <div className="py-20 md:py-32 bg-gray-50/50">
-      <Container>
+    <div className="py-20 md:py-32 bg-white overflow-hidden">
+      {/* Ambient backgrounds */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[120px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+
+      <Container className="relative z-10">
         {/* Header Section */}
         <SectionHeading 
           centered
-          title="Fale Connosco"
-          subtitle="Tem dúvidas sobre as nossas recolhas? Gostaria de um orçamento detalhado para a sua empresa? Estamos prontos para ajudar."
+          title="Vamos Conversar?"
+          subtitle="A nossa equipa está pronta para ajudar a sua empresa a gerir resíduos de forma eficiente e sustentável."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-          {/* Contact Info and Map */}
-          <div>
-            <div className="bg-white rounded-3xl p-10 shadow-sm border border-gray-100 mb-12">
-              <h2 className="text-2xl font-bold text-dark-green mb-8">Informações de Contacto</h2>
-              <div className="space-y-8 text-gray-600">
-                {contactItems.map((item, i) => (
-                  <div key={i} className="flex items-start group">
-                    <div className="text-3xl mr-6 bg-green-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-primary-green group-hover:scale-110 transition-all duration-300">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{item.label}</p>
-                      <p className="text-lg font-semibold text-gray-700">{item.value}</p>
-                    </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          
+          {/* Contact Details Column */}
+          <div className="lg:col-span-5 space-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+              {contactItems.map((item, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group flex items-start gap-6 p-6 rounded-3xl hover:bg-green-50 transition-colors duration-500"
+                >
+                  <div className="text-4xl bg-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm border border-green-50 group-hover:scale-110 group-hover:bg-primary-green group-hover:text-white transition-all duration-500">
+                    {item.icon}
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
+                    <p className="text-lg font-bold text-dark-green leading-tight">{item.value}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Google Maps Iframe */}
-            <div className="h-[400px] w-full rounded-[2.5rem] overflow-hidden shadow-sm border-8 border-white">
+            {/* Map Integration - Minimalist Borderless Feel */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative h-[350px] w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white group"
+            >
               <iframe
                 src={CONTACTS.mapsIframe}
                 width="100%"
@@ -51,65 +67,74 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale hover:grayscale-0 transition-all duration-700"
+                className="grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
               ></iframe>
-            </div>
+              <div className="absolute inset-0 pointer-events-none border border-green-100/20 rounded-[3rem]" />
+            </motion.div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white rounded-[2.5rem] p-10 md:p-14 shadow-xl border border-gray-100 relative overflow-hidden">
+          {/* Form Column - Floating Glass Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7 bg-white rounded-[3.5rem] p-10 md:p-16 shadow-[0_50px_100px_-20px_rgba(14,103,44,0.12)] border border-green-50 relative"
+          >
             <div className="relative z-10">
-              <h2 className="text-3xl font-bold text-dark-green mb-8">Pedido de Recolha / Orçamento</h2>
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Nome Completo</label>
+              <h2 className="text-3xl font-heading text-dark-green mb-10">Pedido de Orçamento</h2>
+              
+              <form className="space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Seu Nome</label>
                     <input
                       type="text"
-                      className="w-full px-6 py-4 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all"
-                      placeholder="Seu nome..."
+                      className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      placeholder="Ex: João Silva"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Email Empresarial</label>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Email Empresarial</label>
                     <input
                       type="email"
-                      className="w-full px-6 py-4 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all"
-                      placeholder="exemplo@empresa.pt"
+                      className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      placeholder="email@empresa.pt"
                     />
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Tipo de Serviço</label>
-                  <select className="w-full px-6 py-4 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all appearance-none cursor-pointer">
-                    <option>Recolha de Informática</option>
-                    <option>Resíduos Eletrónicos</option>
-                    <option>Consumíveis e Baterias</option>
-                    <option>Outros Serviços</option>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Tipo de Material</label>
+                  <select className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
+                    <option>Informática & Servidores</option>
+                    <option>Resíduos Eletrónicos (REEE)</option>
+                    <option>Consumíveis & Baterias</option>
+                    <option>Outros Equipamentos</option>
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Lista de Equipamento</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Lista de Equipamentos</label>
                   <textarea
-                    className="w-full px-6 py-4 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all h-40 resize-none"
+                    className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-40 resize-none"
                     placeholder="Descreva brevemente o que pretende recolher..."
                   ></textarea>
                 </div>
 
-                <Button className="w-full h-16 text-lg font-bold shadow-lg transform hover:scale-[1.02] active:scale-[0.98]">
-                  Enviar Pedido de Recolha
-                </Button>
-                
-                <p className="text-center text-sm text-gray-400 font-medium">
-                  A nossa equipa responderá num prazo máximo de 24 horas úteis.
-                </p>
+                <div className="pt-4">
+                  <Button className="w-full h-20 text-xl font-black shadow-2xl shadow-primary-green/30 hover:scale-[1.02] active:scale-[0.98] transform transition-all">
+                    Enviar Solicitação 🚀
+                  </Button>
+                  <p className="text-center text-xs text-gray-400 font-bold mt-6 uppercase tracking-widest">
+                    Resposta garantida em 24h úteis
+                  </p>
+                </div>
               </form>
             </div>
-            {/* Background design element */}
-            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-green-50 rounded-full opacity-50 blur-3xl"></div>
-          </div>
+            
+            {/* Soft decorative blob for the form */}
+            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-primary-green/5 rounded-full blur-3xl pointer-events-none" />
+          </motion.div>
         </div>
       </Container>
     </div>
