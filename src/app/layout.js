@@ -32,6 +32,32 @@ export const metadata = {
     template: `%s | ${BRAND.name}`
   },
   description: BRAND.description,
+  metadataBase: new URL('https://20recolher.pt'), // Substituir pelo domínio final quando disponível
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: BRAND.fullName,
+    description: BRAND.description,
+    url: 'https://20recolher.pt',
+    siteName: BRAND.name,
+    locale: 'pt_PT',
+    type: 'website',
+    images: [
+      {
+        url: '/logo.png', // Usar og-image.png no futuro para melhor aspeto
+        width: 1200,
+        height: 630,
+        alt: BRAND.fullName,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: BRAND.fullName,
+    description: BRAND.description,
+    images: ['/logo.png'],
+  },
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
