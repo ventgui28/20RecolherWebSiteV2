@@ -2,8 +2,8 @@ export const SERVICES = [
   {
     id: "informatica",
     title: "Recolha de Informática",
-    desc: "Recolha de computadores, servidores e periféricos obsoletos.",
-    icon: "💻",
+    desc: "Recolha de computadores, servidores e periféricos obsoletos com certificação de eliminação de dados.",
+    icon: "Monitor", // Lucide Icon Name
     items: [
       "Computadores de secretária",
       "Portáteis (Laptops)",
@@ -15,8 +15,8 @@ export const SERVICES = [
   {
     id: "eletronica",
     title: "Resíduos Eletrónicos",
-    desc: "Tratamento de pequenos e grandes eletrodomésticos.",
-    icon: "📠",
+    desc: "Tratamento especializado de pequenos e grandes eletrodomésticos, garantindo a reciclagem correta.",
+    icon: "Cpu", // Lucide Icon Name
     items: [
       "Pequenos eletrodomésticos",
       "Grandes eletrodomésticos",
@@ -27,8 +27,8 @@ export const SERVICES = [
   {
     id: "consumiveis",
     title: "Consumíveis & Baterias",
-    desc: "Gestão de toners, tinteiros e pilhas com segurança.",
-    icon: "🖨️",
+    desc: "Gestão segura de toners, tinteiros, pilhas e sistemas de energia ininterrupta.",
+    icon: "BatteryCharging", // Lucide Icon Name
     items: [
       "Toners e tinteiros",
       "Baterias e pilhas",

@@ -16,4 +16,4 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 
 ## 3. SEO & Visual
 - [x] **Favicon & Logo:** Definir o favicon e polir o logótipo textual.
-- [ ] **Social Share Card:** Design da imagem de partilha para redes sociais.
+- [x] **Social Share Card:** Design da imagem de partilha para redes sociais.
