@@ -24,3 +24,12 @@ Registo do progresso atual e ficheiros criados até à data de 31/03/2026.
 ## 3. Comandos Importantes
 - `npm run dev`: Inicia o servidor local.
 - `git status`: Verifica alterações.
+
+
+### Última Sincronização: 31/03/2026, 15:45:22
+**Alterações Recentes (Git):**
+```
+9a278e1 docs: add session handoff wiki in .gemini/docs
+15d9774 chore: initial commit with Next.js 15 and Tailwind v4 setup
+e790304 Initial commit from Create Next App
+```

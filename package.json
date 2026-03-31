@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-state": "node scripts/sync-state.js",
+    "handoff": "npm run sync-state && echo Preparado para a próxima sessão."
   },
   "dependencies": {
     "clsx": "^2.1.1",
