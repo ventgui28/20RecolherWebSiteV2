@@ -7,7 +7,7 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [x] **Seção de Confiança:** Adicionar contadores animados (ex: "Tonelas Recicladas", "Parceiros").
 - [ ] **Testemunhos:** Design de uma secção para reviews de clientes.
 - [ ] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
-- [ ] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
+- [x] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
 
 ## 2. Melhorias Futuras (Ideias)
 - [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.
