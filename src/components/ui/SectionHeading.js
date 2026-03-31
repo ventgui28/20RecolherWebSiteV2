@@ -9,21 +9,21 @@ export default function SectionHeading({
 }) {
   return (
     <div className={cn(
-      "mb-12 md:mb-16",
+      "mb-16 md:mb-24",
       centered && "text-center mx-auto",
       className
     )}>
       <h2 className={cn(
-        "text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight",
-        light ? "text-white" : "text-gray-900"
+        "font-serif text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tighter",
+        light ? "text-white" : "text-dark-green"
       )}>
         {title}
       </h2>
       {subtitle && (
         <p className={cn(
-          "mt-4 text-xl max-w-2xl",
+          "mt-6 text-xl md:text-2xl max-w-3xl font-medium",
           centered && "mx-auto",
-          light ? "text-green-50" : "text-gray-500"
+          light ? "text-green-50/70" : "text-gray-400"
         )}>
           {subtitle}
         </p>
