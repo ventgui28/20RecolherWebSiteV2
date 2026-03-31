@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { BRAND } from "@/constants/brand";
@@ -8,98 +9,113 @@ import Button from "@/components/ui/Button";
 
 export default function HomeHero() {
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-white">
-      {/* Soft Ambient Backgrounds */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-green/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-green-50/50 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green">
+      {/* Video Background Container */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover scale-105" // Ligeiro scale para evitar bordas brancas
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+          {/* Fallback Image if video fails */}
+          <Image 
+            src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop"
+            alt="Sustentabilidade e Tecnologia"
+            fill
+            priority
+            className="object-cover"
+          />
+        </video>
+        
+        {/* Immersive Overlay - Gradiente do escuro para o transparente */}
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-green/90 via-dark-green/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-black/20 z-10" /> {/* Darken adicional */}
+      </div>
 
-      <Container className="relative z-10">
+      <Container className="relative z-20 pt-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-primary-green font-bold text-sm rounded-full mb-8 border border-green-100">
-              <span className="w-2 h-2 rounded-full bg-primary-green animate-pulse"></span>
-              Líder em Reciclagem Tecnológica
-            </span>
-            <h1 className="text-5xl md:text-7xl font-heading text-dark-green leading-[1.1] mb-8">
-              Dê uma nova <span className="text-primary-green italic">vida</span> ao seu material <span className="relative inline-block text-emerald-green">
-                tecnológico.
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
-                  <path d="M1 5.5C40 2 120 2 199 5.5" stroke="#8eb31f" strokeWidth="3" strokeLinecap="round"/>
-                </svg>
+            <h1 className="text-5xl md:text-8xl font-heading text-white leading-[0.95] mb-10 tracking-tighter">
+              Transformamos <br />
+              <span className="text-primary-green italic">tecnologia</span> em <br />
+              <span className="relative inline-block">
+                sustentabilidade.
+                <motion.svg 
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 1 }}
+                  className="absolute -bottom-2 left-0 w-full h-3" 
+                  viewBox="0 0 200 8" 
+                  fill="none"
+                >
+                  <path d="M1 5.5C40 2 120 2 199 5.5" stroke="#8eb31f" strokeWidth="4" strokeLinecap="round"/>
+                </motion.svg>
               </span>
             </h1>
-            <p className="text-xl text-gray-500 leading-relaxed mb-12 max-w-xl font-medium">
-              {BRAND.description} Soluções circulares focadas no impacto ambiental e na segurança de dados da sua empresa.
+            
+            <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-xl font-medium">
+              A 20recolher lidera a economia circular em Portugal, garantindo o ciclo de vida total dos seus ativos tecnológicos.
             </p>
-            <div className="flex flex-wrap gap-5">
+            
+            <div className="flex flex-wrap gap-6">
               <Link href="/contactos">
-                <Button className="h-16 px-12 text-lg rounded-2xl shadow-xl shadow-primary-green/20 hover:scale-105 transition-transform">
-                  Agendar Recolha
+                <Button className="h-20 px-14 text-xl rounded-2xl bg-primary-green text-white shadow-2xl shadow-primary-green/40 hover:scale-105 transition-transform font-black uppercase tracking-widest">
+                  Solicitar Recolha
                 </Button>
               </Link>
               <Link href="/servicos">
-                <Button variant="outline" className="h-16 px-12 text-lg rounded-2xl border-green-200 hover:bg-green-50">
-                  Ver Serviços
+                <Button variant="outline" className="h-20 px-14 text-xl rounded-2xl border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-black uppercase tracking-widest">
+                  Nossos Serviços
                 </Button>
               </Link>
             </div>
           </motion.div>
 
-          {/* Minimalist Floating Visual */}
+          {/* Side Content - Floating Metrics or Minimalist Info */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative flex justify-center items-center"
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="hidden lg:flex flex-col gap-8 items-end"
           >
-            <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
-               {/* Floating Icon with Soft Glow */}
-               <motion.div 
-                 animate={{ y: [0, -20, 0] }}
-                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                 className="relative z-20 text-[180px] md:text-[220px] drop-shadow-[0_35px_35px_rgba(142,179,31,0.2)]"
-               >
-                 ♻️
-               </motion.div>
+            <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[3rem] border border-white/10 max-w-[320px] shadow-2xl">
+              <p className="text-4xl font-black text-primary-green mb-2">100%</p>
+              <p className="text-white font-bold text-lg leading-tight uppercase tracking-tighter">Circular & <br />Certificado</p>
+              <div className="mt-6 w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 2, delay: 1.5 }}
+                  className="h-full bg-primary-green"
+                />
+              </div>
+            </div>
 
-               {/* Soft Organic Orbs behind the icon */}
-               <motion.div 
-                 animate={{ 
-                   scale: [1, 1.1, 1],
-                   rotate: [0, 90, 0]
-                 }}
-                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute w-[120%] h-[120%] bg-gradient-to-br from-primary-green/10 via-mid-green/5 to-transparent rounded-full blur-2xl pointer-events-none"
-               />
-               
-               {/* Minimalist Floating Text Info */}
-               <motion.div 
-                animate={{ x: [0, 10, 0], y: [0, 15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-10 right-0 bg-white/80 backdrop-blur-md p-6 rounded-[2rem] shadow-xl border border-green-50 z-30 max-w-[200px]"
-               >
-                  <p className="text-sm font-bold text-dark-green leading-tight">
-                    Gestão Segura & Certificada
-                  </p>
-               </motion.div>
-
-               <motion.div 
-                animate={{ x: [0, -10, 0], y: [0, -15, 0] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-10 left-0 bg-white/80 backdrop-blur-md px-6 py-4 rounded-full shadow-lg border border-green-50 z-30"
-               >
-                  <p className="text-sm font-black text-primary-green uppercase tracking-widest">
-                    Eco Friendly 🌿
-                  </p>
-               </motion.div>
+            <div className="bg-primary-green/20 backdrop-blur-xl px-10 py-6 rounded-full border border-white/10 shadow-xl flex items-center gap-4 group cursor-default hover:bg-primary-green/30 transition-colors">
+              <span className="text-2xl">🌍</span>
+              <p className="text-white font-black text-xs uppercase tracking-[0.2em]">Foco em Portugal 🇵🇹</p>
             </div>
           </motion.div>
         </div>
       </Container>
+      
+      {/* Bottom Scroll Indicator */}
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/30"
+      >
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2">
+          <div className="w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce" />
+        </div>
+      </motion.div>
     </section>
   );
 }

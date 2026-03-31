@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Monitor, Cpu, BatteryCharging } from 'lucide-react';
 import { SERVICES } from "@/constants/services";
 import Container from "@/components/ui/Container";
@@ -70,54 +71,61 @@ export default function HomeServices() {
                 key={service.id}
                 variants={cardVariants}
                 whileHover={{ y: -15 }}
-                className="group relative p-12 bg-white rounded-[3rem] border border-green-50 shadow-[0_10px_40px_-15px_rgba(14,103,44,0.05)] transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.15)] hover:border-primary-green/20"
+                className="group relative bg-white rounded-[3rem] border border-green-50 shadow-[0_10px_40px_-15px_rgba(14,103,44,0.05)] transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.15)] hover:border-primary-green/20 overflow-hidden"
               >
-                {/* Subtle aura effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-green/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]" />
-                
-                <div className="relative z-10">
+                {/* Image Header */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image 
+                    src={service.image} 
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                </div>
+
+                <div className="relative z-10 p-10 -mt-16">
                   {/* Icon with interactive background */}
                   <motion.div 
                     whileHover={{ rotate: 5, scale: 1.1 }}
-                    className="mb-10 bg-green-50 w-24 h-24 rounded-3xl flex items-center justify-center shadow-inner group-hover:bg-primary-green group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-primary-green/20"
+                    className="mb-8 bg-white w-20 h-20 rounded-[2rem] shadow-xl flex items-center justify-center border border-green-50 group-hover:bg-primary-green group-hover:text-white transition-all duration-500 group-hover:shadow-primary-green/20"
                   >
                     {IconComponent && (
-                      <IconComponent className="w-10 h-10 stroke-[1.5] group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.4)] transition-all" />
+                      <IconComponent className="w-8 h-8 stroke-[1.5] group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.4)] transition-all" />
                     )}
                   </motion.div>
                   
-                  <h3 className="text-3xl font-heading font-black text-dark-green mb-6 group-hover:text-primary-green transition-colors leading-tight">
+                  <h3 className="text-2xl font-heading font-black text-dark-green mb-4 group-hover:text-primary-green transition-colors leading-tight">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-500 text-lg leading-relaxed mb-10">
+                  <p className="text-gray-500 text-base leading-relaxed mb-8">
                     {service.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-2.5 mb-10">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {service.items.slice(0, 3).map((item, i) => (
-                      <motion.span 
+                      <span 
                         key={i} 
-                        whileHover={{ y: -2 }}
-                        className="text-[10px] font-black uppercase tracking-[0.15em] px-4 py-2 bg-green-50 text-dark-green rounded-xl border border-green-100 group-hover:border-primary-green/20 group-hover:bg-white transition-all"
+                        className="text-[9px] font-black uppercase tracking-[0.1em] px-3 py-1.5 bg-green-50 text-dark-green rounded-lg border border-green-100 group-hover:border-primary-green/20 transition-all"
                       >
                         {item}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
 
                   <Link 
                     href="/servicos" 
-                    className="inline-flex items-center gap-3 text-primary-green font-black uppercase tracking-widest text-xs group/link"
+                    className="inline-flex items-center gap-2 text-primary-green font-black uppercase tracking-widest text-[10px] group/link"
                   >
                     <span className="relative">
                       Saber Mais
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-green transition-all group-hover/link:w-full" />
                     </span>
                     <motion.span 
-                      animate={{ x: [0, 5, 0] }}
+                      animate={{ x: [0, 3, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
-                      className="text-2xl"
+                      className="text-xl"
                     >
                       →
                     </motion.span>
