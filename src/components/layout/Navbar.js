@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { BRAND } from "@/constants/brand";
 import Container from "@/components/ui/Container";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-green-50">
+    <nav className="sticky top-0 z-[100] bg-white/80 dark:bg-black/60 backdrop-blur-xl border-b border-green-50 dark:border-white/5">
       <Container>
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 relative z-[110]">
@@ -62,7 +63,7 @@ export default function Navbar() {
                 alt={BRAND.name} 
                 width={160} 
                 height={50} 
-                className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+                className="h-10 w-auto group-hover:scale-105 transition-transform duration-300 dark:brightness-110 dark:contrast-125"
                 priority
               />
             </Link>
@@ -74,39 +75,44 @@ export default function Navbar() {
               <Link 
                 key={link.href}
                 href={link.href} 
-                className="text-gray-600 hover:text-primary-green font-bold text-sm uppercase tracking-widest transition-colors relative group"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary-green dark:hover:text-primary-green font-bold text-sm uppercase tracking-widest transition-colors relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-green transition-all group-hover:w-full"></span>
               </Link>
             ))}
-            <Link 
-              href="/contactos" 
-              className="bg-primary-green text-white px-8 py-3.5 rounded-2xl hover:bg-dark-green transition-all font-black text-sm uppercase tracking-widest shadow-xl shadow-primary-green/20 hover:scale-105 active:scale-95 transform"
-            >
-              Contactos
-            </Link>
+            
+            <div className="flex items-center gap-6 pl-6 border-l border-green-100 dark:border-white/10">
+              <ThemeToggle />
+              <Link 
+                href="/contactos" 
+                className="bg-primary-green text-white px-8 py-3.5 rounded-2xl hover:bg-dark-green transition-all font-black text-sm uppercase tracking-widest shadow-xl shadow-primary-green/20 hover:scale-105 active:scale-95 transform"
+              >
+                Contactos
+              </Link>
+            </div>
           </div>
 
-          {/* Mobile Menu Button - Premium Hamburger */}
-          <div className="md:hidden relative z-[110]">
+          {/* Mobile Actions */}
+          <div className="md:hidden flex items-center gap-4 relative z-[110]">
+            <ThemeToggle />
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="relative w-12 h-12 flex items-center justify-center bg-green-50 rounded-2xl transition-colors focus:outline-none"
+              className="relative w-12 h-12 flex items-center justify-center bg-green-50 dark:bg-card-border rounded-2xl transition-colors focus:outline-none"
               aria-label="Menu"
             >
               <div className="flex flex-col gap-1.5 w-6 items-end">
                 <motion.span 
                   animate={isOpen ? { rotate: 45, y: 6, width: "100%" } : { rotate: 0, y: 0, width: "100%" }}
-                  className="h-0.5 bg-dark-green rounded-full origin-center"
+                  className="h-0.5 bg-dark-green dark:bg-primary-green rounded-full origin-center"
                 />
                 <motion.span 
                   animate={isOpen ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
-                  className="h-0.5 w-4 bg-dark-green rounded-full"
+                  className="h-0.5 w-4 bg-dark-green dark:bg-primary-green rounded-full"
                 />
                 <motion.span 
                   animate={isOpen ? { rotate: -45, y: -6, width: "100%" } : { rotate: 0, y: 0, width: "60%" }}
-                  className="h-0.5 bg-dark-green rounded-full origin-center"
+                  className="h-0.5 bg-dark-green dark:bg-primary-green rounded-full origin-center"
                 />
               </div>
             </button>
@@ -122,10 +128,10 @@ export default function Navbar() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 md:hidden bg-white z-[100] flex flex-col pt-32 pb-12 overflow-hidden"
+            className="fixed inset-0 md:hidden bg-white dark:bg-black z-[100] flex flex-col pt-32 pb-12 overflow-hidden"
           >
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[120vw] h-[120vw] bg-green-50 rounded-full -z-10 blur-3xl opacity-60" />
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[120vw] h-[120vw] bg-green-50 dark:bg-primary-green/5 rounded-full -z-10 blur-3xl opacity-60" />
             
             <Container className="flex flex-col h-full">
               <div className="flex-grow space-y-8">
@@ -139,7 +145,7 @@ export default function Navbar() {
                       <span className="text-primary-green/30 font-heading font-black text-xl italic group-hover:text-primary-green transition-colors">
                         0{index + 1}
                       </span>
-                      <span className="text-5xl font-heading font-black text-dark-green hover:text-primary-green transition-all transform hover:translate-x-4">
+                      <span className="text-5xl font-heading font-black text-dark-green dark:text-gray-100 hover:text-primary-green transition-all transform hover:translate-x-4">
                         {link.label}
                       </span>
                     </Link>
@@ -148,11 +154,11 @@ export default function Navbar() {
               </div>
 
               <motion.div variants={itemVariants} className="mt-auto space-y-8">
-                <div className="h-px bg-green-100 w-full" />
+                <div className="h-px bg-green-100 dark:bg-white/10 w-full" />
                 <div className="flex justify-between items-center">
                   <div className="space-y-1">
                     <p className="text-xs font-black uppercase tracking-widest text-gray-400">Entre em contacto</p>
-                    <p className="text-dark-green font-bold">geral@20recolher.pt</p>
+                    <p className="text-dark-green dark:text-primary-green font-bold">geral@20recolher.pt</p>
                   </div>
                   <Link 
                     href="/contactos" 
