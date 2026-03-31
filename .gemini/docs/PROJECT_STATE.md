@@ -7,7 +7,7 @@ Registo do progresso atual e ficheiros criados até à data de 31/03/2026.
 - [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
 - [x] **Central de Dados:** Constantes criadas para a marca, serviços e contactos (`src/constants/`).
 - [x] **Páginas Implementadas:**
-  - `Home`: Hero e resumo de serviços.
+  - `Home`: Hero, serviços, processo (timeline) e estatísticas.
   - `Sobre Nós`: Missão e valores da empresa.
   - `Serviços`: Detalhes completos das categorias de recolha.
   - `Contactos`: Info, mapa e formulário.
@@ -18,8 +18,8 @@ Registo do progresso atual e ficheiros criados até à data de 31/03/2026.
 - `src/app/`: Páginas e layouts.
 - `src/components/ui/`: Botões, containers e títulos.
 - `src/components/layout/`: Navbar e Footer.
-- `src/components/sections/`: Blocos modulares (ex: HomeHero).
-- `src/constants/`: Ficheiros de dados dinâmicos.
+- `src/components/sections/`: Blocos modulares (ex: HomeHero, ProcessTimeline).
+- `src/constants/`: Ficheiros de dados dinâmicos (brand, services, stats, process).
 - `src/lib/`: Utilidade `cn()` para classes CSS.
 
 ## 3. Comandos Importantes
@@ -222,4 +222,14 @@ a106e51 revert: remove dark mode and keep only white mode
 f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
 a7a5048 feat: replace service emojis with premium Lucide icons
 50c05cb seo: configure social share cards and canonical metadata
+```
+
+### Última Sincronização: 31/03/2026, 17:22:48
+**Alterações Recentes (Git):**
+```
+030379e feat: implement premium minimalist 404 page
+61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
+a106e51 revert: remove dark mode and keep only white mode
+f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
+a7a5048 feat: replace service emojis with premium Lucide icons
 ```
