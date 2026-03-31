@@ -22,17 +22,6 @@
   --font-body: var(--font-nunito);
 }
 
-.dark {
-  --background: #050a06; /* Very deep forest black */
-  --foreground: #f3f4f6;
-  --card: #0a140c;
-  --card-border: #142818;
-  --muted: #0d1a0f;
-  
-  --primary-green: #a3cc24; /* Slightly brighter for dark bg */
-  --dark-green: #16a34a;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -59,7 +48,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-nunito), sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -69,5 +57,5 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism helpers */
 .glass {
-  @apply bg-white/80 dark:bg-black/60 backdrop-blur-xl border-b border-card-border;
+  @apply bg-white/80 backdrop-blur-xl border-b border-card-border;
 }

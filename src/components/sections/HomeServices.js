@@ -37,9 +37,9 @@ export default function HomeServices() {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
+    <section className="py-32 bg-white relative overflow-hidden">
       {/* Decorative ambient light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-green/[0.02] dark:bg-primary-green/[0.05] blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-green/[0.02] blur-[150px] rounded-full pointer-events-none" />
 
       <Container>
         <motion.div
@@ -70,27 +70,27 @@ export default function HomeServices() {
                 key={service.id}
                 variants={cardVariants}
                 whileHover={{ y: -15 }}
-                className="group relative p-12 bg-card dark:bg-black/40 rounded-[3rem] border border-card-border shadow-[0_10px_40px_-15px_rgba(14,103,44,0.05)] transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.15)] hover:border-primary-green/20"
+                className="group relative p-12 bg-white rounded-[3rem] border border-green-50 shadow-[0_10px_40px_-15px_rgba(14,103,44,0.05)] transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.15)] hover:border-primary-green/20"
               >
                 {/* Subtle aura effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-green/[0.03] dark:from-primary-green/[0.07] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-green/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]" />
                 
                 <div className="relative z-10">
                   {/* Icon with interactive background */}
                   <motion.div 
                     whileHover={{ rotate: 5, scale: 1.1 }}
-                    className="mb-10 bg-green-50 dark:bg-primary-green/10 w-24 h-24 rounded-3xl flex items-center justify-center shadow-inner group-hover:bg-primary-green group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-primary-green/20"
+                    className="mb-10 bg-green-50 w-24 h-24 rounded-3xl flex items-center justify-center shadow-inner group-hover:bg-primary-green group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-primary-green/20"
                   >
                     {IconComponent && (
-                      <IconComponent className="w-10 h-10 stroke-[1.5] group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.4)] transition-all text-primary-green group-hover:text-white" />
+                      <IconComponent className="w-10 h-10 stroke-[1.5] group-hover:drop-shadow-[0_5px_15px_rgba(255,255,255,0.4)] transition-all" />
                     )}
                   </motion.div>
                   
-                  <h3 className="text-3xl font-heading font-black text-dark-green dark:text-gray-100 mb-6 group-hover:text-primary-green transition-colors leading-tight">
+                  <h3 className="text-3xl font-heading font-black text-dark-green mb-6 group-hover:text-primary-green transition-colors leading-tight">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-10">
+                  <p className="text-gray-500 text-lg leading-relaxed mb-10">
                     {service.desc}
                   </p>
 
@@ -99,7 +99,7 @@ export default function HomeServices() {
                       <motion.span 
                         key={i} 
                         whileHover={{ y: -2 }}
-                        className="text-[10px] font-black uppercase tracking-[0.15em] px-4 py-2 bg-green-50 dark:bg-primary-green/5 text-dark-green dark:text-primary-green rounded-xl border border-green-100 dark:border-primary-green/10 group-hover:border-primary-green/20 group-hover:bg-white dark:group-hover:bg-primary-green/10 transition-all"
+                        className="text-[10px] font-black uppercase tracking-[0.15em] px-4 py-2 bg-green-50 text-dark-green rounded-xl border border-green-100 group-hover:border-primary-green/20 group-hover:bg-white transition-all"
                       >
                         {item}
                       </motion.span>
