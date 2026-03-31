@@ -32,6 +32,10 @@ export const metadata = {
     template: `%s | ${BRAND.name}`
   },
   description: BRAND.description,
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  }
 };
 
 export default function RootLayout({ children }) {

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { BRAND } from "@/constants/brand";
 import Container from "@/components/ui/Container";
 
@@ -55,9 +56,15 @@ export default function Navbar() {
       <Container>
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 relative z-[110]">
-            <Link href="/" className="text-2xl font-heading font-black text-dark-green tracking-tight flex items-center gap-2">
-              <span className="bg-primary-green text-white w-10 h-10 flex items-center justify-center rounded-xl rotate-12">20</span>
-              <span className="text-primary-green">recolher</span>
+            <Link href="/" className="flex items-center gap-2 group">
+              <Image 
+                src="/logo.png" 
+                alt={BRAND.name} 
+                width={160} 
+                height={50} 
+                className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+                priority
+              />
             </Link>
           </div>
           

@@ -6,7 +6,7 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [x] **Menu Mobile:** Implementar o menu hambúrguer interativo com animações.
 - [x] **Seção de Confiança:** Adicionar contadores animados (ex: "Tonelas Recicladas", "Parceiros").
 - [ ] **Testemunhos:** Design de uma secção para reviews de clientes.
-- [ ] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
+- [x] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
 - [x] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
 
 ## 2. Melhorias Futuras (Ideias)

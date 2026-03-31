@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { BRAND } from "@/constants/brand";
 import { CONTACTS } from "@/constants/contact";
@@ -9,8 +10,14 @@ export default function Footer() {
       <Container className="py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="text-2xl font-bold text-dark-green tracking-tight">
-              20<span className="text-primary-green">recolher</span>
+            <Link href="/" className="flex items-center gap-2 group">
+              <Image 
+                src="/logo.png" 
+                alt={BRAND.name} 
+                width={140} 
+                height={40} 
+                className="h-8 w-auto grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              />
             </Link>
             <p className="mt-4 text-gray-500 text-sm leading-relaxed">
               {BRAND.description} Juntos por um futuro mais sustentável através da economia circular.
