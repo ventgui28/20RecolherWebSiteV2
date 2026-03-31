@@ -11,6 +11,7 @@ Registo do progresso atual e ficheiros criados até à data de 31/03/2026.
   - `Sobre Nós`: Missão e valores da empresa.
   - `Serviços`: Detalhes completos das categorias de recolha.
   - `Contactos`: Info, mapa e formulário.
+  - `404`: Página de erro personalizada com design premium.
 - [x] **Git:** Repositório local inicializado com documentação base e branches `main`/`develop`.
 
 ## 2. Estrutura de Pastas Atual
@@ -211,4 +212,14 @@ f1dbfee feat: implement premium dark mode with theme toggle and anti-flash scrip
 a7a5048 feat: replace service emojis with premium Lucide icons
 50c05cb seo: configure social share cards and canonical metadata
 d382633 style: change favicon to use specialized favicon.png instead of main logo
+```
+
+### Última Sincronização: 31/03/2026, 17:08:29
+**Alterações Recentes (Git):**
+```
+61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
+a106e51 revert: remove dark mode and keep only white mode
+f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
+a7a5048 feat: replace service emojis with premium Lucide icons
+50c05cb seo: configure social share cards and canonical metadata
 ```

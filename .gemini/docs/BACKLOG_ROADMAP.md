@@ -14,6 +14,4 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [ ] **Dark Mode:** Implementar o tema escuro (cores da marca adaptadas).
 - [x] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
 
-## 3. SEO & Visual
-- [x] **Favicon & Logo:** Definir o favicon e polir o logótipo textual.
-- [x] **Social Share Card:** Design da imagem de partilha para redes sociais.
+- [x] **Página 404 Personalizada:** Criar uma página de erro que mantenha a estética da marca em vez da padrão do Next.js.
