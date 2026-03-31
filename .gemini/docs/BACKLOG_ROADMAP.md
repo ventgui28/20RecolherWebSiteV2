@@ -11,7 +11,7 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 
 ## 2. Melhorias Futuras (Ideias)
 - [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.
-- [x] **Dark Mode:** Implementar o tema escuro (cores da marca adaptadas).
+- [ ] **Dark Mode:** Implementar o tema escuro (cores da marca adaptadas).
 - [x] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
 
 ## 3. SEO & Visual

@@ -30,16 +30,12 @@ function AnimatedNumber({ value, suffix }) {
 
 export default function HomeStats() {
   return (
-    <section className="py-32 relative overflow-hidden bg-dark-green">
-      {/* Immersive background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-green/20 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-green/20 rounded-full blur-[120px]" />
-        {/* Subtle grid pattern for a technical feel */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', size: '40px 40px' }} />
-      </div>
+    <section className="py-32 relative overflow-hidden bg-white">
+      {/* Soft background accents */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary-green/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-emerald-green/5 rounded-full blur-[100px] pointer-events-none" />
       
-      <Container className="relative z-10">
+      <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {STATS.map((stat, idx) => (
             <motion.div 
@@ -50,30 +46,30 @@ export default function HomeStats() {
               transition={{ duration: 0.8, delay: idx * 0.1 }}
               className="relative group"
             >
-              <div className="bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 shadow-2xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 h-full flex flex-col items-center text-center">
+              <div className="bg-white p-10 rounded-[2.5rem] border border-green-50 shadow-[0_10px_40px_-15px_rgba(14,103,44,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(14,103,44,0.12)] transition-all duration-500 hover:-translate-y-2 h-full flex flex-col items-center text-center">
                 
-                {/* Icon Circle - Now with primary green glow */}
-                <div className="w-16 h-16 bg-primary-green/20 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-primary-green group-hover:text-white transition-all duration-500 shadow-lg shadow-primary-green/10">
+                {/* Icon Circle */}
+                <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-primary-green group-hover:text-white transition-all duration-500">
                   {stat.icon}
                 </div>
 
-                {/* Number - Now in White/Primary Green */}
-                <div className="text-5xl md:text-6xl font-heading font-black text-white mb-4 tracking-tighter">
+                {/* Number */}
+                <div className="text-5xl md:text-6xl font-heading font-black text-dark-green mb-4 tracking-tighter">
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} />
                 </div>
 
-                {/* Label - In Primary Green for high visibility */}
+                {/* Label */}
                 <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary-green mb-4">
                   {stat.label}
                 </h3>
 
-                {/* Description - Lighter gray for dark background */}
-                <p className="text-green-50/60 text-sm font-medium leading-relaxed">
+                {/* Description */}
+                <p className="text-gray-400 text-sm font-medium leading-relaxed">
                   {stat.description}
                 </p>
 
                 {/* Decorative border line */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-primary-green rounded-full transition-all duration-500 group-hover:w-1/3 shadow-[0_0_15px_rgba(142,179,31,0.5)]" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-primary-green rounded-full transition-all duration-500 group-hover:w-1/3" />
               </div>
             </motion.div>
           ))}

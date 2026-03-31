@@ -202,3 +202,13 @@ a7a5048 feat: replace service emojis with premium Lucide icons
 d382633 style: change favicon to use specialized favicon.png instead of main logo
 85b4dd1 feat: integrate logo image in navbar, footer and metadata
 ```
+
+### Última Sincronização: 31/03/2026, 17:06:40
+**Alterações Recentes (Git):**
+```
+a106e51 revert: remove dark mode and keep only white mode
+f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
+a7a5048 feat: replace service emojis with premium Lucide icons
+50c05cb seo: configure social share cards and canonical metadata
+d382633 style: change favicon to use specialized favicon.png instead of main logo
+```

@@ -7,8 +7,7 @@ export default function Button({ className, variant = "primary", ...props }) {
   const variants = {
     primary: "bg-primary-green text-white hover:bg-dark-green shadow-xl shadow-primary-green/20",
     secondary: "bg-green-50 text-primary-green hover:bg-green-100",
-    outline: "border-2 border-primary-green text-primary-green hover:bg-green-50",
-    dark: "bg-dark-green text-white hover:bg-emerald-green shadow-xl shadow-dark-green/20"
+    outline: "border-2 border-primary-green text-primary-green hover:bg-green-50"
   };
 
   return (
