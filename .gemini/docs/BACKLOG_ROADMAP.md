@@ -1,19 +1,19 @@
-# Backlog e Roadmap - 20recolher
+# Backlog e Roadmap - 20recolher (Foco Design)
 
-Sugestões de próximas tarefas e melhorias futuras para o website.
+Sugestões de próximas tarefas e melhorias visuais para o website.
 
-## 1. Prioridade Alta (Próximos Passos)
-- [ ] **Lógica do Formulário:** Implementar o envio real do formulário de contactos (usando a API do Next.js ou serviço externo).
-- [ ] **Otimização de Imagens:** Substituir os placeholders atuais por imagens reais (e.g. via Next.js `Image` component).
-- [ ] **Responsividade Fine-Tuning:** Rever o menu mobile e o layout em tablets.
+## 1. Prioridade Alta (Design & UI)
+- [ ] **Menu Mobile:** Implementar o menu hambúrguer interativo com animações.
+- [ ] **Seção de Confiança:** Adicionar contadores animados (ex: "Tonelas Recicladas", "Parceiros").
+- [ ] **Testemunhos:** Design de uma secção para reviews de clientes.
+- [ ] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
+- [ ] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
 
 ## 2. Melhorias Futuras (Ideias)
-- [ ] **Blog/Notícias:** Criar uma secção de notícias sobre sustentabilidade.
-- [ ] **Testemunhos:** Adicionar uma secção de reviews ou logos de parceiros.
-- [ ] **Multi-Idioma:** Implementar suporte para Inglês (i18n).
-- [ ] **Dark Mode:** Adicionar suporte para tema escuro.
+- [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.
+- [ ] **Dark Mode:** Implementar o tema escuro (cores da marca adaptadas).
+- [ ] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
 
-## 3. DevOps e Infraestrutura
-- [ ] **Deploy na Vercel:** Configurar o pipeline de deploy automático.
-- [ ] **SEO Otimização:** Adicionar `meta tags` detalhadas e `sitemap.xml`.
-- [ ] **Analytics:** Integrar com o Google Analytics ou similar.
+## 3. SEO & Visual
+- [ ] **Favicon & Logo:** Definir o favicon e polir o logótipo textual.
+- [ ] **Social Share Card:** Design da imagem de partilha para redes sociais.
