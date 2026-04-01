@@ -28,27 +28,45 @@ export default function ProcessTimeline() {
   };
 
   return (
-    <section className="py-24 md:py-40 bg-white relative overflow-hidden">
+    <section className="py-24 md:py-48 bg-white relative overflow-hidden">
       {/* Decorative ambient elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-green/[0.03] blur-[120px] rounded-full" />
 
-      <Container>
+      {/* Background Watermark Title */}
+      <div className="absolute top-10 md:top-20 left-0 w-full flex justify-center pointer-events-none select-none overflow-hidden z-0">
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[12rem] md:text-[22rem] font-heading font-black text-green-50/50 leading-none whitespace-nowrap"
+        >
+          VALORIZAÇÃO
+        </motion.span>
+      </div>
+
+      <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20 md:mb-32"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-16 md:mb-24"
         >
-          <SectionHeading 
-            centered
-            subtitle="Sustentabilidade em Movimento"
-            title="Ciclo de Valorização"
-          />
-          <p className="mt-8 text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
-            Transformamos o fim de vida tecnológico num novo começo para o planeta, através de um processo rigoroso e transparente.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-xl">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-green-50 text-primary-green text-sm font-bold uppercase tracking-widest mb-6">
+                Sustentabilidade em Movimento
+              </span>
+              <h2 className="text-4xl md:text-5xl font-heading font-black text-dark-green leading-tight">
+                Ciclo de <span className="text-primary-green">Transformação</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-gray-500 text-lg leading-relaxed font-medium pb-1 border-l-2 border-green-100 pl-6">
+              Transformamos o fim de vida tecnológico num novo começo para o planeta, através de um processo rigoroso e transparente.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
