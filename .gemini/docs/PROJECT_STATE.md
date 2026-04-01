@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:14:43
+**Commits:**
+```
+012549d style: remove floating sustainability badge container from hero
+e1445c9 style: remove final sustainability badge from hero section
+723aefb style: remove redundant sustainability badges from home page
+eae9c26 style: seal all background gaps on home page with a unified Green Mist wrapper
+06d512d style: achieve total chromatic immersion by neutralizing residual background blocks
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 12:14:10
 **Commits:**
 ```
@@ -283,14 +293,4 @@ e1445c9 style: remove final sustainability badge from hero section
 eae9c26 style: seal all background gaps on home page with a unified Green Mist wrapper
 06d512d style: achieve total chromatic immersion by neutralizing residual background blocks
 610de3f style: unify global background with Green Mist theme for maximum immersion
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:13:45
-**Commits:**
-```
-723aefb style: remove redundant sustainability badges from home page
-eae9c26 style: seal all background gaps on home page with a unified Green Mist wrapper
-06d512d style: achieve total chromatic immersion by neutralizing residual background blocks
-610de3f style: unify global background with Green Mist theme for maximum immersion
-9af2cd5 style: cleanup residual white backgrounds for a seamless Eco-Texture experience
 ```
