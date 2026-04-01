@@ -30,7 +30,7 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex flex-col bg-gray-50/50 rounded-[3rem] p-12 hover:bg-white hover:shadow-2xl hover:shadow-primary-green/5 transition-all duration-700 border border-transparent hover:border-green-100 group h-full"
+              className="flex flex-col bg-white/40 backdrop-blur-md rounded-[3rem] p-12 hover:bg-white/60 hover:shadow-2xl hover:shadow-primary-green/5 transition-all duration-700 border border-white group h-full"
             >
               <div className="text-[80px] mb-10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 origin-left drop-shadow-sm">
                 {cat.icon}

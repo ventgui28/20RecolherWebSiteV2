@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-100 transition-colors duration-300">
+    <footer className="bg-transparent border-t border-green-100/30 transition-colors duration-300 relative z-10">
       <Container className="py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">

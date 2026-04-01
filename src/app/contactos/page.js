@@ -89,7 +89,7 @@ export default function ContactPage() {
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Seu Nome</label>
                     <input
                       type="text"
-                      className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      className="w-full px-8 py-5 rounded-2xl bg-white/30 backdrop-blur-sm border-transparent focus:border-primary-green focus:bg-white/60 focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
                       placeholder="Ex: João Silva"
                     />
                   </div>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Email Empresarial</label>
                     <input
                       type="email"
-                      className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      className="w-full px-8 py-5 rounded-2xl bg-white/30 backdrop-blur-sm border-transparent focus:border-primary-green focus:bg-white/60 focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
                       placeholder="email@empresa.pt"
                     />
                   </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Tipo de Material</label>
-                  <select className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
+                  <select className="w-full px-8 py-5 rounded-2xl bg-white/30 backdrop-blur-sm border-transparent focus:border-primary-green focus:bg-white/60 focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
                     <option>Informática & Servidores</option>
                     <option>Resíduos Eletrónicos (REEE)</option>
                     <option>Consumíveis & Baterias</option>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Lista de Equipamentos</label>
                   <textarea
-                    className="w-full px-8 py-5 rounded-2xl bg-gray-50 border-transparent focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-40 resize-none"
+                    className="w-full px-8 py-5 rounded-2xl bg-white/30 backdrop-blur-sm border-transparent focus:border-primary-green focus:bg-white/60 focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400 h-40 resize-none"
                     placeholder="Descreva brevemente o que pretende recolher..."
                   ></textarea>
                 </div>

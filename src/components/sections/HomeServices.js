@@ -80,7 +80,7 @@ export default function HomeServices() {
                 key={service.id}
                 variants={cardVariants}
                 className={cn(
-                  "group relative rounded-[2.5rem] overflow-hidden bg-muted-bg border border-green-50 shadow-sm flex flex-col",
+                  "group relative rounded-[2.5rem] overflow-hidden bg-white/40 backdrop-blur-md border border-white shadow-sm flex flex-col",
                   spans[index] || "lg:col-span-4 h-[450px]"
                 )}
               >

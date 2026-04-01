@@ -90,7 +90,7 @@ export default function AboutPage() {
 
         {/* Values Section - Premium Cards */}
         <div className="relative">
-          <div className="absolute inset-0 bg-green-50/20 rounded-[4rem] -mx-4 md:-mx-12 pointer-events-none" />
+          <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-[4rem] -mx-4 md:-mx-12 pointer-events-none border border-white/30" />
           
           <div className="relative py-20 px-4 md:px-12">
             <SectionHeading 
@@ -107,9 +107,9 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-12 rounded-[3rem] shadow-sm hover:shadow-2xl hover:shadow-primary-green/5 transition-all duration-500 border border-gray-100 group text-center"
+                  className="bg-white/40 backdrop-blur-md p-12 rounded-[3rem] shadow-sm hover:shadow-2xl hover:shadow-primary-green/5 transition-all duration-500 border border-white group text-center"
                 >
-                  <div className="text-7xl mb-8 transform group-hover:scale-110 transition-transform duration-500 bg-green-50 w-24 h-24 flex items-center justify-center rounded-[2rem] mx-auto group-hover:bg-primary-green group-hover:text-white transition-colors">
+                  <div className="text-7xl mb-8 transform group-hover:scale-110 transition-transform duration-500 bg-white/50 w-24 h-24 flex items-center justify-center rounded-[2rem] mx-auto group-hover:bg-primary-green group-hover:text-white transition-colors">
                     {v.icon}
                   </div>
                   <h3 className="text-2xl font-heading text-dark-green mb-4">{v.title}</h3>

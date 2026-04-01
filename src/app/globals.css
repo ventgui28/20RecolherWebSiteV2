@@ -18,7 +18,6 @@
   --emerald-green: #1e712a;
 
   /* Eco-Texture Palette */
-  --bg-stone-fine: #fafaf9;
   --bg-green-mist: #f0f4f0;
 
   /* Font Families */
@@ -44,7 +43,6 @@
   --color-emerald-green: var(--emerald-green);
 
   /* Eco Colors Theme */
-  --color-stone-fine: var(--bg-stone-fine);
   --color-green-mist: var(--bg-green-mist);
 
   /* Custom Font Setup */
@@ -82,5 +80,5 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism helpers */
 .glass {
-  @apply bg-white/80 backdrop-blur-xl border-b border-card-border;
+  @apply bg-green-mist/80 backdrop-blur-xl border-b border-card-border;
 }

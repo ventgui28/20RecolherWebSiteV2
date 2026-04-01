@@ -94,7 +94,7 @@ export default function ProcessTimeline() {
               </div>
 
               {/* Image Container with Editorial Style */}
-              <div className="relative h-64 w-full rounded-[2.5rem] overflow-hidden border border-green-50 bg-white shadow-sm mb-10">
+              <div className="relative h-64 w-full rounded-[2.5rem] overflow-hidden border border-white bg-white/40 backdrop-blur-sm shadow-sm mb-10">
                 <Image
                   src={step.image}
                   alt={step.title}
