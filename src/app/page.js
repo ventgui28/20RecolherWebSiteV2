@@ -82,13 +82,13 @@ export default function Home() {
                 </p>
                 
                 <motion.blockquote 
-                  initial={{ opacity: 0, l: -20 }}
-                  whileInView={{ opacity: 1, l: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
                   className="border-l-8 border-primary-green pl-8 py-2 text-dark-green font-bold text-xl italic bg-green-50/30 rounded-r-3xl"
                 >
-                   "{BRAND.mission}"
+                   &ldquo;{BRAND.mission}&rdquo;
                 </motion.blockquote>
               </div>
 

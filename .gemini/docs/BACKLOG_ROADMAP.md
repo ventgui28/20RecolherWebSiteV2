@@ -16,3 +16,8 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [x] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
 
 - [x] **Página 404 Personalizada:** Criar uma página de erro que mantenha a estética da marca em vez da padrão do Next.js.
+
+## 3. Preparação para Produção (Finalização)
+- [ ] **Otimização de Assets:** Comprimir imagens e vídeos para performance máxima.
+- [ ] **SEO & Analytics:** Verificar meta-tags finais e configurar tracking (se necessário).
+- [ ] **Limpeza de Desenvolvimento (ANDAIMES):** Remover pastas `.gemini/`, `scripts/` e ficheiros de suporte internos antes do deploy final.

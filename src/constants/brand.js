@@ -5,6 +5,7 @@ export const BRAND = {
   description: "Recolha e reciclagem de material informático, eletrónica e consumíveis em Portugal.",
   mission: "Simplificar a gestão de resíduos tecnológicos, promovendo a economia circular e a proteção ambiental.",
   vision: "Ser a referência nacional em soluções sustentáveis para resíduos tecnológicos.",
+  quote: "Promovemos um amanhã onde o hardware de hoje não se torne a poluição do futuro.",
   values: [
     { title: "Sustentabilidade", desc: "Redução do impacto ambiental através da reciclagem correta.", icon: "🌱" },
     { title: "Responsabilidade", desc: "Cumprimento rigoroso de todas as normas legais e ambientais.", icon: "📜" },

@@ -51,7 +51,7 @@ export default function AboutPage() {
             >
               <div className="relative z-10">
                 <p className="text-dark-green text-xl font-bold italic leading-relaxed">
-                  "Promovemos um amanhã onde o hardware de hoje não se torne a poluição do futuro."
+                  &ldquo;{BRAND.quote}&rdquo;
                 </p>
               </div>
               <div className="absolute -bottom-10 -right-10 text-8xl opacity-10 grayscale">♻️</div>

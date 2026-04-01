@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "sync-state": "node scripts/sync-state.js",
-    "handoff": "npm run sync-state && echo Preparado para a próxima sessão."
+    "sod": "node scripts/sod.js",
+    "handoff": "npm run sync-state && echo Preparado para a próxima sessão.",
+    "eod": "node scripts/eod.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
