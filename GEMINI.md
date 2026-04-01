@@ -11,11 +11,13 @@ Sempre que iniciares uma nova sessão neste projeto, deves **OBRIGATORIAMENTE** 
 3. `.gemini/docs/GIT_STRATEGY.md`: Regras de commits e branches.
 4. `.gemini/docs/BACKLOG_ROADMAP.md`: O que falta fazer.
 
-## 🔄 PROTOCOLO DE AUTO-UPDATE (AUTOMÁTICO)
-O Gemini CLI tem a responsabilidade proativa de manter o estado do projeto atualizado:
-1. **Pós-Task:** Após concluir uma tarefa do Backlog, deves atualizar o `PROJECT_STATE.md`.
-2. **Pós-Commit:** Após cada commit significativo, deves correr `npm run sync-state` para sincronizar o histórico de alterações.
-3. **Pré-Reset:** Se o utilizador pedir um reset ou terminar a sessão, deves correr `npm run handoff`.
+## 🔄 PROTOCOLO DE AUTO-UPDATE & GIT
+O Gemini CLI tem a responsabilidade proativa de manter o estado do projeto e o histórico Git organizados:
+1. **Commits Locais Proativos:** Deves fazer `git commit` localmente sempre que concluíres uma tarefa significativa ou um conjunto de alterações lógicas.
+2. **Push Manual:** Nunca deves fazer `git push` para o GitHub sem ordem explícita do utilizador. O utilizador prefere controlar o envio para o servidor.
+3. **Pós-Task:** Após concluir uma tarefa do Backlog, deves atualizar o `PROJECT_STATE.md`.
+4. **Pós-Commit:** Após cada commit significativo, deves correr `npm run sync-state` para sincronizar o histórico de alterações.
+5. **Pré-Reset:** Se o utilizador pedir um reset ou terminar a sessão, deves correr `npm run handoff`.
 
 ## 🛠️ REGRAS DE OURO
 - **Não alteres a arquitetura modular** sem consultar o utilizador.

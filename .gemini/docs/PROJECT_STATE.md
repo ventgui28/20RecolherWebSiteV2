@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 31/03/2026.
+Registo do progresso atual e ficheiros criados até à data de 01/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -272,4 +272,26 @@ cc582dd feat: implement animated process timeline section on home page
 030379e feat: implement premium minimalist 404 page
 61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
 a106e51 revert: remove dark mode and keep only white mode
+```
+
+### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 10:08:28
+**Commits:**
+```
+75365e3 chore: update project documentation and maintenance scripts
+c9ea2b1 style: implement premium cinematic crossfade for hero videos
+8fd7502 feat: migrate assets to local storage and update service constants
+c908025 style: enhance home page with video background support and service images
+cc582dd feat: implement animated process timeline section on home page
+```
+#### Sincronização:
+
+#### Sincronização: 01/04/2026, 10:08:28
+**Commits:**
+```
+75365e3 chore: update project documentation and maintenance scripts
+c9ea2b1 style: implement premium cinematic crossfade for hero videos
+8fd7502 feat: migrate assets to local storage and update service constants
+c908025 style: enhance home page with video background support and service images
+cc582dd feat: implement animated process timeline section on home page
 ```

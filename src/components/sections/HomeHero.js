@@ -70,7 +70,7 @@ export default function HomeHero() {
               playsInline
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleVideoEnd}
-              poster="/images/hero-fallback.jpg"
+              poster="/images/hero-fallback.webp"
               className="w-full h-full object-cover"
             >
               <source src={HERO_VIDEOS[currentVideo]} type="video/mp4" />
@@ -78,7 +78,7 @@ export default function HomeHero() {
             {/* Direct Fallback Image if video fails to render or is not supported */}
             <div className="absolute inset-0 -z-10">
               <Image 
-                src="/images/hero-fallback.jpg"
+                src="/images/hero-fallback.webp"
                 alt="Sustentabilidade e Tecnologia"
                 fill
                 priority
