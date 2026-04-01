@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:29:11
+**Commits:**
+```
+7c9273d fix: resolve infinite video transition loop in hero section
+28947f1 perf: optimize hero video transition speed
+aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
+6ec78ed feat: implement real-time video progress and navigation controls in hero
+012549d style: remove floating sustainability badge container from hero
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 12:26:36
 **Commits:**
 ```
@@ -283,14 +293,4 @@ aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
 6ec78ed feat: implement real-time video progress and navigation controls in hero
 012549d style: remove floating sustainability badge container from hero
 e1445c9 style: remove final sustainability badge from hero section
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:23:32
-**Commits:**
-```
-aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
-6ec78ed feat: implement real-time video progress and navigation controls in hero
-012549d style: remove floating sustainability badge container from hero
-e1445c9 style: remove final sustainability badge from hero section
-723aefb style: remove redundant sustainability badges from home page
 ```
