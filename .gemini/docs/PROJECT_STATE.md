@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:00:10
+**Commits:**
+```
+06d512d style: achieve total chromatic immersion by neutralizing residual background blocks
+610de3f style: unify global background with Green Mist theme for maximum immersion
+9af2cd5 style: cleanup residual white backgrounds for a seamless Eco-Texture experience
+f0740d4 style: implement Eco-Texture premium backgrounds across all pages
+6500425 style: transform process section header into a premium watermark editorial layout
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 11:58:04
 **Commits:**
 ```
@@ -283,14 +293,4 @@ a106e51 revert: remove dark mode and keep only white mode
 f0740d4 style: implement Eco-Texture premium backgrounds across all pages
 6500425 style: transform process section header into a premium watermark editorial layout
 8ab39e8 style: optimize process section copy for a minimalist and eco-focused premium feel
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 11:56:45
-**Commits:**
-```
-9af2cd5 style: cleanup residual white backgrounds for a seamless Eco-Texture experience
-f0740d4 style: implement Eco-Texture premium backgrounds across all pages
-6500425 style: transform process section header into a premium watermark editorial layout
-8ab39e8 style: optimize process section copy for a minimalist and eco-focused premium feel
-2c0c810 style: atualizar imagem do blob para natureza imersiva (floresta)
 ```
