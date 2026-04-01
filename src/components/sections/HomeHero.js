@@ -1,38 +1,96 @@
 "use client";
 
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BRAND } from "@/constants/brand";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
+const HERO_VIDEOS = [
+  "/videos/hero-1.mp4",
+  "/videos/hero-2.mp4",
+  "/videos/hero-3.mp4",
+  "/videos/hero-4.mp4"
+];
+
 export default function HomeHero() {
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const transitionTriggered = useRef(false);
+  const videoRef = useRef(null);
+
+  // Reset trigger when video changes
+  useEffect(() => {
+    transitionTriggered.current = false;
+  }, [currentVideo]);
+
+  const handleTimeUpdate = (e) => {
+    const video = e.target;
+    
+    // Safety check: ensure we have duration and it's the current video source
+    if (!video.duration || video.duration <= 0 || !video.src.includes(HERO_VIDEOS[currentVideo])) return;
+
+    const timeLeft = video.duration - video.currentTime;
+
+    // Trigger transition 1 second before end (more stable for short videos)
+    if (timeLeft <= 1 && !transitionTriggered.current) {
+      transitionTriggered.current = true;
+      setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+    }
+  };
+
+  const handleVideoEnd = () => {
+    // Fallback in case onTimeUpdate missed the trigger
+    if (!transitionTriggered.current) {
+      setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+    }
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green">
-      {/* Video Background Container */}
+      {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover scale-105" // Ligeiro scale para evitar bordas brancas
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-          {/* Fallback Image if video fails */}
-          <Image 
-            src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop"
-            alt="Sustentabilidade e Tecnologia"
-            fill
-            priority
-            className="object-cover"
-          />
-        </video>
+        <AnimatePresence>
+          <motion.div
+            key={currentVideo}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ 
+              duration: 2.5, // Slightly faster transition for better sync
+              ease: "easeInOut"
+            }}
+            className="absolute inset-0"
+          >
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              playsInline
+              onTimeUpdate={handleTimeUpdate}
+              onEnded={handleVideoEnd}
+              poster="/images/hero-fallback.jpg"
+              className="w-full h-full object-cover"
+            >
+              <source src={HERO_VIDEOS[currentVideo]} type="video/mp4" />
+            </video>
+            {/* Direct Fallback Image if video fails to render or is not supported */}
+            <div className="absolute inset-0 -z-10">
+              <Image 
+                src="/images/hero-fallback.jpg"
+                alt="Sustentabilidade e Tecnologia"
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
+          </motion.div>
+        </AnimatePresence>
         
         {/* Immersive Overlay - Gradiente do escuro para o transparente */}
         <div className="absolute inset-0 bg-gradient-to-r from-dark-green/90 via-dark-green/40 to-transparent z-10" />
-        <div className="absolute inset-0 bg-black/20 z-10" /> {/* Darken adicional */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
       </div>
 
       <Container className="relative z-20 pt-20 pb-20">
@@ -85,22 +143,33 @@ export default function HomeHero() {
             transition={{ duration: 1.2, delay: 0.5 }}
             className="hidden lg:flex flex-col gap-8 items-end"
           >
+            {/* Video Progress / Step Indicator */}
+            <div className="flex gap-4 mb-4">
+              {HERO_VIDEOS.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-1.5 rounded-full transition-all duration-1000 ${i === currentVideo ? "w-12 bg-primary-green" : "w-4 bg-white/20"}`}
+                />
+              ))}
+            </div>
+
             <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[3rem] border border-white/10 max-w-[320px] shadow-2xl">
               <p className="text-4xl font-black text-primary-green mb-2">100%</p>
               <p className="text-white font-bold text-lg leading-tight uppercase tracking-tighter">Circular & <br />Certificado</p>
               <div className="mt-6 w-full h-1 bg-white/10 rounded-full overflow-hidden">
                 <motion.div 
+                  key={currentVideo}
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
-                  transition={{ duration: 2, delay: 1.5 }}
+                  transition={{ duration: 20, ease: "linear" }} // Progress bar simula o tempo do video (estimado)
                   className="h-full bg-primary-green"
                 />
               </div>
             </div>
 
             <div className="bg-primary-green/20 backdrop-blur-xl px-10 py-6 rounded-full border border-white/10 shadow-xl flex items-center gap-4 group cursor-default hover:bg-primary-green/30 transition-colors">
-              <span className="text-2xl">🌍</span>
-              <p className="text-white font-black text-xs uppercase tracking-[0.2em]">Foco em Portugal 🇵🇹</p>
+              <span className="text-2xl animate-spin-slow">♻️</span>
+              <p className="text-white font-black text-xs uppercase tracking-[0.2em]">Sustentabilidade em Movimento</p>
             </div>
           </motion.div>
         </div>
