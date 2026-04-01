@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { BRAND } from "@/constants/brand";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -19,16 +19,8 @@ const HERO_VIDEOS = [
 export default function HomeHero() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [timeInfo, setTimeInfo] = useState({ current: "00:00", total: "00:00" });
   const transitionTriggered = useRef(false);
   const videoRef = useRef(null);
-
-  // Format time MM:SS
-  const formatTime = (time) => {
-    const mins = Math.floor(time / 60);
-    const secs = Math.floor(time % 60);
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
 
   // Reset trigger and progress when video changes
   useEffect(() => {
@@ -43,11 +35,6 @@ export default function HomeHero() {
 
     const currentProgress = (video.currentTime / video.duration) * 100;
     setProgress(currentProgress);
-    
-    setTimeInfo({
-      current: formatTime(video.currentTime),
-      total: formatTime(video.duration)
-    });
 
     const timeLeft = video.duration - video.currentTime;
 
@@ -66,6 +53,10 @@ export default function HomeHero() {
 
   const nextVideo = () => {
     setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+  };
+
+  const prevVideo = () => {
+    setCurrentVideo((prev) => (prev - 1 + HERO_VIDEOS.length) % HERO_VIDEOS.length);
   };
 
   const goToVideo = (index) => {
@@ -155,62 +146,54 @@ export default function HomeHero() {
               </Link>
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="hidden lg:flex flex-col gap-8 items-end"
-          >
-            {/* Interactive Dots Navigation */}
-            <div className="flex gap-4 mb-4">
-              {HERO_VIDEOS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goToVideo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-500 hover:bg-primary-green/60 ${i === currentVideo ? "w-12 bg-primary-green" : "w-4 bg-white/20"}`}
-                  aria-label={`Ver vídeo ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <div className="relative group">
-              <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[3rem] border border-white/10 max-w-[320px] shadow-2xl transition-all duration-500 group-hover:bg-white/20">
-                <p className="text-4xl font-black text-primary-green mb-2">100%</p>
-                <p className="text-white font-bold text-lg leading-tight uppercase tracking-tighter">Circular & <br />Certificado</p>
-                
-                <div className="mt-6">
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden relative">
-                    <motion.div 
-                      className="h-full bg-primary-green"
-                      style={{ width: `${progress}%` }}
-                      transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-                    />
-                  </div>
-                  <div className="flex justify-between mt-2">
-                    <span className="text-[10px] font-black text-white/40 tabular-nums">{timeInfo.current}</span>
-                    <span className="text-[10px] font-black text-white/40 tabular-nums">{timeInfo.total}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Next Video Button */}
-              <button
-                onClick={nextVideo}
-                className="absolute -right-6 top-1/2 -translate-y-1/2 w-16 h-16 bg-primary-green text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 z-30 group/btn border-4 border-dark-green"
-                aria-label="Próximo vídeo"
-              >
-                <ChevronRight className="w-8 h-8 group-hover/btn:translate-x-0.5 transition-transform" />
-              </button>
-            </div>
-          </motion.div>
         </div>
       </Container>
+
+      {/* Cinematic Navigation Bar (Bottom Right) */}
+      <div className="absolute bottom-12 right-6 md:right-16 lg:right-24 z-30 flex items-center gap-6">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={prevVideo}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn"
+            aria-label="Vídeo anterior"
+          >
+            <ChevronLeft className="w-6 h-6 group-hover/btn:-translate-x-0.5 transition-transform" />
+          </button>
+          
+          <div className="flex gap-3 px-4 py-3 bg-black/20 backdrop-blur-xl rounded-full border border-white/5">
+            {HERO_VIDEOS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToVideo(i)}
+                className={`relative h-1.5 rounded-full transition-all duration-500 overflow-hidden ${i === currentVideo ? "w-12 bg-white/20" : "w-4 bg-white/10 hover:bg-white/30"}`}
+                aria-label={`Ver vídeo ${i + 1}`}
+              >
+                {i === currentVideo && (
+                  <motion.div 
+                    className="absolute inset-0 bg-primary-green"
+                    style={{ width: `${progress}%` }}
+                    transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={nextVideo}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn"
+            aria-label="Próximo vídeo"
+          >
+            <ChevronRight className="w-6 h-6 group-hover/btn:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
+      </div>
       
+      {/* Bottom Scroll Indicator (Centered) */}
       <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/30"
+        className="absolute bottom-10 left-12 md:left-24 lg:left-1/2 lg:-translate-x-1/2 z-20 text-white/30"
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2">
           <div className="w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce" />
