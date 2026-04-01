@@ -6,18 +6,12 @@ Sugestões de próximas tarefas e melhorias visuais para o website.
 - [x] **Menu Mobile:** Implementar o menu hambúrguer interativo com animações.
 - [x] **Seção de Confiança:** Adicionar contadores animados (ex: "Tonelas Recicladas", "Parceiros").
 - [x] **Processo de Reciclagem (Timeline):** Explicar as etapas de valorização dos resíduos.
-- [ ] **Testemunhos:** Design de uma secção para reviews de clientes.
 - [x] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
 - [x] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
+- [x] **Otimização de Assets:** Comprimir imagens e vídeos para performance máxima (Concluído: 01/04).
 
 ## 2. Melhorias Futuras (Ideias)
 - [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.
-- [ ] **Dark Mode:** Implementar o tema escuro (cores da marca adaptadas).
-- [x] **Iconografia:** Personalizar ícones para os serviços (em vez de Emojis).
-
-- [x] **Página 404 Personalizada:** Criar uma página de erro que mantenha a estética da marca em vez da padrão do Next.js.
-
-## 3. Preparação para Produção (Finalização)
-- [ ] **Otimização de Assets:** Comprimir imagens e vídeos para performance máxima.
-- [ ] **SEO & Analytics:** Verificar meta-tags finais e configurar tracking (se necessário).
-- [ ] **Limpeza de Desenvolvimento (ANDAIMES):** Remover pastas `.gemini/`, `scripts/` e ficheiros de suporte internos antes do deploy final.
+- [ ] **Mapa Interativo:** Implementar localização física em 'Contactos'.
+- [ ] **SEO & Analytics:** Verificar meta-tags finais e configurar tracking.
+- [x] **Página 404 Personalizada:** Criar uma página de erro que mantenha a estética da marca.
