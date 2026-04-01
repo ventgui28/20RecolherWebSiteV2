@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import HomeHero from "@/components/sections/HomeHero";
-import HomeServices from "@/components/sections/HomeServices";
 import ProcessTimeline from "@/components/sections/ProcessTimeline";
 import HomeStats from "@/components/sections/HomeStats";
 import Container from "@/components/ui/Container";
@@ -21,7 +20,6 @@ export default function Home() {
   return (
     <div className="bg-green-mist bg-grain">
       <HomeHero />
-      <HomeServices />
       <ProcessTimeline />
       <HomeStats />
       
