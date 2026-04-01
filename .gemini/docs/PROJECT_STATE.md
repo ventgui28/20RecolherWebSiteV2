@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 14:46:13
+**Commits:**
+```
+332728b style: remover linkedin e definir facebook como rede social única
+e03e39a style: remover instagram e otimizar footer para formato compacto
+9e66b31 style: reformular footer para design minimalista e funcional
+36aad49 fix: resolver erros de renderização e refs no componente HomeHero
+cb8a4bb docs: atualizar estado do projeto antes do merge para main
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 14:41:20
 **Commits:**
 ```
@@ -283,14 +293,4 @@ e03e39a style: remover instagram e otimizar footer para formato compacto
 36aad49 fix: resolver erros de renderização e refs no componente HomeHero
 cb8a4bb docs: atualizar estado do projeto antes do merge para main
 33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 14:36:29
-**Commits:**
-```
-9e66b31 style: reformular footer para design minimalista e funcional
-36aad49 fix: resolver erros de renderização e refs no componente HomeHero
-cb8a4bb docs: atualizar estado do projeto antes do merge para main
-33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
-563060b docs: adopt senior pragmatic commit strategy
 ```
