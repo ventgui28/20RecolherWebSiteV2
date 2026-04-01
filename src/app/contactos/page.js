@@ -15,7 +15,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="py-20 md:py-32 bg-stone-fine bg-grain overflow-hidden relative min-h-screen">
+    <div className="py-20 md:py-32 bg-green-mist bg-grain overflow-hidden relative min-h-screen">
       {/* Ambient backgrounds */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[120px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 

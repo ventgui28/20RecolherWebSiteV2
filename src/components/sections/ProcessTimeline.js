@@ -28,7 +28,7 @@ export default function ProcessTimeline() {
   };
 
   return (
-    <section className="py-24 md:py-48 bg-stone-fine bg-grain relative overflow-hidden">
+    <section className="py-24 md:py-48 bg-green-mist bg-grain relative overflow-hidden">
       {/* Decorative ambient elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-green/[0.03] blur-[120px] rounded-full" />

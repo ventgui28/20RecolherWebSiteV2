@@ -67,7 +67,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${nunito.variable}`}>
-      <body className="antialiased flex flex-col min-h-screen selection:bg-primary-green/20 selection:text-dark-green font-body bg-stone-fine bg-grain text-foreground">
+      <body className="antialiased flex flex-col min-h-screen selection:bg-primary-green/20 selection:text-dark-green font-body bg-green-mist bg-grain text-foreground">
         <Navbar />
         <main className="flex-grow">
           {children}
