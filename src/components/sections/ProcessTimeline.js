@@ -43,11 +43,11 @@ export default function ProcessTimeline() {
         >
           <SectionHeading 
             centered
-            subtitle="Do lixo ao futuro"
-            title="O Nosso Processo de Valorização"
+            subtitle="Sustentabilidade em Movimento"
+            title="Ciclo de Valorização"
           />
           <p className="mt-8 text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
-            Um ciclo de excelência pensado para maximizar a sustentabilidade em cada etapa do tratamento de resíduos.
+            Transformamos o fim de vida tecnológico num novo começo para o planeta, através de um processo rigoroso e transparente.
           </p>
         </motion.div>
 

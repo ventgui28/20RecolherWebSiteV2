@@ -3,37 +3,37 @@ import { Truck, Search, Recycle, CheckCircle } from "lucide-react";
 export const PROCESS_STEPS = [
   {
     id: 1,
-    title: "Recolha Logística",
-    description: "Transporte especializado com frota moderna para uma recolha segura e eficiente.",
+    title: "Recolha",
+    description: "Logística otimizada para reduzir a pegada de carbono desde o primeiro quilómetro.",
     icon: Truck,
-    image: "/images/process-recolha.webp",
+    image: "/images/process-recolha.jpg",
     color: "bg-green-50",
     textColor: "text-primary-green"
   },
   {
     id: 2,
-    title: "Triagem Técnica",
-    description: "Separação rigorosa e classificação especializada de componentes eletrónicos.",
+    title: "Triagem",
+    description: "Separação minuciosa para maximizar o reaproveitamento de componentes e materiais nobres.",
     icon: Search,
-    image: "/images/process-triagem.webp",
+    image: "/images/process-triagem.jpg",
     color: "bg-green-100/50",
     textColor: "text-mid-green"
   },
   {
     id: 3,
-    title: "Valorização Industrial",
-    description: "Recuperação de matérias-primas valiosas através de processos tecnológicos avançados.",
+    title: "Valorização",
+    description: "Processamento avançado que evita a extração mineira de novos recursos finitos da Terra.",
     icon: Recycle,
-    image: "/images/process-valorizacao.webp",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
     color: "bg-green-200/30",
     textColor: "text-forest-green"
   },
   {
     id: 4,
-    title: "Economia Circular",
-    description: "Reintrodução sustentável de materiais no ciclo produtivo para um futuro verde.",
+    title: "Reintrodução",
+    description: "Devolvemos valor à economia circular, protegendo os ecossistemas do futuro.",
     icon: CheckCircle,
-    image: "/images/process-reintroducao.webp",
+    image: "/images/process-reintroducao.png",
     color: "bg-primary-green/10",
     textColor: "text-dark-green"
   }
