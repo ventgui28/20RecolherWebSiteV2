@@ -49,12 +49,12 @@ export default function Home() {
                  className="relative z-20 w-[300px] h-[300px] md:w-[400px] md:h-[400px] overflow-hidden shadow-[0_20px_50px_rgba(30,113,42,0.2)] border-4 border-white"
                >
                  <img 
-                   src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" 
-                   alt="Globo Terrestre e Sustentabilidade" 
+                   src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000&auto=format&fit=crop" 
+                   alt="Natureza Imersiva e Floresta Sustentável" 
                    className="w-full h-full object-cover scale-110 saturate-[0.8]"
                  />
-                 <div className="absolute inset-0 bg-primary-green/20 mix-blend-overlay" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-dark-green/60 via-transparent to-transparent opacity-80" />
+                 <div className="absolute inset-0 bg-primary-green/10 mix-blend-overlay" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-dark-green/40 via-transparent to-transparent opacity-60" />
                </motion.div>
                
                <div className="absolute w-[80%] h-[80%] bg-primary-green/10 rounded-full blur-[100px] pointer-events-none" />
