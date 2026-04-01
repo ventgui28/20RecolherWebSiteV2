@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:44:24
+**Commits:**
+```
+33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
+563060b docs: adopt senior pragmatic commit strategy
+f49a5ac docs: refinar padrão de commits para foco em ficheiros, alterações e impacto
+95a7d0a docs: adicionar tópico de componente técnica à estratégia de git
+421965c fix: resolve ReferenceError in HomeHero ref assignment
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 12:43:10
 **Commits:**
 ```
@@ -283,14 +293,4 @@ f49a5ac docs: refinar padrão de commits para foco em ficheiros, alterações e 
 95a7d0a docs: adicionar tópico de componente técnica à estratégia de git
 421965c fix: resolve ReferenceError in HomeHero ref assignment
 7341162 fix: stabilize hero video transitions with robust event guarding
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:40:08
-**Commits:**
-```
-f49a5ac docs: refinar padrão de commits para foco em ficheiros, alterações e impacto
-95a7d0a docs: adicionar tópico de componente técnica à estratégia de git
-421965c fix: resolve ReferenceError in HomeHero ref assignment
-7341162 fix: stabilize hero video transitions with robust event guarding
-a240636 fix: restore video progress bar using index-based identification
 ```
