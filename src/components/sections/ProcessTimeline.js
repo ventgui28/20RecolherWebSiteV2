@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { PROCESS_STEPS } from "@/constants/process";
@@ -11,87 +12,113 @@ export default function ProcessTimeline() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.25,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Elementos de fundo subtis */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-muted-bg to-transparent opacity-50" />
-      
+    <section className="py-24 md:py-40 bg-white relative overflow-hidden">
+      {/* Decorative ambient elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-green/[0.03] blur-[120px] rounded-full" />
+
       <Container>
-        <div className="text-center mb-16">
-          <SectionHeading subtitle="Do lixo ao futuro">
-            O Nosso Processo de Valorização
-          </SectionHeading>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto font-medium">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20 md:mb-32"
+        >
+          <SectionHeading 
+            centered
+            subtitle="Do lixo ao futuro"
+            title="O Nosso Processo de Valorização"
+          />
+          <p className="mt-8 text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
             Um ciclo de excelência pensado para maximizar a sustentabilidade em cada etapa do tratamento de resíduos.
           </p>
-        </div>
+        </motion.div>
 
-        <motion.div 
-          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        <motion.div
+          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Conectores Visuais (Desktop) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent -translate-y-16 z-0" />
+          {/* Subtle connecting line (Desktop) */}
+          <div className="hidden lg:block absolute top-40 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-100 to-transparent z-0" />
 
           {PROCESS_STEPS.map((step, index) => (
-            <motion.div 
-              key={step.id} 
+            <motion.div
+              key={step.id}
               variants={itemVariants}
-              className="relative z-10 flex flex-col items-center"
+              className="relative z-10 group"
             >
-              {/* Ícone e Número */}
-              <div className="mb-8 relative group">
-                <div className={`w-24 h-24 rounded-3xl ${step.color} flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-lg group-hover:shadow-primary-green/10`}>
-                  <step.icon className={`w-10 h-10 ${step.textColor} transition-transform group-hover:scale-110`} strokeWidth={1.5} />
-                </div>
-                
-                {/* Badge de Número */}
-                <div className="absolute -top-3 -right-3 w-8 h-8 rounded-xl bg-white border-2 border-green-50 flex items-center justify-center font-black text-sm text-primary-green shadow-sm">
-                  {step.id}
-                </div>
+              {/* Step Number Badge (Top) */}
+              <div className="mb-8 flex items-end gap-3 px-2">
+                <span className="text-6xl font-heading font-black text-green-100/80 group-hover:text-primary-green/20 transition-colors duration-700 leading-none select-none">
+                  0{step.id}
+                </span>
+                <div className="mb-2 h-px flex-grow bg-green-50 group-hover:bg-green-100 transition-colors duration-700" />
               </div>
 
-              {/* Conteúdo */}
-              <div className="text-center">
-                <h3 className={`text-xl font-black mb-3 ${step.textColor} uppercase tracking-tight`}>
+              {/* Image Container with Editorial Style */}
+              <div className="relative h-64 w-full rounded-[2.5rem] overflow-hidden border border-green-50 bg-white shadow-sm mb-10">
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  fill
+                  className="object-cover saturate-[0.6] transition-all duration-1000 ease-out group-hover:scale-110 group-hover:saturate-[0.9]"
+                />
+                {/* Floating Icon Overlay */}
+                <div className="absolute top-6 right-6">
+                  <div className={`w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center ${step.textColor} shadow-lg transition-transform duration-500 group-hover:rotate-6`}>
+                    <step.icon className="w-6 h-6 stroke-[1.5]" />
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-green/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              </div>
+
+              {/* Content Base */}
+              <div className="px-2">
+                <h3 className={`text-2xl font-heading font-black mb-4 ${step.textColor} transition-colors duration-500 group-hover:text-primary-green uppercase tracking-tight`}>
                   {step.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed font-medium">
+                <p className="text-gray-500 text-base leading-relaxed font-medium">
                   {step.description}
                 </p>
               </div>
 
-              {/* Seta/Indicador para Mobile/Tablet (opcional, omitido para minimalismo) */}
+              {/* Indicator (Mobile Connector) */}
+              <div className="md:hidden mt-12 flex justify-center">
+                <div className="w-px h-12 bg-gradient-to-b from-green-100 to-transparent" />
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Call to Action Subtil */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="mt-20 flex justify-center"
+          className="mt-24 md:mt-32 flex justify-center"
         >
-          <div className="px-6 py-2 bg-green-50 rounded-full border border-green-100 flex items-center gap-3 text-sm font-semibold text-forest-green">
-            <span className="w-2 h-2 rounded-full bg-primary-green animate-pulse" />
+          <div className="px-8 py-3 bg-white rounded-full border border-green-50 shadow-sm flex items-center gap-4 text-sm font-black uppercase tracking-widest text-forest-green">
+            <span className="w-2.5 h-2.5 rounded-full bg-primary-green animate-pulse shadow-[0_0_10px_rgba(142,179,31,0.5)]" />
             Processo Certificado e Monitorizado
           </div>
         </motion.div>
