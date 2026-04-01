@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 17:01:27
+**Commits:**
+```
+553b694 style: atualizar imagem de natureza na home page para recurso local
+b92b4ed feat: integrar história real e contactos oficiais da 20recolher
+96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
+3cafb3b style: remover secção de especialidades de recolha da home page
+812bc4a style: reformular cartões de serviços para layout simétrico e interativo
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 16:24:39
 **Commits:**
 ```
@@ -283,14 +293,4 @@ b92b4ed feat: integrar história real e contactos oficiais da 20recolher
 3cafb3b style: remover secção de especialidades de recolha da home page
 812bc4a style: reformular cartões de serviços para layout simétrico e interativo
 332728b style: remover linkedin e definir facebook como rede social única
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 15:37:06
-**Commits:**
-```
-96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
-3cafb3b style: remover secção de especialidades de recolha da home page
-812bc4a style: reformular cartões de serviços para layout simétrico e interativo
-332728b style: remover linkedin e definir facebook como rede social única
-e03e39a style: remover instagram e otimizar footer para formato compacto
 ```
