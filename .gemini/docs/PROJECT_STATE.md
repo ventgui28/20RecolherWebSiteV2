@@ -7,7 +7,7 @@ Registo do progresso atual e ficheiros criados até à data de 01/04/2026.
 - [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
 - [x] **Central de Dados:** Constantes criadas para a marca, serviços e contactos (`src/constants/`).
 - [x] **Páginas Implementadas:**
-  - `Home`: Hero, serviços, processo (timeline) e estatísticas.
+  - `Home`: Hero, serviços (Editorial Bento Grid), processo (timeline) e estatísticas.
   - `Sobre Nós`: Missão e valores da empresa.
   - `Serviços`: Detalhes completos das categorias de recolha.
   - `Contactos`: Info, mapa e formulário.
@@ -275,23 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 01/04/2026, 10:08:28
+#### Sincronização: 01/04/2026, 10:32:30
 **Commits:**
 ```
-75365e3 chore: update project documentation and maintenance scripts
-c9ea2b1 style: implement premium cinematic crossfade for hero videos
-8fd7502 feat: migrate assets to local storage and update service constants
-c908025 style: enhance home page with video background support and service images
-cc582dd feat: implement animated process timeline section on home page
+15f2ff3 docs: simplificar padrão de commits removendo secção de contexto
+f4f39f8 chore: remover testemunhos do backlog e atualizar estado de otimização
+04680e7 docs: atualizar padrão de commits para ultra-detalhado em português
+482fea4 docs: add rule for automatic local commits to GEMINI.md
+5ec0c6a perf: optimize videos and migrate images to WebP
 ```
 #### Sincronização:
-
-#### Sincronização: 01/04/2026, 10:08:28
+#### Sincronização: 01/04/2026, 10:32:29
 **Commits:**
 ```
-75365e3 chore: update project documentation and maintenance scripts
-c9ea2b1 style: implement premium cinematic crossfade for hero videos
-8fd7502 feat: migrate assets to local storage and update service constants
-c908025 style: enhance home page with video background support and service images
-cc582dd feat: implement animated process timeline section on home page
+15f2ff3 docs: simplificar padrão de commits removendo secção de contexto
+f4f39f8 chore: remover testemunhos do backlog e atualizar estado de otimização
+04680e7 docs: atualizar padrão de commits para ultra-detalhado em português
+482fea4 docs: add rule for automatic local commits to GEMINI.md
+5ec0c6a perf: optimize videos and migrate images to WebP
 ```
