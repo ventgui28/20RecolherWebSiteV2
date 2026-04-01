@@ -68,11 +68,11 @@ export default function HomeServices() {
           {SERVICES.map((service, index) => {
             const IconComponent = IconMap[service.icon];
             
-            // Bento Grid Span Logic
+            // Bento Grid Span Logic with explicit heights for all screen sizes
             const spans = [
-              "lg:col-span-8 lg:h-[500px]", // Wide Main
-              "lg:col-span-4 lg:h-[500px]", // Tall Side
-              "lg:col-span-12 lg:h-[400px]" // Wide Footer
+              "lg:col-span-8 h-[480px] sm:h-[550px] lg:h-[500px]", // Wide Main
+              "lg:col-span-4 h-[480px] sm:h-[550px] lg:h-[500px]", // Tall Side
+              "lg:col-span-12 h-[350px] sm:h-[450px] lg:h-[400px]" // Wide Footer
             ];
 
             return (
@@ -80,35 +80,40 @@ export default function HomeServices() {
                 key={service.id}
                 variants={cardVariants}
                 className={cn(
-                  "group relative rounded-[2.5rem] overflow-hidden bg-muted-bg border border-green-50/50 shadow-sm",
+                  "group relative rounded-[2.5rem] overflow-hidden bg-muted-bg border border-green-50 shadow-sm flex flex-col",
                   spans[index] || "lg:col-span-4 h-[450px]"
                 )}
               >
-                {/* Background Image with Zoom Effect */}
+                {/* Background Image Container */}
                 <div className="absolute inset-0 z-0">
                   <Image 
                     src={service.image} 
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                   />
-                  {/* Dynamic Overlays based on card type */}
+                  {/* Refined Overlays for better depth and legibility */}
                   <div className={cn(
                     "absolute inset-0 transition-opacity duration-700",
-                    index === 0 ? "bg-gradient-to-r from-dark-green/90 via-dark-green/40 to-transparent" :
-                    index === 1 ? "bg-gradient-to-t from-dark-green/90 via-dark-green/30 to-transparent" :
-                    "bg-gradient-to-r from-dark-green/80 via-dark-green/20 to-transparent"
+                    index === 0 ? "bg-gradient-to-r from-dark-green/95 via-dark-green/60 to-transparent md:from-dark-green/90 md:via-dark-green/40" :
+                    index === 1 ? "bg-gradient-to-t from-dark-green/95 via-dark-green/60 to-transparent md:from-dark-green/90 md:via-dark-green/30" :
+                    "bg-gradient-to-r from-dark-green/90 via-dark-green/40 to-transparent md:from-dark-green/80 md:via-dark-green/20"
                   )} />
                 </div>
 
-                {/* Content Overlay */}
+                {/* Content Container - Flex grow ensures it takes up space and stays inside */}
                 <div className={cn(
-                  "relative z-10 h-full p-8 md:p-12 flex flex-col justify-end",
-                  index === 0 ? "lg:w-3/5" : "w-full"
+                  "relative z-10 flex-grow p-8 md:p-12 flex flex-col justify-end",
+                  index === 0 ? "lg:w-2/3" : "w-full"
                 )}>
+                  {/* Decorative number - moved to be safer */}
+                  <div className="absolute top-8 right-8 text-white/10 font-heading text-7xl font-black select-none pointer-events-none group-hover:text-white/20 transition-all duration-700">
+                    0{index + 1}
+                  </div>
+
                   {/* Icon Badge */}
-                  <div className="mb-6 flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-primary-green group-hover:border-primary-green transition-all duration-500 shadow-lg">
+                  <div className="mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-primary-green group-hover:border-primary-green transition-all duration-500 shadow-xl">
                       {IconComponent && <IconComponent className="w-7 h-7 stroke-[1.5]" />}
                     </div>
                   </div>
@@ -117,15 +122,16 @@ export default function HomeServices() {
                     {service.title}
                   </h3>
                   
-                  <p className="text-green-50/80 text-lg leading-relaxed mb-8 max-w-xl">
+                  <p className="text-green-50/90 text-base md:text-lg leading-relaxed mb-6 max-w-xl line-clamp-3 md:line-clamp-none">
                     {service.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-10 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  {/* Tags list - more stable transition */}
+                  <div className="flex flex-wrap gap-2 mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 hidden sm:flex">
                     {service.items.slice(0, 3).map((item, i) => (
                       <span 
                         key={i} 
-                        className="text-[10px] font-black uppercase tracking-wider px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full border border-white/10"
+                        className="text-[10px] font-black uppercase tracking-wider px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg border border-white/10"
                       >
                         {item}
                       </span>
@@ -134,18 +140,13 @@ export default function HomeServices() {
 
                   <Link 
                     href="/servicos" 
-                    className="inline-flex items-center gap-3 text-white font-black uppercase tracking-widest text-xs group/link w-fit"
+                    className="inline-flex items-center gap-3 group/link w-fit"
                   >
-                    <span className="px-6 py-3 rounded-full bg-primary-green text-white shadow-lg shadow-primary-green/20 hover:bg-white hover:text-dark-green transition-all duration-300 flex items-center gap-2">
+                    <span className="px-6 py-3 rounded-full bg-primary-green text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-primary-green/20 hover:bg-white hover:text-dark-green transition-all duration-300 flex items-center gap-2">
                       Saber Mais
                       <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                     </span>
                   </Link>
-                </div>
-
-                {/* Decorative element for editorial feel */}
-                <div className="absolute top-8 right-8 text-white/5 font-heading text-8xl font-black select-none pointer-events-none group-hover:text-white/10 transition-colors duration-700">
-                  0{index + 1}
                 </div>
               </motion.div>
             );
