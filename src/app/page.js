@@ -81,11 +81,6 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:w-1/2"
             >
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-green-50 text-primary-green font-black text-[10px] uppercase tracking-[0.2em] rounded-full mb-8 border border-green-100">
-                <span className="w-2 h-2 rounded-full bg-primary-green animate-ping"></span>
-                Sustentabilidade em Foco
-              </div>
-              
               <h2 className="text-4xl md:text-6xl font-heading text-dark-green mb-10 leading-tight tracking-tight">
                 A sustentabilidade não é uma escolha, <br /> é o <span className="text-primary-green italic underline decoration-green-100 decoration-[12px] underline-offset-4">nosso futuro.</span>
               </h2>

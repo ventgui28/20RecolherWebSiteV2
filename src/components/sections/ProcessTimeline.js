@@ -56,9 +56,6 @@ export default function ProcessTimeline() {
         >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-green-50 text-primary-green text-sm font-bold uppercase tracking-widest mb-6">
-                Sustentabilidade em Movimento
-              </span>
               <h2 className="text-4xl md:text-5xl font-heading font-black text-dark-green leading-tight">
                 Ciclo de <span className="text-primary-green">Transformação</span>
               </h2>
