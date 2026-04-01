@@ -69,10 +69,10 @@ export default function ProcessTimeline() {
             >
               {/* Step Number Badge (Top) */}
               <div className="mb-8 flex items-end gap-3 px-2">
-                <span className="text-6xl font-heading font-black text-green-100/80 group-hover:text-primary-green/20 transition-colors duration-700 leading-none select-none">
+                <span className="text-6xl font-heading font-black text-dark-green/20 group-hover:text-primary-green/40 transition-colors duration-700 leading-none select-none">
                   0{step.id}
                 </span>
-                <div className="mb-2 h-px flex-grow bg-green-50 group-hover:bg-green-100 transition-colors duration-700" />
+                <div className="mb-2 h-px flex-grow bg-green-100 group-hover:bg-primary-green/30 transition-colors duration-700" />
               </div>
 
               {/* Image Container with Editorial Style */}
