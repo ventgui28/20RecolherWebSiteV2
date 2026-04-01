@@ -1,30 +1,30 @@
 export const STATS = [
   { 
-    label: "Toneladas Recicladas", 
-    value: 500, 
+    label: "Clientes Ativos", 
+    value: 600, 
     suffix: "+", 
-    icon: "♻️",
-    description: "Resíduos processados anualmente"
-  },
-  { 
-    label: "Empresas Parceiras", 
-    value: 120, 
-    suffix: "+", 
-    icon: "🤝",
+    icon: "Users",
     description: "Confiam na nossa gestão"
   },
   { 
-    label: "Anos de Experiência", 
-    value: 10, 
+    label: "Recolhas Efetuadas", 
+    value: 2300, 
     suffix: "+", 
-    icon: "📅",
-    description: "Líderes no setor tecnológico"
+    icon: "Truck",
+    description: "Logística especializada"
   },
   { 
-    label: "Equipamentos Processados", 
-    value: 50, 
-    suffix: "k+", 
-    icon: "💻",
-    description: "Componentes valorizados"
+    label: "Material Gerido", 
+    value: 800, 
+    suffix: "t+", 
+    icon: "Recycle",
+    description: "Toneladas valorizadas"
+  },
+  { 
+    label: "Anos no Setor", 
+    value: 10, 
+    suffix: "+", 
+    icon: "Calendar",
+    description: "Líderes em tecnologia"
   }
 ];
