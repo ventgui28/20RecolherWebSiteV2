@@ -169,7 +169,6 @@ export default function HomeHero() {
 
             <div className="bg-primary-green/20 backdrop-blur-xl px-10 py-6 rounded-full border border-white/10 shadow-xl flex items-center gap-4 group cursor-default hover:bg-primary-green/30 transition-colors">
               <span className="text-2xl animate-spin-slow">♻️</span>
-              <p className="text-white font-black text-xs uppercase tracking-[0.2em]">Sustentabilidade em Movimento</p>
             </div>
           </motion.div>
         </div>
