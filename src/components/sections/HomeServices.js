@@ -90,7 +90,7 @@ export default function HomeServices() {
                     src={service.image} 
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                    className="object-cover saturate-[0.6] transition-all duration-1000 ease-out group-hover:scale-105 group-hover:saturate-[0.9]"
                   />
                   {/* Refined Overlays for better depth and legibility */}
                   <div className={cn(
