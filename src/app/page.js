@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HomeHero from "@/components/sections/HomeHero";
 import ProcessTimeline from "@/components/sections/ProcessTimeline";
 import HomeStats from "@/components/sections/HomeStats";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
@@ -46,10 +47,11 @@ export default function Home() {
                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                  className="relative z-20 w-[300px] h-[300px] md:w-[400px] md:h-[400px] overflow-hidden shadow-[0_20px_50px_rgba(30,113,42,0.2)] border-4 border-white"
                >
-                 <img 
-                   src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000&auto=format&fit=crop" 
+                 <Image 
+                   src="/images/imagem-arvore.jpg" 
                    alt="Natureza Imersiva e Floresta Sustentável" 
-                   className="w-full h-full object-cover scale-110 saturate-[0.8]"
+                   fill
+                   className="object-cover scale-110 saturate-[0.8]"
                  />
                  <div className="absolute inset-0 bg-primary-green/10 mix-blend-overlay" />
                  <div className="absolute inset-0 bg-gradient-to-t from-dark-green/40 via-transparent to-transparent opacity-60" />
