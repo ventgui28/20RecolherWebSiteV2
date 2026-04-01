@@ -20,6 +20,7 @@ O Gemini CLI tem a responsabilidade proativa de manter o estado do projeto e o h
 5. **Pré-Reset:** Se o utilizador pedir um reset ou terminar a sessão, deves correr `npm run handoff`.
 
 ## 🛠️ REGRAS DE OURO
+- **Commits Locais Automáticos:** Deves realizar commits locais (`git commit`) imediatamente após concluir cada tarefa ou implementação funcional, sem esperar por instruções explícitas, para manter um histórico granular.
 - **Não alteres a arquitetura modular** sem consultar o utilizador.
 - **Não escrevas texto diretamente nas páginas**; usa `src/constants/`.
 - **Mantém o estilo "Ambiental & Sólido"** com a paleta de verdes definida.
