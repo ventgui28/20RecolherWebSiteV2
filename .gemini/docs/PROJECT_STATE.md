@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:23:32
+**Commits:**
+```
+aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
+6ec78ed feat: implement real-time video progress and navigation controls in hero
+012549d style: remove floating sustainability badge container from hero
+e1445c9 style: remove final sustainability badge from hero section
+723aefb style: remove redundant sustainability badges from home page
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 12:17:04
 **Commits:**
 ```
@@ -283,14 +293,4 @@ a106e51 revert: remove dark mode and keep only white mode
 e1445c9 style: remove final sustainability badge from hero section
 723aefb style: remove redundant sustainability badges from home page
 eae9c26 style: seal all background gaps on home page with a unified Green Mist wrapper
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:14:43
-**Commits:**
-```
-012549d style: remove floating sustainability badge container from hero
-e1445c9 style: remove final sustainability badge from hero section
-723aefb style: remove redundant sustainability badges from home page
-eae9c26 style: seal all background gaps on home page with a unified Green Mist wrapper
-06d512d style: achieve total chromatic immersion by neutralizing residual background blocks
 ```

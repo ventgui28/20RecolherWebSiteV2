@@ -67,13 +67,13 @@ export default function HomeHero() {
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green bg-grain">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key={currentVideo}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <video
