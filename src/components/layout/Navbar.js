@@ -52,7 +52,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-green-50">
+    <nav className="sticky top-0 z-[100] bg-stone-fine/80 backdrop-blur-xl border-b border-green-50/50">
       <Container>
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 relative z-[110]">
@@ -125,7 +125,7 @@ export default function Navbar() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 md:hidden bg-white z-[100] flex flex-col pt-32 pb-12 overflow-hidden"
+            className="fixed inset-0 md:hidden bg-stone-fine bg-grain z-[100] flex flex-col pt-32 pb-12 overflow-hidden"
           >
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[120vw] h-[120vw] bg-green-50 rounded-full -z-10 blur-3xl opacity-60" />

@@ -78,7 +78,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 bg-white rounded-[3.5rem] p-10 md:p-16 shadow-[0_50px_100px_-20px_rgba(14,103,44,0.12)] border border-green-50 relative"
+            className="lg:col-span-7 bg-white/80 backdrop-blur-xl rounded-[3.5rem] p-10 md:p-16 shadow-[0_50px_100px_-20px_rgba(14,103,44,0.12)] border border-white relative"
           >
             <div className="relative z-10">
               <h2 className="text-3xl font-heading text-dark-green mb-10">Pedido de Orçamento</h2>

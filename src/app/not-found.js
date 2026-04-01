@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-white overflow-hidden relative">
+    <div className="min-h-[70vh] flex items-center justify-center bg-stone-fine bg-grain overflow-hidden relative">
       {/* Elementos Decorativos Flutuantes */}
       <motion.div 
         animate={{ 
