@@ -15,14 +15,14 @@ Cada commit deve seguir uma estrutura tripartida para garantir rastreabilidade t
 - `docs`: Documentação.
 
 ### 1.2 Corpo (Body)
-Parágrafo detalhado explicando:
-- **IMPACTO:** O que muda na experiência do utilizador ou no sistema após esta alteração.
+Deve conter obrigatoriamente dois blocos:
+- **IMPACTO:** O que muda na experiência do utilizador ou no valor de negócio.
+- **COMPONENTE TÉCNICA:** Explicação da escolha técnica, lógica de programação ou arquitetura utilizada (o "como").
 
-### 1.3 Detalhes Técnicos (Footer)
+### 1.3 Detalhes Específicos (Footer)
 Lista técnica profunda de alterações específicas:
 - Quais ficheiros foram criados/modificados.
-- Lógica interna implementada (hooks, lógica de negócio, novas bibliotecas).
-- Detalhes de implementação que facilitem a revisão de código.
+- Detalhes de implementação atómica (hooks, bibliotecas, estados).
 
 ## 2. Exemplo de Referência
 ```text
@@ -30,10 +30,11 @@ feat: adicionar animação de entrada na hero
 
 IMPACTO: Os elementos da Hero entram agora de forma suave, guiando o olhar do utilizador e reforçando a estética premium do site.
 
+COMPONENTE TÉCNICA: Implementação baseada em Framer Motion usando variantes de animação para desacoplar a lógica de transição do componente JSX, garantindo performance via hardware acceleration.
+
 - Importado 'motion' do Framer Motion em 'HomeHero.js'.
 - Adicionadas variantes de animação 'fadeInUp' e 'staggerContainer'.
 - Aplicado atraso (delay) de 0.5s para o título e 0.8s para o botão.
-- Configurada a prop 'viewport' para disparar a animação apenas uma vez.
 ```
 
 ## 3. Fluxo de Branches

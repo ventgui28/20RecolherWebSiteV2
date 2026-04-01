@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 12:37:17
+**Commits:**
+```
+421965c fix: resolve ReferenceError in HomeHero ref assignment
+7341162 fix: stabilize hero video transitions with robust event guarding
+a240636 fix: restore video progress bar using index-based identification
+7c9273d fix: resolve infinite video transition loop in hero section
+28947f1 perf: optimize hero video transition speed
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 12:36:18
 **Commits:**
 ```
@@ -283,14 +293,4 @@ a240636 fix: restore video progress bar using index-based identification
 7c9273d fix: resolve infinite video transition loop in hero section
 28947f1 perf: optimize hero video transition speed
 aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:33:39
-**Commits:**
-```
-a240636 fix: restore video progress bar using index-based identification
-7c9273d fix: resolve infinite video transition loop in hero section
-28947f1 perf: optimize hero video transition speed
-aeb7006 style: refactor hero video controls to a cinematic bottom-right layout
-6ec78ed feat: implement real-time video progress and navigation controls in hero
 ```
