@@ -19,63 +19,66 @@ const HERO_VIDEOS = [
 export default function HomeHero() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [progress, setProgress] = useState(0);
-  const transitionTriggered = useRef(false);
+  
+  // High-precision control refs
+  const isTransitioning = useRef(false);
+  const activeIndexRef = useRef(0);
   const videoRef = useRef(null);
 
-  // Reset trigger and progress when video changes
+  // Sync ref with state immediately
   useEffect(() => {
-    transitionTriggered.current = false;
+    activeIndexRef.current = currentVideo;
     setProgress(0);
+    
+    // Unlock transition after the cross-fade animation completes (800ms)
+    const timer = setTimeout(() => {
+      isTransitioning.current = false;
+    }, 850);
+
+    return () => clearTimeout(timer);
   }, [currentVideo]);
+
+  const changeVideo = (newIndex) => {
+    if (isTransitioning.current || newIndex === activeIndexRef.current) return;
+    
+    isTransitioning.current = true;
+    setCurrentVideo(newIndex);
+  };
 
   const handleTimeUpdate = (e) => {
     const video = e.target;
     const videoIndex = parseInt(video.dataset.videoIndex);
     
-    // Security Guard: Only the video matching the current state index can update progress and trigger navigation
-    if (!video.duration || video.duration <= 0 || videoIndex !== currentVideo) return;
+    // If this video is not the active one, kill it immediately to prevent event pollution
+    if (videoIndex !== activeIndexRef.current) {
+      video.pause();
+      video.muted = true;
+      return;
+    }
 
+    // Safety check for metadata
+    if (!video.duration || video.duration <= 0) return;
+
+    // Update real-time progress for active video
     const currentProgress = (video.currentTime / video.duration) * 100;
     setProgress(currentProgress);
 
+    // Auto-advance logic: 1 second before end
     const timeLeft = video.duration - video.currentTime;
-
-    // Trigger transition 1 second before end
-    if (timeLeft <= 1 && !transitionTriggered.current) {
-      transitionTriggered.current = true;
-      setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+    if (timeLeft <= 1 && !isTransitioning.current) {
+      changeVideo((activeIndexRef.current + 1) % HERO_VIDEOS.length);
     }
   };
 
-  const handleVideoEnd = (e) => {
-    const video = e.target;
-    const videoIndex = parseInt(video.dataset.videoIndex);
-
-    // Only the active video can trigger the end transition
-    if (videoIndex !== currentVideo) return;
-
-    if (!transitionTriggered.current) {
-      setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
-    }
-  };
-
-  const nextVideo = () => {
-    setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
-  };
-
-  const prevVideo = () => {
-    setCurrentVideo((prev) => (prev - 1 + HERO_VIDEOS.length) % HERO_VIDEOS.length);
-  };
-
-  const goToVideo = (index) => {
-    setCurrentVideo(index);
-  };
+  const nextVideo = () => changeVideo((currentVideo + 1) % HERO_VIDEOS.length);
+  const prevVideo = () => changeVideo((currentVideo - 1 + HERO_VIDEOS.length) % HERO_VIDEOS.length);
+  const goToVideo = (index) => changeVideo(index);
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green bg-grain">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           <motion.div
             key={currentVideo}
             initial={{ opacity: 0 }}
@@ -85,12 +88,11 @@ export default function HomeHero() {
             className="absolute inset-0"
           >
             <video
-              ref={videoRef}
+              ref={videoIndex === activeIndexRef.current ? videoRef : null}
               autoPlay
               muted
               playsInline
               onTimeUpdate={handleTimeUpdate}
-              onEnded={handleVideoEnd}
               data-video-index={currentVideo}
               poster="/images/hero-fallback.webp"
               className="w-full h-full object-cover"
@@ -163,7 +165,8 @@ export default function HomeHero() {
         <div className="flex items-center gap-3">
           <button
             onClick={prevVideo}
-            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn"
+            disabled={isTransitioning.current}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Vídeo anterior"
           >
             <ChevronLeft className="w-6 h-6 group-hover/btn:-translate-x-0.5 transition-transform" />
@@ -174,6 +177,7 @@ export default function HomeHero() {
               <button
                 key={i}
                 onClick={() => goToVideo(i)}
+                disabled={isTransitioning.current}
                 className={`relative h-1.5 rounded-full transition-all duration-500 overflow-hidden ${i === currentVideo ? "w-12 bg-white/20" : "w-4 bg-white/10 hover:bg-white/30"}`}
                 aria-label={`Ver vídeo ${i + 1}`}
               >
@@ -190,7 +194,8 @@ export default function HomeHero() {
 
           <button
             onClick={nextVideo}
-            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn"
+            disabled={isTransitioning.current}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Próximo vídeo"
           >
             <ChevronRight className="w-6 h-6 group-hover/btn:translate-x-0.5 transition-transform" />
