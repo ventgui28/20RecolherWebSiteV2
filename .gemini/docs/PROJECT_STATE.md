@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 01/04/2026, 17:37:19
+**Commits:**
+```
+a84194a docs: reconstruir diário de projeto com histórico completo
+272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
+553b694 style: atualizar imagem de natureza na home page para recurso local
+b92b4ed feat: integrar história real e contactos oficiais da 20recolher
+96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 17:18:02
 **Commits:**
 ```
@@ -283,14 +293,4 @@ a106e51 revert: remove dark mode and keep only white mode
 b92b4ed feat: integrar história real e contactos oficiais da 20recolher
 96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
 3cafb3b style: remover secção de especialidades de recolha da home page
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 17:01:27
-**Commits:**
-```
-553b694 style: atualizar imagem de natureza na home page para recurso local
-b92b4ed feat: integrar história real e contactos oficiais da 20recolher
-96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
-3cafb3b style: remover secção de especialidades de recolha da home page
-812bc4a style: reformular cartões de serviços para layout simétrico e interativo
 ```
