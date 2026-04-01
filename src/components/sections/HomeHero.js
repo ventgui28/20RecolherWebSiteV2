@@ -88,7 +88,7 @@ export default function HomeHero() {
             className="absolute inset-0"
           >
             <video
-              ref={videoIndex === activeIndexRef.current ? videoRef : null}
+              ref={videoRef}
               autoPlay
               muted
               playsInline
