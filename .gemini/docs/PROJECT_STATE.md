@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 01/04/2026, 14:25:21
+#### Sincronização: 01/04/2026, 14:41:20
 **Commits:**
 ```
+e03e39a style: remover instagram e otimizar footer para formato compacto
+9e66b31 style: reformular footer para design minimalista e funcional
+36aad49 fix: resolver erros de renderização e refs no componente HomeHero
+cb8a4bb docs: atualizar estado do projeto antes do merge para main
+33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
+```
+#### Sincronização:
+#### Sincronização: 01/04/2026, 14:36:29
+**Commits:**
+```
+9e66b31 style: reformular footer para design minimalista e funcional
 36aad49 fix: resolver erros de renderização e refs no componente HomeHero
 cb8a4bb docs: atualizar estado do projeto antes do merge para main
 33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
 563060b docs: adopt senior pragmatic commit strategy
-f49a5ac docs: refinar padrão de commits para foco em ficheiros, alterações e impacto
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 12:44:24
-**Commits:**
-```
-33b5ab0 docs: oficializar uso de PT-PT na estratégia de commits
-563060b docs: adopt senior pragmatic commit strategy
-f49a5ac docs: refinar padrão de commits para foco em ficheiros, alterações e impacto
-95a7d0a docs: adicionar tópico de componente técnica à estratégia de git
-421965c fix: resolve ReferenceError in HomeHero ref assignment
 ```
