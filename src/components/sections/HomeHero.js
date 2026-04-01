@@ -31,7 +31,8 @@ export default function HomeHero() {
   const handleTimeUpdate = (e) => {
     const video = e.target;
     
-    if (!video.duration || video.duration <= 0) return;
+    // Security Guard: Ensure only the currently active video source triggers state changes
+    if (!video.duration || video.duration <= 0 || !video.src.includes(HERO_VIDEOS[currentVideo])) return;
 
     const currentProgress = (video.currentTime / video.duration) * 100;
     setProgress(currentProgress);
@@ -45,7 +46,11 @@ export default function HomeHero() {
     }
   };
 
-  const handleVideoEnd = () => {
+  const handleVideoEnd = (e) => {
+    const video = e.target;
+    // Only proceed if this is the video that should be active
+    if (!video.src.includes(HERO_VIDEOS[currentVideo])) return;
+
     if (!transitionTriggered.current) {
       setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
     }
