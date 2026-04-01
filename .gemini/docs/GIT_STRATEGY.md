@@ -1,12 +1,12 @@
 # Estratégia de Git - 20recolher (Pragmático Senior)
 
-Instruções para manter um histórico de commits profissional, focado no racional técnico e na intenção da mudança.
+Instruções para manter um histórico de commits profissional, focado no racional técnico e na intenção da mudança, redigido em Português (Portugal).
 
 ## 1. Padrão de Commits (Obrigatório)
-Cada commit deve seguir uma estrutura focada na intenção e na lógica, evitando descrições superficiais ou redundantes.
+Cada commit deve seguir uma estrutura focada na intenção e na lógica, redigida integralmente em **Português (Portugal)**.
 
 ### 1.1 Título (Header)
-`tipo: breve descrição técnica` (max 70 caracteres).
+`tipo: breve descrição técnica em PT-PT` (max 70 caracteres).
 - `feat`: Novas funcionalidades ou alterações lógicas significativas.
 - `fix`: Correção de bugs ou instabilidades.
 - `perf`: Otimizações de carregamento, memória ou execução.
@@ -15,7 +15,7 @@ Cada commit deve seguir uma estrutura focada na intenção e na lógica, evitand
 - `docs`: Documentação técnica.
 
 ### 1.2 O "Porquê" (Rationale)
-Um parágrafo curto que explica o **motivo** da mudança e o **racional técnico** por trás da solução. Deve responder à pergunta: "Porque é que isto foi feito desta maneira?".
+Um parágrafo curto que explica o **motivo** da mudança e o **racional técnico** por trás da solução em PT-PT. Deve responder à pergunta: "Porque é que isto foi feito desta maneira?".
 
 ### 1.3 Mudanças Lógicas (Bullets)
 Lista de alterações de alto nível que descrevem a evolução da lógica ou arquitetura. 
@@ -28,13 +28,13 @@ Lista de alterações de alto nível que descrevem a evolução da lógica ou ar
 
 ## 3. Exemplo de Referência
 ```text
-fix: stabilize hero video event transitions
+fix: estabilizar transições de eventos de vídeo na hero
 
-The transition logic was prone to infinite loops during cross-fade because exiting videos continued to trigger time updates. Implemented a robust state lock using Refs to ensure only the strictly active video can update global progress or trigger the next transition.
+A lógica de transição era propensa a loops infinitos durante o cross-fade porque os vídeos em saída continuavam a disparar atualizações de tempo. Foi implementado um bloqueio de estado robusto utilizando Refs para garantir que apenas o vídeo estritamente ativo pode atualizar o progresso global ou disparar a próxima transição.
 
-- Implemented a ref-based lock (isTransitioning) to ignore stale events.
-- Synchronized active index tracking with activeIndexRef for real-time validation.
-- Decoupled automatic navigation from the video 'onEnded' event to simplify state management.
+- Implementado um bloqueio baseado em ref (isTransitioning) para ignorar eventos obsoletos.
+- Sincronizada a verificação do índice ativo com activeIndexRef para validação em tempo real.
+- Desacoplada a navegação automática do evento 'onEnded' para simplificar a gestão de estados.
 ```
 
 ## 4. Fluxo de Branches
