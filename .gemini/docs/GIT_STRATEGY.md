@@ -15,26 +15,24 @@ Cada commit deve seguir uma estrutura tripartida para garantir rastreabilidade t
 - `docs`: Documentação.
 
 ### 1.2 Corpo (Body)
-Deve conter obrigatoriamente dois blocos:
-- **IMPACTO:** O que muda na experiência do utilizador ou no valor de negócio.
-- **COMPONENTE TÉCNICA:** Explicação da escolha técnica, lógica de programação ou arquitetura utilizada (o "como").
+O corpo do commit deve ser estruturado nestes três tópicos obrigatórios:
 
-### 1.3 Detalhes Específicos (Footer)
-Lista técnica profunda de alterações específicas:
-- Quais ficheiros foram criados/modificados.
-- Detalhes de implementação atómica (hooks, bibliotecas, estados).
+- **FICHEIROS ALTERADOS:** Listagem clara dos ficheiros que sofreram modificações.
+- **ALTERAÇÕES REALIZADAS:** Descrição detalhada do código alterado, incluindo a **Componente Técnica** (lógica, bibliotecas, algoritmos utilizados).
+- **IMPACTO:** O resultado final da alteração para o utilizador ou para a performance do sistema.
 
 ## 2. Exemplo de Referência
 ```text
-feat: adicionar animação de entrada na hero
+feat: otimizar transição de vídeo na hero
 
-IMPACTO: Os elementos da Hero entram agora de forma suave, guiando o olhar do utilizador e reforçando a estética premium do site.
+FICHEIROS ALTERADOS: 
+- src/components/sections/HomeHero.js
 
-COMPONENTE TÉCNICA: Implementação baseada em Framer Motion usando variantes de animação para desacoplar a lógica de transição do componente JSX, garantindo performance via hardware acceleration.
+ALTERAÇÕES REALIZADAS:
+Implementado um sistema de bloqueio de eventos via 'Refs' para ignorar vídeos em animação de saída. Reduzida a duração da transição para 0.8s e removido o 'mode=wait' para permitir cross-fade imediato.
 
-- Importado 'motion' do Framer Motion em 'HomeHero.js'.
-- Adicionadas variantes de animação 'fadeInUp' e 'staggerContainer'.
-- Aplicado atraso (delay) de 0.5s para o título e 0.8s para o botão.
+IMPACTO:
+A troca de vídeos na Hero tornou-se instantânea e imune a loops infinitos, melhorando a fluidez da navegação manual.
 ```
 
 ## 3. Fluxo de Branches
