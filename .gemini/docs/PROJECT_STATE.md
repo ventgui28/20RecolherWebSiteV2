@@ -7,12 +7,12 @@ Registo do progresso atual e ficheiros criados até à data de 01/04/2026.
 - [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
 - [x] **Central de Dados:** Constantes criadas para a marca, serviços e contactos (`src/constants/`).
 - [x] **Páginas Implementadas:**
-  - `Home`: Hero, serviços (Editorial Bento Grid), processo (timeline) e estatísticas.
-  - `Sobre Nós`: Missão e valores da empresa.
+  - `Home`: [CONCLUÍDA] Hero, estatísticas, timeline de processo e rodapé.
+  - `Sobre Nós`: Implementação base (em refinação).
   - `Serviços`: Detalhes completos das categorias de recolha.
   - `Contactos`: Info, mapa e formulário.
   - `404`: Página de erro personalizada com design premium.
-- [x] **Git:** Repositório local inicializado com documentação base e branches `main`/`develop`.
+- [x] **Git:** Branch única `main` consolidada com histórico limpo.
 
 ## 2. Estrutura de Pastas Atual
 - `src/app/`: Páginas e layouts.
@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 01/04/2026, 15:02:26
+#### Sincronização: 01/04/2026, 15:22:20
 **Commits:**
 ```
+3cafb3b style: remover secção de especialidades de recolha da home page
 812bc4a style: reformular cartões de serviços para layout simétrico e interativo
 332728b style: remover linkedin e definir facebook como rede social única
 e03e39a style: remover instagram e otimizar footer para formato compacto
 9e66b31 style: reformular footer para design minimalista e funcional
-36aad49 fix: resolver erros de renderização e refs no componente HomeHero
 ```
 #### Sincronização:
-#### Sincronização: 01/04/2026, 14:46:13
+#### Sincronização: 01/04/2026, 15:11:03
 **Commits:**
 ```
+3cafb3b style: remover secção de especialidades de recolha da home page
+812bc4a style: reformular cartões de serviços para layout simétrico e interativo
 332728b style: remover linkedin e definir facebook como rede social única
 e03e39a style: remover instagram e otimizar footer para formato compacto
 9e66b31 style: reformular footer para design minimalista e funcional
-36aad49 fix: resolver erros de renderização e refs no componente HomeHero
-cb8a4bb docs: atualizar estado do projeto antes do merge para main
 ```
