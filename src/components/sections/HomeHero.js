@@ -19,30 +19,30 @@ const HERO_VIDEOS = [
 export default function HomeHero() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // High-precision control refs
-  const isTransitioning = useRef(false);
   const activeIndexRef = useRef(0);
   const videoRef = useRef(null);
 
   // Sync ref with state immediately
   useEffect(() => {
     activeIndexRef.current = currentVideo;
-    setProgress(0);
     
     // Unlock transition after the cross-fade animation completes (800ms)
     const timer = setTimeout(() => {
-      isTransitioning.current = false;
+      setIsTransitioning(false);
     }, 850);
 
     return () => clearTimeout(timer);
   }, [currentVideo]);
 
   const changeVideo = (newIndex) => {
-    if (isTransitioning.current || newIndex === activeIndexRef.current) return;
+    if (isTransitioning || newIndex === activeIndexRef.current) return;
     
-    isTransitioning.current = true;
+    setIsTransitioning(true);
     setCurrentVideo(newIndex);
+    setProgress(0);
   };
 
   const handleTimeUpdate = (e) => {
@@ -65,7 +65,7 @@ export default function HomeHero() {
 
     // Auto-advance logic: 1 second before end
     const timeLeft = video.duration - video.currentTime;
-    if (timeLeft <= 1 && !isTransitioning.current) {
+    if (timeLeft <= 1 && !isTransitioning) {
       changeVideo((activeIndexRef.current + 1) % HERO_VIDEOS.length);
     }
   };
@@ -165,7 +165,7 @@ export default function HomeHero() {
         <div className="flex items-center gap-3">
           <button
             onClick={prevVideo}
-            disabled={isTransitioning.current}
+            disabled={isTransitioning}
             className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Vídeo anterior"
           >
@@ -177,7 +177,7 @@ export default function HomeHero() {
               <button
                 key={i}
                 onClick={() => goToVideo(i)}
-                disabled={isTransitioning.current}
+                disabled={isTransitioning}
                 className={`relative h-1.5 rounded-full transition-all duration-500 overflow-hidden ${i === currentVideo ? "w-12 bg-white/20" : "w-4 bg-white/10 hover:bg-white/30"}`}
                 aria-label={`Ver vídeo ${i + 1}`}
               >
@@ -194,7 +194,7 @@ export default function HomeHero() {
 
           <button
             onClick={nextVideo}
-            disabled={isTransitioning.current}
+            disabled={isTransitioning}
             className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-primary-green hover:border-primary-green transition-all duration-300 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Próximo vídeo"
           >
