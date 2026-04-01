@@ -110,18 +110,6 @@ export default function ProcessTimeline() {
           ))}
         </motion.div>
 
-        {/* Call to Action Subtil */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="mt-24 md:mt-32 flex justify-center"
-        >
-          <div className="px-8 py-3 bg-white rounded-full border border-green-50 shadow-sm flex items-center gap-4 text-sm font-black uppercase tracking-widest text-forest-green">
-            <span className="w-2.5 h-2.5 rounded-full bg-primary-green animate-pulse shadow-[0_0_10px_rgba(142,179,31,0.5)]" />
-            Processo Certificado e Monitorizado
-          </div>
-        </motion.div>
       </Container>
     </section>
   );
