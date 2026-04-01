@@ -33,24 +33,38 @@ export default function Home() {
             {/* Visual Column */}
             <motion.div 
               {...fadeInUp}
-              className="lg:w-1/2 relative flex justify-center items-center"
+              className="lg:w-1/2 relative flex justify-center items-center py-12"
             >
+               {/* Animated Organic Blob Container */}
                <motion.div 
-                 animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                 className="relative z-20 text-[200px] md:text-[250px] drop-shadow-[0_20px_50px_rgba(30,113,42,0.15)] cursor-default"
+                 animate={{ 
+                   borderRadius: [
+                     "60% 40% 30% 70% / 60% 30% 70% 40%",
+                     "30% 70% 70% 30% / 30% 30% 70% 70%",
+                     "50% 50% 20% 80% / 20% 80% 50% 50%",
+                     "60% 40% 30% 70% / 60% 30% 70% 40%"
+                   ] 
+                 }}
+                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                 className="relative z-20 w-[300px] h-[300px] md:w-[400px] md:h-[400px] overflow-hidden shadow-[0_20px_50px_rgba(30,113,42,0.2)] border-4 border-white"
                >
-                 🌍
+                 <img 
+                   src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" 
+                   alt="Globo Terrestre e Sustentabilidade" 
+                   className="w-full h-full object-cover scale-110 saturate-[0.8]"
+                 />
+                 <div className="absolute inset-0 bg-primary-green/20 mix-blend-overlay" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-dark-green/60 via-transparent to-transparent opacity-80" />
                </motion.div>
                
-               <div className="absolute w-[80%] h-[80%] bg-mid-green/5 rounded-full blur-[100px] pointer-events-none" />
+               <div className="absolute w-[80%] h-[80%] bg-primary-green/10 rounded-full blur-[100px] pointer-events-none" />
                
                <motion.div 
                   initial={{ opacity: 0, scale: 0.8, x: 20 }}
                   whileInView={{ opacity: 1, scale: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="absolute -top-4 -right-4 bg-white/80 backdrop-blur-md px-8 py-6 rounded-[2.5rem] shadow-xl border border-green-50 max-w-[200px] z-30"
+                  className="absolute top-0 right-0 md:-right-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-[2.5rem] shadow-2xl border border-green-50 max-w-[200px] z-30"
                >
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Nosso Foco</p>
                   <p className="text-base font-bold text-dark-green leading-snug">Economia Circular em Portugal 🇵🇹</p>
