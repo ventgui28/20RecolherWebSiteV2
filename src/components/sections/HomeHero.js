@@ -48,7 +48,7 @@ export default function HomeHero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-dark-green bg-grain">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence>

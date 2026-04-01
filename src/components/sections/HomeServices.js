@@ -38,7 +38,7 @@ export default function HomeServices() {
   };
 
   return (
-    <section className="py-24 md:py-40 bg-white relative overflow-hidden">
+    <section className="py-24 md:py-40 bg-stone-fine bg-grain relative overflow-hidden">
       {/* Ambient background accent */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary-green/[0.03] blur-[120px] rounded-full -translate-y-1/2 translate-x-1/3" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-dark-green/[0.02] blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4" />

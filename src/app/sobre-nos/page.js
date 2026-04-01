@@ -7,7 +7,7 @@ import { BRAND } from "@/constants/brand";
 
 export default function AboutPage() {
   return (
-    <div className="py-20 md:py-32 bg-white overflow-hidden">
+    <div className="py-20 md:py-32 bg-stone-fine bg-grain overflow-hidden relative min-h-screen">
       {/* Ambient Background Glows */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       

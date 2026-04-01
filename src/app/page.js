@@ -26,8 +26,8 @@ export default function Home() {
       <HomeStats />
       
       {/* About Brief Section - Refined with Micro-interactions */}
-      <section className="py-32 bg-background overflow-hidden">
-        <Container>
+      <section className="py-32 bg-green-mist bg-grain overflow-hidden relative">
+        <Container className="relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
             
             {/* Visual Column */}

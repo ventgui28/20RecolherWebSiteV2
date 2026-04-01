@@ -9,7 +9,7 @@ import { SERVICES } from "@/constants/services";
 
 export default function ServicesPage() {
   return (
-    <div className="py-20 md:py-32 bg-white overflow-hidden">
+    <div className="py-20 md:py-32 bg-stone-fine bg-grain overflow-hidden relative min-h-screen">
       {/* Ambient Backgrounds */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[100px] pointer-events-none" />
       
