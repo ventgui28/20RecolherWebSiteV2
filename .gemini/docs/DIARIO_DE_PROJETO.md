@@ -6,33 +6,36 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ## 📅 QUARTA-FEIRA, 1 DE ABRIL DE 2026
 ### 💬 O que conversámos (Intenção)
-A sessão de hoje foi marcada pela busca da autenticidade. Decidimos que o site não deveria apenas ser bonito, mas sim refletir a realidade da 20recolher. O utilizador solicitou o restauro das cores originais do logótipo e a criação de um rodapé mais "Slim", pois o anterior ocupava demasiado espaço. Houve uma limpeza estratégica das redes sociais, focando exclusivamente no Facebook. O ponto alto foi a integração da história real da empresa, movendo-nos de conteúdos genéricos para factos concretos: fundação em 2014, prémio de empreendedorismo em 2013 e a mudança para Cantanhede em 2022.
+A sessão de hoje foi uma jornada de transformação do "genérico" para o "autêntico". Começámos por elevar o design do rodapé para um formato **Slim e Profissional**, respeitando as cores originais da marca. Houve uma decisão clara de simplificar a presença digital, focando exclusivamente no **Facebook** e removendo redes não utilizadas (Instagram/LinkedIn). 
+
+O ponto mais importante foi a integração da **história real da 20recolher**: a sua fundação em 2014, o prémio de empreendedorismo de 2013 e a mudança estratégica para a Zona Industrial de Cantanhede em 2022. No fecho da sessão, estabelecemos um **Protocolo de Diário** para que nada se perca entre conversas futuras.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Rodapé Premium & Slim:** Novo design em verde escuro, compacto e funcional, com o logótipo colorido e informações de contacto reais de Cantanhede.
-- **Identidade Real:** Atualização total da página "Sobre Nós" com fotografias realistas e a cronologia autêntica da empresa.
-- **Foco Digital:** Remoção de Instagram e LinkedIn, configurando o Facebook como única rede oficial.
-- **Otimização Visual:** Substituição da imagem da floresta por um recurso local e remoção da secção de "Especialidades" para uma navegação mais direta.
-- **Estabilidade Técnica:** Correção de erros no componente de vídeo (Hero) e unificação cromática do fundo (Green Mist) em todo o site.
-- **Gestão de Projeto:** Implementação deste protocolo de Diário de Projeto.
+- **Rodapé Premium & Slim:** Novo design em verde escuro, muito compacto, com o logótipo em cores reais e contactos de Cantanhede.
+- **Identidade Real:** Atualização total da página "Sobre Nós" com fotografias realistas e a narrativa oficial da empresa (incluindo o trabalho com o Estado e tribunais).
+- **Foco Digital Único:** Remoção total de referências ao LinkedIn e Instagram; link oficial do Facebook configurado.
+- **Otimização Visual:** Substituição da imagem da floresta por um recurso local (`imagem-arvore.jpg`) e ajuste tipográfico no título principal do "Sobre Nós".
+- **Sistema de Documentação:** Criação deste Diário de Projeto e atualização das "Regras de Ouro" no ficheiro `GEMINI.md` para automatizar este registo.
+- **Consolidação Git:** Repositório simplificado para trabalhar exclusivamente na branch `main`.
 
 ### 🎯 Estado da Entrega
-- **Home Page:** [CONCLUÍDA] 100% otimizada e testada.
-- **Sobre Nós:** [CONCLUÍDA] Com dados históricos reais integrados.
-- **Pendente:** Rever página de Serviços e Contactos.
+- **Home Page:** [CONCLUÍDA] 100% otimizada e com imagens locais.
+- **Sobre Nós:** [CONCLUÍDA] Com dados históricos reais e design institucional sólido.
+- **Protocolos:** [ATIVOS] Sistema de diário diário implementado.
+- **Próximo Passo:** Rever e otimizar a página de **Serviços** e a de **Contactos**.
 
 ---
 
 ## 📅 TERÇA-FEIRA, 31 DE MARÇO DE 2026
 ### 💬 O que conversámos (Intenção)
-O primeiro dia foi de definições estruturais. O utilizador queria um site moderno que fugisse ao aspeto "clássico" de reciclagem. Decidimos por um design "Soft & Immersive", utilizando tons de verde pastel e micro-interações. O foco inicial foi criar uma Home Page que gerasse impacto imediato através de vídeo e uma tipografia elegante (Quicksand/Nunito).
+O primeiro dia foi de definições estruturais. O utilizador queria um site moderno que fugisse ao aspeto "clássico" de reciclagem. Decidimos por um design "Soft & Immersive", utilizando tons de verde pastel e micro-interações. O foco inicial foi criar uma Home Page que gerasse impacto imediato através de vídeo e uma tipografia elegante.
 
 ### 🚀 O que mudou no Site (Execução)
 - **Setup Tecnológico:** Configuração do Next.js 15, Tailwind v4 e Framer Motion.
 - **Design Editorial:** Criação das primeiras secções da Home: Hero com vídeo, Estatísticas Animadas e Timeline de Processo.
 - **Componentes Base:** Desenvolvimento da Navbar e da estrutura de cores da marca.
-- **Experiência do Utilizador:** Implementação da página 404 personalizada e animações de entrada em todos os blocos principais.
-- **SEO & Metadados:** Configuração inicial de títulos e ícones (favicon).
+- **Experiência do Utilizador:** Implementação da página 404 personalizada e animações de entrada.
+- **SEO & Metadados:** Configuração inicial de títulos e ícones.
 
 ### 🎯 Estado da Entrega
 - **Infraestrutura:** [CONCLUÍDA] Base técnica sólida estabelecida.
