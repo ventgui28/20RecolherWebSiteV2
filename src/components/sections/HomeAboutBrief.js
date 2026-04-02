@@ -88,7 +88,7 @@ export default function HomeAboutBrief() {
             {...fadeInUp}
             className="lg:w-1/2 relative flex justify-center items-center py-12"
           >
-             {/* Dynamic Liquid Droplet */}
+             {/* Dynamic Liquid Droplet - Much Smaller */}
              <motion.div 
                style={{ 
                  x: blobX, 
@@ -99,10 +99,10 @@ export default function HomeAboutBrief() {
                  borderBottomLeftRadius: brBottomLeft,
                  transformStyle: "preserve-3d"
                }}
-               className="relative z-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] overflow-hidden shadow-[0_50px_100px_rgba(30,113,42,0.25)] border-[8px] border-white will-change-transform bg-white"
+               className="relative z-20 w-[180px] h-[180px] md:w-[280px] md:h-[280px] overflow-hidden shadow-[0_30px_60px_rgba(30,113,42,0.2)] border-[4px] border-white will-change-transform bg-white"
              >
                <motion.div 
-                 style={{ x: imgX, y: imgY, scale: 1.6 }} 
+                 style={{ x: imgX, y: imgY, scale: 1.8 }} 
                  className="absolute inset-0 w-full h-full"
                >
                  <Image 
