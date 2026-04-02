@@ -9,7 +9,13 @@ import Button from "@/components/ui/Button";
 import { CONTACTS } from "@/constants/contact";
 
 export default function ContactPage() {
-  const [profile, setProfile] = useState('empresa'); // empresa, particular, publica
+  const [profile, setProfile] = useState(null); // empresa, particular, publica (inicializado a null)
+  const [showWarning, setShowWarning] = useState(false);
+
+  const handleProfileSelect = (id) => {
+    setProfile(id);
+    setShowWarning(false);
+  };
 
   const profiles = [
     { id: 'empresa', label: 'Empresa', icon: Building2, desc: 'Gestão de resíduos B2B' },
@@ -33,6 +39,13 @@ export default function ContactPage() {
       contact: "Departamento / Contacto",
       cta: "Consultar Condições Públicas"
     }
+  };
+
+  // Default labels to avoid undefined when profile is null
+  const currentLabels = profile ? labels[profile] : {
+    name: "Nome ou Empresa",
+    contact: "Contacto Responsável",
+    cta: "Enviar Pedido de Orçamento"
   };
 
   const contactItems = [
@@ -121,14 +134,14 @@ export default function ContactPage() {
           </div>
 
           {/* Column 2: Conditional Form */}
-          <div className="lg:col-span-7 space-y-10">
+          <div className="lg:col-span-7 space-y-10 relative">
             
             {/* Profile Selector - Interactive Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {profiles.map((p) => (
                 <button
                   key={p.id}
-                  onClick={() => setProfile(p.id)}
+                  onClick={() => handleProfileSelect(p.id)}
                   className={`relative p-6 rounded-[2rem] border-2 transition-all duration-500 text-left group overflow-hidden ${
                     profile === p.id 
                     ? 'border-primary-green bg-white shadow-2xl shadow-primary-green/10' 
@@ -160,105 +173,131 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Floating Form Card */}
-            <motion.div 
-              layout
-              className="bg-white/60 backdrop-blur-xl rounded-[4rem] p-10 md:p-16 shadow-[0_60px_120px_-30px_rgba(14,103,44,0.15)] border border-white/50 relative overflow-hidden will-change-transform"
+            {/* Warning Message */}
+            <AnimatePresence>
+              {showWarning && !profile && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="bg-red-50 border border-red-100 p-6 rounded-[2rem] flex items-center gap-4 shadow-xl shadow-red-900/5 relative z-20"
+                >
+                  <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                    <Check className="rotate-45" size={18} strokeWidth={3} />
+                  </div>
+                  <p className="text-sm font-black text-red-600 uppercase tracking-widest">
+                    ⚠️ Por favor, selecione o seu perfil acima para aceder ao formulário.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Floating Form Card - Blocked until profile is selected */}
+            <div 
+              className="relative"
+              onClick={() => !profile && setShowWarning(true)}
             >
-              <div className="relative z-10">
-                <form className="space-y-8">
-                  <AnimatePresence mode="wait">
-                    <motion.div 
-                      key={profile}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                      className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                    >
+              <motion.div 
+                layout
+                className={`bg-white/60 backdrop-blur-xl rounded-[4rem] p-10 md:p-16 shadow-[0_60px_120px_-30px_rgba(14,103,44,0.15)] border border-white/50 relative overflow-hidden transition-all duration-1000 ${
+                  !profile ? 'opacity-40 grayscale-[0.5] scale-[0.98] pointer-events-none' : 'opacity-100 grayscale-0 scale-100 cursor-default'
+                } will-change-transform`}
+              >
+                <div className="relative z-10">
+                  <form className="space-y-8">
+                    <AnimatePresence mode="wait">
+                      <motion.div 
+                        key={profile || 'default'}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                      >
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">
+                            {currentLabels.name}
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                            placeholder="Introduza os dados"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">
+                            {currentLabels.contact}
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                            placeholder="Informação de contacto"
+                          />
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
-                        <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">
-                          {labels[profile].name}
-                        </label>
+                        <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Email Empresarial / Geral</label>
                         <input
-                          type="text"
+                          type="email"
                           className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
-                          placeholder="Introduza os dados"
+                          placeholder="email@contacto.pt"
                         />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">
-                          {labels[profile].contact}
-                        </label>
-                        <input
-                          type="text"
-                          className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
-                          placeholder="Informação de contacto"
-                        />
+                        <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Serviço Pretendido</label>
+                        <div className="relative group">
+                          <select className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
+                            {services.map((service, idx) => (
+                              <option key={idx}>{service}</option>
+                            ))}
+                          </select>
+                          <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none transition-transform group-hover:scale-110" size={18} />
+                        </div>
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
+                    </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Email Empresarial / Geral</label>
-                      <input
-                        type="email"
-                        className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
-                        placeholder="email@contacto.pt"
-                      />
+                      <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Descrição dos Resíduos</label>
+                      <textarea
+                        className="w-full px-8 py-6 rounded-3xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-44 resize-none leading-relaxed"
+                        placeholder="Descreva a quantidade aproximada e o estado dos equipamentos..."
+                      ></textarea>
                     </div>
+
+                    {/* Photo Upload Area */}
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Serviço Pretendido</label>
-                      <div className="relative group">
-                        <select className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
-                          {services.map((service, idx) => (
-                            <option key={idx}>{service}</option>
-                          ))}
-                        </select>
-                        <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none transition-transform group-hover:scale-110" size={18} />
+                      <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Anexar Fotografias (Recomendado)</label>
+                      <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-100 rounded-3xl bg-green-50/30 hover:bg-white hover:border-primary-green/30 cursor-pointer transition-all group">
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                          <Upload className="text-primary-green/40 group-hover:text-primary-green mb-2 transition-colors" size={24} />
+                          <p className="text-xs font-bold text-gray-400 group-hover:text-dark-green transition-colors uppercase tracking-widest">Clique para selecionar imagens</p>
+                        </div>
+                        <input type="file" className="hidden" multiple accept="image/*" />
+                      </label>
+                    </div>
+
+                    <div className="pt-6">
+                      <Button className="w-full h-24 text-2xl font-black shadow-[0_30px_60px_-15px_rgba(14,103,44,0.3)] hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.4)] hover:scale-[1.02] active:scale-[0.98] transform transition-all group flex items-center justify-center gap-4">
+                        {currentLabels.cta}
+                        <Send className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" size={24} strokeWidth={2.5} />
+                      </Button>
+                      
+                      <div className="flex items-center justify-center gap-4 mt-10">
+                        <div className="h-px flex-1 bg-green-100" />
+                        <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em]">Resposta em 24h úteis</p>
+                        <div className="h-px flex-1 bg-green-100" />
                       </div>
                     </div>
-                  </div>
+                  </form>
+                </div>
 
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Descrição dos Resíduos</label>
-                    <textarea
-                      className="w-full px-8 py-6 rounded-3xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-44 resize-none leading-relaxed"
-                      placeholder="Descreva a quantidade aproximada e o estado dos equipamentos..."
-                    ></textarea>
-                  </div>
-
-                  {/* Photo Upload Area */}
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Anexar Fotografias (Recomendado)</label>
-                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-100 rounded-3xl bg-green-50/30 hover:bg-white hover:border-primary-green/30 cursor-pointer transition-all group">
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="text-primary-green/40 group-hover:text-primary-green mb-2 transition-colors" size={24} />
-                        <p className="text-xs font-bold text-gray-400 group-hover:text-dark-green transition-colors uppercase tracking-widest">Clique para selecionar imagens</p>
-                      </div>
-                      <input type="file" className="hidden" multiple accept="image/*" />
-                    </label>
-                  </div>
-
-                  <div className="pt-6">
-                    <Button className="w-full h-24 text-2xl font-black shadow-[0_30px_60px_-15px_rgba(14,103,44,0.3)] hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.4)] hover:scale-[1.02] active:scale-[0.98] transform transition-all group flex items-center justify-center gap-4">
-                      {labels[profile].cta}
-                      <Send className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" size={24} strokeWidth={2.5} />
-                    </Button>
-                    
-                    <div className="flex items-center justify-center gap-4 mt-10">
-                      <div className="h-px flex-1 bg-green-100" />
-                      <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em]">Resposta em 24h úteis</p>
-                      <div className="h-px flex-1 bg-green-100" />
-                    </div>
-                  </div>
-                </form>
-              </div>
-
-              {/* Ambient detail inside the form */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            </motion.div>
+                {/* Ambient detail inside the form */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+              </motion.div>
+            </div>
           </div>
         </div>
       </Container>
