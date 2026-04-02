@@ -1,14 +1,18 @@
 # Backlog e Roadmap - 20recolher (Foco Design)
 
-Sugestões de próximas tarefas e melhorias visuais para o website.
+## 🎯 FOCO ATUAL: Página de Serviços
+- [ ] **Design Imersivo:** Reestruturar o layout dos serviços para o padrão "Premium Minimalist".
+- [ ] **Visualização de Categorias:** Melhorar a distinção visual entre Informática, Eletrónica e Consumíveis.
+- [ ] **Micro-interações:** Adicionar animações de entrada e efeitos de scroll específicos.
+- [ ] **Conteúdo Detalhado:** Garantir que a lista de resíduos aceites está legível e bem organizada.
 
 ## 1. Prioridade Alta (Design & UI)
 - [x] **Menu Mobile:** Implementar o menu hambúrguer interativo com animações.
-- [x] **Seção de Confiança:** Adicionar contadores animados (ex: "Tonelas Recicladas", "Parceiros").
-- [x] **Processo de Reciclagem (Timeline):** Explicar as etapas de valorização dos resíduos.
-- [x] **Efeitos Hover:** Refinar os efeitos de hover nos cards de serviços.
-- [x] **Micro-interações:** Adicionar animações de entrada (Framer Motion ou CSS Transitions).
-- [x] **Otimização de Assets:** Comprimir imagens e vídeos para performance máxima (Concluído: 01/04).
+- [x] **Seção de Confiança:** Adicionar contadores animados.
+- [x] **Processo de Reciclagem (Timeline):** Explicar as etapas de valorização.
+- [x] **Efeitos Hover:** Refinar os efeitos de hover nos cards.
+- [x] **Otimização de Assets:** Comprimir imagens e vídeos.
+
 
 ## 2. Melhorias Futuras (Ideias)
 - [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.

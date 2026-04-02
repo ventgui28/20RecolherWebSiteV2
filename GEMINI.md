@@ -3,7 +3,9 @@
 Este ficheiro serve como a "memória mestre" para o Gemini CLI.
 
 ## 🚨 INSTRUÇÃO OBRIGATÓRIA DE INÍCIO
-Sempre que iniciares uma nova sessão neste projeto, deves **OBRIGATORIAMENTE** ler os ficheiros na pasta `.gemini/docs/` antes de sugerires ou limitares qualquer alteração.
+Sempre que iniciares uma nova sessão neste projeto, deves:
+1. **OBRIGATORIAMENTE** ler os ficheiros na pasta `.gemini/docs/` antes de sugerires ou limitares qualquer alteração.
+2. **ESPERAR POR ORDEM EXPLÍCITA:** Após o protocolo de leitura e o `npm run sod`, deves parar e aguardar que o utilizador dê uma ordem direta para começar as tarefas. Nunca inicies a execução ou análise profunda de tarefas sem este "go-ahead".
 
 ### Documentos de Referência:
 1. `.gemini/docs/ARCHITECTURAL_DECISIONS.md`: Porquê Next.js 15, Tailwind v4 e JS Vanilla.

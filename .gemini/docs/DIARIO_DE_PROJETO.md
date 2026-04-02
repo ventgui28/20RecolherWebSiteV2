@@ -4,7 +4,27 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
-## 📅 QUARTA-FEIRA, 1 DE ABRIL DE 2026
+## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026
+### 💬 O que conversámos (Intenção)
+O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar o design de uma grelha simples para uma experiência imersiva que fizesse jus ao padrão "Premium Minimalist" do resto do site. Decidimos por uma abordagem que utiliza **Fotografia Imersiva**, onde cada categoria de serviço é representada por uma imagem de alta qualidade com sobreposições de glassmorphism.
+
+### 🚀 O que mudou no Site (Execução)
+- **Design de Serviços Imersivo:** Implementação de uma grelha de cards com imagens de fundo que reagem ao hover (zoom e claridade).
+- **Glassmorphism Avançado:** Uso de camadas de desfoque (blur) para garantir legibilidade e profundidade visual nos detalhes técnicos dos serviços.
+- **Interatividade de Elite:** 
+  - Adicionado efeito de **parallax ambiente** nos blobs de fundo que seguem o movimento do rato.
+  - Implementado **Scroll Reveal** para uma entrada fluida dos serviços durante a navegação.
+  - Efeitos de hover dinâmicos que destacam as vantagens competitivas de cada serviço.
+- **Fidelidade de Dados:** Integração total das constantes (ícones Lucide, badges de certificação e vantagens exclusivas) que antes estavam subutilizadas.
+- **CTA Editorial:** Reformulação do Call to Action final com tipografia de grande escala e design focado em conversão profissional.
+
+### 🎯 Estado da Entrega
+- **Home Page:** [CONCLUÍDA]
+- **Sobre Nós:** [CONCLUÍDA]
+- **Serviços:** [CONCLUÍDA] Design imersivo e interativo finalizado.
+- **Próximo Passo:** Revisão final da página de **Contactos** para fechar o ciclo de design.
+
+---
 ### 💬 O que conversámos (Intenção)
 A sessão de hoje foi uma jornada de transformação do "genérico" para o "autêntico". Começámos por elevar o design do rodapé para um formato **Slim e Profissional**, respeitando as cores originais da marca. Houve uma decisão clara de simplificar a presença digital, focando exclusivamente no **Facebook** e removendo redes não utilizadas (Instagram/LinkedIn). 
 

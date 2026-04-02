@@ -7,9 +7,9 @@ Registo do progresso atual e ficheiros criados até à data de 01/04/2026.
 - [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
 - [x] **Central de Dados:** Constantes criadas para a marca, serviços e contactos (`src/constants/`).
 - [x] **Páginas Implementadas:**
-  - `Home`: [CONCLUÍDA] Hero, estatísticas, timeline de processo e rodapé.
-  - `Sobre Nós`: Implementação base (em refinação).
-  - `Serviços`: Detalhes completos das categorias de recolha.
+  - `Home`: [CONCLUÍDA] 100% otimizada e com imagens locais.
+  - `Sobre Nós`: [CONCLUÍDA] Com dados históricos reais e design institucional sólido.
+  - `Serviços`: [CONCLUÍDA] Design imersivo com fotografia em alta fidelidade, glassmorphism e micro-interações de parallax.
   - `Contactos`: Info, mapa e formulário.
   - `404`: Página de erro personalizada com design premium.
 - [x] **Git:** Branch única `main` consolidada com histórico limpo.
