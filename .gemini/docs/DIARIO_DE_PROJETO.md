@@ -9,14 +9,10 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar o design de uma grelha simples para uma experiência imersiva que fizesse jus ao padrão "Premium Minimalist" do resto do site. Decidimos por uma abordagem que utiliza **Fotografia Imersiva**, onde cada categoria de serviço é representada por uma imagem de alta qualidade com sobreposições de glassmorphism.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Design de Serviços Imersivo:** Implementação de uma grelha de cards com imagens de fundo que reagem ao hover (zoom e claridade).
-- **Glassmorphism Avançado:** Uso de camadas de desfoque (blur) para garantir legibilidade e profundidade visual nos detalhes técnicos dos serviços.
-- **Interatividade de Elite:** 
-  - Adicionado efeito de **parallax ambiente** nos blobs de fundo que seguem o movimento do rato.
-  - Implementado **Scroll Reveal** para uma entrada fluida dos serviços durante a navegação.
-  - Efeitos de hover dinâmicos que destacam as vantagens competitivas de cada serviço.
-- **Fidelidade de Dados:** Integração total das constantes (ícones Lucide, badges de certificação e vantagens exclusivas) que antes estavam subutilizadas.
-- **CTA Editorial:** Reformulação do Call to Action final com tipografia de grande escala e design focado em conversão profissional.
+- **Correção de Performance (Zero Lag):** Identificada carga excessiva no renderizador devido a filtros `backdrop-blur` e `parallax` em múltiplos cards grandes. Removidos elementos de parallax ambiente e simplificadas as camadas de vidro para garantir fluidez total em qualquer dispositivo.
+- **Layout de Utilidade (Z-pattern):** Transição de uma grelha de cards para secções horizontais alternadas. Este layout permite um foco muito maior no **catálogo de recolha**, apresentando os itens de forma clara e profissional.
+- **Destaque de Itens:** Reformulada a lista de resíduos processados com ícones de verificação e tipografia robusta, facilitando a consulta rápida pelo utilizador.
+- **Design Editorial & Institucional:** Mantida a estética premium através de imagens de grande escala e tipografia de impacto, mas agora com uma hierarquia que privilegia a informação sobre a decoração.
 
 ### 🎯 Estado da Entrega
 - **Home Page:** [CONCLUÍDA]

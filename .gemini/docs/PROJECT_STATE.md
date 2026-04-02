@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 01/04/2026.
+Registo do progresso atual e ficheiros criados até à data de 02/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 02/04/2026, 09:33:18
+**Commits:**
+```
+b82ad83 feat: implementar design imersivo e interativo na página de serviços
+1c08fa0 chore: encerramento de sessão com atualização final de diário e protocolos
+da45507 docs: automatizar atualização de diário nos protocolos de handoff e eod
+a84194a docs: reconstruir diário de projeto com histórico completo
+272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
+```
+#### Sincronização:
 #### Sincronização: 01/04/2026, 17:47:50
 **Commits:**
 ```
@@ -283,14 +293,4 @@ a84194a docs: reconstruir diário de projeto com histórico completo
 272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
 553b694 style: atualizar imagem de natureza na home page para recurso local
 b92b4ed feat: integrar história real e contactos oficiais da 20recolher
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 17:37:19
-**Commits:**
-```
-a84194a docs: reconstruir diário de projeto com histórico completo
-272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
-553b694 style: atualizar imagem de natureza na home page para recurso local
-b92b4ed feat: integrar história real e contactos oficiais da 20recolher
-96b7fbb feat: reformular página Sobre Nós para design institucional e sólido
 ```
