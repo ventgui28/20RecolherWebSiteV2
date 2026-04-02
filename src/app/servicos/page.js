@@ -109,7 +109,7 @@ export default function ServicesPage() {
             className="w-full lg:w-[45%] relative h-[600px] md:h-[900px] rounded-[5rem] lg:rounded-bl-[20rem] overflow-hidden shadow-[0_100px_100px_-50px_rgba(14,103,44,0.15)] bg-dark-green/5"
           >
             <Image 
-              src="/images/process-triagem.jpg"
+              src="/images/triagem.jpg"
               alt="Processo de Triagem e Valorização REEE"
               fill
               className="object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000 scale-105"

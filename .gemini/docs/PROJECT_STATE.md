@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 02/04/2026, 09:41:48
+**Commits:**
+```
+6c279ec style: ajustar padding superior do hero para equilíbrio visual
+51abb4e style: remover padding superior do hero na página de serviços
+d8889bd feat: implementar hero monumental com layout editorial na página de serviços
+75da1a7 fix: otimizar performance e focar design da página de serviços no catálogo de recolha
+b82ad83 feat: implementar design imersivo e interativo na página de serviços
+```
+#### Sincronização:
 #### Sincronização: 02/04/2026, 09:40:37
 **Commits:**
 ```
@@ -283,14 +293,4 @@ d8889bd feat: implementar hero monumental com layout editorial na página de ser
 75da1a7 fix: otimizar performance e focar design da página de serviços no catálogo de recolha
 b82ad83 feat: implementar design imersivo e interativo na página de serviços
 1c08fa0 chore: encerramento de sessão com atualização final de diário e protocolos
-```
-#### Sincronização:
-#### Sincronização: 02/04/2026, 09:36:15
-**Commits:**
-```
-75da1a7 fix: otimizar performance e focar design da página de serviços no catálogo de recolha
-b82ad83 feat: implementar design imersivo e interativo na página de serviços
-1c08fa0 chore: encerramento de sessão com atualização final de diário e protocolos
-da45507 docs: automatizar atualização de diário nos protocolos de handoff e eod
-a84194a docs: reconstruir diário de projeto com histórico completo
 ```
