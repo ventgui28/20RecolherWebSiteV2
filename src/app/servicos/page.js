@@ -44,7 +44,7 @@ export default function ServicesPage() {
     <div className="bg-green-mist bg-grain relative min-h-screen">
       
       {/* MONUMENTAL HERO SECTION - SPLIT SCREEN EDITORIAL */}
-      <section className="relative min-h-[90vh] flex items-center pt-0 pb-20 md:pt-0 md:pb-32 overflow-hidden border-b border-white/40">
+      <section className="relative min-h-[90vh] flex items-center pt-12 pb-20 md:pt-16 md:pb-32 overflow-hidden border-b border-white/40">
         <div className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-20">
           
           {/* Left Side: Monumental Typography */}
