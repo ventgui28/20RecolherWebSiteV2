@@ -58,22 +58,22 @@ export default function HomeAboutBrief() {
 
   return (
     <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="py-32 overflow-hidden relative"
       style={{ perspective: "1500px" }}
     >
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
           
-          {/* Visual Column: The Spyglass Stage */}
+          {/* Visual Column: The Spyglass Stage - Scoped mouse tracking */}
           <motion.div 
             {...fadeInUp}
-            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px]"
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px] cursor-none"
           >
              {/* 1. Background Layer: Fixed & Dimmed */}
-             <div className="absolute inset-0 w-full h-full rounded-[4rem] overflow-hidden opacity-10 grayscale blur-[2px] border border-primary-green/10">
+             <div className="absolute inset-4 md:inset-10 rounded-[4rem] overflow-hidden opacity-10 grayscale blur-[2px] border border-primary-green/10">
                 <Image 
                    src="/images/imagem-arvore.jpg" 
                    alt="Natureza Estática" 
@@ -93,7 +93,7 @@ export default function HomeAboutBrief() {
                  borderBottomLeftRadius: brBottomLeft,
                  transformStyle: "preserve-3d"
                }}
-               className="relative z-20 w-[220px] h-[220px] md:w-[280px] md:h-[280px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white cursor-none"
+               className="relative z-20 w-[220px] h-[220px] md:w-[280px] md:h-[280px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
              >
                {/* 3. The Revealed Image: Moves opposite to the droplet to stay "fixed" */}
                <motion.div 
