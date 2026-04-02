@@ -9,10 +9,10 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar o design de uma grelha simples para uma experiência imersiva que fizesse jus ao padrão "Premium Minimalist" do resto do site. Decidimos por uma abordagem que utiliza **Fotografia Imersiva**, onde cada categoria de serviço é representada por uma imagem de alta qualidade com sobreposições de glassmorphism.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Correção de Performance (Zero Lag):** Identificada carga excessiva no renderizador devido a filtros `backdrop-blur` e `parallax` em múltiplos cards grandes. Removidos elementos de parallax ambiente e simplificadas as camadas de vidro para garantir fluidez total em qualquer dispositivo.
-- **Layout de Utilidade (Z-pattern):** Transição de uma grelha de cards para secções horizontais alternadas. Este layout permite um foco muito maior no **catálogo de recolha**, apresentando os itens de forma clara e profissional.
-- **Destaque de Itens:** Reformulada a lista de resíduos processados com ícones de verificação e tipografia robusta, facilitando a consulta rápida pelo utilizador.
-- **Design Editorial & Institucional:** Mantida a estética premium através de imagens de grande escala e tipografia de impacto, mas agora com uma hierarquia que privilegia a informação sobre a decoração.
+- **Catálogo Completo de Serviços:** Substituição dos 3 serviços genéricos por uma lista detalhada de **8 serviços oficiais**: Recolha REEE's, Componentes Informáticos, Toners Vazios e Fora de Validade, Abate Fiscal, Consultadoria Ambiental e Destruição de Dados.
+- **Lista Mestra de Reciclagem:** Implementação de uma nova secção dedicada ("Recolhemos e Reciclamos") que categoriza exaustivamente todos os materiais processados, desde informática e eletrodomésticos até metais e consumíveis.
+- **Refinação de Dados & Ícones:** Atualização das constantes para incluir novos ícones Lucide (Printer, FileText, ClipboardCheck, ShieldAlert) e badges numerados para facilitar a leitura.
+- **Design de Grande Escala:** Otimização do layout Z-pattern para suportar o novo volume de conteúdo, mantendo a performance fluida e a estética premium.
 
 ### 🎯 Estado da Entrega
 - **Home Page:** [CONCLUÍDA]
