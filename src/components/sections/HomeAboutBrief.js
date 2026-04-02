@@ -11,27 +11,33 @@ import { BRAND } from "@/constants/brand";
 export default function HomeAboutBrief() {
   const containerRef = useRef(null);
   
-  // Parallax Logic
+  // Parallax Logic - Refined for "Drag" feel and higher visibility
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 150 };
+  // Soft spring for that organic "dragging" effect
+  const springConfig = { damping: 20, stiffness: 60, mass: 1 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Transformations for depth
-  const blobX = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
-  const blobY = useTransform(smoothY, [-0.5, 0.5], [-20, 20]);
-  const imgX = useTransform(smoothX, [-0.5, 0.5], [15, -15]); // Opposite direction for depth
-  const imgY = useTransform(smoothY, [-0.5, 0.5], [15, -15]);
-  const cardX = useTransform(smoothX, [-0.5, 0.5], [30, -30]);
-  const cardY = useTransform(smoothY, [-0.5, 0.5], [30, -30]);
+  // High Amplitude Transformations for depth and visibility
+  const blobX = useTransform(smoothX, [-0.5, 0.5], [-60, 60]);
+  const blobY = useTransform(smoothY, [-0.5, 0.5], [-60, 60]);
+  const blobRotateX = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
+  const blobRotateY = useTransform(smoothX, [-0.5, 0.5], [-10, 10]);
+
+  const imgX = useTransform(smoothX, [-0.5, 0.5], [40, -40]); // Strong counter-movement
+  const imgY = useTransform(smoothY, [-0.5, 0.5], [40, -40]);
+  
+  const cardX = useTransform(smoothX, [-0.5, 0.5], [100, -100]); // Exaggerated movement for top layer
+  const cardY = useTransform(smoothY, [-0.5, 0.5], [100, -100]);
+  const cardRotate = useTransform(smoothX, [-0.5, 0.5], [-5, 5]);
 
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const x = (event.clientX - left) / width - 0.5;
+    const y = (event.clientY - top) / height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
   };
@@ -54,18 +60,25 @@ export default function HomeAboutBrief() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="py-32 overflow-hidden relative"
+      style={{ perspective: "1200px" }} // Enable 3D depth for children
     >
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
           
-          {/* Visual Column with Parallax */}
+          {/* Visual Column with Enhanced Parallax */}
           <motion.div 
             {...fadeInUp}
             className="lg:w-1/2 relative flex justify-center items-center py-12"
           >
-             {/* Animated Organic Blob Container with Mouse Follow */}
+             {/* Animated Organic Blob Container with Mouse Follow & Tilt */}
              <motion.div 
-               style={{ x: blobX, y: blobY }}
+               style={{ 
+                 x: blobX, 
+                 y: blobY,
+                 rotateX: blobRotateX,
+                 rotateY: blobRotateY,
+                 transformStyle: "preserve-3d"
+               }}
                animate={{ 
                  borderRadius: [
                    "60% 40% 30% 70% / 60% 30% 70% 40%",
@@ -75,40 +88,49 @@ export default function HomeAboutBrief() {
                  ] 
                }}
                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-               className="relative z-20 w-[300px] h-[300px] md:w-[400px] md:h-[400px] overflow-hidden shadow-[0_20px_50px_rgba(30,113,42,0.2)] border-4 border-white will-change-transform"
+               className="relative z-20 w-[300px] h-[300px] md:w-[450px] md:h-[450px] overflow-hidden shadow-[0_40px_80px_rgba(30,113,42,0.25)] border-[6px] border-white will-change-transform"
              >
                <motion.div 
-                 style={{ x: imgX, y: imgY }}
-                 className="absolute inset-0 w-full h-full scale-125"
+                 style={{ x: imgX, y: imgY, scale: 1.4 }} // Scaled up to avoid edges during parallax
+                 className="absolute inset-0 w-full h-full"
                >
                  <Image 
                    src="/images/imagem-arvore.jpg" 
                    alt="Natureza Imersiva e Floresta Sustentável" 
                    fill
-                   className="object-cover saturate-[0.8]"
+                   className="object-cover saturate-[0.9]"
                  />
                </motion.div>
-               <div className="absolute inset-0 bg-primary-green/10 mix-blend-overlay" />
-               <div className="absolute inset-0 bg-gradient-to-t from-dark-green/40 via-transparent to-transparent opacity-60" />
+               <div className="absolute inset-0 bg-primary-green/15 mix-blend-overlay" />
+               <div className="absolute inset-0 bg-gradient-to-t from-dark-green/50 via-transparent to-transparent opacity-70" />
              </motion.div>
              
-             {/* Ambient Glows */}
-             <div className="absolute w-[80%] h-[80%] bg-primary-green/10 rounded-full blur-[100px] pointer-events-none" />
-             
-             {/* Floating Info Card with Parallax */}
+             {/* Ambient Glows - Also move slightly */}
              <motion.div 
-                style={{ x: cardX, y: cardY }}
+                style={{ x: blobX, y: blobY, scale: 1.2, opacity: 0.6 }}
+                className="absolute w-full h-full bg-primary-green/10 rounded-full blur-[120px] pointer-events-none" 
+             />
+             
+             {/* Floating Info Card with High Parallax & Tilt */}
+             <motion.div 
+                style={{ 
+                  x: cardX, 
+                  y: cardY,
+                  rotateZ: cardRotate,
+                  translateZ: "50px" // Lift it up in 3D space
+                }}
                 initial={{ opacity: 0, scale: 0.8, x: 20 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute top-0 right-0 md:-right-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-[2.5rem] shadow-2xl border border-green-50 max-w-[200px] z-30 will-change-transform"
+                className="absolute top-0 right-0 md:-right-12 bg-white/95 backdrop-blur-2xl px-10 py-8 rounded-[3rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] border border-green-50 max-w-[220px] z-30 will-change-transform"
              >
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Nosso Foco</p>
-                <p className="text-base font-bold text-dark-green leading-snug">Economia Circular em Portugal 🇵🇹</p>
+                <div className="w-10 h-1 bg-primary-green mb-4 rounded-full" />
+                <p className="text-[11px] font-black text-primary-green uppercase tracking-[0.2em] mb-2">Compromisso</p>
+                <p className="text-lg font-bold text-dark-green leading-tight">Economia Circular Ativa ♻️</p>
              </motion.div>
 
-             <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-primary-green/5 rounded-full blur-2xl animate-pulse" />
+             <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-primary-green/10 rounded-full blur-3xl" />
           </motion.div>
           
           {/* Content Column */}
