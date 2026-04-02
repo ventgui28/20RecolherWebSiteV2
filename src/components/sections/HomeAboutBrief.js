@@ -11,22 +11,33 @@ import { BRAND } from "@/constants/brand";
 export default function HomeAboutBrief() {
   const containerRef = useRef(null);
   
-  // Parallax Logic - High energy for "Water Bubble" feel
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // 1. Springs for the Bubbles System (Main + 2 Satellites)
+  const springMain = { damping: 15, stiffness: 120, mass: 0.8 };
+  const springTrail1 = { damping: 20, stiffness: 80, mass: 1.5 };
+  const springTrail2 = { damping: 25, stiffness: 60, mass: 2.5 };
 
-  // Snappier spring for faster bubble movement
-  const springConfig = { damping: 15, stiffness: 120, mass: 0.8 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
+  const smoothX = useSpring(mouseX, springMain);
+  const smoothY = useSpring(mouseY, springMain);
+  
+  const trailX1 = useSpring(mouseX, springTrail1);
+  const trailY1 = useSpring(mouseY, springTrail1);
+  
+  const trailX2 = useSpring(mouseX, springTrail2);
+  const trailY2 = useSpring(mouseY, springTrail2);
 
-  // Spyglass Parallax Logic - High Amplitude with extra padding range
+  // Main Bubble Transformations
   const blobX = useTransform(smoothX, [-0.6, 0.6], [-250, 250]);
   const blobY = useTransform(smoothY, [-0.6, 0.6], [-250, 250]);
-  
-  // Inverse movement for the image inside the droplet
   const imgX = useTransform(smoothX, [-0.6, 0.6], [250, -250]); 
   const imgY = useTransform(smoothY, [-0.6, 0.6], [250, -250]);
+
+  // Satellite 1 Transformations (Medium trail)
+  const sat1X = useTransform(trailX1, [-0.6, 0.6], [-280, 280]);
+  const sat1Y = useTransform(trailY1, [-0.6, 0.6], [-280, 280]);
+
+  // Satellite 2 Transformations (Long trail)
+  const sat2X = useTransform(trailX2, [-0.6, 0.6], [-300, 300]);
+  const sat2Y = useTransform(trailY2, [-0.6, 0.6], [-300, 300]);
 
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
@@ -49,6 +60,17 @@ export default function HomeAboutBrief() {
     transition: { duration: 0.8, ease: "easeOut" }
   };
 
+  const bubbleMorph = {
+    borderRadius: [
+      "60% 40% 30% 70% / 60% 30% 70% 40%",
+      "30% 70% 70% 30% / 30% 30% 70% 70%",
+      "50% 50% 20% 80% / 20% 80% 50% 50%",
+      "60% 40% 30% 70% / 60% 30% 70% 40%"
+    ],
+    scale: [1, 1.05, 0.98, 1.02, 1],
+    rotate: [0, 2, -2, 1, 0]
+  };
+
   return (
     <section 
       className="py-32 overflow-hidden relative"
@@ -57,47 +79,58 @@ export default function HomeAboutBrief() {
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
           
-          {/* Visual Column: The Spyglass Stage - Scoped mouse tracking */}
+          {/* Visual Column: The Bubbles Stage */}
           <motion.div 
             {...fadeInUp}
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px]"
+            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[550px] md:h-[650px]"
           >
-             {/* 1. Background Layer: Empty Styled Stage */}
-             <div className="absolute inset-4 md:inset-10 rounded-[4rem] bg-green-50/50 border border-primary-green/5 shadow-inner" />
+             {/* Background Layer: Stage Surface */}
+             <div className="absolute inset-4 md:inset-10 rounded-[4rem] bg-green-50/40 border border-primary-green/5 shadow-inner" />
 
-             {/* 2. Moving Droplet: The Fast Water Bubble */}
+             {/* Satellite Bubble 2 (Longest Trail) */}
+             <motion.div 
+               style={{ x: sat2X, y: sat2Y }}
+               animate={bubbleMorph}
+               transition={{ borderRadius: { duration: 5, repeat: Infinity }, scale: { duration: 3, repeat: Infinity } }}
+               className="absolute z-10 w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 shadow-xl pointer-events-none"
+             >
+                <div className="absolute top-4 left-4 w-4 h-2 bg-white/40 rounded-full blur-[1px] rotate-[-45deg]" />
+             </motion.div>
+
+             {/* Satellite Bubble 1 (Medium Trail) */}
+             <motion.div 
+               style={{ x: sat1X, y: sat1Y }}
+               animate={bubbleMorph}
+               transition={{ borderRadius: { duration: 4, repeat: Infinity }, scale: { duration: 2.5, repeat: Infinity } }}
+               className="absolute z-15 w-32 h-32 rounded-full bg-white/30 backdrop-blur-md border border-white/50 shadow-2xl pointer-events-none"
+             >
+                <div className="absolute top-6 left-6 w-6 h-3 bg-white/50 rounded-full blur-[1px] rotate-[-45deg]" />
+             </motion.div>
+
+             {/* Main Bubble: The Lens */}
              <motion.div 
                style={{ 
                  x: blobX, 
                  y: blobY,
                  transformStyle: "preserve-3d"
                }}
-               animate={{ 
-                 borderRadius: [
-                   "60% 40% 30% 70% / 60% 30% 70% 40%",
-                   "30% 70% 70% 30% / 30% 30% 70% 70%",
-                   "50% 50% 20% 80% / 20% 80% 50% 50%",
-                   "60% 40% 30% 70% / 60% 30% 70% 40%"
-                 ],
-                 scale: [1, 1.05, 0.98, 1.02, 1],
-                 rotate: [0, 2, -2, 1, 0]
-               }}
+               animate={bubbleMorph}
                transition={{ 
                  borderRadius: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                  scale: { duration: 2, repeat: Infinity, ease: "linear" },
                  rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
                }}
-               className="relative z-20 w-[220px] h-[220px] md:w-[300px] md:h-[300px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
+               className="relative z-20 w-[240px] h-[240px] md:w-[320px] md:h-[320px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/90 will-change-transform bg-white"
              >
-               {/* 3. The Revealed Image */}
+               {/* Revealed Image */}
                <motion.div 
-                 style={{ x: imgX, y: imgY, scale: 1.2 }} 
+                 style={{ x: imgX, y: imgY, scale: 1.25 }} 
                  className="absolute inset-[-150%] w-[400%] h-[400%] flex items-center justify-center"
                >
-                 <div className="relative w-full h-full max-w-[650px] max-h-[650px]">
+                 <div className="relative w-full h-full max-w-[700px] max-h-[700px]">
                     <Image 
                       src="/images/imagem-arvore.jpg" 
                       alt="Natureza Revelada" 
@@ -107,8 +140,10 @@ export default function HomeAboutBrief() {
                  </div>
                </motion.div>
                
-               <div className="absolute inset-0 bg-primary-green/10 mix-blend-overlay pointer-events-none" />
-               <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-40 pointer-events-none" />
+               {/* Bubble visual polish: Highlights & Glass */}
+               <div className="absolute top-10 left-10 w-20 h-10 bg-white/30 rounded-full blur-md rotate-[-45deg] pointer-events-none" />
+               <div className="absolute inset-0 bg-primary-green/5 mix-blend-overlay pointer-events-none" />
+               <div className="absolute inset-0 ring-1 ring-inset ring-white/40 rounded-inherit" />
              </motion.div>
              
              {/* Ambient Glow */}
