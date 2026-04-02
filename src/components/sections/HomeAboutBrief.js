@@ -11,6 +11,10 @@ import { BRAND } from "@/constants/brand";
 export default function HomeAboutBrief() {
   const containerRef = useRef(null);
   
+  // Parallax Logic - High energy for "Water Bubble" feel
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
   // 1. Springs for the Bubbles System (Main + 2 Satellites)
   const springMain = { damping: 15, stiffness: 120, mass: 0.8 };
   const springTrail1 = { damping: 20, stiffness: 80, mass: 1.5 };
