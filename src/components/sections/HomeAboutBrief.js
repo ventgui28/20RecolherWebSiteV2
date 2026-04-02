@@ -28,12 +28,6 @@ export default function HomeAboutBrief() {
   const imgX = useTransform(smoothX, [-0.6, 0.6], [250, -250]); 
   const imgY = useTransform(smoothY, [-0.6, 0.6], [250, -250]);
 
-  // Liquid Border Radius for the droplet feel
-  const brTopLeft = useTransform(smoothY, [-0.5, 0], ["50%", "40%"]);
-  const brTopRight = useTransform(smoothX, [0, 0.5], ["60%", "50%"]);
-  const brBottomRight = useTransform(smoothY, [0, 0.5], ["70%", "50%"]);
-  const brBottomLeft = useTransform(smoothX, [-0.5, 0], ["50%", "30%"]);
-
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -80,12 +74,17 @@ export default function HomeAboutBrief() {
                style={{ 
                  x: blobX, 
                  y: blobY,
-                 borderTopLeftRadius: brTopLeft,
-                 borderTopRightRadius: brTopRight,
-                 borderBottomRightRadius: brBottomRight,
-                 borderBottomLeftRadius: brBottomLeft,
                  transformStyle: "preserve-3d"
                }}
+               animate={{ 
+                 borderRadius: [
+                   "60% 40% 30% 70% / 60% 30% 70% 40%",
+                   "30% 70% 70% 30% / 30% 30% 70% 70%",
+                   "50% 50% 20% 80% / 20% 80% 50% 50%",
+                   "60% 40% 30% 70% / 60% 30% 70% 40%"
+                 ] 
+               }}
+               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                className="relative z-20 w-[220px] h-[220px] md:w-[300px] md:h-[300px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
              >
                {/* 3. The Revealed Image: ONLY VISIBLE INSIDE */}
