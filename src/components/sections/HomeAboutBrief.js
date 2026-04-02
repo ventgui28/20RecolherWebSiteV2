@@ -11,12 +11,12 @@ import { BRAND } from "@/constants/brand";
 export default function HomeAboutBrief() {
   const containerRef = useRef(null);
   
-  // Parallax Logic - Balanced for elegant movement
+  // Parallax Logic - High energy for "Water Bubble" feel
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Soft spring for that organic "dragging" effect
-  const springConfig = { damping: 25, stiffness: 80, mass: 1 };
+  // Snappier spring for faster bubble movement
+  const springConfig = { damping: 15, stiffness: 120, mass: 0.8 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -24,14 +24,13 @@ export default function HomeAboutBrief() {
   const blobX = useTransform(smoothX, [-0.6, 0.6], [-250, 250]);
   const blobY = useTransform(smoothY, [-0.6, 0.6], [-250, 250]);
   
-  // Inverse movement for the image inside the droplet to keep it static in the world
+  // Inverse movement for the image inside the droplet
   const imgX = useTransform(smoothX, [-0.6, 0.6], [250, -250]); 
   const imgY = useTransform(smoothY, [-0.6, 0.6], [250, -250]);
 
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    // Use a slightly larger normalized range (-0.6 to 0.6) for padding effect
     const x = (event.clientX - left) / width - 0.5;
     const y = (event.clientY - top) / height - 0.5;
     mouseX.set(x);
@@ -66,10 +65,10 @@ export default function HomeAboutBrief() {
             onMouseLeave={handleMouseLeave}
             className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px]"
           >
-             {/* 1. Background Layer: Empty Styled Stage (No image) */}
+             {/* 1. Background Layer: Empty Styled Stage */}
              <div className="absolute inset-4 md:inset-10 rounded-[4rem] bg-green-50/50 border border-primary-green/5 shadow-inner" />
 
-             {/* 2. Moving Droplet: The Lens */}
+             {/* 2. Moving Droplet: The Fast Water Bubble */}
              <motion.div 
                style={{ 
                  x: blobX, 
@@ -82,12 +81,18 @@ export default function HomeAboutBrief() {
                    "30% 70% 70% 30% / 30% 30% 70% 70%",
                    "50% 50% 20% 80% / 20% 80% 50% 50%",
                    "60% 40% 30% 70% / 60% 30% 70% 40%"
-                 ] 
+                 ],
+                 scale: [1, 1.05, 0.98, 1.02, 1],
+                 rotate: [0, 2, -2, 1, 0]
                }}
-               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+               transition={{ 
+                 borderRadius: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                 scale: { duration: 2, repeat: Infinity, ease: "linear" },
+                 rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+               }}
                className="relative z-20 w-[220px] h-[220px] md:w-[300px] md:h-[300px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
              >
-               {/* 3. The Revealed Image: ONLY VISIBLE INSIDE */}
+               {/* 3. The Revealed Image */}
                <motion.div 
                  style={{ x: imgX, y: imgY, scale: 1.2 }} 
                  className="absolute inset-[-150%] w-[400%] h-[400%] flex items-center justify-center"
@@ -102,12 +107,11 @@ export default function HomeAboutBrief() {
                  </div>
                </motion.div>
                
-               {/* Droplet glass effect overlays */}
                <div className="absolute inset-0 bg-primary-green/10 mix-blend-overlay pointer-events-none" />
                <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-40 pointer-events-none" />
              </motion.div>
              
-             {/* Ambient Glow that follows the droplet */}
+             {/* Ambient Glow */}
              <motion.div 
                 style={{ x: blobX, y: blobY, scale: 1.5 }}
                 className="absolute w-full h-full bg-primary-green/5 rounded-full blur-[140px] pointer-events-none" 
