@@ -28,8 +28,8 @@ export default function ContactPage() {
 
   return (
     <div className="py-24 md:py-36 bg-green-mist bg-grain overflow-hidden relative min-h-screen">
-      {/* Background Elements - Immersive Blobs */}
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-primary-green/5 rounded-full blur-[140px] -translate-x-1/3 -translate-y-1/3 pointer-events-none animate-pulse" />
+      {/* Background Elements - Optimized Blobs (Removed pulse for better GPU performance) */}
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-primary-green/5 rounded-full blur-[140px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[120px] translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
       <Container className="relative z-10">
@@ -53,7 +53,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className="group flex items-center gap-6 p-8 rounded-[2.5rem] bg-white/40 hover:bg-white transition-all duration-700 border border-white/20 hover:border-primary-green/20 hover:shadow-[0_20px_40px_-15px_rgba(14,103,44,0.08)]"
+                  className="group flex items-center gap-6 p-8 rounded-[2.5rem] bg-white/40 hover:bg-white transition-all duration-700 border border-white/20 hover:border-primary-green/20 hover:shadow-[0_20px_40px_-15px_rgba(14,103,44,0.08)] will-change-transform"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-green-50 group-hover:bg-primary-green group-hover:text-white transition-all duration-700 shrink-0">
                     <item.icon size={22} strokeWidth={1.5} />
@@ -66,13 +66,13 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Map Card - Refined Style */}
+            {/* Map Card - Optimized Style & Loading */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative h-[400px] w-full rounded-[3.5rem] overflow-hidden shadow-2xl border-[6px] border-white group"
+              className="relative h-[400px] w-full rounded-[3.5rem] overflow-hidden shadow-2xl border-[6px] border-white group will-change-transform"
             >
               <iframe
                 src={CONTACTS.mapsIframe}
@@ -82,25 +82,25 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[0.4] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[2000ms] scale-110 group-hover:scale-100"
+                className="grayscale-[0.4] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
               ></iframe>
               <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-dark-green/5 rounded-[3.5rem]" />
               
-              {/* Overlay Label */}
-              <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white flex items-center gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                <div className="w-2 h-2 bg-primary-green rounded-full animate-ping" />
+              {/* Overlay Label - Simplified for performance */}
+              <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white flex items-center gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                <div className="w-2 h-2 bg-primary-green rounded-full" />
                 <span className="text-xs font-black text-dark-green uppercase tracking-widest">Sede em Cantanhede</span>
               </div>
             </motion.div>
           </div>
 
-          {/* Column 2: Advanced Form */}
+          {/* Column 2: Advanced Form - Optimized Glassmorphism */}
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="lg:col-span-7 bg-white/70 backdrop-blur-3xl rounded-[4rem] p-10 md:p-16 lg:p-20 shadow-[0_60px_120px_-30px_rgba(14,103,44,0.15)] border border-white/50 relative overflow-hidden"
+            className="lg:col-span-7 bg-white/60 backdrop-blur-xl rounded-[4rem] p-10 md:p-16 lg:p-20 shadow-[0_60px_120px_-30px_rgba(14,103,44,0.15)] border border-white/50 relative overflow-hidden will-change-transform"
           >
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-12">
