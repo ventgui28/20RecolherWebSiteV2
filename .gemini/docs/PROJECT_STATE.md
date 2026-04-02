@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 02/04/2026, 10:06:50
+**Commits:**
+```
+9604ee2 fix: desativar otimização de imagem para permitir atualizações manuais instantâneas
+7bbc34a feat: implementar catálogo oficial completo de 8 serviços e lista mestra de reciclagem
+bd1ea22 style: atualizar imagem hero da página de serviços para triagem.jpg
+6c279ec style: ajustar padding superior do hero para equilíbrio visual
+51abb4e style: remover padding superior do hero na página de serviços
+```
+#### Sincronização:
 #### Sincronização: 02/04/2026, 09:45:43
 **Commits:**
 ```
@@ -283,14 +293,4 @@ bd1ea22 style: atualizar imagem hero da página de serviços para triagem.jpg
 6c279ec style: ajustar padding superior do hero para equilíbrio visual
 51abb4e style: remover padding superior do hero na página de serviços
 d8889bd feat: implementar hero monumental com layout editorial na página de serviços
-```
-#### Sincronização:
-#### Sincronização: 02/04/2026, 09:42:49
-**Commits:**
-```
-bd1ea22 style: atualizar imagem hero da página de serviços para triagem.jpg
-6c279ec style: ajustar padding superior do hero para equilíbrio visual
-51abb4e style: remover padding superior do hero na página de serviços
-d8889bd feat: implementar hero monumental com layout editorial na página de serviços
-75da1a7 fix: otimizar performance e focar design da página de serviços no catálogo de recolha
 ```

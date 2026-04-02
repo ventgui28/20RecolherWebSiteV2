@@ -48,7 +48,7 @@ export const SERVICES = [
     badge: "04",
     advantage: "Recuperação de Stock",
     icon: "Box",
-    image: "/images/servico-consumiveis.webp",
+    image: "/images/toner-fora-da-validade.jpg",
     items: ["Stock Obsoleto", "Consumíveis Originais", "Tinteiros Cheios"]
   },
   {
@@ -58,7 +58,7 @@ export const SERVICES = [
     badge: "05",
     advantage: "Conformidade Legal",
     icon: "FileText",
-    image: "/images/triagem.jpg",
+    image: "/images/e-gar.jpg",
     items: ["Declaração de Abate", "Emissão de E-Gar", "Certificação de Reciclagem"]
   },
   {
@@ -78,7 +78,7 @@ export const SERVICES = [
     badge: "07",
     advantage: "Segurança Absoluta",
     icon: "ShieldAlert",
-    image: "/images/servico-informatica.webp",
+    image: "/images/destruir-data.jpg",
     items: ["Discos Rígidos (HDD/SSD)", "Suportes Magnéticos", "Equipamentos Confidenciais"]
   }
 ];

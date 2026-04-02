@@ -237,21 +237,21 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-dark-green rounded-[5rem] p-16 md:p-32 text-center text-white shadow-3xl shadow-dark-green/20 relative overflow-hidden"
+            className="bg-dark-green rounded-[4rem] px-8 py-20 md:px-20 md:py-32 text-center text-white shadow-3xl shadow-dark-green/20 relative overflow-hidden flex flex-col items-center justify-center"
            >
               <div className="absolute inset-0 opacity-10">
                  <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-green rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2"></div>
               </div>
 
-              <div className="relative z-10 max-w-4xl mx-auto">
-                 <h2 className="text-6xl md:text-[9rem] font-heading mb-12 leading-[0.85] tracking-tighter">
+              <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
+                 <h2 className="text-5xl md:text-8xl font-heading mb-10 leading-[0.9] tracking-tighter w-full">
                    Responsabilidade <br /><span className="text-primary-green italic">Garantida.</span>
                  </h2>
-                 <p className="text-2xl md:text-3xl text-green-50/70 mb-16 leading-relaxed max-w-2xl mx-auto font-medium">
+                 <p className="text-xl md:text-2xl text-green-50/70 mb-12 leading-relaxed max-w-3xl mx-auto font-medium">
                    Emitimos o Certificado de Destruição e Reciclagem em 48 horas. Segurança máxima, esforço zero para a sua empresa.
                  </p>
-                 <Link href="/contactos">
-                    <Button className="h-24 px-20 bg-white text-dark-green hover:bg-primary-green hover:text-white rounded-full text-2xl font-black shadow-2xl transform hover:scale-105 transition-all">
+                 <Link href="/contactos" className="inline-block">
+                    <Button className="h-24 px-16 bg-white text-dark-green hover:bg-primary-green hover:text-white rounded-full text-2xl font-black shadow-2xl transform hover:scale-105 transition-all">
                        Agendar Recolha Agora
                     </Button>
                  </Link>
