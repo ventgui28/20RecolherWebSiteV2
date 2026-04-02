@@ -39,7 +39,7 @@ export default function ContactPage() {
           subtitle="Escolha a forma mais conveniente para entrar em contacto connosco ou peça um orçamento em menos de 1 minuto."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 items-start mt-20 md:mt-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 items-start mt-20 md:mt-32">
           
           {/* Column 1: Info & Map (Information Panel) */}
           <div className="lg:col-span-5 space-y-12">
@@ -51,7 +51,7 @@ export default function ContactPage() {
               </h3>
             </div>
 
-            {/* Contact Details Grid - More Integrated Layout */}
+            {/* Contact Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactItems.map((item, i) => (
                 <motion.div 
@@ -73,7 +73,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Map Card - Refined Style & Label */}
+            {/* Map Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -99,106 +99,75 @@ export default function ContactPage() {
             </motion.div>
           </div>
 
-          {/* Column 2: Guided Budget Form */}
+          {/* Column 2: Conversational Form */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 bg-white/70 backdrop-blur-xl rounded-[4rem] p-8 md:p-12 lg:p-16 shadow-[0_50px_100px_-20px_rgba(14,103,44,0.12)] border border-white/50 relative overflow-hidden will-change-transform"
+            className="lg:col-span-7 bg-white/40 backdrop-blur-xl rounded-[4rem] p-12 md:p-16 lg:p-24 shadow-[0_50px_100px_-20px_rgba(14,103,44,0.1)] border border-white/50 relative overflow-hidden will-change-transform"
           >
             <div className="relative z-10">
-              <div className="flex flex-col gap-2 mb-16">
-                <span className="text-xs font-black text-primary-green uppercase tracking-[0.4em]">Request Quote</span>
-                <h2 className="text-4xl font-heading text-dark-green">Pedido de Orçamento</h2>
-              </div>
-              
               <form className="space-y-12">
-                
-                {/* Step 01: Identity */}
-                <div className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <span className="w-8 h-8 rounded-full bg-primary-green/10 text-primary-green flex items-center justify-center text-[10px] font-black tracking-widest">01</span>
-                    <h4 className="text-xs font-black text-dark-green/40 uppercase tracking-[0.2em]">Identificação</h4>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pl-12">
-                    <div className="space-y-2.5">
-                      <label className="text-[9px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Nome Completo</label>
-                      <input
-                        type="text"
-                        className="w-full px-7 py-4 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
-                        placeholder="João Silva"
-                      />
-                    </div>
-                    <div className="space-y-2.5">
-                      <label className="text-[9px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">E-mail de Contacto</label>
-                      <input
-                        type="email"
-                        className="w-full px-7 py-4 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
-                        placeholder="joao@empresa.pt"
-                      />
-                    </div>
-                  </div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-heading text-dark-green leading-[1.8] md:leading-[1.8] tracking-tight">
+                  Olá, o meu nome é {" "}
+                  <input
+                    type="text"
+                    className="inline-block px-4 py-1 bg-transparent border-b-2 border-primary-green/20 focus:border-primary-green focus:outline-none transition-all placeholder:text-gray-300 w-auto min-w-[150px] font-bold text-primary-green"
+                    placeholder="Nome Completo"
+                  />
+                  {" "} e represento a empresa {" "}
+                  <input
+                    type="text"
+                    className="inline-block px-4 py-1 bg-transparent border-b-2 border-primary-green/20 focus:border-primary-green focus:outline-none transition-all placeholder:text-gray-300 w-auto min-w-[150px] font-bold text-primary-green"
+                    placeholder="Nome da Empresa"
+                  />
+                  . <br className="hidden md:block" />
+                  Podem contactar-me através do e-mail {" "}
+                  <input
+                    type="email"
+                    className="inline-block px-4 py-1 bg-transparent border-b-2 border-primary-green/20 focus:border-primary-green focus:outline-none transition-all placeholder:text-gray-300 w-auto min-w-[250px] font-bold text-primary-green"
+                    placeholder="email@contato.pt"
+                  />
+                  {" "} para solicitar um orçamento de {" "}
+                  <span className="inline-block relative group">
+                    <select className="appearance-none bg-transparent border-b-2 border-primary-green/20 focus:border-primary-green focus:outline-none px-4 py-1 pr-10 cursor-pointer font-bold text-primary-green transition-all">
+                      {services.map((service, idx) => (
+                        <option key={idx} className="bg-white text-dark-green font-sans text-sm">{service}</option>
+                      ))}
+                    </select>
+                    <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none transition-transform group-hover:scale-110" size={18} />
+                  </span>
+                  . <br className="hidden md:block" />
+                  Pretendo adicionar que: {" "}
+                  <textarea
+                    className="w-full bg-white/30 backdrop-blur-sm rounded-3xl p-8 mt-6 border-transparent focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-dark-green text-lg md:text-xl placeholder:text-gray-300 h-40 resize-none leading-relaxed"
+                    placeholder="Ex: Tenho 20 computadores e 5 impressoras para recolha na zona de Coimbra..."
+                  ></textarea>
                 </div>
 
-                {/* Step 02: Service Selection */}
-                <div className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <span className="w-8 h-8 rounded-full bg-primary-green/10 text-primary-green flex items-center justify-center text-[10px] font-black tracking-widest">02</span>
-                    <h4 className="text-xs font-black text-dark-green/40 uppercase tracking-[0.2em]">O que pretende reciclar?</h4>
-                  </div>
-                  <div className="grid grid-cols-1 gap-8 pl-12">
-                    <div className="space-y-2.5">
-                      <label className="text-[9px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Serviço Pretendido</label>
-                      <div className="relative group">
-                        <select className="w-full px-7 py-4 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
-                          {services.map((service, idx) => (
-                            <option key={idx}>{service}</option>
-                          ))}
-                        </select>
-                        <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none transition-transform group-hover:scale-110" size={16} />
-                      </div>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-12 pt-12">
+                  {/* Photo Upload - Minimalist Icon Trigger */}
+                  <label className="flex items-center gap-4 group cursor-pointer">
+                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg border border-green-50 group-hover:bg-primary-green group-hover:text-white transition-all duration-500 shrink-0">
+                      <Upload size={22} strokeWidth={1.5} />
                     </div>
-                    <div className="space-y-2.5">
-                      <label className="text-[9px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Fotografias dos Resíduos (Recomendado)</label>
-                      <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-100 rounded-3xl bg-green-50/20 hover:bg-white hover:border-primary-green/30 cursor-pointer transition-all group">
-                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                          <Upload className="text-primary-green/40 group-hover:text-primary-green mb-2 transition-colors" size={24} strokeWidth={1.5} />
-                          <p className="text-[10px] font-black text-gray-400 group-hover:text-dark-green uppercase tracking-widest transition-colors">Para orçamentos mais precisos</p>
-                        </div>
-                        <input type="file" className="hidden" multiple accept="image/*" />
-                      </label>
+                    <div>
+                      <p className="text-xs font-black text-dark-green group-hover:text-primary-green transition-colors uppercase tracking-widest">Anexar Fotografias</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">Opcional (Máx 5MB)</p>
                     </div>
-                  </div>
-                </div>
+                    <input type="file" className="hidden" multiple accept="image/*" />
+                  </label>
 
-                {/* Step 03: Details */}
-                <div className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <span className="w-8 h-8 rounded-full bg-primary-green/10 text-primary-green flex items-center justify-center text-[10px] font-black tracking-widest">03</span>
-                    <h4 className="text-xs font-black text-dark-green/40 uppercase tracking-[0.2em]">Detalhes Adicionais</h4>
-                  </div>
-                  <div className="grid grid-cols-1 gap-8 pl-12">
-                    <div className="space-y-2.5">
-                      <label className="text-[9px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Breve Descrição</label>
-                      <textarea
-                        className="w-full px-7 py-5 rounded-3xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-32 resize-none leading-relaxed"
-                        placeholder="Quantidade aproximada, estado, local de recolha..."
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-8 pl-12">
-                  <Button className="w-full h-20 text-xl font-black shadow-[0_30px_60px_-15px_rgba(14,103,44,0.2)] hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.3)] hover:scale-[1.01] active:scale-[0.99] transform transition-all group flex items-center justify-center gap-4">
-                    Enviar Solicitação
+                  <Button className="w-full md:w-auto px-16 h-20 text-xl font-black shadow-[0_30px_60px_-15px_rgba(14,103,44,0.2)] hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.3)] hover:scale-[1.02] active:scale-[0.98] transform transition-all group flex items-center justify-center gap-4">
+                    Enviar Mensagem
                     <Send className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} strokeWidth={2.5} />
                   </Button>
-                  
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-12 opacity-40">
-                    <p className="text-[9px] font-black uppercase tracking-[0.3em]">Resposta em 24h úteis</p>
-                    <div className="hidden sm:block h-px flex-1 mx-8 bg-dark-green/20" />
-                    <p className="text-[9px] font-black uppercase tracking-[0.3em]">Privacidade Garantida</p>
-                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12 opacity-30">
+                  <p className="text-[9px] font-black uppercase tracking-[0.3em]">Resposta em 24h úteis</p>
+                  <div className="hidden sm:block w-8 h-px bg-dark-green/40" />
+                  <p className="text-[9px] font-black uppercase tracking-[0.3em]">Privacidade Garantida</p>
                 </div>
               </form>
             </div>
