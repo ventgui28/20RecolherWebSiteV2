@@ -275,6 +275,16 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 02/04/2026, 09:36:15
+**Commits:**
+```
+75da1a7 fix: otimizar performance e focar design da página de serviços no catálogo de recolha
+b82ad83 feat: implementar design imersivo e interativo na página de serviços
+1c08fa0 chore: encerramento de sessão com atualização final de diário e protocolos
+da45507 docs: automatizar atualização de diário nos protocolos de handoff e eod
+a84194a docs: reconstruir diário de projeto com histórico completo
+```
+#### Sincronização:
 #### Sincronização: 02/04/2026, 09:33:18
 **Commits:**
 ```
@@ -283,14 +293,4 @@ b82ad83 feat: implementar design imersivo e interativo na página de serviços
 da45507 docs: automatizar atualização de diário nos protocolos de handoff e eod
 a84194a docs: reconstruir diário de projeto com histórico completo
 272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
-```
-#### Sincronização:
-#### Sincronização: 01/04/2026, 17:47:50
-**Commits:**
-```
-da45507 docs: automatizar atualização de diário nos protocolos de handoff e eod
-a84194a docs: reconstruir diário de projeto com histórico completo
-272d813 docs: implementar protocolo de diário de projeto e primeiro relatório diário
-553b694 style: atualizar imagem de natureza na home page para recurso local
-b92b4ed feat: integrar história real e contactos oficiais da 20recolher
 ```
