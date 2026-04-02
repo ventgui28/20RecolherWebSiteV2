@@ -20,13 +20,13 @@ export default function HomeAboutBrief() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Spyglass Parallax Logic - High Amplitude for full range exploration
-  const blobX = useTransform(smoothX, [-0.5, 0.5], [-200, 200]);
-  const blobY = useTransform(smoothY, [-0.5, 0.5], [-200, 200]);
+  // Spyglass Parallax Logic - High Amplitude with extra padding range
+  const blobX = useTransform(smoothX, [-0.6, 0.6], [-250, 250]);
+  const blobY = useTransform(smoothY, [-0.6, 0.6], [-250, 250]);
   
   // Inverse movement for the image inside the droplet to keep it static in the world
-  const imgX = useTransform(smoothX, [-0.5, 0.5], [200, -200]); 
-  const imgY = useTransform(smoothY, [-0.5, 0.5], [200, -200]);
+  const imgX = useTransform(smoothX, [-0.6, 0.6], [250, -250]); 
+  const imgY = useTransform(smoothY, [-0.6, 0.6], [250, -250]);
 
   // Liquid Border Radius for the droplet feel
   const brTopLeft = useTransform(smoothY, [-0.5, 0], ["50%", "40%"]);
@@ -37,7 +37,7 @@ export default function HomeAboutBrief() {
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    // Increase sensitivity range to allow the droplet to reach edges better
+    // Use a slightly larger normalized range (-0.6 to 0.6) for padding effect
     const x = (event.clientX - left) / width - 0.5;
     const y = (event.clientY - top) / height - 0.5;
     mouseX.set(x);
@@ -70,19 +70,12 @@ export default function HomeAboutBrief() {
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px] cursor-none"
+            className="lg:w-1/2 relative flex justify-center items-center py-12 h-[500px] md:h-[600px]"
           >
-             {/* 1. Background Layer: Fixed & Dimmed */}
-             <div className="absolute inset-4 md:inset-10 rounded-[4rem] overflow-hidden opacity-10 grayscale blur-[2px] border border-primary-green/10">
-                <Image 
-                   src="/images/imagem-arvore.jpg" 
-                   alt="Natureza Estática" 
-                   fill
-                   className="object-cover scale-110"
-                 />
-             </div>
+             {/* 1. Background Layer: Empty Styled Stage (No image) */}
+             <div className="absolute inset-4 md:inset-10 rounded-[4rem] bg-green-50/50 border border-primary-green/5 shadow-inner" />
 
-             {/* 2. Moving Droplet: The Reveal Lens */}
+             {/* 2. Moving Droplet: The Lens */}
              <motion.div 
                style={{ 
                  x: blobX, 
@@ -93,14 +86,14 @@ export default function HomeAboutBrief() {
                  borderBottomLeftRadius: brBottomLeft,
                  transformStyle: "preserve-3d"
                }}
-               className="relative z-20 w-[220px] h-[220px] md:w-[280px] md:h-[280px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
+               className="relative z-20 w-[220px] h-[220px] md:w-[300px] md:h-[300px] overflow-hidden shadow-[0_50px_100px_rgba(14,103,44,0.3)] border-[4px] border-white/80 will-change-transform bg-white"
              >
-               {/* 3. The Revealed Image: Moves opposite to the droplet to stay "fixed" */}
+               {/* 3. The Revealed Image: ONLY VISIBLE INSIDE */}
                <motion.div 
                  style={{ x: imgX, y: imgY, scale: 1.2 }} 
                  className="absolute inset-[-150%] w-[400%] h-[400%] flex items-center justify-center"
                >
-                 <div className="relative w-full h-full max-w-[600px] max-h-[600px]">
+                 <div className="relative w-full h-full max-w-[650px] max-h-[650px]">
                     <Image 
                       src="/images/imagem-arvore.jpg" 
                       alt="Natureza Revelada" 
@@ -118,7 +111,7 @@ export default function HomeAboutBrief() {
              {/* Ambient Glow that follows the droplet */}
              <motion.div 
                 style={{ x: blobX, y: blobY, scale: 1.5 }}
-                className="absolute w-full h-full bg-primary-green/5 rounded-full blur-[120px] pointer-events-none" 
+                className="absolute w-full h-full bg-primary-green/5 rounded-full blur-[140px] pointer-events-none" 
              />
              
              {/* Fixed Info Card */}
