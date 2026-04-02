@@ -20,14 +20,36 @@ export default function HomeAboutBrief() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Balanced Amplitude for a cleaner look
-  const blobX = useTransform(smoothX, [-0.5, 0.5], [-40, 40]);
-  const blobY = useTransform(smoothY, [-0.5, 0.5], [-40, 40]);
-  const blobRotateX = useTransform(smoothY, [-0.5, 0.5], [5, -5]);
-  const blobRotateY = useTransform(smoothX, [-0.5, 0.5], [-5, 5]);
+  // High Amplitude Transformations for "Corner-to-Corner" movement
+  const blobX = useTransform(smoothX, [-0.5, 0.5], [-150, 150]);
+  const blobY = useTransform(smoothY, [-0.5, 0.5], [-150, 150]);
+  
+  // Liquid Border Radius Logic: Transforms from Blob (center) to Circle (corners)
+  // We use the absolute distance from center to drive the shape change
+  const borderRadius = useTransform(
+    [smoothX, smoothY],
+    ([x, y]) => {
+      const distance = Math.sqrt(x * x + y * y) * 1.5; // Intensity of transformation
+      const factor = Math.min(Math.max(distance, 0), 1);
+      
+      // Interpolate between organic blob and perfect circle
+      const blob = "40% 60% 70% 30% / 40% 40% 60% 60%";
+      const circle = "50% 50% 50% 50%";
+      
+      // For simplicity in motion values, we can return a string that framer-motion interpolates
+      // However, since we want to be precise, we'll return a calculated string
+      return factor > 0.8 ? circle : blob;
+    }
+  );
 
-  const imgX = useTransform(smoothX, [-0.5, 0.5], [30, -30]); 
-  const imgY = useTransform(smoothY, [-0.5, 0.5], [30, -30]);
+  // Even better: Separate corners for a true "liquid" feel
+  const brTopLeft = useTransform(smoothY, [-0.5, 0], ["50%", "40%"]);
+  const brTopRight = useTransform(smoothX, [0, 0.5], ["60%", "50%"]);
+  const brBottomRight = useTransform(smoothY, [0, 0.5], ["70%", "50%"]);
+  const brBottomLeft = useTransform(smoothX, [-0.5, 0], ["50%", "30%"]);
+
+  const imgX = useTransform(smoothX, [-0.5, 0.5], [60, -60]); 
+  const imgY = useTransform(smoothY, [-0.5, 0.5], [60, -60]);
 
   const handleMouseMove = (event) => {
     if (!containerRef.current) return;
@@ -56,38 +78,31 @@ export default function HomeAboutBrief() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="py-32 overflow-hidden relative"
-      style={{ perspective: "1200px" }}
+      style={{ perspective: "1500px" }}
     >
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
           
-          {/* Visual Column with Balanced Parallax */}
+          {/* Visual Column with Droplet Parallax */}
           <motion.div 
             {...fadeInUp}
             className="lg:w-1/2 relative flex justify-center items-center py-12"
           >
-             {/* Animated Organic Blob Container - Smaller Amplitude */}
+             {/* Dynamic Liquid Droplet */}
              <motion.div 
                style={{ 
                  x: blobX, 
                  y: blobY,
-                 rotateX: blobRotateX,
-                 rotateY: blobRotateY,
+                 borderTopLeftRadius: brTopLeft,
+                 borderTopRightRadius: brTopRight,
+                 borderBottomRightRadius: brBottomRight,
+                 borderBottomLeftRadius: brBottomLeft,
                  transformStyle: "preserve-3d"
                }}
-               animate={{ 
-                 borderRadius: [
-                   "60% 40% 30% 70% / 60% 30% 70% 40%",
-                   "30% 70% 70% 30% / 30% 30% 70% 70%",
-                   "50% 50% 20% 80% / 20% 80% 50% 50%",
-                   "60% 40% 30% 70% / 60% 30% 70% 40%"
-                 ] 
-               }}
-               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-               className="relative z-20 w-[300px] h-[300px] md:w-[480px] md:h-[480px] overflow-hidden shadow-[0_40px_80px_rgba(30,113,42,0.2)] border-[6px] border-white will-change-transform"
+               className="relative z-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] overflow-hidden shadow-[0_50px_100px_rgba(30,113,42,0.25)] border-[8px] border-white will-change-transform bg-white"
              >
                <motion.div 
-                 style={{ x: imgX, y: imgY, scale: 1.5 }} // Larger scale for better visibility of internal movement
+                 style={{ x: imgX, y: imgY, scale: 1.6 }} 
                  className="absolute inset-0 w-full h-full"
                >
                  <Image 
@@ -101,26 +116,26 @@ export default function HomeAboutBrief() {
                <div className="absolute inset-0 bg-gradient-to-t from-dark-green/50 via-transparent to-transparent opacity-70" />
              </motion.div>
              
-             {/* Ambient Glows */}
+             {/* Ambient Glows - Follow the droplet */}
              <motion.div 
-                style={{ x: blobX, y: blobY, scale: 1.2 }}
-                className="absolute w-full h-full bg-primary-green/10 rounded-full blur-[120px] pointer-events-none" 
+                style={{ x: blobX, y: blobY, scale: 1.3 }}
+                className="absolute w-full h-full bg-primary-green/10 rounded-full blur-[140px] pointer-events-none" 
              />
              
-             {/* Fixed Info Card - Removed mouse style */}
+             {/* Fixed Info Card */}
              <motion.div 
                 initial={{ opacity: 0, scale: 0.8, x: 20 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute top-0 right-0 md:-right-8 bg-white/95 backdrop-blur-2xl px-10 py-8 rounded-[3rem] shadow-2xl border border-green-50 max-w-[220px] z-30"
+                className="absolute top-0 right-0 md:-right-12 bg-white/95 backdrop-blur-2xl px-10 py-8 rounded-[3rem] shadow-2xl border border-green-50 max-w-[240px] z-30"
              >
                 <div className="w-10 h-1 bg-primary-green mb-4 rounded-full" />
                 <p className="text-[11px] font-black text-primary-green uppercase tracking-[0.2em] mb-2">Compromisso</p>
-                <p className="text-lg font-bold text-dark-green leading-tight">Economia Circular Ativa ♻️</p>
+                <p className="text-xl font-bold text-dark-green leading-tight">Economia Circular Ativa ♻️</p>
              </motion.div>
 
-             <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-primary-green/10 rounded-full blur-3xl" />
+             <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-primary-green/10 rounded-full blur-3xl" />
           </motion.div>
           
           {/* Content Column */}
