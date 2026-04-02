@@ -17,5 +17,6 @@
 ## 2. Melhorias Futuras (Ideias)
 - [ ] **Blog/Notícias:** Design da listagem e página de artigo individual.
 - [ ] **Mapa Interativo:** Implementar localização física em 'Contactos'.
+- [x] **Página de Contactos:** [CONCLUÍDA] Implementado design premium, upload de fotos e 8 serviços oficiais.
 - [ ] **SEO & Analytics:** Verificar meta-tags finais e configurar tracking.
 - [x] **Página 404 Personalizada:** Criar uma página de erro que mantenha a estética da marca.

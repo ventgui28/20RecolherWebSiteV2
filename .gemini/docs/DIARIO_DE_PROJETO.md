@@ -18,7 +18,25 @@ O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar
 - **Home Page:** [CONCLUÍDA]
 - **Sobre Nós:** [CONCLUÍDA]
 - **Serviços:** [CONCLUÍDA] Design imersivo e interativo finalizado.
-- **Próximo Passo:** Revisão final da página de **Contactos** para fechar o ciclo de design.
+- **Contactos:** [CONCLUÍDA] Formulário avançado com upload de fotos e design premium.
+- **Próximo Passo:** Revisão final de SEO e metadados antes do lançamento.
+
+---
+
+## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026 (Continuação)
+### 💬 O que conversámos (Intenção)
+O objetivo foi elevar a página de **Contactos** ao mesmo nível de excelência visual das restantes. Decidimos por uma abordagem que combina funcionalidade avançada (como o upload de fotos para orçamentos) com uma estética **Glassmorphism** leve e moderna. A substituição de emojis por ícones Lucide foi uma escolha clara para manter a sobriedade profissional do projeto.
+
+### 🚀 O que mudou no Site (Execução)
+- **Design de Contactos Premium:** Implementação de ícones Lucide (MapPin, Phone, Mail, Clock) com stroke fino para um aspeto mais limpo.
+- **Formulário de Orçamento Inteligente:** Adição de um campo de **upload de fotografias** e sincronização do dropdown de serviços com os 8 serviços oficiais da empresa.
+- **Interatividade de Mapa:** O mapa de Cantanhede foi integrado num cartão com animações de hover, efeito grayscale controlado e overlays dinâmicos.
+- **Micro-animações:** Adição de animações de entrada `motion` em todos os elementos de contacto para uma experiência de carregamento suave.
+- **Consolidação Git:** Commit granular realizado com o racional técnico completo.
+
+### 🎯 Estado da Entrega
+- **Site Institucional:** Todas as páginas principais (Home, Sobre Nós, Serviços, Contactos) estão agora com design final aprovado e otimizado.
+- **Backlog:** Foco move-se agora para SEO, Analytics e otimização final de assets.
 
 ---
 ### 💬 O que conversámos (Intenção)
