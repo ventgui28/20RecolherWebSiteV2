@@ -114,7 +114,7 @@ export default function ContactPage() {
                     <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Nome ou Empresa</label>
                     <input
                       type="text"
-                      className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
                       placeholder="Identifique-se"
                     />
                   </div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                     <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Contacto E-mail</label>
                     <input
                       type="email"
-                      className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300"
+                      className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
                       placeholder="email@contacto.pt"
                     />
                   </div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Serviço Pretendido</label>
                   <div className="relative group">
-                    <select className="w-full px-8 py-5 rounded-2xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
+                    <select className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
                       {services.map((service, idx) => (
                         <option key={idx}>{service}</option>
                       ))}
@@ -143,7 +143,7 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Descrição dos Resíduos</label>
                   <textarea
-                    className="w-full px-8 py-6 rounded-3xl bg-white/50 border-white/20 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-300 h-44 resize-none leading-relaxed"
+                    className="w-full px-8 py-6 rounded-3xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400 h-44 resize-none leading-relaxed"
                     placeholder="Descreva a quantidade aproximada e o estado dos equipamentos..."
                   ></textarea>
                 </div>
@@ -151,10 +151,10 @@ export default function ContactPage() {
                 {/* Advanced: Photo Upload */}
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Anexar Fotografias (Opcional)</label>
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-100 rounded-3xl bg-green-50/30 hover:bg-green-50 hover:border-primary-green/30 cursor-pointer transition-all group">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-dark-green/20 rounded-3xl bg-white/40 hover:bg-white hover:border-primary-green/30 cursor-pointer transition-all group">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <Upload className="text-primary-green/40 group-hover:text-primary-green mb-2 transition-colors" size={24} />
-                      <p className="text-xs font-bold text-gray-400 group-hover:text-dark-green transition-colors">Clique para selecionar imagens</p>
+                      <p className="text-xs font-bold text-gray-400 group-hover:text-dark-green transition-colors uppercase tracking-widest">Clique para selecionar imagens</p>
                     </div>
                     <input type="file" className="hidden" multiple accept="image/*" />
                   </label>
