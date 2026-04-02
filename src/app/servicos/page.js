@@ -127,7 +127,7 @@ export default function ServicesPage() {
                     transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                     className="w-full lg:w-1/2 relative h-[450px] md:h-[650px] rounded-[4rem] overflow-hidden shadow-2xl shadow-dark-green/10 group"
                   >
-                    <Image src={cat.image} alt={cat.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <Image unoptimized={true} src={cat.image} alt={cat.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-green/30 to-transparent" />
                     <div className="absolute bottom-12 left-12 p-8 bg-white/95 backdrop-blur-md rounded-[2.5rem] border border-white flex items-center gap-6 shadow-2xl">
                        <div className="w-14 h-14 bg-primary-green rounded-2xl flex items-center justify-center shadow-lg shadow-primary-green/20">

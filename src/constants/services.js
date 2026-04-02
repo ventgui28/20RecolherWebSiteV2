@@ -18,7 +18,7 @@ export const SERVICES = [
     badge: "01",
     advantage: "Valorização Total",
     icon: "Recycle",
-    image: "/images/process-recolha.jpg",
+    image: "/images/recolha.jpg",
     items: ["Equipamentos Informáticos", "Equipamentos Eletrónicos", "Eletrodomésticos", "Metais Ferrosos e Não Ferrosos"]
   },
   {
@@ -28,7 +28,7 @@ export const SERVICES = [
     badge: "02",
     advantage: "Especialistas em Hardware",
     icon: "Cpu",
-    image: "/images/servico-informatica.webp",
+    image: "/images/componentes-info.jpg",
     items: ["Placas Eletrónicas", "Processadores e Memórias", "Discos Rígidos", "Circuitos Integrados"]
   },
   {
@@ -38,7 +38,7 @@ export const SERVICES = [
     badge: "03",
     advantage: "Eco-Gestão",
     icon: "Printer",
-    image: "/images/servico-consumiveis.webp",
+    image: "/images/toner-vazio.jpg",
     items: ["Tinteiros Jacto de Tinta", "Toners Laser", "Cartuchos de Impressão"]
   },
   {
