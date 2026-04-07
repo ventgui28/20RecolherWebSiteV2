@@ -96,8 +96,15 @@ const MenuBar = ({ editor }) => {
 export default function RichTextEditor({ content, onChange }) {
   const editor = useEditor({
     extensions: [
-      StarterKit,
-      Link.configure({ openOnClick: false }),
+      StarterKit.configure({
+        history: true,
+      }),
+      Link.configure({ 
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-emerald-600 font-bold underline cursor-pointer',
+        },
+      }),
       Image,
     ],
     content: content,
