@@ -2,7 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import ReadingProgress from '@/components/ui/ReadingProgress'
-import { Calendar, Tag, User, ArrowLeft, Share2, Facebook, Link as LinkIcon } from 'lucide-react'
+import { Calendar, Tag, User, ArrowLeft, Share2, Link as LinkIcon } from 'lucide-react'
+import { FaFacebookF } from 'react-icons/fa'
 import Link from 'next/link'
 
 // Metadados dinâmicos para SEO
@@ -135,7 +136,7 @@ export default async function ArtigoPage({ params }) {
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mr-2">Partilhar:</span>
                   <button className="p-4 bg-slate-50 text-slate-400 hover:text-white hover:bg-[#1877F2] rounded-2xl transition-all shadow-sm border border-slate-100 group">
-                    <Facebook size={20} className="group-hover:scale-110 transition-transform" />
+                    <FaFacebookF size={20} className="group-hover:scale-110 transition-transform" />
                   </button>
                   <button className="p-4 bg-slate-50 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-2xl transition-all shadow-sm border border-slate-100 group">
                     <LinkIcon size={20} className="group-hover:rotate-45 transition-transform" />
