@@ -3,19 +3,33 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Calendar, ArrowRight, Inbox, Tag, Filter } from 'lucide-react';
+import { Calendar, ArrowRight, Inbox, Tag, Filter, Search, Clock } from 'lucide-react';
+
+// Função utilitária para calcular o tempo de leitura
+const calculateReadingTime = (content) => {
+  const wordsPerMinute = 200;
+  const text = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
+  const wordCount = text.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+};
 
 export default function NoticiasGrid({ noticias }) {
   const [activeCategory, setActiveCategory] = useState('Todas');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = useMemo(() => {
     return ['Todas', ...new Set(noticias.map(n => n.categoria))];
   }, [noticias]);
 
   const filteredNoticias = useMemo(() => {
-    if (activeCategory === 'Todas') return noticias;
-    return noticias.filter(n => n.categoria === activeCategory);
-  }, [noticias, activeCategory]);
+    return noticias.filter(n => {
+      const matchesCategory = activeCategory === 'Todas' || n.categoria === activeCategory;
+      const matchesSearch = 
+        n.titulo.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        n.subtitulo.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [noticias, activeCategory, searchQuery]);
 
   if (!noticias || noticias.length === 0) return (
      <div className="bg-slate-50 rounded-3xl p-16 text-center border border-dashed border-slate-200">
@@ -31,38 +45,52 @@ export default function NoticiasGrid({ noticias }) {
 
   return (
     <div className="pt-16 pb-32 space-y-16 lg:space-y-24">
-      {/* Professional Filter Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 pb-10">
-        <div className="flex items-center gap-4 text-slate-900">
-          <div className="w-10 h-10 bg-slate-900 text-white rounded-lg flex items-center justify-center">
-            <Filter size={18} />
+      {/* Professional Filter Bar & Search */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-b border-slate-100 pb-12">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-12">
+          <div className="flex items-center gap-4 text-slate-900">
+            <div className="w-10 h-10 bg-slate-900 text-white rounded-lg flex items-center justify-center">
+              <Filter size={18} />
+            </div>
+            <div>
+              <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400">Filtrar por</span>
+              <span className="block text-lg font-bold leading-none">Categorias</span>
+            </div>
           </div>
-          <div>
-            <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400">Navegar por</span>
-            <span className="block text-lg font-bold leading-none">Categorias</span>
+
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2.5 rounded-lg text-xs font-bold transition-all border ${
+                  activeCategory === cat 
+                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-900/10' 
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-lg text-xs font-bold transition-all border ${
-                activeCategory === cat 
-                  ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-900/10' 
-                  : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Search Bar */}
+        <div className="relative w-full lg:w-80">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+          <input 
+            type="text" 
+            placeholder="Pesquisar artigos..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-slate-50 border border-slate-100 px-12 py-4 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all placeholder:text-slate-400"
+          />
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeCategory}
+          key={`${activeCategory}-${searchQuery}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -80,7 +108,7 @@ export default function NoticiasGrid({ noticias }) {
                 href={`/noticias/${featured.slug}`}
                 className="group grid lg:grid-cols-2 bg-white rounded-3xl overflow-hidden border border-slate-100 hover:border-emerald-200 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-emerald-900/5"
               >
-                {/* Imagem - Fixed Aspect for Professionalism */}
+                {/* Imagem */}
                 <div className="relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-slate-100">
                   {featured.imagem_url ? (
                     <img 
@@ -104,6 +132,11 @@ export default function NoticiasGrid({ noticias }) {
                 <div className="p-10 lg:p-16 flex flex-col justify-center">
                   <div className="flex items-center gap-4 text-slate-400 text-xs mb-8 font-bold uppercase tracking-tight">
                     <span className="text-emerald-600">{featured.categoria}</span>
+                    <span className="w-1 h-1 rounded-full bg-slate-300" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock size={12} className="text-slate-300" />
+                      {calculateReadingTime(featured.conteudo)} min
+                    </span>
                     <span className="w-1 h-1 rounded-full bg-slate-300" />
                     <span>
                       {new Date(featured.created_at).toLocaleDateString('pt-PT', { 
@@ -161,6 +194,11 @@ export default function NoticiasGrid({ noticias }) {
                       <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6">
                         <span className="text-emerald-600">{noticia.categoria}</span>
                         <span className="w-1 h-1 rounded-full bg-slate-200" />
+                        <span className="flex items-center gap-1.5">
+                          <Clock size={10} className="text-slate-300" />
+                          {calculateReadingTime(noticia.conteudo)} min
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-slate-200" />
                         <span>{new Date(noticia.created_at).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: '2-digit' })}</span>
                       </div>
                       
@@ -183,11 +221,11 @@ export default function NoticiasGrid({ noticias }) {
             </div>
           )}
           
-          {!featured && (
+          {(!featured && filteredNoticias.length === 0) && (
             <div className="py-20 text-center">
               <Inbox size={48} className="mx-auto text-slate-200 mb-4" />
-              <h3 className="text-xl font-bold text-slate-900">Sem resultados para "{activeCategory}"</h3>
-              <p className="text-slate-500 text-sm">Tente selecionar outra categoria.</p>
+              <h3 className="text-xl font-bold text-slate-900">Sem resultados para a sua pesquisa</h3>
+              <p className="text-slate-500 text-sm">Tente palavras-chave diferentes ou mude de categoria.</p>
             </div>
           )}
         </motion.div>
