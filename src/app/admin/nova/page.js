@@ -128,11 +128,26 @@ export default function NovaNoticiaPage() {
         imagemUrl = publicUrl
       }
 
+      // 1. Gerar Slug Base
+      let baseSlug = createSlug(formData.titulo)
+      let finalSlug = baseSlug
+
+      // 2. Verificar se o slug já existe e gerar um novo se necessário
+      const { data: existingNoticia } = await supabase
+        .from('noticias')
+        .select('slug')
+        .eq('slug', baseSlug)
+        .single()
+
+      if (existingNoticia) {
+        finalSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
+      }
+
       const { error: dbError } = await supabase
         .from('noticias')
         .insert([{
           titulo: formData.titulo,
-          slug: createSlug(formData.titulo),
+          slug: finalSlug,
           subtitulo: formData.subtitulo,
           categoria: formData.categoria,
           conteudo: formData.conteudo,
