@@ -429,8 +429,3 @@ export default function EditarNoticiaPage({ params }) {
     </main>
   )
 }
-       onRestore={handleRestore}
-      />
-    </main>
-  )
-}
