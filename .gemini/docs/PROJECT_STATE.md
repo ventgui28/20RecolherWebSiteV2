@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 02/04/2026.
+Registo do progresso atual e ficheiros criados até à data de 07/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 02/04/2026, 10:06:50
+#### Sincronização: 07/04/2026, 11:29:55
 **Commits:**
 ```
-9604ee2 fix: desativar otimização de imagem para permitir atualizações manuais instantâneas
-7bbc34a feat: implementar catálogo oficial completo de 8 serviços e lista mestra de reciclagem
-bd1ea22 style: atualizar imagem hero da página de serviços para triagem.jpg
-6c279ec style: ajustar padding superior do hero para equilíbrio visual
-51abb4e style: remover padding superior do hero na página de serviços
+f8e1149 feat: implementar páginas públicas de notícias e SEO dinâmico
+01d0147 feat: implementar painel de administração seguro com editor rich text
+b89764a chore: configurar infraestrutura Supabase e middleware de segurança
+5e89d18 revert: restaurar secção de sustentabilidade para o estado original
+005c6ff fix: restaurar variáveis de rastreio de rato em HomeAboutBrief
 ```
 #### Sincronização:
-#### Sincronização: 02/04/2026, 09:45:43
+#### Sincronização: 07/04/2026, 10:54:36
 **Commits:**
 ```
-7bbc34a feat: implementar catálogo oficial completo de 8 serviços e lista mestra de reciclagem
-bd1ea22 style: atualizar imagem hero da página de serviços para triagem.jpg
-6c279ec style: ajustar padding superior do hero para equilíbrio visual
-51abb4e style: remover padding superior do hero na página de serviços
-d8889bd feat: implementar hero monumental com layout editorial na página de serviços
+f8e1149 feat: implementar páginas públicas de notícias e SEO dinâmico
+01d0147 feat: implementar painel de administração seguro com editor rich text
+b89764a chore: configurar infraestrutura Supabase e middleware de segurança
+5e89d18 revert: restaurar secção de sustentabilidade para o estado original
+005c6ff fix: restaurar variáveis de rastreio de rato em HomeAboutBrief
 ```

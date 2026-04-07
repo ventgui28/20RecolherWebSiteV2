@@ -4,6 +4,30 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Refinamento Visual "Premium Editorial" - Notícias)
+### 💬 O que conversámos (Intenção)
+A sessão de hoje focou-se em elevar a estética da área de Notícias para um padrão de revista digital premium. A intenção era passar de uma grelha simples para um layout editorial dinâmico, onde a notícia mais recente tem destaque absoluto e a interatividade é fluida e moderna. Decidimos usar a **Framer Motion** para animações de scroll e criar componentes atómicos reutilizáveis para barras de progresso e grelhas animadas.
+
+### 🚀 O que mudou no Site (Execução)
+- **Evolução de Componentes UI:**
+  - `SectionHeading` agora suporta etiquetas (`badge`) e tem tipografia refinada para títulos de grande escala.
+  - Criação do componente `ReadingProgress` para feedback visual durante a leitura de artigos.
+- **Layout Editorial Dinâmico:**
+  - Implementação do `NoticiasGrid` (Client Component) que separa automaticamente a notícia mais recente como **Destaque Principal** (Layout horizontal, imagem de grandes dimensões e sombras profundas).
+  - Grelha de notícias secundárias com animações **staggered** (entrada sequencial ao fazer scroll).
+- **Experiência de Artigo Elevada:**
+  - Reformulação total da página de detalhe (`/noticias/[slug]`) com foco em legibilidade editorial (prose-xl, blockquotes estilizados e imagens com hover dinâmico).
+  - Novo sistema de botões de partilha e navegação de retorno com micro-interações de escala e cor.
+- **Consolidação Técnica:** Separação clara entre Server Components (para SEO e dados) e Client Components (para interatividade), mantendo a performance otimizada.
+
+### 🎯 Estado da Entrega
+- **Listagem de Notícias:** [CONCLUÍDA] Design imersivo e animado.
+- **Página de Artigo:** [CONCLUÍDA] Leitura otimizada com barra de progresso.
+- **Design System:** [ATUALIZADO] Componentes de títulos mais versáteis.
+
+---
+
+
 ## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026
 ### 💬 O que conversámos (Intenção)
 O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar o design de uma grelha simples para uma experiência imersiva que fizesse jus ao padrão "Premium Minimalist" do resto do site. Decidimos por uma abordagem que utiliza **Fotografia Imersiva**, onde cada categoria de serviço é representada por uma imagem de alta qualidade com sobreposições de glassmorphism.
@@ -15,28 +39,29 @@ O foco total desta sessão foi a **página de Serviços**. O objetivo era elevar
 - **Design de Grande Escala:** Otimização do layout Z-pattern para suportar o novo volume de conteúdo, mantendo a performance fluida e a estética premium.
 
 ### 🎯 Estado da Entrega
-- **Home Page:** [CONCLUÍDA]
+- **Home Page:** [CONCLUÍDA] Restaurada ao design original após testes de parallax.
 - **Sobre Nós:** [CONCLUÍDA]
-- **Serviços:** [CONCLUÍDA] Design imersivo e interativo finalizado.
-- **Contactos:** [CONCLUÍDA] Formulário avançado com upload de fotos e design premium.
-- **Próximo Passo:** Revisão final de SEO e metadados antes do lançamento.
+- **Serviços:** [CONCLUÍDA] Design imersivo finalizado.
+- **Contactos:** [CONCLUÍDA] Formulário único com design Premium Minimalist e contraste otimizado.
 
 ---
 
-## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026 (Continuação)
+## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026 (Sessão de Refinamento & Performance)
 ### 💬 O que conversámos (Intenção)
-O objetivo foi elevar a página de **Contactos** ao mesmo nível de excelência visual das restantes. Decidimos por uma abordagem que combina funcionalidade avançada (como o upload de fotos para orçamentos) com uma estética **Glassmorphism** leve e moderna. A substituição de emojis por ícones Lucide foi uma escolha clara para manter a sobriedade profissional do projeto.
+O foco principal foi elevar a página de **Contactos** para o padrão "Premium Minimalist". Explorámos várias abordagens, desde formulários conversacionais a lógicas condicionais por perfil (Empresa/Particular), acabando por decidir por uma abordagem simplificada, direta e de alto contraste. Na **Home Page**, testámos um efeito de "Lupa Reveladora" (Spyglass) na secção de sustentabilidade, mas regressámos à animação orgânica original para manter a sobriedade da marca.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Design de Contactos Premium:** Implementação de ícones Lucide (MapPin, Phone, Mail, Clock) com stroke fino para um aspeto mais limpo.
-- **Formulário de Orçamento Inteligente:** Adição de um campo de **upload de fotografias** e sincronização do dropdown de serviços com os 8 serviços oficiais da empresa.
-- **Interatividade de Mapa:** O mapa de Cantanhede foi integrado num cartão com animações de hover, efeito grayscale controlado e overlays dinâmicos.
-- **Micro-animações:** Adição de animações de entrada `motion` em todos os elementos de contacto para uma experiência de carregamento suave.
-- **Consolidação Git:** Commit granular realizado com o racional técnico completo.
+- **Contactos Premium:** Substituição de emojis por ícones Lucide, implementação de upload de fotos e ajuste de contraste nos inputs para melhor usabilidade.
+- **Otimização de Performance:** Redução de `backdrop-blur` e remoção de animações pesadas (`pulse`) para eliminar lag em dispositivos menos potentes.
+- **Experiências de UI (Iterações):**
+  - Implementação e posterior remoção de lógica de formulário condicional.
+  - Criação e reversão de efeito de parallax hidrodinâmico na Home Page.
+- **Consolidação Técnica:** Refatoração modular de componentes durante os testes e limpeza final do código.
 
 ### 🎯 Estado da Entrega
-- **Site Institucional:** Todas as páginas principais (Home, Sobre Nós, Serviços, Contactos) estão agora com design final aprovado e otimizado.
-- **Backlog:** Foco move-se agora para SEO, Analytics e otimização final de assets.
+- **Infraestrutura:** [CONCLUÍDA]
+- **Design de Páginas:** [CONCLUÍDA] Todas as páginas principais estão no estado final aprovado.
+- **Performance:** [OTIMIZADA] Carga de GPU reduzida na página de contactos.
 
 ---
 ### 💬 O que conversámos (Intenção)

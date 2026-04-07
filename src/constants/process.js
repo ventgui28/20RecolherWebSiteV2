@@ -6,7 +6,7 @@ export const PROCESS_STEPS = [
     title: "Recolha",
     description: "Logística otimizada para reduzir a pegada de carbono desde o primeiro quilómetro.",
     icon: Truck,
-    image: "/images/process-recolha.jpg",
+    image: "/images/recolha.jpg",
     color: "bg-green-50",
     textColor: "text-primary-green"
   },
@@ -15,7 +15,7 @@ export const PROCESS_STEPS = [
     title: "Triagem",
     description: "Separação minuciosa para maximizar o reaproveitamento de componentes e materiais nobres.",
     icon: Search,
-    image: "/images/process-triagem.jpg",
+    image: "/images/triagem.jpg",
     color: "bg-green-100/50",
     textColor: "text-mid-green"
   },
@@ -24,7 +24,7 @@ export const PROCESS_STEPS = [
     title: "Valorização",
     description: "Processamento avançado que evita a extração mineira de novos recursos finitos da Terra.",
     icon: Recycle,
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/valorizacao.avif",
     color: "bg-green-200/30",
     textColor: "text-forest-green"
   },

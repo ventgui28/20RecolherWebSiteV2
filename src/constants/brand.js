@@ -1,6 +1,6 @@
 export const BRAND = {
-  name: "20recolher",
-  fullName: "20recolher - Gestão Integrada de Resíduos",
+  name: "20 Recolher",
+  fullName: "20 Recolher - Gestão Integrada de Resíduos",
   slogan: "Liderança em Economia Circular e Valorização Tecnológica",
   description: "Operador licenciado especializado na gestão, recolha e tratamento de equipamentos elétricos, eletrónicos e consumíveis informáticos em Portugal.",
   history: {
