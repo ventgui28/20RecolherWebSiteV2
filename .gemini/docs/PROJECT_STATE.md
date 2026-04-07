@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 07/04/2026, 12:54:46
+#### Sincronização: 07/04/2026, 16:16:24
 **Commits:**
 ```
+43a7a30 feat: implementar gestão avançada de lista e filtros no dashboard admin
+33d1749 fix: resolver aviso de extensões duplicadas no Tiptap editor
+d7e215f fix: adicionar importação do ícone Eye no dashboard admin
+f07af30 feat: implementar funcionalidades avançadas no painel admin e contador de visualizações
 91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
-6ac6ec6 chore: adicionar script de sementes para notícias de teste e dependências
-3225e84 fix: tornar dinâmico o contador de publicações e ajustar tom corporativo
-53b5c2f style: reformular página de notícias para o padrão Modern Corporate Newsroom
-ea84f05 style: suavizar efeitos de luz e aprofundar contraste no hero de notícias
 ```
 #### Sincronização:
-#### Sincronização: 07/04/2026, 12:49:50
+#### Sincronização: 07/04/2026, 15:45:00
 **Commits:**
 ```
+33d1749 fix: resolver aviso de extensões duplicadas no Tiptap editor
+d7e215f fix: adicionar importação do ícone Eye no dashboard admin
+f07af30 feat: implementar funcionalidades avançadas no painel admin e contador de visualizações
 91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
 6ac6ec6 chore: adicionar script de sementes para notícias de teste e dependências
-3225e84 fix: tornar dinâmico o contador de publicações e ajustar tom corporativo
-53b5c2f style: reformular página de notícias para o padrão Modern Corporate Newsroom
-ea84f05 style: suavizar efeitos de luz e aprofundar contraste no hero de notícias
 ```

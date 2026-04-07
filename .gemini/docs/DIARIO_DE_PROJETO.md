@@ -4,29 +4,30 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
-## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Sessão de Elite Editorial & UX - Notícias)
+## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Consolidação Corporativa & CMS Avançado - Notícias)
 ### 💬 O que conversámos (Intenção)
-A sessão de hoje foi uma evolução profunda do portal de notícias. Partimos de uma grelha simples para uma experiência de "Modern Corporate Newsroom" de padrão internacional. O objetivo era criar uma central de comunicação oficial da 20recolher que transmitisse autoridade, transparência e dinamismo. Focámos na eliminação de ruído visual, na precisão dos dados (contador dinâmico) e em ferramentas de utilidade para o utilizador (busca e partilha).
+A sessão de hoje foi uma transformação radical do ecossistema de notícias. Partimos de um design editorial básico para uma **Sala de Imprensa Corporativa** de elite, focada exclusivamente na comunicação oficial da **20recolher**. O objetivo foi dotar o site de autoridade institucional através de um design sóbrio e ferramentas de gestão de conteúdos (CMS) de nível profissional, incluindo SEO, métricas de visualização e automação de performance.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Redesign "Corporate Newsroom":**
-  - Implementação de um **Split Featured Layout** para a notícia de destaque, separando imagem e texto de forma elegante.
-  - Substituição do hero de "revista" por um cabeçalho institucional limpo ("Notícias & Destaques") com badge de marca.
-  - Grelha de notícias secundárias com cartões brancos e bordas finas para máxima legibilidade.
-- **Ecossistema de Funcionalidades UX:**
-  - **Busca em Tempo Real:** Filtro de texto instantâneo integrado com categorias.
-  - **Reading Time:** Cálculo automático do tempo de leitura em todos os artigos.
-  - **Artigos Relacionados:** Secção "Continuar a ler" baseada na categoria para retenção de tráfego.
-  - **Native Share:** Botão de partilha que utiliza a API do sistema em mobile e cópia de link em desktop.
-- **Infraestrutura de Dados:**
-  - Criação de script de sementes (`add-test-news.js`) e SQL para povoamento da base de dados com notícias reais da empresa.
-  - Contador de publicações no Hero agora ligado dinamicamente ao Supabase.
-- **Correções & Estilo:** Ajuste de iluminação no Hero para evitar efeitos "lavados" e correção de ícones sociais obsoletos.
+- **Redesign "Modern Corporate Newsroom":**
+  - **Hero Minimalista:** Transição para um cabeçalho institucional limpo ("Notícias & Destaques") com foco em dados reais e tipografia preta profunda.
+  - **Split Featured Layout:** Novo destaque horizontal para a notícia principal, otimizando o ritmo de leitura.
+  - **Grelha Estruturada:** Cartões brancos com bordas finas e sombras subtis no hover, transmitindo rigor e organização.
+- **Funcionalidades UX de Elite:**
+  - **Busca em Tempo Real:** Filtro de texto instantâneo integrado com categorias para descoberta rápida de comunicados.
+  - **Reading Time & Views:** Cálculo automático do tempo de leitura e contador dinâmico de visualizações (Supabase RPC).
+  - **Engagement:** Sugestões de artigos relacionados e botão de partilha nativa do sistema.
+- **Painel Admin Transformado em CMS:**
+  - **Modo de Pré-visualização:** Visualização em tempo real (Desktop/Mobile) antes de publicar.
+  - **Gestão SEO Completa:** Campos dedicados para Meta Title e Meta Description independentes do conteúdo visual.
+  - **Workflow de Rascunhos:** Sistema de estados (Publicado/Rascunho) com indicadores visuais no dashboard.
+  - **Otimização de Imagens:** Redimensionamento e compressão automática (Canvas) no momento do upload.
+- **Correções Técnicas:** Resolução de avisos de extensões duplicadas no Tiptap e correção de ícones sociais.
 
 ### 🎯 Estado da Entrega
-- **Portal de Notícias:** [CONCLUÍDO & PREMIUM] Funcionalidade e design ao nível das melhores empresas do setor.
-- **Arquitetura:** [SOLIDIFICADA] Divisão clara entre lógica de servidor e interatividade no cliente.
-- **Próximo Passo:** Expandir estas lógicas de UX (Busca/Relacionados) para outras áreas do site ou focar no Dashboard de Admin.
+- **Portal de Notícias:** [SUPER PREMIUM] Funcionalidade e design ao nível de uma grande empresa tecnológica.
+- **CMS de Gestão:** [CONCLUÍDO] Fluxo de trabalho profissional e seguro para a equipa.
+- **Infraestrutura:** [ATUALIZADA] Novas colunas de SEO e funções SQL integradas no Supabase.
 
 ---
 

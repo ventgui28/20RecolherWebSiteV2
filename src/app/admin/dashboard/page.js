@@ -279,7 +279,7 @@ export default function DashboardPage() {
                       </div>
                     )}
                     
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-1">
                         <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${noticia.publicado ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
                           {noticia.publicado ? 'Publicado' : 'Rascunho'}
@@ -292,9 +292,14 @@ export default function DashboardPage() {
                           {noticia.views || 0} visualizações
                         </span>
                       </div>
-                      <h2 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1 max-w-xl">
-                        {noticia.titulo}
-                      </h2>
+                      <button 
+                        onClick={() => router.push(`/admin/editar/${noticia.id}`)}
+                        className="text-left group/title block"
+                      >
+                        <h2 className="text-lg font-bold text-slate-900 group-hover/title:text-emerald-600 transition-colors line-clamp-1 max-w-xl">
+                          {noticia.titulo}
+                        </h2>
+                      </button>
                     </div>
                   </div>
 
