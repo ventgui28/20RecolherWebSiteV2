@@ -21,19 +21,20 @@ export default async function NoticiasPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Imersivo */}
+      {/* Hero Corporativo de Topo */}
       <NoticiasHero 
-        badge="Atualidade"
-        title="Notícias & Sustentabilidade"
-        subtitle="O portal da 20recolher sobre economia circular, inovação ambiental e o impacto da reciclagem tecnológica na nossa sociedade."
+        badge="20recolher"
+        title="Notícias & Destaques"
+        subtitle="Acompanhe a atividade oficial da nossa empresa: novos investimentos, marcos operacionais e a nossa evolução contínua no setor da economia circular."
+        count={noticias?.length || 0}
       />
 
-      {/* Grelha Dinâmica com Filtros */}
+      {/* Grelha de Notícias da Empresa */}
       <Container>
         <NoticiasGrid noticias={noticias || []} />
       </Container>
 
-      {/* Newsletter Premium */}
+      {/* Newsletter de Updates da Empresa */}
       <NewsletterCTA />
     </main>
   )

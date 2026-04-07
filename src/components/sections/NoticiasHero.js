@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 
-export default function NoticiasHero({ title, subtitle, badge }) {
+export default function NoticiasHero({ title, subtitle, badge, count = 0 }) {
   return (
     <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden bg-white border-b border-slate-100">
       {/* Subtle Background Accent */}
@@ -35,7 +35,7 @@ export default function NoticiasHero({ title, subtitle, badge }) {
               <div className="flex items-center gap-6 shrink-0 border-l border-slate-200 pl-8 md:pl-12 py-2">
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Publicações</span>
-                  <span className="text-4xl font-black text-slate-900 tabular-nums tracking-tighter">54</span>
+                  <span className="text-4xl font-black text-slate-900 tabular-nums tracking-tighter">{count}</span>
                 </div>
                 <div className="w-px h-10 bg-slate-100" />
                 <div className="flex flex-col">

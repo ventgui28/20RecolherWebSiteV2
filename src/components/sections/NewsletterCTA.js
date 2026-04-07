@@ -16,13 +16,13 @@ export default function NewsletterCTA() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 mb-4 block">Newsletter Oficial</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 mb-4 block">Subscreva as Atualizações</span>
               <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-6">
-                Mantenha a sua empresa <br /> 
-                <span className="text-emerald-600">tecnologicamente informada.</span>
+                Acompanhe o percurso <br /> 
+                <span className="text-emerald-600">da 20recolher.</span>
               </h2>
               <p className="text-lg text-slate-500 max-w-xl font-medium leading-relaxed">
-                Subscreva o nosso boletim informativo para receber atualizações críticas sobre conformidade legal, economia circular e inovação em reciclagem.
+                Subscreva para receber em primeira mão as nossas novidades corporativas, novos serviços licenciados e relatórios de impacto ambiental da nossa operação.
               </p>
             </motion.div>
           </div>
