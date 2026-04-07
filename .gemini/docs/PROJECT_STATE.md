@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 07/04/2026, 12:37:29
+#### Sincronização: 07/04/2026, 12:54:46
 **Commits:**
 ```
+91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
 6ac6ec6 chore: adicionar script de sementes para notícias de teste e dependências
 3225e84 fix: tornar dinâmico o contador de publicações e ajustar tom corporativo
 53b5c2f style: reformular página de notícias para o padrão Modern Corporate Newsroom
 ea84f05 style: suavizar efeitos de luz e aprofundar contraste no hero de notícias
-96d995c style: integrar imagem de fundo imersiva no hero de notícias
 ```
 #### Sincronização:
-#### Sincronização: 07/04/2026, 12:23:50
+#### Sincronização: 07/04/2026, 12:49:50
 **Commits:**
 ```
+91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
+6ac6ec6 chore: adicionar script de sementes para notícias de teste e dependências
 3225e84 fix: tornar dinâmico o contador de publicações e ajustar tom corporativo
 53b5c2f style: reformular página de notícias para o padrão Modern Corporate Newsroom
 ea84f05 style: suavizar efeitos de luz e aprofundar contraste no hero de notícias
-96d995c style: integrar imagem de fundo imersiva no hero de notícias
-beac4d2 style: upgrade super premium da página de notícias com hero imersivo e filtros dinâmicos
 ```

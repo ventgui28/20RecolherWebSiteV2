@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import RichTextEditor from '@/components/admin/RichTextEditor'
+import PreviewModal from '@/components/admin/PreviewModal'
 import { 
   ArrowLeft, 
   Save, 
@@ -15,13 +16,18 @@ import {
   CheckCircle2,
   Type,
   FileText,
-  Tag
+  Tag,
+  Search,
+  Eye,
+  Globe,
+  Settings
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function NovaNoticiaPage() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
   const [image, setImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   
@@ -30,13 +36,14 @@ export default function NovaNoticiaPage() {
     subtitulo: '',
     categoria: 'Reciclagem',
     conteudo: '',
-    publicado: true
+    publicado: false, // Por defeito como rascunho
+    seo_title: '',
+    seo_description: ''
   })
 
   const router = useRouter()
   const supabase = createClient()
 
-  // Função para criar slug a partir do título
   const createSlug = (text) => {
     return text
       .toString()
@@ -49,11 +56,50 @@ export default function NovaNoticiaPage() {
       .replace(/--+/g, '-')
   }
 
-  const handleImageChange = (e) => {
+  // Otimização de Imagem Simples (Redimensionamento via Canvas)
+  const optimizeImage = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          canvas.toBlob((blob) => {
+            const optimizedFile = new File([blob], file.name, {
+              type: 'image/jpeg',
+              lastModified: Date.now(),
+            });
+            resolve(optimizedFile);
+          }, 'image/jpeg', 0.8); // Qualidade 80%
+        };
+      };
+    });
+  }
+
+  const handleImageChange = async (e) => {
     const file = e.target.files[0]
     if (file) {
-      setImage(file)
-      setImagePreview(URL.createObjectURL(file))
+      setLoading(true);
+      const optimized = await optimizeImage(file);
+      setImage(optimized);
+      setImagePreview(URL.createObjectURL(optimized));
+      setLoading(false);
     }
   }
 
@@ -64,7 +110,6 @@ export default function NovaNoticiaPage() {
     try {
       let imagemUrl = null
 
-      // 1. Upload da Imagem (se houver)
       if (image) {
         const fileExt = image.name.split('.').pop()
         const fileName = `${Math.random()}.${fileExt}`
@@ -83,7 +128,6 @@ export default function NovaNoticiaPage() {
         imagemUrl = publicUrl
       }
 
-      // 2. Inserir na Base de Dados
       const { error: dbError } = await supabase
         .from('noticias')
         .insert([{
@@ -93,7 +137,9 @@ export default function NovaNoticiaPage() {
           categoria: formData.categoria,
           conteudo: formData.conteudo,
           imagem_url: imagemUrl,
-          publicado: formData.publicado
+          publicado: formData.publicado,
+          seo_title: formData.seo_title || formData.titulo,
+          seo_description: formData.seo_description || formData.subtitulo
         }])
 
       if (dbError) throw dbError
@@ -119,7 +165,7 @@ export default function NovaNoticiaPage() {
           <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-600">
             <CheckCircle2 size={48} />
           </div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Notícia Publicada!</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Notícia Guardada!</h1>
           <p className="text-slate-500">A redirecionar para o painel...</p>
         </motion.div>
       </div>
@@ -129,134 +175,194 @@ export default function NovaNoticiaPage() {
   return (
     <main className="min-h-screen bg-slate-50 pt-24 pb-20">
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="flex items-center justify-between mb-10">
-            <button 
-              onClick={() => router.back()}
-              className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors group"
-            >
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              <span>Voltar</span>
-            </button>
-            <h1 className="text-3xl font-bold text-slate-900">Nova Notícia</h1>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Informações Básicas */}
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
-                  <Type size={16} className="text-emerald-600" />
-                  Título da Notícia
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Ex: Novo centro de reciclagem em Cantanhede"
-                  value={formData.titulo}
-                  onChange={(e) => setFormData({...formData, titulo: e.target.value})}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all text-lg font-medium"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
-                  <FileText size={16} className="text-emerald-600" />
-                  Subtítulo / Lead
-                </label>
-                <textarea
-                  placeholder="Breve resumo da notícia para atrair leitores..."
-                  value={formData.subtitulo}
-                  onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all h-24 resize-none"
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
-                    <Tag size={16} className="text-emerald-600" />
-                    Categoria
-                  </label>
-                  <select
-                    value={formData.categoria}
-                    onChange={(e) => setFormData({...formData, categoria: e.target.value})}
-                    className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all appearance-none cursor-pointer"
-                  >
-                    <option>Reciclagem</option>
-                    <option>Sustentabilidade</option>
-                    <option>Empresa</option>
-                    <option>Legislação</option>
-                    <option>Inovação</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
-                    <ImageIcon size={16} className="text-emerald-600" />
-                    Imagem de Destaque
-                  </label>
-                  {imagePreview ? (
-                    <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-200 group">
-                      <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" />
-                      <button 
-                        onClick={() => { setImage(null); setImagePreview(null); }}
-                        className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <X size={20} />
-                      </button>
-                    </div>
-                  ) : (
-                    <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 hover:bg-slate-100 hover:border-emerald-300 transition-all cursor-pointer">
-                      <ImageIcon className="text-slate-400 mb-2" size={32} />
-                      <span className="text-sm text-slate-500 font-medium">Clique para carregar imagem</span>
-                      <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-                    </label>
-                  )}
-                </div>
-              </div>
-            </section>
-
-            {/* Editor */}
-            <section className="space-y-3">
-              <label className="block text-sm font-semibold text-slate-700">Conteúdo Completo</label>
-              <RichTextEditor 
-                content={formData.conteudo} 
-                onChange={(html) => setFormData({...formData, conteudo: html})} 
-              />
-            </section>
-
-            {/* Botão de Gravar */}
-            <div className="flex justify-end gap-4">
-              <Button
-                variant="outline"
-                type="button"
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+            <div className="flex items-center gap-4">
+              <button 
                 onClick={() => router.back()}
-                className="px-8"
+                className="p-3 bg-white border border-slate-200 text-slate-500 hover:text-emerald-600 rounded-2xl transition-all shadow-sm"
               >
-                Cancelar
-              </Button>
+                <ArrowLeft size={20} />
+              </button>
+              <div>
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight">Nova Notícia</h1>
+                <p className="text-sm text-slate-500 font-medium italic">Edição de Conteúdo Profissional</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsPreviewOpen(true)}
+                className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600 rounded-2xl font-bold transition-all shadow-sm"
+              >
+                <Eye size={18} />
+                Pré-visualizar
+              </button>
               <Button
+                onClick={handleSubmit}
                 disabled={loading || !formData.titulo || !formData.conteudo}
-                className="px-10 py-4 flex items-center gap-2 font-bold"
+                className="px-8 py-3 flex items-center gap-2 font-black shadow-lg shadow-emerald-900/10"
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="animate-spin" size={20} />
-                    A guardar...
-                  </>
-                ) : (
-                  <>
-                    <Save size={20} />
-                    Publicar Notícia
-                  </>
-                )}
+                {loading ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
+                {formData.publicado ? 'Publicar Agora' : 'Guardar Rascunho'}
               </Button>
             </div>
-          </form>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-8 space-y-8">
+              {/* Conteúdo Principal */}
+              <section className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-slate-100 space-y-8">
+                <div>
+                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
+                    <Type size={14} className="text-emerald-600" />
+                    Título Editorial
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Título de impacto para os leitores..."
+                    value={formData.titulo}
+                    onChange={(e) => setFormData({...formData, titulo: e.target.value})}
+                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/5 focus:border-emerald-500 outline-none transition-all text-2xl font-black text-slate-900 placeholder:text-slate-300"
+                  />
+                </div>
+
+                <div>
+                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
+                    <FileText size={14} className="text-emerald-600" />
+                    Subtítulo / Introdução
+                  </label>
+                  <textarea
+                    placeholder="Uma breve introdução que resuma a notícia..."
+                    value={formData.subtitulo}
+                    onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
+                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/5 focus:border-emerald-500 outline-none transition-all h-32 resize-none font-medium text-slate-600 leading-relaxed"
+                  />
+                </div>
+
+                <div>
+                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
+                    Conteúdo do Artigo
+                  </label>
+                  <RichTextEditor 
+                    content={formData.conteudo} 
+                    onChange={(html) => setFormData({...formData, conteudo: html})} 
+                  />
+                </div>
+              </section>
+            </div>
+
+            <div className="lg:col-span-4 space-y-8">
+              {/* Sidebar: Publicação */}
+              <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
+                  <Settings size={14} className="text-emerald-600" />
+                  Estado & Categoria
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-sm font-bold text-slate-700">Estado</span>
+                    <button
+                      type="button"
+                      onClick={() => setFormData({...formData, publicado: !formData.publicado})}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${formData.publicado ? 'bg-emerald-600' : 'bg-slate-300'}`}
+                    >
+                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${formData.publicado ? 'translate-x-6' : 'translate-x-1'}`} />
+                    </button>
+                  </div>
+                  <p className="text-[10px] text-slate-400 font-medium px-2">
+                    {formData.publicado ? 'A notícia ficará visível imediatamente para o público.' : 'Guardado apenas no painel de administração.'}
+                  </p>
+
+                  <div>
+                    <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 ml-1">Categoria</label>
+                    <select
+                      value={formData.categoria}
+                      onChange={(e) => setFormData({...formData, categoria: e.target.value})}
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-700 outline-none focus:ring-2 focus:ring-emerald-500/20"
+                    >
+                      <option>Institucional</option>
+                      <option>Serviços</option>
+                      <option>Certificações</option>
+                      <option>Inovação</option>
+                      <option>Parcerias</option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+
+              {/* Sidebar: Imagem */}
+              <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
+                  <ImageIcon size={14} className="text-emerald-600" />
+                  Imagem de Capa
+                </div>
+                {imagePreview ? (
+                  <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-100 group">
+                    <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" />
+                    <button 
+                      onClick={() => { setImage(null); setImagePreview(null); }}
+                      className="absolute top-3 right-3 p-2 bg-red-500 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-100 rounded-2xl bg-slate-50 hover:bg-slate-100 hover:border-emerald-300 transition-all cursor-pointer">
+                    <ImageIcon className="text-slate-300 mb-2" size={24} />
+                    <span className="text-[10px] text-slate-400 font-black uppercase">Upload & Otimização</span>
+                    <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+                  </label>
+                )}
+              </section>
+
+              {/* Sidebar: SEO */}
+              <section className="bg-slate-900 rounded-3xl p-8 shadow-xl shadow-slate-200 space-y-6 text-white">
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
+                  <Search size={14} />
+                  Configurações SEO
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">Meta Title (Opcional)</label>
+                    <input
+                      type="text"
+                      placeholder={formData.titulo || "Título para o Google"}
+                      value={formData.seo_title}
+                      onChange={(e) => setFormData({...formData, seo_title: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">Meta Description</label>
+                    <textarea
+                      placeholder={formData.subtitulo || "Descrição curta para os resultados de pesquisa"}
+                      value={formData.seo_description}
+                      onChange={(e) => setFormData({...formData, seo_description: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 h-24 resize-none"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 p-3 bg-white/5 rounded-xl border border-white/5">
+                    <Globe size={14} className="text-emerald-400" />
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Pré-visualização de pesquisa ativa</span>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
       </Container>
+
+      <PreviewModal 
+        isOpen={isPreviewOpen} 
+        onClose={() => setIsPreviewOpen(false)} 
+        data={{...formData, imagePreview}} 
+      />
     </main>
   )
 }

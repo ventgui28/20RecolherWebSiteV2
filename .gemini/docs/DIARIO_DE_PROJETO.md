@@ -4,26 +4,29 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
-## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Refinamento Visual "Premium Editorial" - Notícias)
+## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Sessão de Elite Editorial & UX - Notícias)
 ### 💬 O que conversámos (Intenção)
-A sessão de hoje focou-se em elevar a estética da área de Notícias para um padrão de revista digital premium. A intenção era passar de uma grelha simples para um layout editorial dinâmico, onde a notícia mais recente tem destaque absoluto e a interatividade é fluida e moderna. Decidimos usar a **Framer Motion** para animações de scroll e criar componentes atómicos reutilizáveis para barras de progresso e grelhas animadas.
+A sessão de hoje foi uma evolução profunda do portal de notícias. Partimos de uma grelha simples para uma experiência de "Modern Corporate Newsroom" de padrão internacional. O objetivo era criar uma central de comunicação oficial da 20recolher que transmitisse autoridade, transparência e dinamismo. Focámos na eliminação de ruído visual, na precisão dos dados (contador dinâmico) e em ferramentas de utilidade para o utilizador (busca e partilha).
 
 ### 🚀 O que mudou no Site (Execução)
-- **Evolução de Componentes UI:**
-  - `SectionHeading` agora suporta etiquetas (`badge`) e tem tipografia refinada para títulos de grande escala.
-  - Criação do componente `ReadingProgress` para feedback visual durante a leitura de artigos.
-- **Layout Editorial Dinâmico:**
-  - Implementação do `NoticiasGrid` (Client Component) que separa automaticamente a notícia mais recente como **Destaque Principal** (Layout horizontal, imagem de grandes dimensões e sombras profundas).
-  - Grelha de notícias secundárias com animações **staggered** (entrada sequencial ao fazer scroll).
-- **Experiência de Artigo Elevada:**
-  - Reformulação total da página de detalhe (`/noticias/[slug]`) com foco em legibilidade editorial (prose-xl, blockquotes estilizados e imagens com hover dinâmico).
-  - Novo sistema de botões de partilha e navegação de retorno com micro-interações de escala e cor.
-- **Consolidação Técnica:** Separação clara entre Server Components (para SEO e dados) e Client Components (para interatividade), mantendo a performance otimizada.
+- **Redesign "Corporate Newsroom":**
+  - Implementação de um **Split Featured Layout** para a notícia de destaque, separando imagem e texto de forma elegante.
+  - Substituição do hero de "revista" por um cabeçalho institucional limpo ("Notícias & Destaques") com badge de marca.
+  - Grelha de notícias secundárias com cartões brancos e bordas finas para máxima legibilidade.
+- **Ecossistema de Funcionalidades UX:**
+  - **Busca em Tempo Real:** Filtro de texto instantâneo integrado com categorias.
+  - **Reading Time:** Cálculo automático do tempo de leitura em todos os artigos.
+  - **Artigos Relacionados:** Secção "Continuar a ler" baseada na categoria para retenção de tráfego.
+  - **Native Share:** Botão de partilha que utiliza a API do sistema em mobile e cópia de link em desktop.
+- **Infraestrutura de Dados:**
+  - Criação de script de sementes (`add-test-news.js`) e SQL para povoamento da base de dados com notícias reais da empresa.
+  - Contador de publicações no Hero agora ligado dinamicamente ao Supabase.
+- **Correções & Estilo:** Ajuste de iluminação no Hero para evitar efeitos "lavados" e correção de ícones sociais obsoletos.
 
 ### 🎯 Estado da Entrega
-- **Listagem de Notícias:** [CONCLUÍDA] Design imersivo e animado.
-- **Página de Artigo:** [CONCLUÍDA] Leitura otimizada com barra de progresso.
-- **Design System:** [ATUALIZADO] Componentes de títulos mais versáteis.
+- **Portal de Notícias:** [CONCLUÍDO & PREMIUM] Funcionalidade e design ao nível das melhores empresas do setor.
+- **Arquitetura:** [SOLIDIFICADA] Divisão clara entre lógica de servidor e interatividade no cliente.
+- **Próximo Passo:** Expandir estas lógicas de UX (Busca/Relacionados) para outras áreas do site ou focar no Dashboard de Admin.
 
 ---
 

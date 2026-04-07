@@ -115,12 +115,15 @@ export default function DashboardPage() {
                     
                     <div>
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">
+                        <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${noticia.publicado ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                          {noticia.publicado ? 'Publicado' : 'Rascunho'}
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 px-3 py-1 rounded-full">
                           {noticia.categoria}
                         </span>
-                        <span className="flex items-center gap-1 text-slate-400 text-xs">
-                          <Calendar size={12} />
-                          {new Date(noticia.created_at).toLocaleDateString('pt-PT')}
+                        <span className="flex items-center gap-1.5 text-slate-400 text-[10px] font-bold uppercase tracking-tight ml-2">
+                          <Eye size={12} className="text-emerald-500" />
+                          {noticia.views || 0} visualizações
                         </span>
                       </div>
                       <h2 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">

@@ -6,6 +6,7 @@ import { Calendar, Tag, User, ArrowLeft, Share2, Facebook, Link as LinkIcon, Clo
 import { FaFacebookF } from 'react-icons/fa'
 import Link from 'next/link'
 import ClientShareButton from '@/components/ui/ClientShareButton'
+import ClientViewCounter from '@/components/ui/ClientViewCounter'
 
 // Metadados dinâmicos para SEO
 export async function generateMetadata({ params }) {
@@ -67,6 +68,7 @@ export default async function ArtigoPage({ params }) {
   return (
     <main className="min-h-screen bg-white pt-32 pb-24">
       <ReadingProgress />
+      <ClientViewCounter slug={noticia.slug} />
       
       <article>
         {/* Hero do Artigo */}
