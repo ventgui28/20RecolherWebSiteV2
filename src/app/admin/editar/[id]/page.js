@@ -184,13 +184,13 @@ export default function EditarNoticiaPage({ params }) {
         .update({
           titulo: formData.titulo,
           slug: createSlug(formData.titulo),
-          resumo: formData.subtitulo,
+          subtitulo: formData.subtitulo,
           categoria: formData.categoria,
           conteudo: formData.conteudo,
           imagem_url: imagemUrl,
           publicado: formData.publicado,
-          meta_title: formData.seo_title,
-          meta_description: formData.seo_description
+          seo_title: formData.seo_title,
+          seo_description: formData.seo_description
         })
         .eq('id', id)
 
@@ -425,6 +425,11 @@ export default function EditarNoticiaPage({ params }) {
         onClose={() => setIsRevisionsOpen(false)}
         noticiaId={id}
         onRestore={handleRestore}
+      />
+    </main>
+  )
+}
+       onRestore={handleRestore}
       />
     </main>
   )
