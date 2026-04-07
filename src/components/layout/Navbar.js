@@ -23,6 +23,7 @@ export default function Navbar() {
     { label: "Home", href: "/" },
     { label: "Sobre Nós", href: "/sobre-nos" },
     { label: "Serviços", href: "/servicos" },
+    { label: "Notícias", href: "/noticias" },
     { label: "Contactos", href: "/contactos" },
   ];
 
@@ -70,7 +71,7 @@ export default function Navbar() {
           
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-12">
-            {navLinks.slice(0, 3).map((link) => (
+            {navLinks.slice(0, 4).map((link) => (
               <Link 
                 key={link.href}
                 href={link.href} 
