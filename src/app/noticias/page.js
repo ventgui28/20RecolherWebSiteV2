@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import Container from '@/components/ui/Container'
-import SectionHeading from '@/components/ui/SectionHeading'
 import NoticiasGrid from '@/components/sections/NoticiasGrid'
+import NoticiasHero from '@/components/sections/NoticiasHero'
+import NewsletterCTA from '@/components/sections/NewsletterCTA'
 
 // Esta página é renderizada no servidor para melhor SEO
 export default async function NoticiasPage() {
@@ -19,18 +20,21 @@ export default async function NoticiasPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-24">
-      <Container>
-        <div className="max-w-4xl mb-16 lg:mb-24">
-          <SectionHeading
-            badge="Atualidade"
-            title="Notícias & Sustentabilidade"
-            subtitle="Fique a par das últimas novidades sobre reciclagem tecnológica, legislação ambiental e o impacto da 20recolher."
-          />
-        </div>
+    <main className="min-h-screen bg-white">
+      {/* Hero Imersivo */}
+      <NoticiasHero 
+        badge="Atualidade"
+        title="Notícias & Sustentabilidade"
+        subtitle="O portal da 20recolher sobre economia circular, inovação ambiental e o impacto da reciclagem tecnológica na nossa sociedade."
+      />
 
+      {/* Grelha Dinâmica com Filtros */}
+      <Container>
         <NoticiasGrid noticias={noticias || []} />
       </Container>
+
+      {/* Newsletter Premium */}
+      <NewsletterCTA />
     </main>
   )
 }
