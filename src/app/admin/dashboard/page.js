@@ -14,7 +14,8 @@ import {
   Calendar,
   Tag,
   Loader2,
-  Inbox
+  Inbox,
+  Eye
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
