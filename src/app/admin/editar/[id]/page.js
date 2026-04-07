@@ -68,12 +68,12 @@ export default function EditarNoticiaPage({ params }) {
     } else {
       setFormData({
         titulo: data.titulo,
-        subtitulo: data.resumo || '',
+        subtitulo: data.subtitulo || '',
         categoria: data.categoria,
         conteudo: data.conteudo,
         publicado: data.publicado,
-        seo_title: data.meta_title || '',
-        seo_description: data.meta_description || ''
+        seo_title: data.seo_title || '',
+        seo_description: data.seo_description || ''
       })
       setImagePreview(data.imagem_url)
     }
@@ -83,16 +83,15 @@ export default function EditarNoticiaPage({ params }) {
   const handleRestore = (revision) => {
     setFormData({
       titulo: revision.titulo,
-      subtitulo: revision.resumo || '',
+      subtitulo: revision.resumo || '', // Na tabela de revisões é 'resumo'
       categoria: revision.categoria,
       conteudo: revision.conteudo,
       publicado: revision.publicado,
-      seo_title: revision.meta_title || '',
-      seo_description: revision.meta_description || ''
+      seo_title: revision.meta_title || '', // Na tabela de revisões é 'meta_title'
+      seo_description: revision.meta_description || '' // Na tabela de revisões é 'meta_description'
     })
     if (revision.imagem_url) setImagePreview(revision.imagem_url)
     setIsRevisionsOpen(false)
-    // Feedback visual de restauro
     alert('Versão restaurada no editor. Clique em "Guardar Alterações" para confirmar.')
   }
 
@@ -193,6 +192,7 @@ export default function EditarNoticiaPage({ params }) {
           seo_description: formData.seo_description
         })
         .eq('id', id)
+
 
       if (dbError) throw dbError
 
