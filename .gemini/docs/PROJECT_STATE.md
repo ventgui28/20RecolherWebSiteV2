@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 07/04/2026, 11:48:16
+#### Sincronização: 07/04/2026, 12:06:57
 **Commits:**
 ```
+ea84f05 style: suavizar efeitos de luz e aprofundar contraste no hero de notícias
+96d995c style: integrar imagem de fundo imersiva no hero de notícias
+beac4d2 style: upgrade super premium da página de notícias com hero imersivo e filtros dinâmicos
+114d246 fix: corrigir importação do ícone Facebook na página de notícias
+fbcc913 style: implementar layout editorial premium e animações na página de notícias
+```
+#### Sincronização:
+#### Sincronização: 07/04/2026, 12:01:27
+**Commits:**
+```
+96d995c style: integrar imagem de fundo imersiva no hero de notícias
+beac4d2 style: upgrade super premium da página de notícias com hero imersivo e filtros dinâmicos
 114d246 fix: corrigir importação do ícone Facebook na página de notícias
 fbcc913 style: implementar layout editorial premium e animações na página de notícias
 f8e1149 feat: implementar páginas públicas de notícias e SEO dinâmico
-01d0147 feat: implementar painel de administração seguro com editor rich text
-b89764a chore: configurar infraestrutura Supabase e middleware de segurança
-```
-#### Sincronização:
-#### Sincronização: 07/04/2026, 11:29:55
-**Commits:**
-```
-f8e1149 feat: implementar páginas públicas de notícias e SEO dinâmico
-01d0147 feat: implementar painel de administração seguro com editor rich text
-b89764a chore: configurar infraestrutura Supabase e middleware de segurança
-5e89d18 revert: restaurar secção de sustentabilidade para o estado original
-005c6ff fix: restaurar variáveis de rastreio de rato em HomeAboutBrief
 ```

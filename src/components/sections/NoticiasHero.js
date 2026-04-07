@@ -5,62 +5,43 @@ import Container from '@/components/ui/Container';
 
 export default function NoticiasHero({ title, subtitle, badge }) {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-48 overflow-hidden bg-slate-950">
-      {/* Imagem de Fundo Imersiva - Ajuste de Opacidade e Escala */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/images/background-noticias.jpg" 
-          alt="Notícias 20recolher"
-          className="w-full h-full object-cover opacity-30 scale-100"
-        />
-        {/* Overlays Cinematográficos - Menos "Luz Branca" */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/20 to-white pointer-events-none" />
-        <div className="absolute inset-0 bg-slate-950/40 pointer-events-none" />
-      </div>
-
-      {/* Brilho Verde Esmeralda (Muito Subtil e Profundo) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-1">
-        <motion.div 
-          animate={{ 
-            opacity: [0.1, 0.15, 0.1]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-900/20 rounded-full blur-[150px]" 
-        />
-      </div>
+    <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden bg-white border-b border-slate-100">
+      {/* Subtle Background Accent */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/30 -skew-x-12 translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary-green/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
       <Container className="relative z-10">
         <div className="max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             {badge && (
-              <span className="inline-block mb-10 px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.4em] bg-emerald-600 text-white rounded-full shadow-2xl border border-white/5">
+              <span className="inline-flex mb-8 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] bg-emerald-600 text-white rounded-md shadow-lg shadow-emerald-900/10">
                 {badge}
               </span>
             )}
             
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-white leading-[0.9] tracking-tighter mb-12 drop-shadow-2xl">
-              {title.split(' & ').map((part, i) => (
-                <span key={i} className="block">
-                  {i > 0 && <span className="text-primary-green mr-4">&</span>}
-                  {part}
-                </span>
-              ))}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter mb-10">
+              {title}
             </h1>
 
-            <div className="flex flex-col md:flex-row gap-16 items-start md:items-center">
-              <p className="text-xl md:text-3xl text-white/60 max-w-2xl font-medium leading-relaxed">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-start md:items-end">
+              <p className="text-xl md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed">
                 {subtitle}
               </p>
               
-              <div className="hidden md:block h-32 w-px bg-white/5" />
-              
-              <div className="flex flex-col gap-2">
-                <span className="text-[11px] font-black uppercase tracking-[0.3em] text-primary-green opacity-80">Publicações</span>
-                <span className="text-5xl font-black text-white tabular-nums tracking-tighter">+50</span>
+              <div className="flex items-center gap-6 shrink-0 border-l border-slate-200 pl-8 md:pl-12 py-2">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Publicações</span>
+                  <span className="text-4xl font-black text-slate-900 tabular-nums tracking-tighter">54</span>
+                </div>
+                <div className="w-px h-10 bg-slate-100" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Impacto</span>
+                  <span className="text-4xl font-black text-emerald-600 tabular-nums tracking-tighter">100%</span>
+                </div>
               </div>
             </div>
           </motion.div>
