@@ -8,6 +8,8 @@ import Button from '@/components/ui/Button'
 import RichTextEditor from '@/components/admin/RichTextEditor'
 import PreviewModal from '@/components/admin/PreviewModal'
 import RevisionsModal from '@/components/admin/RevisionsModal'
+import { NEWS_DEFAULT_IMAGES } from '@/constants/news'
+import { calculateReadingTime } from '@/lib/utils'
 import { 
   ArrowLeft, 
   Save, 
@@ -22,7 +24,9 @@ import {
   Eye,
   Globe,
   Settings,
-  History
+  History,
+  Clock,
+  MousePointer2
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -35,6 +39,7 @@ export default function EditarNoticiaPage({ params }) {
   const [isRevisionsOpen, setIsRevisionsOpen] = useState(false)
   const [image, setImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
+  const [isUsingDefault, setIsUsingDefault] = useState(false)
   
   const [formData, setFormData] = useState({
     titulo: '',
@@ -76,6 +81,10 @@ export default function EditarNoticiaPage({ params }) {
         seo_description: data.seo_description || ''
       })
       setImagePreview(data.imagem_url)
+      
+      // Verificar se a imagem atual é uma das padrão
+      const isDefault = NEWS_DEFAULT_IMAGES.some(img => img.url === data.imagem_url);
+      setIsUsingDefault(isDefault);
     }
     setLoading(false)
   }
@@ -90,7 +99,11 @@ export default function EditarNoticiaPage({ params }) {
       seo_title: revision.meta_title || '', // Na tabela de revisões é 'meta_title'
       seo_description: revision.meta_description || '' // Na tabela de revisões é 'meta_description'
     })
-    if (revision.imagem_url) setImagePreview(revision.imagem_url)
+    if (revision.imagem_url) {
+      setImagePreview(revision.imagem_url)
+      const isDefault = NEWS_DEFAULT_IMAGES.some(img => img.url === revision.imagem_url);
+      setIsUsingDefault(isDefault);
+    }
     setIsRevisionsOpen(false)
     alert('Versão restaurada no editor. Clique em "Guardar Alterações" para confirmar.')
   }
@@ -149,12 +162,26 @@ export default function EditarNoticiaPage({ params }) {
       const optimized = await optimizeImage(file);
       setImage(optimized);
       setImagePreview(URL.createObjectURL(optimized));
+      setIsUsingDefault(false);
       setSaving(false);
     }
   }
 
+  const handleSelectDefault = (url) => {
+    setImage(null);
+    setImagePreview(url);
+    setIsUsingDefault(true);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Validação de imagem obrigatória
+    if (!image && !imagePreview) {
+      alert('A imagem de capa é obrigatória. Por favor, faça upload ou selecione uma imagem padrão.');
+      return;
+    }
+
     setSaving(true)
 
     try {
@@ -271,8 +298,8 @@ export default function EditarNoticiaPage({ params }) {
               </button>
               <Button
                 onClick={handleSubmit}
-                disabled={saving || !formData.titulo || !formData.conteudo}
-                className="px-8 py-3 flex items-center gap-2 font-black shadow-lg shadow-emerald-900/10"
+                disabled={saving || !formData.titulo || !formData.conteudo || (!image && !imagePreview)}
+                className="px-8 py-3 flex items-center gap-2 font-black shadow-lg shadow-emerald-900/10 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {saving ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
                 Guardar Alterações
@@ -359,28 +386,71 @@ export default function EditarNoticiaPage({ params }) {
                 </div>
               </section>
 
+              {/* Sidebar: Imagem */}
               <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
-                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
-                  <ImageIcon size={14} className="text-emerald-600" />
-                  Imagem de Capa
+                <div className="flex items-center justify-between text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
+                  <div className="flex items-center gap-2">
+                    <ImageIcon size={14} className="text-emerald-600" />
+                    Imagem de Capa
+                  </div>
+                  <span className="text-[9px] text-red-500 bg-red-50 px-2 py-1 rounded">Obrigatório</span>
                 </div>
+                
                 {imagePreview ? (
                   <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-100 group">
                     <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" />
-                    <button 
-                      onClick={() => { setImage(null); setImagePreview(null); }}
-                      className="absolute top-3 right-3 p-2 bg-red-500 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <X size={16} />
-                    </button>
+                    <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                       <button 
+                        onClick={() => { setImage(null); setImagePreview(null); setIsUsingDefault(false); }}
+                        className="p-3 bg-white text-red-500 rounded-2xl hover:scale-110 transition-transform shadow-xl"
+                        title="Remover imagem"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                    {isUsingDefault && (
+                      <div className="absolute bottom-3 left-3 px-3 py-1 bg-emerald-600 text-white text-[8px] font-black uppercase tracking-widest rounded-full shadow-lg">
+                        Imagem Padrão Selecionada
+                      </div>
+                    )}
                   </div>
                 ) : (
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-100 rounded-2xl bg-slate-50 hover:bg-slate-100 hover:border-emerald-300 transition-all cursor-pointer">
-                    <ImageIcon className="text-slate-300 mb-2" size={24} />
-                    <span className="text-[10px] text-slate-400 font-black uppercase">Alterar Imagem</span>
+                  <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-100 rounded-[2rem] bg-slate-50 hover:bg-white hover:border-emerald-300 transition-all cursor-pointer group shadow-inner">
+                    <div className="p-4 bg-white rounded-2xl shadow-sm mb-3 group-hover:scale-110 transition-transform text-slate-300 group-hover:text-emerald-500">
+                      <ImageIcon size={28} />
+                    </div>
+                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Alterar Imagem</span>
                     <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                   </label>
                 )}
+
+                {/* Default Images Selection */}
+                <div className="pt-4 border-t border-slate-50">
+                   <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
+                    <MousePointer2 size={12} className="text-emerald-500" />
+                    Ou use um dos padrões:
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {NEWS_DEFAULT_IMAGES.map((img) => (
+                      <button
+                        key={img.id}
+                        type="button"
+                        onClick={() => handleSelectDefault(img.url)}
+                        className={`group relative aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${
+                          imagePreview === img.url 
+                            ? 'border-emerald-500 ring-4 ring-emerald-500/10' 
+                            : 'border-transparent hover:border-slate-200'
+                        }`}
+                      >
+                        <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors" />
+                        <div className="absolute bottom-0 inset-x-0 p-2 bg-gradient-to-t from-slate-900/80 to-transparent">
+                          <span className="text-[8px] font-black text-white uppercase tracking-widest">{img.label}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </section>
 
               <section className="bg-slate-900 rounded-3xl p-8 shadow-xl shadow-slate-200 space-y-6 text-white">

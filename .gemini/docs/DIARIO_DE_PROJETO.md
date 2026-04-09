@@ -1,35 +1,55 @@
 # 📔 Diário de Projeto - 20recolher
 
-Registo histórico das conversas, decisões e implementação técnica do website da 20recolher. Este documento funde a intenção do utilizador com a execução técnica para garantir o controlo total do progresso.
+Registo histórico das conversas, decisões e implementação técnica do website da 20recolher. Este documento funde a intenção do utilizador com a experiência técnica para garantir o controlo total do progresso.
 
 ---
 
-## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Consolidação Corporativa & CMS Avançado - Notícias)
+## 📅 QUINTA-FEIRA, 9 DE ABRIL DE 2026 (Imagens & Rigor Editorial)
 ### 💬 O que conversámos (Intenção)
-A sessão de hoje foi uma transformação radical do ecossistema de notícias. Partimos de um design editorial básico para uma **Sala de Imprensa Corporativa** de elite, focada exclusivamente na comunicação oficial da **20recolher**. O objetivo foi dotar o site de autoridade institucional através de um design sóbrio e ferramentas de gestão de conteúdos (CMS) de nível profissional, incluindo SEO, métricas de visualização e automação de performance.
+Para elevar a qualidade visual do portal de notícias e evitar "buracos" no design, decidimos eliminar os ícones de reserva (Inbox) e implementar a **obrigatoriedade de imagem**. O objetivo é garantir que cada artigo publicado tenha sempre um impacto visual profissional, oferecendo ao administrador ferramentas rápidas para selecionar imagens padrão de alta qualidade sem precisar de sair do editor.
 
 ### 🚀 O que mudou no Site (Execução)
-- **Redesign "Modern Corporate Newsroom":**
-  - **Hero Minimalista:** Transição para um cabeçalho institucional limpo ("Notícias & Destaques") com foco em dados reais e tipografia preta profunda.
-  - **Split Featured Layout:** Novo destaque horizontal para a notícia principal, otimizando o ritmo de leitura.
-  - **Grelha Estruturada:** Cartões brancos com bordas finas e sombras subtis no hover, transmitindo rigor e organização.
-- **Funcionalidades UX de Elite:**
-  - **Busca em Tempo Real:** Filtro de texto instantâneo integrado com categorias para descoberta rápida de comunicados.
-  - **Reading Time & Views:** Cálculo automático do tempo de leitura e contador dinâmico de visualizações (Supabase RPC).
-  - **Engagement:** Sugestões de artigos relacionados e botão de partilha nativa do sistema.
-- **Painel Admin Transformado em CMS:**
-  - **Modo de Pré-visualização:** Visualização em tempo real (Desktop/Mobile) antes de publicar.
-  - **Gestão SEO Completa:** Campos dedicados para Meta Title e Meta Description independentes do conteúdo visual.
-  - **Workflow de Rascunhos:** Sistema de estados (Publicado/Rascunho) com indicadores visuais no dashboard.
-  - **Otimização de Imagens:** Redimensionamento e compressão automática (Canvas) no momento do upload.
-- **Correções Técnicas:** Resolução de avisos de extensões duplicadas no Tiptap e correção de ícones sociais.
+- **Protocolo de Imagem Obrigatória:**
+  - O botão de publicação no Admin agora exige a presença de uma imagem (upload ou seleção).
+  - Feedback visual no editor com badges de "Obrigatório" e "Imagem Padrão Selecionada".
+- **Sistema de Padrões (Default Library):**
+  - Criação de uma biblioteca de 4 imagens pré-configuradas em `src/constants/news.js`: Tecnologia, Logística, Industrial e Eco.
+  - Interface de seleção rápida por cliques (thumbnails) no painel de criação e edição.
+- **Substituição de Fallbacks Visuais:**
+  - Remoção total dos ícones Lucide `Inbox` na grelha de notícias.
+  - Implementação de fallback real (Imagem de Tecnologia) tanto na `NoticiasGrid` como na página de detalhe do artigo para garantir que notícias legadas nunca apareçam "vazias".
+- **Otimização de UI Admin:**
+  - Novo layout para a barra lateral de imagem com upload centralizado e seleção de padrões em grelha.
 
 ### 🎯 Estado da Entrega
-- **Portal de Notícias:** [SUPER PREMIUM] Funcionalidade e design ao nível de uma grande empresa tecnológica.
-- **CMS de Gestão:** [CONCLUÍDO] Fluxo de trabalho profissional e seguro para a equipa.
-- **Infraestrutura:** [ATUALIZADA] Novas colunas de SEO e funções SQL integradas no Supabase.
+- **Editor de Notícias:** [SUPER PREMIUM] Rigor editorial máximo com seleção assistida de imagem.
+- **Sala de Imprensa:** [CONSISTENTE] 100% de cobertura visual garantida.
 
 ---
+
+## 📅 TERÇA-FEIRA, 7 DE ABRIL DE 2026 (Gestão Avançada de Admin & Notícias)
+### 💬 O que conversámos (Intenção)
+O objetivo desta sessão foi elevar o painel de administração de uma ferramenta básica para um **CMS Profissional**. Focámo-nos na eficiência operacional (gestão em massa) e na segurança de dados (histórico de versões), garantindo que a equipa da **20recolher** tenha controlo total e intuitivo sobre a sua comunicação digital.
+
+### 🚀 O que mudou no Site (Execução)
+- **Dashboard Admin Transformado:**
+  - **Filtros e Busca:** Implementação de filtragem instantânea e pesquisa por título/categoria.
+  - **Ações em Massa (Bulk Bar):** Nova interface flutuante para gestão múltipla de notícias (Eliminar/Publicar/Rascunho).
+- **Sistema de Revisões "Time Machine":**
+  - **Snapshots Automáticos:** Configuração de Trigger SQL no Supabase para guardar versões de cada edição.
+  - **Interface de Restauro:** Modal dedicado para comparar versões históricas e restaurar conteúdos, imagens e SEO com um clique.
+- **Página de Edição Profissional:** Desenvolvimento da rota `/admin/editar/[id]` com carregamento dinâmico de dados.
+- **Métricas de Leitura Realistas:** 
+  - Novo algoritmo baseado no padrão Medium (Palavras + Imagens).
+  - Feedback visual no editor com contador de palavras e tempo estimado.
+- **Estabilização Crítica:**
+  - Resolução de conflitos de Slugs únicos (Erro 409).
+  - Correção de mapeamento de colunas (subtitulo, seo_title, seo_description).
+
+### 🎯 Estado da Entrega
+- **Dashboard Admin:** [CONCLUÍDO] Funcionalidade de nível corporativo.
+- **Editor de Notícias:** [SUPER PREMIUM] Com métricas em tempo real e histórico de versões.
+- **Segurança:** [REFORÇADA] Recomendação de ativação de RLS e Slugs anti-colisão.
 
 
 ## 📅 QUINTA-FEIRA, 2 DE ABRIL DE 2026

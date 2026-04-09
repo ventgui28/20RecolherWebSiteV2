@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 07/04/2026.
+Registo do progresso atual e ficheiros criados até à data de 09/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -275,22 +275,22 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 07/04/2026, 16:16:24
+#### Sincronização: 09/04/2026, 11:04:48
 **Commits:**
 ```
-43a7a30 feat: implementar gestão avançada de lista e filtros no dashboard admin
-33d1749 fix: resolver aviso de extensões duplicadas no Tiptap editor
-d7e215f fix: adicionar importação do ícone Eye no dashboard admin
-f07af30 feat: implementar funcionalidades avançadas no painel admin e contador de visualizações
-91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
+a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase
+daf3b6b fix: corrigir mapeamento de campos no EditarNoticiaPage
+02afde5 fix: corrigir erro de sintaxe no EditarNoticiaPage
+7cedc30 fix: resolver erro 400 ao atualizar noticia no painel admin
+b507878 feat: implementar sistema de histórico de revisões e página de edição
 ```
 #### Sincronização:
-#### Sincronização: 07/04/2026, 15:45:00
+#### Sincronização: 07/04/2026, 17:00:51
 **Commits:**
 ```
-33d1749 fix: resolver aviso de extensões duplicadas no Tiptap editor
-d7e215f fix: adicionar importação do ícone Eye no dashboard admin
-f07af30 feat: implementar funcionalidades avançadas no painel admin e contador de visualizações
-91b60ec feat: implementar melhorias de UX no portal de notícias (Busca, Leitura e Partilha)
-6ac6ec6 chore: adicionar script de sementes para notícias de teste e dependências
+a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase
+daf3b6b fix: corrigir mapeamento de campos no EditarNoticiaPage
+02afde5 fix: corrigir erro de sintaxe no EditarNoticiaPage
+7cedc30 fix: resolver erro 400 ao atualizar noticia no painel admin
+b507878 feat: implementar sistema de histórico de revisões e página de edição
 ```

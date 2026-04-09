@@ -3,7 +3,8 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Calendar, ArrowRight, Inbox, Tag, Filter, Search, Clock } from 'lucide-react';
+import { Calendar, ArrowRight, Tag, Filter, Search, Clock } from 'lucide-react';
+import { NEWS_DEFAULT_IMAGES } from '@/constants/news';
 
 // Função utilitária para calcular o tempo de leitura
 const calculateReadingTime = (content) => {
@@ -16,6 +17,8 @@ const calculateReadingTime = (content) => {
 export default function NoticiasGrid({ noticias }) {
   const [activeCategory, setActiveCategory] = useState('Todas');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const fallbackImage = NEWS_DEFAULT_IMAGES[0].url;
 
   const categories = useMemo(() => {
     return ['Todas', ...new Set(noticias.map(n => n.categoria))];
@@ -33,7 +36,6 @@ export default function NoticiasGrid({ noticias }) {
 
   if (!noticias || noticias.length === 0) return (
      <div className="bg-slate-50 rounded-3xl p-16 text-center border border-dashed border-slate-200">
-        <Inbox size={48} className="mx-auto mb-4 text-slate-300" />
         <h3 className="text-xl font-bold text-slate-900 mb-2">A aguardar publicações</h3>
         <p className="text-slate-500 max-w-xs mx-auto text-sm">
           Estamos a trabalhar em novos conteúdos. Volte em breve.
@@ -110,17 +112,11 @@ export default function NoticiasGrid({ noticias }) {
               >
                 {/* Imagem */}
                 <div className="relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-slate-100">
-                  {featured.imagem_url ? (
-                    <img 
-                      src={featured.imagem_url} 
-                      alt={featured.titulo}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-300">
-                      <Inbox size={64} />
-                    </div>
-                  )}
+                  <img 
+                    src={featured.imagem_url || fallbackImage} 
+                    alt={featured.titulo}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  />
                   <div className="absolute top-6 left-6">
                     <span className="bg-emerald-600 text-white text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded shadow-xl">
                       Destaque
@@ -177,17 +173,11 @@ export default function NoticiasGrid({ noticias }) {
                     className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-emerald-100 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-900/5"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-slate-50">
-                      {noticia.imagem_url ? (
-                        <img 
-                          src={noticia.imagem_url} 
-                          alt={noticia.titulo}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-slate-200">
-                          <Inbox size={32} />
-                        </div>
-                      )}
+                      <img 
+                        src={noticia.imagem_url || fallbackImage} 
+                        alt={noticia.titulo}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
                     </div>
 
                     <div className="p-8 flex flex-col flex-grow">
@@ -223,7 +213,6 @@ export default function NoticiasGrid({ noticias }) {
           
           {(!featured && filteredNoticias.length === 0) && (
             <div className="py-20 text-center">
-              <Inbox size={48} className="mx-auto text-slate-200 mb-4" />
               <h3 className="text-xl font-bold text-slate-900">Sem resultados para a sua pesquisa</h3>
               <p className="text-slate-500 text-sm">Tente palavras-chave diferentes ou mude de categoria.</p>
             </div>

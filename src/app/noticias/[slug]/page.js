@@ -7,6 +7,7 @@ import { FaFacebookF } from 'react-icons/fa'
 import Link from 'next/link'
 import ClientShareButton from '@/components/ui/ClientShareButton'
 import ClientViewCounter from '@/components/ui/ClientViewCounter'
+import { NEWS_DEFAULT_IMAGES } from '@/constants/news'
 
 // Metadados dinâmicos para SEO
 export async function generateMetadata({ params }) {
@@ -27,23 +28,19 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: noticia.titulo,
       description: noticia.subtitulo,
-      images: [noticia.imagem_url],
+      images: [noticia.imagem_url || NEWS_DEFAULT_IMAGES[0].url],
       type: 'article',
     },
   }
 }
 
-// Função utilitária para calcular o tempo de leitura
-const calculateReadingTime = (content) => {
-  const wordsPerMinute = 200;
-  const text = content.replace(/<[^>]*>/g, '');
-  const wordCount = text.split(/\s+/).length;
-  return Math.ceil(wordCount / wordsPerMinute);
-};
+import { calculateReadingTime } from '@/lib/utils'
 
 export default async function ArtigoPage({ params }) {
   const { slug } = await params
   const supabase = await createClient()
+
+  const fallbackImage = NEWS_DEFAULT_IMAGES[0].url;
 
   // 1. Obter a notícia atual
   const { data: noticia, error } = await supabase
@@ -116,19 +113,17 @@ export default async function ArtigoPage({ params }) {
         </div>
 
         {/* Imagem de Capa */}
-        {noticia.imagem_url && (
-          <div className="mb-20">
-            <Container>
-              <div className="aspect-[21/9] rounded-[4rem] overflow-hidden shadow-2xl shadow-slate-200 border border-slate-100 relative group">
-                <img 
-                  src={noticia.imagem_url} 
-                  alt={noticia.titulo}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
-                />
-              </div>
-            </Container>
-          </div>
-        )}
+        <div className="mb-20">
+          <Container>
+            <div className="aspect-[21/9] rounded-[4rem] overflow-hidden shadow-2xl shadow-slate-200 border border-slate-100 relative group">
+              <img 
+                src={noticia.imagem_url || fallbackImage} 
+                alt={noticia.titulo}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
+              />
+            </div>
+          </Container>
+        </div>
 
         {/* Conteúdo do Artigo */}
         <Container size="sm">
@@ -193,7 +188,7 @@ export default async function ArtigoPage({ params }) {
                 >
                   <div className="aspect-[16/10] overflow-hidden bg-slate-100">
                     <img 
-                      src={rel.imagem_url} 
+                      src={rel.imagem_url || fallbackImage} 
                       alt={rel.titulo}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
