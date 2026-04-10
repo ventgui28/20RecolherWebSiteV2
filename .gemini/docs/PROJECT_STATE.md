@@ -275,17 +275,17 @@ a106e51 revert: remove dark mode and keep only white mode
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 09/04/2026, 11:04:48
+#### Sincronização: 09/04/2026, 11:38:44
 **Commits:**
 ```
+c4703cf feat: atualizar biblioteca de imagens padrão com os novos ativos fallback
+780f23d feat: implementar obrigatoriedade de imagem e biblioteca de padrões para notícias
 a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase
 daf3b6b fix: corrigir mapeamento de campos no EditarNoticiaPage
 02afde5 fix: corrigir erro de sintaxe no EditarNoticiaPage
-7cedc30 fix: resolver erro 400 ao atualizar noticia no painel admin
-b507878 feat: implementar sistema de histórico de revisões e página de edição
 ```
 #### Sincronização:
-#### Sincronização: 07/04/2026, 17:00:51
+#### Sincronização: 09/04/2026, 11:04:48
 **Commits:**
 ```
 a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase

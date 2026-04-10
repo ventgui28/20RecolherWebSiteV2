@@ -8,13 +8,13 @@ export const NEWS_DEFAULT_IMAGES = [
   {
     id: 'logistica',
     label: 'Logística',
-    url: '/images/fallback-2.jpg',
+    url: '/images/recolha.jpg',
     description: 'Transporte e recolha de resíduos'
   },
   {
     id: 'industrial',
     label: 'Industrial',
-    url: '/images/fallback-3.jpg',
+    url: '/images/triagem.jpg',
     description: 'Processo de triagem e tratamento'
   },
   {
