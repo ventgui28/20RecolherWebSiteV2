@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 10/04/2026, 11:45:00
+#### Sincronização: 10/04/2026, 13:02:39
 **Commits:**
 ```
-af0e296 style: overhaul na pagina de contactos com design premium minimalist liquid glass
-d7021fd fix: renderizar formatacao de texto na pagina da noticia
-24cff2b fix: resolver falhas de funcionalidade e estilo no RichTextEditor
-a35d8ca feat: overhaul na interface de edicao de noticias para padrao premium minimalist
-003e08e feat: reestruturar dashboard admin para design premium minimalist
+2e4ecc8 style: suavizar aparicao do marcador com Framer Motion
+fd61438 style: aumentar zoom final da animacao para 17
+7ab8444 feat: diferir a aparicao do marcador ate ao fim do zoom
+618eefa feat: disparar animacao de zoom do mapa apenas via scroll
+50b393f feat: implementar animacao de zoom-in imersiva no mapa
 ```
 #### Sincronização:
-#### Sincronização: 10/04/2026, 11:41:24
+#### Sincronização: 10/04/2026, 13:02:27
 **Commits:**
 ```
-af0e296 style: overhaul na pagina de contactos com design premium minimalist liquid glass
-d7021fd fix: renderizar formatacao de texto na pagina da noticia
-24cff2b fix: resolver falhas de funcionalidade e estilo no RichTextEditor
-a35d8ca feat: overhaul na interface de edicao de noticias para padrao premium minimalist
-003e08e feat: reestruturar dashboard admin para design premium minimalist
+2e4ecc8 style: suavizar aparicao do marcador com Framer Motion
+fd61438 style: aumentar zoom final da animacao para 17
+7ab8444 feat: diferir a aparicao do marcador ate ao fim do zoom
+618eefa feat: disparar animacao de zoom do mapa apenas via scroll
+50b393f feat: implementar animacao de zoom-in imersiva no mapa
 ```

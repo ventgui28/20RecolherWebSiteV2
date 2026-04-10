@@ -43,7 +43,10 @@ export default function CustomMap() {
   const latitude = 40.35475;
 
   useEffect(() => {
-    setIsMounted(true);
+    const mountTimer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+    return () => clearTimeout(mountTimer);
   }, []);
 
   // Intersection Observer para disparar a animação apenas quando visível

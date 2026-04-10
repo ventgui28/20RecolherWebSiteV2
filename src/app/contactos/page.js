@@ -105,7 +105,7 @@ export default function ContactPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-eco-green via-eco-emerald to-eco-teal animate-gradient-x">lixo tecnológico.</span>
             </h1>
             <p className="text-2xl md:text-3xl text-slate-500 font-light leading-relaxed max-w-3xl mx-auto italic">
-              "Transformamos o obsoleto em oportunidade. Conecte-se com a economia circular."
+              &quot;Transformamos o obsoleto em oportunidade. Conecte-se com a economia circular.&quot;
             </p>
           </motion.div>
         </header>
