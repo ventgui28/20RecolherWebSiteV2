@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Calendar, ArrowRight, Tag, Filter, Search, Clock } from 'lucide-react';
+import { Calendar, ArrowRight, Tag, Filter, Search, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { NEWS_DEFAULT_IMAGES } from '@/constants/news';
+
+// Constante para definir itens por página (excluindo o destaque na primeira página)
+const ITEMS_PER_PAGE = 6;
 
 // Função utilitária para calcular o tempo de leitura
 const calculateReadingTime = (content) => {
@@ -17,8 +20,14 @@ const calculateReadingTime = (content) => {
 export default function NoticiasGrid({ noticias }) {
   const [activeCategory, setActiveCategory] = useState('Todas');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const fallbackImage = NEWS_DEFAULT_IMAGES[0].url;
+
+  // Resetar página quando filtros mudam
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery]);
 
   const categories = useMemo(() => {
     return ['Todas', ...new Set(noticias.map(n => n.categoria))];
@@ -34,6 +43,14 @@ export default function NoticiasGrid({ noticias }) {
     });
   }, [noticias, activeCategory, searchQuery]);
 
+  // Lógica de Paginação
+  const totalPages = Math.ceil(filteredNoticias.length / ITEMS_PER_PAGE);
+  
+  const paginatedNoticias = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredNoticias.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredNoticias, currentPage]);
+
   if (!noticias || noticias.length === 0) return (
      <div className="bg-slate-50 rounded-3xl p-16 text-center border border-dashed border-slate-200">
         <h3 className="text-xl font-bold text-slate-900 mb-2">A aguardar publicações</h3>
@@ -43,7 +60,10 @@ export default function NoticiasGrid({ noticias }) {
       </div>
   );
 
-  const [featured, ...rest] = filteredNoticias;
+  // Na primeira página, mostramos um destaque. Nas outras, apenas a grelha.
+  const showFeatured = currentPage === 1 && paginatedNoticias.length > 0;
+  const featured = showFeatured ? paginatedNoticias[0] : null;
+  const gridItems = showFeatured ? paginatedNoticias.slice(1) : paginatedNoticias;
 
   return (
     <div className="pt-16 pb-32 space-y-16 lg:space-y-24">
@@ -92,14 +112,14 @@ export default function NoticiasGrid({ noticias }) {
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={`${activeCategory}-${searchQuery}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          key={`${activeCategory}-${searchQuery}-${currentPage}`}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4 }}
           className="space-y-16 lg:space-y-24"
         >
-          {/* Corporate Featured Section (Split) */}
+          {/* Corporate Featured Section (Apenas na página 1) */}
           {featured && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -159,9 +179,9 @@ export default function NoticiasGrid({ noticias }) {
           )}
 
           {/* Corporate News Grid */}
-          {rest.length > 0 && (
+          {gridItems.length > 0 && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
-              {rest.map((noticia, i) => (
+              {gridItems.map((noticia, i) => (
                 <motion.div 
                   key={noticia.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -211,10 +231,56 @@ export default function NoticiasGrid({ noticias }) {
             </div>
           )}
           
-          {(!featured && filteredNoticias.length === 0) && (
+          {(filteredNoticias.length === 0) && (
             <div className="py-20 text-center">
               <h3 className="text-xl font-bold text-slate-900">Sem resultados para a sua pesquisa</h3>
               <p className="text-slate-500 text-sm">Tente palavras-chave diferentes ou mude de categoria.</p>
+            </div>
+          )}
+
+          {/* Pagination UI */}
+          {totalPages > 1 && (
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 pt-16 border-t border-slate-100">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="w-12 h-12 flex items-center justify-center rounded-xl border border-slate-200 text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-400"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                <div className="flex items-center gap-1">
+                  {[...Array(totalPages)].map((_, i) => {
+                    const pageNum = i + 1;
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`w-12 h-12 flex items-center justify-center rounded-xl text-sm font-black transition-all ${
+                          currentPage === pageNum
+                            ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10'
+                            : 'bg-white border border-slate-100 text-slate-400 hover:border-emerald-500 hover:text-emerald-600'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="w-12 h-12 flex items-center justify-center rounded-xl border border-slate-200 text-slate-400 hover:border-emerald-500 hover:text-emerald-600 transition-all disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-400"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                Página {currentPage} de {totalPages}
+              </div>
             </div>
           )}
         </motion.div>
