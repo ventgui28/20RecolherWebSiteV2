@@ -12,6 +12,7 @@ Para simplificar a experiência do utilizador na página de **Contactos**, decid
 - **Simplificação de Interação no Mapa:**
   - Remoção total do painel de vidro flutuante (`Floating Glass Control Panel`) em `src/app/contactos/page.js`.
   - Limpeza das classes de `group` no contentor do mapa para eliminar estados de hover globais desnecessários.
+  - Ajuste do nível de zoom inicial de **18** para **16** para proporcionar uma melhor contextualização da localização na zona industrial.
 - **Manutenção de Funcionalidades Críticas:**
   - O marcador vibrante com animação de pulso e o seu popup interativo (`Popup`) permanecem ativos e funcionais via clique.
   - O efeito de escala local no pin (`group-hover/pin`) foi mantido para fornecer feedback visual ao utilizador antes do clique.

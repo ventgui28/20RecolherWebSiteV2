@@ -49,7 +49,7 @@ export default function CustomMap() {
         initialViewState={{
           longitude: longitude,
           latitude: latitude,
-          zoom: 18, // Zoom próximo para ver o pavilhão
+          zoom: 16, // Zoom equilibrado para ver a envolvente industrial
           pitch: 0,
           bearing: 0
         }}
