@@ -12,8 +12,8 @@ Para simplificar a experiência do utilizador na página de **Contactos**, decid
 - **Simplificação de Interação no Mapa:**
   - Remoção total do painel de vidro flutuante (`Floating Glass Control Panel`) em `src/app/contactos/page.js`.
   - Limpeza das classes de `group` no contentor do mapa para eliminar estados de hover globais desnecessários.
-  - Ajuste do nível de zoom inicial de **18** para **16** para proporcionar uma melhor contextualização da localização na zona industrial.
-  - Implementação de **Animação de Zoom-In Imersiva**: O mapa inicia com zoom **13** e transita suavemente para **16** (`flyTo`) durante 4 segundos.
+  - Ajuste do nível de zoom inicial de **18** para **17** para proporcionar uma melhor contextualização da localização na zona industrial.
+  - Implementação de **Animação de Zoom-In Imersiva**: O mapa inicia com zoom **13** e transita suavemente para **17** (`flyTo`) durante 4 segundos.
   - **Ativação por Scroll (Intersection Observer)**: A animação de aproximação agora só é disparada quando o mapa entra efetivamente no campo de visão do utilizador (viewport), garantindo que o efeito visual não é desperdiçado antes de ser visível.
   - **Aparição Diferida do Marcador**: O marcador da sede (pin) só é renderizado após a conclusão do efeito de zoom (4 segundos), surgindo com uma suave animação de fade-in/zoom-in para um toque final de polimento.
 - **Manutenção de Funcionalidades Críticas:**

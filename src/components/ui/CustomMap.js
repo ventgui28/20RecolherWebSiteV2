@@ -58,7 +58,7 @@ export default function CustomMap() {
               const zoomDuration = 4000;
               
               mapRef.current.getMap().flyTo({
-                zoom: 16,
+                zoom: 17,
                 duration: zoomDuration,
                 essential: true
               });
