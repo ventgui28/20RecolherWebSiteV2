@@ -4,6 +4,28 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (UI/UX Pro Max - Premium Minimalist)
+### 💬 O que conversámos (Intenção)
+A pedido do utilizador, ativei a skill **UI/UX Pro Max** para efetuar uma auditoria visual e reestruturar a página de notícias. O objetivo era abandonar o design genérico e adotar uma estética "Premium Minimalist" com um subtema "Liquid Glass" focado em usabilidade, trazendo uma tipografia de classe editorial para a leitura de artigos.
+
+### 🚀 O que mudou no Site (Execução)
+- **Grelha de Notícias (Magazine Style):**
+  - Implementado um design de sobreposição (`overlap`) com blur dinâmico para o artigo em destaque.
+  - Conversão dos formatos dos cards para uma proporção `4:3`, mais próxima das publicações impressas.
+  - Refinação da barra de pesquisa e filtros usando princípios de "glassmorphism".
+- **Experiência de Leitura Imersiva:**
+  - Correção crítica do componente `<Container>`, que não estava a propagar a propriedade de tamanho. Isto otimizou o comprimento da linha (`max-w-3xl`), fundamental para evitar cansaço ocular na leitura.
+  - Aumento da legibilidade do corpo de texto através de `line-height` customizado e hierarquia reforçada (`prose-p:leading-[1.9]`).
+  - Refinamento da barra de progresso (Reading Progress).
+- **Auditoria de Código:**
+  - Resolvidos os avisos do linter e corrigidos antipadrões de React (`setState` síncrono dentro de um `useEffect` na grelha).
+
+### 🎯 Estado da Entrega
+- **Sala de Imprensa:** [PREMIUM] Design editorial imersivo implementado.
+- **Acessibilidade:** [OTIMIZADA] Leitura ergonómica validada.
+
+---
+
 ## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Navegação & UI/UX Notícias)
 ### 💬 O que conversámos (Intenção)
 A sessão de hoje foi focada na escalabilidade e refinamento da Sala de Imprensa. O objetivo foi transformar a listagem simples de notícias num sistema robusto de navegação com paginação, scroll inteligente e filtros de alta fidelidade, garantindo que o portal se mantém utilizável e elegante mesmo com dezenas de artigos.
