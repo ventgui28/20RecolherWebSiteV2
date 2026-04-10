@@ -251,22 +251,51 @@ export default function NoticiasGrid({ noticias }) {
                 </button>
 
                 <div className="flex items-center gap-1">
-                  {[...Array(totalPages)].map((_, i) => {
-                    const pageNum = i + 1;
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`w-12 h-12 flex items-center justify-center rounded-xl text-sm font-black transition-all ${
-                          currentPage === pageNum
-                            ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10'
-                            : 'bg-white border border-slate-100 text-slate-400 hover:border-emerald-500 hover:text-emerald-600'
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
+                  {(() => {
+                    const range = [];
+                    const siblingCount = 1; // Quantas páginas mostrar ao lado da atual
+                    
+                    // Lógica para decidir quais números mostrar
+                    for (let i = 1; i <= totalPages; i++) {
+                      if (
+                        i === 1 || // Primeira
+                        i === totalPages || // Última
+                        (i >= currentPage - siblingCount && i <= currentPage + siblingCount) // Vizinhança
+                      ) {
+                        range.push(i);
+                      } else if (
+                        i === currentPage - siblingCount - 1 ||
+                        i === currentPage + siblingCount + 1
+                      ) {
+                        range.push('...');
+                      }
+                    }
+
+                    // Filtrar reticências duplicadas
+                    return [...new Set(range)].map((pageNum, idx) => {
+                      if (pageNum === '...') {
+                        return (
+                          <span key={`dots-${idx}`} className="w-8 text-center text-slate-300 font-bold">
+                            ...
+                          </span>
+                        );
+                      }
+
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-12 h-12 flex items-center justify-center rounded-xl text-sm font-black transition-all ${
+                            currentPage === pageNum
+                              ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10'
+                              : 'bg-white border border-slate-100 text-slate-400 hover:border-emerald-500 hover:text-emerald-600'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    });
+                  })()}
                 </div>
 
                 <button
