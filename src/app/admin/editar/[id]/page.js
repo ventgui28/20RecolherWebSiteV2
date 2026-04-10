@@ -26,7 +26,8 @@ import {
   Settings,
   History,
   Clock,
-  MousePointer2
+  MousePointer2,
+  Plus
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 

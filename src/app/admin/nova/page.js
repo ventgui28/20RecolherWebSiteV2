@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Container from '@/components/ui/Container'
@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button'
 import RichTextEditor from '@/components/admin/RichTextEditor'
 import PreviewModal from '@/components/admin/PreviewModal'
 import { NEWS_DEFAULT_IMAGES } from '@/constants/news'
+import { calculateReadingTime } from '@/lib/utils'
 import { 
   ArrowLeft, 
   Save, 
@@ -22,7 +23,9 @@ import {
   Eye,
   Globe,
   Settings,
-  MousePointer2
+  MousePointer2,
+  Plus,
+  Clock
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -33,19 +36,26 @@ export default function NovaNoticiaPage() {
   const [image, setImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [isUsingDefault, setIsUsingDefault] = useState(false)
+  const [readingMetrics, setReadingMetrics] = useState({ words: 0, time: 0 })
   
   const [formData, setFormData] = useState({
     titulo: '',
     subtitulo: '',
-    categoria: 'Reciclagem',
+    categoria: 'Institucional',
     conteudo: '',
-    publicado: false, // Por defeito como rascunho
+    publicado: false,
     seo_title: '',
     seo_description: ''
   })
 
   const router = useRouter()
   const supabase = createClient()
+
+  useEffect(() => {
+    const words = formData.conteudo ? formData.conteudo.replace(/<[^>]*>/g, '').trim().split(/\s+/).length : 0
+    const time = calculateReadingTime(formData.conteudo)
+    setReadingMetrics({ words: formData.conteudo ? words : 0, time })
+  }, [formData.conteudo])
 
   const createSlug = (text) => {
     return text
@@ -59,7 +69,6 @@ export default function NovaNoticiaPage() {
       .replace(/--+/g, '-')
   }
 
-  // Otimização de Imagem Simples (Redimensionamento via Canvas)
   const optimizeImage = (file) => {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -89,7 +98,7 @@ export default function NovaNoticiaPage() {
               lastModified: Date.now(),
             });
             resolve(optimizedFile);
-          }, 'image/jpeg', 0.8); // Qualidade 80%
+          }, 'image/jpeg', 0.8);
         };
       };
     });
@@ -116,9 +125,8 @@ export default function NovaNoticiaPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // Validação de imagem obrigatória
     if (!image && !imagePreview) {
-      alert('A imagem de capa é obrigatória. Por favor, faça upload ou selecione uma imagem padrão.');
+      alert('A imagem de capa é obrigatória.');
       return;
     }
 
@@ -145,16 +153,14 @@ export default function NovaNoticiaPage() {
         imagemUrl = publicUrl
       }
 
-      // 1. Gerar Slug Base
       let baseSlug = createSlug(formData.titulo)
       let finalSlug = baseSlug
 
-      // 2. Verificar se o slug já existe e gerar um novo se necessário
       const { data: existingNoticia } = await supabase
         .from('noticias')
         .select('slug')
         .eq('slug', baseSlug)
-        .single()
+        .maybeSingle()
 
       if (existingNoticia) {
         finalSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`
@@ -180,7 +186,7 @@ export default function NovaNoticiaPage() {
       setTimeout(() => router.push('/admin/dashboard'), 1500)
     } catch (error) {
       console.error('Erro ao guardar notícia:', error)
-      alert('Erro ao guardar notícia. Verifique a consola.')
+      alert('Erro ao guardar notícia.')
     } finally {
       setLoading(false)
     }
@@ -192,92 +198,113 @@ export default function NovaNoticiaPage() {
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="bg-white p-12 rounded-3xl shadow-xl text-center border border-slate-100"
+          className="bg-white p-12 rounded-[3rem] shadow-xl text-center border border-slate-100"
         >
           <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-600">
             <CheckCircle2 size={48} />
           </div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Notícia Guardada!</h1>
-          <p className="text-slate-500">A redirecionar para o painel...</p>
+          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Notícia Guardada!</h1>
+          <p className="text-slate-500 font-medium">A redirecionar para o painel...</p>
         </motion.div>
       </div>
     )
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-24 pb-20">
-      <Container>
-        <div className="max-w-5xl mx-auto">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-            <div className="flex items-center gap-4">
-              <button 
-                onClick={() => router.back()}
-                className="p-3 bg-white border border-slate-200 text-slate-500 hover:text-emerald-600 rounded-2xl transition-all shadow-sm"
-              >
-                <ArrowLeft size={20} />
-              </button>
-              <div>
-                <h1 className="text-3xl font-black text-slate-900 tracking-tight">Nova Notícia</h1>
-                <p className="text-sm text-slate-500 font-medium italic">Edição de Conteúdo Profissional</p>
+    <main className="min-h-screen bg-slate-50/50 pt-24 pb-20">
+      <Container size="xl">
+        <div className="max-w-7xl mx-auto">
+          {/* Sticky Header */}
+          <div className="sticky top-24 z-40 bg-slate-50/80 backdrop-blur-md pb-8 -mx-4 px-4 mb-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={() => router.back()}
+                  className="p-4 bg-white border border-slate-100 text-slate-400 hover:text-emerald-600 rounded-2xl transition-all shadow-sm group"
+                >
+                  <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                </button>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-8 h-0.5 bg-emerald-500 rounded-full" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">Nova Publicação</span>
+                  </div>
+                  <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight line-clamp-1 max-w-md">
+                    {formData.titulo || 'Nova Notícia'}
+                  </h1>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setIsPreviewOpen(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600 rounded-2xl font-bold transition-all shadow-sm"
-              >
-                <Eye size={18} />
-                Pré-visualizar
-              </button>
-              <Button
-                onClick={handleSubmit}
-                disabled={loading || !formData.titulo || !formData.conteudo || (!image && !imagePreview)}
-                className="px-8 py-3 flex items-center gap-2 font-black shadow-lg shadow-emerald-900/10 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
-                {formData.publicado ? 'Publicar Agora' : 'Guardar Rascunho'}
-              </Button>
+              <div className="flex items-center gap-3">
+                <div className="hidden lg:flex items-center gap-6 px-6 py-3 bg-white/50 border border-slate-100 rounded-2xl mr-2">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Palavras</span>
+                    <span className="text-sm font-black text-slate-900">{readingMetrics.words}</span>
+                  </div>
+                  <div className="w-px h-6 bg-slate-100" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Leitura</span>
+                    <span className="text-sm font-black text-slate-900">{readingMetrics.time} min</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsPreviewOpen(true)}
+                  className="p-3 bg-white border border-slate-100 text-slate-400 hover:text-emerald-600 rounded-2xl transition-all shadow-sm"
+                  title="Pré-visualizar"
+                >
+                  <Eye size={20} />
+                </button>
+                <Button
+                  onClick={handleSubmit}
+                  disabled={loading || !formData.titulo || !formData.conteudo || (!image && !imagePreview)}
+                  className="px-8 py-4 flex items-center gap-2 font-black shadow-xl shadow-emerald-500/10 active:scale-95 transition-all text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? <Loader2 className="animate-spin" size={20} strokeWidth={3} /> : <Save size={20} strokeWidth={3} />}
+                  {formData.publicado ? 'Publicar Agora' : 'Guardar Rascunho'}
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 space-y-8">
-              {/* Conteúdo Principal */}
-              <section className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-slate-100 space-y-8">
-                <div>
-                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
-                    <Type size={14} className="text-emerald-600" />
-                    Título Editorial
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Título de impacto para os leitores..."
-                    value={formData.titulo}
-                    onChange={(e) => setFormData({...formData, titulo: e.target.value})}
-                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/5 focus:border-emerald-500 outline-none transition-all text-2xl font-black text-slate-900 placeholder:text-slate-300"
-                  />
+          <div className="grid lg:grid-cols-12 gap-10">
+            {/* Editor Area */}
+            <div className="lg:col-span-8 space-y-10">
+              <section className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100 space-y-10">
+                <div className="space-y-6">
+                  <div>
+                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 ml-1">
+                      <Type size={14} className="text-emerald-600" />
+                      Título da Notícia
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Título de impacto..."
+                      value={formData.titulo}
+                      onChange={(e) => setFormData({...formData, titulo: e.target.value})}
+                      className="w-full px-0 py-2 bg-transparent border-b-2 border-slate-50 focus:border-emerald-500 outline-none transition-all text-3xl md:text-4xl font-black text-slate-900 placeholder:text-slate-200"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 ml-1">
+                      <FileText size={14} className="text-emerald-600" />
+                      Subtítulo / Lead
+                    </label>
+                    <textarea
+                      placeholder="Um breve resumo para captar a atenção..."
+                      value={formData.subtitulo}
+                      onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
+                      className="w-full px-6 py-5 bg-slate-50/50 border border-slate-100 rounded-3xl focus:ring-4 focus:ring-emerald-500/5 focus:bg-white focus:border-emerald-500 outline-none transition-all h-32 resize-none font-bold text-slate-600 leading-relaxed placeholder:text-slate-300"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
-                    <FileText size={14} className="text-emerald-600" />
-                    Subtítulo / Introdução
-                  </label>
-                  <textarea
-                    placeholder="Uma breve introdução que resuma a notícia..."
-                    value={formData.subtitulo}
-                    onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
-                    className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/5 focus:border-emerald-500 outline-none transition-all h-32 resize-none font-medium text-slate-600 leading-relaxed"
-                  />
-                </div>
-
-                <div>
-                  <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
-                    Conteúdo do Artigo
+                  <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 ml-1">
+                    Conteúdo Principal
                   </label>
                   <RichTextEditor 
                     content={formData.conteudo} 
@@ -287,89 +314,97 @@ export default function NovaNoticiaPage() {
               </section>
             </div>
 
+            {/* Sidebar Area */}
             <div className="lg:col-span-4 space-y-8">
-              {/* Sidebar: Publicação */}
-              <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
-                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
+              {/* Publication Settings */}
+              <section className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-900 mb-2">
                   <Settings size={14} className="text-emerald-600" />
-                  Estado & Categoria
+                  Publicação
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span className="text-sm font-bold text-slate-700">Estado</span>
+                  <div className="flex items-center justify-between p-5 bg-slate-50/50 rounded-2xl border border-slate-100">
+                    <div className="flex flex-col">
+                      <span className="text-sm font-black text-slate-700">Visibilidade</span>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">{formData.publicado ? 'Público no Site' : 'Rascunho Privado'}</span>
+                    </div>
                     <button
                       type="button"
                       onClick={() => setFormData({...formData, publicado: !formData.publicado})}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${formData.publicado ? 'bg-emerald-600' : 'bg-slate-300'}`}
+                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-all focus:outline-none ${formData.publicado ? 'bg-emerald-600 shadow-lg shadow-emerald-500/20' : 'bg-slate-200'}`}
                     >
-                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${formData.publicado ? 'translate-x-6' : 'translate-x-1'}`} />
+                      <span className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform duration-300 ${formData.publicado ? 'translate-x-6' : 'translate-x-1'}`} />
                     </button>
                   </div>
-                  <p className="text-[10px] text-slate-400 font-medium px-2">
-                    {formData.publicado ? 'A notícia ficará visível imediatamente para o público.' : 'Guardado apenas no painel de administração.'}
-                  </p>
 
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 ml-1">Categoria</label>
-                    <select
-                      value={formData.categoria}
-                      onChange={(e) => setFormData({...formData, categoria: e.target.value})}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-700 outline-none focus:ring-2 focus:ring-emerald-500/20"
-                    >
-                      <option>Institucional</option>
-                      <option>Serviços</option>
-                      <option>Certificações</option>
-                      <option>Inovação</option>
-                      <option>Parcerias</option>
-                    </select>
+                    <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 ml-1">Categoria do Artigo</label>
+                    <div className="relative group">
+                      <Tag className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={16} />
+                      <select
+                        value={formData.categoria}
+                        onChange={(e) => setFormData({...formData, categoria: e.target.value})}
+                        className="w-full pl-11 pr-10 py-4 bg-slate-50/50 border border-slate-100 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-700 outline-none focus:ring-4 focus:ring-emerald-500/5 focus:bg-white focus:border-emerald-500 transition-all appearance-none cursor-pointer shadow-sm"
+                      >
+                        <option>Institucional</option>
+                        <option>Serviços</option>
+                        <option>Certificações</option>
+                        <option>Inovação</option>
+                        <option>Parcerias</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                        <Plus size={14} className="rotate-45" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              {/* Sidebar: Imagem */}
-              <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 space-y-6">
-                <div className="flex items-center justify-between text-xs font-black uppercase tracking-widest text-slate-900 mb-2">
-                  <div className="flex items-center gap-2">
+              {/* Cover Image */}
+              <section className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-900">
                     <ImageIcon size={14} className="text-emerald-600" />
                     Imagem de Capa
                   </div>
-                  <span className="text-[9px] text-red-500 bg-red-50 px-2 py-1 rounded">Obrigatório</span>
+                  <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest">Obrigatório</span>
                 </div>
                 
                 {imagePreview ? (
-                  <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-100 group">
+                  <div className="relative rounded-3xl overflow-hidden aspect-video bg-slate-100 border border-slate-100 group shadow-inner">
                     <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" />
-                    <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
                        <button 
                         onClick={() => { setImage(null); setImagePreview(null); setIsUsingDefault(false); }}
-                        className="p-3 bg-white text-red-500 rounded-2xl hover:scale-110 transition-transform shadow-xl"
+                        className="p-4 bg-white text-red-500 rounded-2xl hover:scale-110 transition-transform shadow-2xl active:scale-95"
                         title="Remover imagem"
                       >
-                        <X size={20} />
+                        <X size={20} strokeWidth={3} />
                       </button>
                     </div>
                     {isUsingDefault && (
-                      <div className="absolute bottom-3 left-3 px-3 py-1 bg-emerald-600 text-white text-[8px] font-black uppercase tracking-widest rounded-full shadow-lg">
-                        Imagem Padrão Selecionada
+                      <div className="absolute bottom-4 left-4 px-3 py-1.5 bg-emerald-600 text-white text-[9px] font-black uppercase tracking-widest rounded-xl shadow-xl flex items-center gap-2 border border-emerald-400/30">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+                        Padrão Ativo
                       </div>
                     )}
                   </div>
                 ) : (
-                  <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-100 rounded-[2rem] bg-slate-50 hover:bg-white hover:border-emerald-300 transition-all cursor-pointer group shadow-inner">
-                    <div className="p-4 bg-white rounded-2xl shadow-sm mb-3 group-hover:scale-110 transition-transform text-slate-300 group-hover:text-emerald-500">
-                      <ImageIcon size={28} />
+                  <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-slate-100 rounded-[2.5rem] bg-slate-50/50 hover:bg-white hover:border-emerald-300 transition-all cursor-pointer group shadow-inner relative overflow-hidden">
+                    <div className="p-5 bg-white rounded-2xl shadow-sm mb-4 group-hover:scale-110 transition-all duration-500 text-slate-300 group-hover:text-emerald-500 group-hover:shadow-emerald-500/10">
+                      <ImageIcon size={32} strokeWidth={1.5} />
                     </div>
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Upload Personalizado</span>
+                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Fazer Upload</span>
                     <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                   </label>
                 )}
 
-                {/* Default Images Selection */}
-                <div className="pt-4 border-t border-slate-50">
-                   <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 ml-1">
+                {/* Library Selection */}
+                <div className="pt-6 border-t border-slate-50">
+                   <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-5 ml-1">
                     <MousePointer2 size={12} className="text-emerald-500" />
-                    Ou use um dos padrões:
+                    Biblioteca de Padrões
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     {NEWS_DEFAULT_IMAGES.map((img) => (
@@ -377,16 +412,16 @@ export default function NovaNoticiaPage() {
                         key={img.id}
                         type="button"
                         onClick={() => handleSelectDefault(img.url)}
-                        className={`group relative aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${
+                        className={`group relative aspect-[4/3] rounded-2xl overflow-hidden border-2 transition-all ${
                           imagePreview === img.url 
-                            ? 'border-emerald-500 ring-4 ring-emerald-500/10' 
+                            ? 'border-emerald-500 ring-4 ring-emerald-500/5' 
                             : 'border-transparent hover:border-slate-200'
                         }`}
                       >
-                        <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
+                        <img src={img.url} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors" />
-                        <div className="absolute bottom-0 inset-x-0 p-2 bg-gradient-to-t from-slate-900/80 to-transparent">
-                          <span className="text-[8px] font-black text-white uppercase tracking-widest">{img.label}</span>
+                        <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-slate-900/90 to-transparent">
+                          <span className="text-[9px] font-black text-white uppercase tracking-widest block truncate">{img.label}</span>
                         </div>
                       </button>
                     ))}
@@ -394,36 +429,38 @@ export default function NovaNoticiaPage() {
                 </div>
               </section>
 
-              {/* Sidebar: SEO */}
-              <section className="bg-slate-900 rounded-3xl p-8 shadow-xl shadow-slate-200 space-y-6 text-white">
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
-                  <Search size={14} />
-                  Configurações SEO
+              {/* SEO Engine Card */}
+              <section className="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-slate-300/50 space-y-6 text-white overflow-hidden relative group">
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Globe size={100} strokeWidth={1} />
                 </div>
                 
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">Meta Title (Opcional)</label>
-                    <input
-                      type="text"
-                      placeholder={formData.titulo || "Título para o Google"}
-                      value={formData.seo_title}
-                      onChange={(e) => setFormData({...formData, seo_title: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
-                    />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-8">
+                    <Search size={14} strokeWidth={3} />
+                    SEO Engine
                   </div>
-                  <div>
-                    <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">Meta Description</label>
-                    <textarea
-                      placeholder={formData.subtitulo || "Descrição curta para os resultados de pesquisa"}
-                      value={formData.seo_description}
-                      onChange={(e) => setFormData({...formData, seo_description: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 h-24 resize-none"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 p-3 bg-white/5 rounded-xl border border-white/5">
-                    <Globe size={14} className="text-emerald-400" />
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Pré-visualização de pesquisa ativa</span>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-3 ml-1">Meta Title</label>
+                      <input
+                        type="text"
+                        placeholder="Título para motores de busca..."
+                        value={formData.seo_title}
+                        onChange={(e) => setFormData({...formData, seo_title: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-sm text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/20 focus:bg-white/10 transition-all placeholder:text-white/20 font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-3 ml-1">Meta Description</label>
+                      <textarea
+                        placeholder="Descrição curta e cativante..."
+                        value={formData.seo_description}
+                        onChange={(e) => setFormData({...formData, seo_description: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-sm text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/20 focus:bg-white/10 transition-all h-28 resize-none placeholder:text-white/20 font-medium leading-relaxed"
+                      />
+                    </div>
                   </div>
                 </div>
               </section>

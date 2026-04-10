@@ -38,6 +38,16 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 ```
 
 ### Histórico de Sincronização
+#### Sincronização: 10/04/2026, 11:00:36
+**Commits:**
+```
+a35d8ca feat: overhaul na interface de edicao de noticias para padrao premium minimalist
+003e08e feat: reestruturar dashboard admin para design premium minimalist
+7aa27bc style: overhaul na interface de leitura da noticia individual
+75b7344 style: aplicar design premium minimalist a seccao de noticias
+6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
+```
+#### Sincronização:
 #### Sincronização: 10/04/2026, 10:54:33
 **Commits:**
 ```
@@ -46,14 +56,4 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 75b7344 style: aplicar design premium minimalist a seccao de noticias
 6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
 44556b4 feat: implementar scroll automático na paginação
-```
-#### Sincronização:
-#### Sincronização: 10/04/2026, 10:45:19
-**Commits:**
-```
-7aa27bc style: overhaul na interface de leitura da noticia individual
-75b7344 style: aplicar design premium minimalist a seccao de noticias
-6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
-44556b4 feat: implementar scroll automático na paginação
-5f20b9c style: otimizar interface de paginação com truncagem
 ```
