@@ -4,6 +4,29 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Contactos & Liquid Glass)
+### 💬 O que conversámos (Intenção)
+A sessão focou-se na elevação da página de **Contactos** para o padrão visual mais elevado do site. O objetivo foi transformar um formulário e informações estáticas numa experiência de marca imersiva, utilizando a estética "Liquid Glass" (transparências, desfoques e tipografia editorial) para transmitir profissionalismo e inovação.
+
+### 🚀 O que mudou no Site (Execução)
+- **Design Editorial "Hero Direct":**
+  - Implementação de um cabeçalho de grande escala (`text-8xl`) com gradientes dinâmicos para impacto imediato.
+  - Substituição de títulos genéricos por uma mensagem focada no "futuro sustentável".
+- **Cartões de Info Interativos:**
+  - Redesenho dos cartões de contacto com `backdrop-blur` profundo e bordas semi-transparentes.
+  - Adição de micro-interações: setas de ação (`ArrowRight`) que surgem no hover e sombras dinâmicas que sugerem profundidade.
+- **Formulário de Orçamento "Linha Pura":**
+  - Evolução para um estilo minimalista de inputs sem bordas (apenas linha inferior) para reduzir a carga cognitiva.
+  - Otimização do seletor de serviços e da zona de upload de fotos com estados de feedback visual aprimorados.
+- **Integração de Mapa Premium:**
+  - O mapa do Google Maps foi emoldurado numa estrutura de vidro com bordas grossas brancas, animação de pulso no indicador de sede e um CTA contextual flutuante.
+
+### 🎯 Estado da Entrega
+- **Página de Contactos:** [CONCLUÍDA] Design premium de alta fidelidade implementado, validado e com espaçamento superior otimizado.
+- **Performance:** [MANTIDA] Uso estratégico de efeitos CSS para evitar lag em dispositivos móveis.
+
+---
+
 ## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (UI/UX Pro Max - Premium Minimalist)
 ### 💬 O que conversámos (Intenção)
 A pedido do utilizador, ativei a skill **UI/UX Pro Max** para efetuar uma auditoria visual e reestruturar a página de notícias. O objetivo era abandonar o design genérico e adotar uma estética "Premium Minimalist" com um subtema "Liquid Glass" focado em usabilidade, trazendo uma tipografia de classe editorial para a leitura de artigos.

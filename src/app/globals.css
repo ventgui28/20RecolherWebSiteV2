@@ -17,12 +17,20 @@
   --lime-green: #77a521;
   --emerald-green: #1e712a;
 
+  /* Premium Design System Colors (UI/UX Pro Max) */
+  --color-premium-black: #1C1917;
+  --color-premium-gold: #A16207;
+  --color-premium-white: #FAFAF9;
+  --color-premium-slate: #334155;
+
   /* Eco-Texture Palette */
   --bg-green-mist: #f0f4f0;
 
   /* Font Families */
   --font-heading: var(--font-quicksand);
   --font-body: var(--font-nunito);
+  --font-heading-premium: var(--font-bodoni-moda);
+  --font-body-premium: var(--font-jost);
 }
 
 @theme inline {
@@ -42,12 +50,20 @@
   --color-lime-green: var(--lime-green);
   --color-emerald-green: var(--emerald-green);
 
+  /* Premium Colors */
+  --color-premium-black: var(--color-premium-black);
+  --color-premium-gold: var(--color-premium-gold);
+  --color-premium-white: var(--color-premium-white);
+  --color-premium-slate: var(--color-premium-slate);
+
   /* Eco Colors Theme */
   --color-green-mist: var(--bg-green-mist);
 
   /* Custom Font Setup */
   --font-heading: var(--font-quicksand);
   --font-body: var(--font-nunito);
+  --font-heading-premium: var(--font-bodoni-moda);
+  --font-body-premium: var(--font-jost);
 }
 
 body {

@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 10/04/2026, 11:24:07
+#### Sincronização: 10/04/2026, 11:45:00
 **Commits:**
 ```
+af0e296 style: overhaul na pagina de contactos com design premium minimalist liquid glass
 d7021fd fix: renderizar formatacao de texto na pagina da noticia
 24cff2b fix: resolver falhas de funcionalidade e estilo no RichTextEditor
 a35d8ca feat: overhaul na interface de edicao de noticias para padrao premium minimalist
 003e08e feat: reestruturar dashboard admin para design premium minimalist
-7aa27bc style: overhaul na interface de leitura da noticia individual
 ```
 #### Sincronização:
-#### Sincronização: 10/04/2026, 11:17:29
+#### Sincronização: 10/04/2026, 11:41:24
 **Commits:**
 ```
+af0e296 style: overhaul na pagina de contactos com design premium minimalist liquid glass
+d7021fd fix: renderizar formatacao de texto na pagina da noticia
 24cff2b fix: resolver falhas de funcionalidade e estilo no RichTextEditor
 a35d8ca feat: overhaul na interface de edicao de noticias para padrao premium minimalist
 003e08e feat: reestruturar dashboard admin para design premium minimalist
-7aa27bc style: overhaul na interface de leitura da noticia individual
-75b7344 style: aplicar design premium minimalist a seccao de noticias
 ```
