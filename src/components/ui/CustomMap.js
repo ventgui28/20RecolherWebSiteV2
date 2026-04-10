@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { CONTACTS } from '@/constants/contact';
@@ -32,6 +32,7 @@ const satelliteStyle = {
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const mapRef = useRef();
   
   // Coordenadas exatas fornecidas pelo utilizador (40°21'17.1"N 8°36'17.5"W)
   const longitude = -8.604861;
@@ -39,6 +40,19 @@ export default function CustomMap() {
 
   useEffect(() => {
     setIsMounted(true);
+
+    // Pequeno delay para garantir que o mapa está pronto antes de iniciar a animação
+    const timer = setTimeout(() => {
+      if (mapRef.current) {
+        mapRef.current.getMap().flyTo({
+          zoom: 16,
+          duration: 4000, // Animação suave de 4 segundos
+          essential: true
+        });
+      }
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (!isMounted) return <div className="w-full h-full bg-slate-900 animate-pulse rounded-[4rem]" />;
@@ -46,10 +60,11 @@ export default function CustomMap() {
   return (
     <div className="w-full h-full relative">
       <Map
+        ref={mapRef}
         initialViewState={{
           longitude: longitude,
           latitude: latitude,
-          zoom: 16, // Zoom equilibrado para ver a envolvente industrial
+          zoom: 13, // Começa mais afastado para a animação
           pitch: 0,
           bearing: 0
         }}
