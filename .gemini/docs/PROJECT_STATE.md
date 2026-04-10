@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 10/04/2026, 10:31:25
+#### Sincronização: 10/04/2026, 10:45:19
 **Commits:**
 ```
+7aa27bc style: overhaul na interface de leitura da noticia individual
 75b7344 style: aplicar design premium minimalist a seccao de noticias
 6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
 44556b4 feat: implementar scroll automático na paginação
 5f20b9c style: otimizar interface de paginação com truncagem
-541b9d7 feat: implementar sistema de paginação na grelha de notícias
 ```
 #### Sincronização:
-#### Sincronização: 10/04/2026, 10:15:02
+#### Sincronização: 10/04/2026, 10:38:09
 **Commits:**
 ```
+7aa27bc style: overhaul na interface de leitura da noticia individual
+75b7344 style: aplicar design premium minimalist a seccao de noticias
 6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
 44556b4 feat: implementar scroll automático na paginação
 5f20b9c style: otimizar interface de paginação com truncagem
-541b9d7 feat: implementar sistema de paginação na grelha de notícias
-aac8dbb feat: atualizar biblioteca de imagens padrão para notícias e sincronizar estado do projeto
 ```

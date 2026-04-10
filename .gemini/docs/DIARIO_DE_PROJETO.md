@@ -13,10 +13,11 @@ A pedido do utilizador, ativei a skill **UI/UX Pro Max** para efetuar uma audito
   - Implementado um design de sobreposição (`overlap`) com blur dinâmico para o artigo em destaque.
   - Conversão dos formatos dos cards para uma proporção `4:3`, mais próxima das publicações impressas.
   - Refinação da barra de pesquisa e filtros usando princípios de "glassmorphism".
-- **Experiência de Leitura Imersiva:**
-  - Correção crítica do componente `<Container>`, que não estava a propagar a propriedade de tamanho. Isto otimizou o comprimento da linha (`max-w-3xl`), fundamental para evitar cansaço ocular na leitura.
-  - Aumento da legibilidade do corpo de texto através de `line-height` customizado e hierarquia reforçada (`prose-p:leading-[1.9]`).
-  - Refinamento da barra de progresso (Reading Progress).
+- **Experiência de Leitura Imersiva (Página Individual):**
+  - Implementação da "Mancha de Ouro" de leitura: largura máxima do texto limitada a **720px** para reduzir o esforço ocular e aumentar a retenção.
+  - Reestruturação do layout com uma **Sidebar Sticky** dedicada para controlos de partilha, eliminando problemas de sobreposição e garantindo persistência durante o scroll em desktop.
+  - Refinação estética dos `Blockquotes` (citações) com tipografia de grande escala e `tracking-tighter`.
+  - Correção crítica do componente `<Container>`, que não estava a propagar a propriedade de tamanho. Isto otimizou o comprimento da linha (`max-w-3xl`) em todo o site.
 - **Auditoria de Código:**
   - Resolvidos os avisos do linter e corrigidos antipadrões de React (`setState` síncrono dentro de um `useEffect` na grelha).
 
