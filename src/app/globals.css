@@ -31,6 +31,15 @@
   --font-body: var(--font-nunito);
   --font-heading-premium: var(--font-bodoni-moda);
   --font-body-premium: var(--font-jost);
+  --font-heading-organic: var(--font-lora);
+  --font-body-organic: var(--font-raleway);
+
+  /* Eco-Vibrant Palette (UI/UX Pro Max) */
+  --color-eco-vibrant-green: #22c55e;
+  --color-eco-vibrant-lime: #84cc16;
+  --color-eco-vibrant-emerald: #10b981;
+  --color-eco-vibrant-teal: #14b8a6;
+  --color-eco-vibrant-yellow: #facc15;
 }
 
 @theme inline {
@@ -56,6 +65,13 @@
   --color-premium-white: var(--color-premium-white);
   --color-premium-slate: var(--color-premium-slate);
 
+  /* Eco-Vibrant Colors */
+  --color-eco-green: var(--color-eco-vibrant-green);
+  --color-eco-lime: var(--color-eco-vibrant-lime);
+  --color-eco-emerald: var(--color-eco-vibrant-emerald);
+  --color-eco-teal: var(--color-eco-vibrant-teal);
+  --color-eco-yellow: var(--color-eco-vibrant-yellow);
+
   /* Eco Colors Theme */
   --color-green-mist: var(--bg-green-mist);
 
@@ -64,6 +80,8 @@
   --font-body: var(--font-nunito);
   --font-heading-premium: var(--font-bodoni-moda);
   --font-body-premium: var(--font-jost);
+  --font-heading-organic: var(--font-lora);
+  --font-body-organic: var(--font-raleway);
 }
 
 body {

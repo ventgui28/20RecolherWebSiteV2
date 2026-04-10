@@ -4,6 +4,30 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (UI/UX Pro Max - Premium Minimalist Bento Grid)
+### 💬 O que conversámos (Intenção)
+Nesta sessão, o utilizador deu ordens explícitas para ignorar as regras anteriores de design (baseadas no verde da marca) e seguir estritamente as recomendações da skill **UI/UX Pro Max**. O objetivo foi elevar a página de **Contactos** para um padrão de luxo industrial, utilizando a estética "Liquid Glass" e o padrão "Bento Grid Showcase" para comunicar exclusividade e profissionalismo.
+
+### 🚀 O que mudou no Site (Execução)
+- **Design Editorial "High-End":**
+  - Implementação de um cabeçalho monumental (`text-9xl`) com tipografia **Bodoni Moda** (Serif) e **Jost** (Sans), criando um contraste editorial de revista de luxo.
+  - Abandono da paleta de verdes original em favor de uma combinação de **Preto Premium (#1C1917)**, **Ouro (#A16207)** e **Branco Alabastro (#FAFAF9)**.
+- **Bento Grid Showcase:**
+  - Reestruturação das informações de contacto (Morada, Telefone, E-mail, Horário) num sistema de grelha modular (Bento) com tamanhos dinâmicos.
+  - Integração do mapa do Google Maps como um bloco de destaque na grelha, com filtro "Grayscale" que se revela em cores no hover.
+- **Formulário de Orçamento "Bespoke":**
+  - Redesenho dos inputs com animações de "Floating Labels" e bordas minimalistas.
+  - Botão de submissão transformado numa peça de design com preenchimento animado (Liquid) e ícones de ação rápida.
+- **Infraestrutura de Design:**
+  - Atualização do `layout.js` para suporte nativo das novas fontes premium via `next/font/google`.
+  - Expansão do `globals.css` com as novas variáveis do sistema de design da skill.
+
+### 🎯 Estado da Entrega
+- **Página de Contactos:** [TRANSFORMADA] Design de luxo industrial implementado e validado.
+- **Identidade Visual:** [EXPERIMENTAÇÃO] Transição para um estilo de alto contraste (Black & Gold) para esta secção específica conforme pedido.
+
+---
+
 ## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Contactos & Liquid Glass)
 ### 💬 O que conversámos (Intenção)
 A sessão focou-se na elevação da página de **Contactos** para o padrão visual mais elevado do site. O objetivo foi transformar um formulário e informações estáticas numa experiência de marca imersiva, utilizando a estética "Liquid Glass" (transparências, desfoques e tipografia editorial) para transmitir profissionalismo e inovação.

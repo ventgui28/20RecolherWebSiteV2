@@ -1,17 +1,17 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight, ExternalLink, Leaf, Recycle, ShieldCheck, Zap } from 'lucide-react';
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { CONTACTS } from "@/constants/contact";
 
 export default function ContactPage() {
   const contactItems = [
-    { label: "Onde Estamos", value: CONTACTS.address, icon: MapPin, delay: 0.1, size: "col-span-1 md:col-span-2" },
-    { label: "Atendimento", value: CONTACTS.phone, icon: Phone, delay: 0.2, size: "col-span-1" },
-    { label: "E-mail", value: CONTACTS.email, icon: Mail, delay: 0.3, size: "col-span-1" },
-    { label: "Horário", value: CONTACTS.workingHours, icon: Clock, delay: 0.4, size: "col-span-1 md:col-span-2" },
+    { label: "Onde Estamos", value: CONTACTS.address, icon: MapPin, color: "bg-eco-emerald", delay: 0.1 },
+    { label: "Atendimento", value: CONTACTS.phone, icon: Phone, color: "bg-eco-green", delay: 0.2 },
+    { label: "E-mail", value: CONTACTS.email, icon: Mail, color: "bg-eco-teal", delay: 0.3 },
+    { label: "Horário", value: CONTACTS.workingHours, icon: Clock, color: "bg-eco-lime", delay: 0.4 },
   ];
 
   const services = [
@@ -26,68 +26,88 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-premium-white font-body-premium overflow-hidden">
-      {/* Liquid Background Elements - Premium Palette */}
-      <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-premium-gold/5 rounded-full blur-[150px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-premium-black/5 rounded-full blur-[120px] pointer-events-none" />
+    <div className="relative min-h-screen bg-white font-body-organic overflow-hidden">
+      {/* Vibrant Organic Background Elements */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.2, 1],
+          rotate: [0, 90, 0],
+          x: [0, 50, 0]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-eco-lime/20 rounded-full blur-[120px] pointer-events-none" 
+      />
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.3, 1],
+          rotate: [0, -90, 0],
+          y: [0, 100, 0]
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-eco-emerald/15 rounded-full blur-[150px] pointer-events-none" 
+      />
+      <div className="absolute top-[20%] right-[-5%] w-[40vw] h-[40vw] bg-eco-yellow/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <Container className="pt-20 pb-32 relative z-10">
-        {/* Luxury Hero Header */}
-        <header className="max-w-5xl mb-24">
+      <Container className="pt-24 pb-32 relative z-10">
+        {/* Vibrant Hero Header */}
+        <header className="max-w-5xl mb-24 text-center mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-premium-black text-premium-white text-[10px] font-bold uppercase tracking-[0.4em] mb-10">
-              <span className="w-1.5 h-1.5 bg-premium-gold rounded-full animate-pulse" />
-              Contact High-End
+            <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-eco-green/10 text-eco-green text-xs font-bold uppercase tracking-[0.3em] mb-10 border border-eco-green/20">
+              <Zap size={14} className="animate-pulse" />
+              Energia Sustentável
             </span>
-            <h1 className="text-7xl md:text-9xl font-heading-premium font-normal text-premium-black leading-[0.85] tracking-[-0.05em] mb-12">
-              The Art of <br />
-              <span className="italic text-premium-gold">Sustainability.</span>
+            <h1 className="text-7xl md:text-9xl font-heading-organic font-bold text-slate-900 leading-[0.9] tracking-[-0.04em] mb-12">
+              Dê vida ao seu <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-eco-green via-eco-emerald to-eco-teal animate-gradient-x">lixo tecnológico.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-premium-slate font-light leading-tight max-w-3xl border-l-2 border-premium-gold pl-8">
-              Transforming industrial legacy into future-proof environmental solutions. Our specialized team is at your disposal.
+            <p className="text-2xl md:text-3xl text-slate-500 font-light leading-relaxed max-w-3xl mx-auto italic">
+              "Transformamos o obsoleto em oportunidade. Conecte-se com a economia circular."
             </p>
           </motion.div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Column 1: Bento Grid (Contact Info & Map) - 7 Columns */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Column 1: Vibrant Info Grid - 7 Columns */}
+          <div className="lg:col-span-7 space-y-8">
             
-            {/* Bento Contact Items */}
-            {contactItems.map((item, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: item.delay, duration: 0.6 }}
-                className={`${item.size} group relative p-10 rounded-[2.5rem] bg-white border border-premium-slate/5 hover:border-premium-gold/30 transition-all duration-700 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-premium-gold/5`}
-              >
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-premium-white border border-premium-slate/5 flex items-center justify-center text-premium-slate group-hover:bg-premium-black group-hover:text-premium-gold transition-all duration-500 mb-8">
-                    <item.icon size={24} strokeWidth={1} />
+            {/* Bento-Inspired Vibrant Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {contactItems.map((item, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: item.delay, duration: 0.6 }}
+                  whileHover={{ y: -10 }}
+                  className="group p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_20px_50px_-15px_rgba(34,197,94,0.1)] hover:shadow-[0_30px_60px_-10px_rgba(34,197,94,0.2)] transition-all duration-500"
+                >
+                  <div className={`w-16 h-16 rounded-[1.5rem] ${item.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 mb-8`}>
+                    <item.icon size={28} strokeWidth={1.5} />
                   </div>
-                  <p className="text-[10px] font-bold text-premium-gold uppercase tracking-[0.3em] mb-3">{item.label}</p>
-                  <p className="text-xl md:text-2xl font-medium text-premium-black leading-snug tracking-tight">{item.value}</p>
-                </div>
-                
-                {/* Liquid Glass Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-premium-gold/0 to-premium-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </motion.div>
-            ))}
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
+                  <p className="text-xl font-bold text-slate-800 leading-tight group-hover:text-eco-green transition-colors">{item.value}</p>
+                  
+                  {/* Decorative Leaf */}
+                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-10 transition-opacity">
+                    <Leaf size={40} className="text-eco-green" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-            {/* Map Section - Bento Large */}
+            {/* Map Section - Organic Frame */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="col-span-1 md:col-span-2 relative aspect-[4/3] md:aspect-video rounded-[3rem] overflow-hidden border border-premium-slate/5 group"
+              className="relative aspect-video rounded-[3.5rem] overflow-hidden border-8 border-white shadow-2xl group"
             >
               <iframe
                 src={CONTACTS.mapsIframe}
@@ -97,144 +117,154 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-110 group-hover:scale-100"
+                className="opacity-90 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100"
               ></iframe>
               
-              <div className="absolute inset-0 bg-premium-black/10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-eco-emerald/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              <div className="absolute bottom-8 left-8 right-8 p-8 bg-premium-black/90 backdrop-blur-2xl rounded-[2rem] border border-white/10 flex items-center justify-between transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                <div className="flex items-center gap-5">
-                  <div className="w-4 h-4 bg-premium-gold rounded-full animate-ping" />
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-bold text-premium-gold uppercase tracking-widest">Global Headquarters</p>
-                    <p className="text-white font-medium">Zona Industrial de Cantanhede</p>
+              <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/95 backdrop-blur-md rounded-3xl border border-white shadow-xl flex items-center justify-between transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-eco-green/10 rounded-xl text-eco-green">
+                    <Recycle size={20} className="animate-spin-slow" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-bold text-eco-green uppercase tracking-widest">Ponto de Valorização</p>
+                    <p className="text-slate-800 font-bold">Cantanhede, Portugal</p>
                   </div>
                 </div>
                 <a 
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACTS.address)}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-premium-gold flex items-center justify-center text-premium-black hover:scale-110 transition-transform duration-300"
+                  className="px-6 py-3 bg-eco-green text-white rounded-xl font-bold text-xs hover:bg-eco-emerald transition-colors flex items-center gap-2"
                 >
-                  <ExternalLink size={20} />
+                  Abrir Mapa
+                  <ExternalLink size={14} />
                 </a>
               </div>
             </motion.div>
           </div>
 
-          {/* Column 2: The Liquid Glass Form - 5 Columns */}
+          {/* Column 2: The Vibrant Form - 5 Columns */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="lg:col-span-5 bg-white rounded-[4rem] p-12 md:p-16 shadow-[0_40px_80px_-15px_rgba(28,25,23,0.08)] border border-premium-slate/5 relative overflow-hidden"
+            className="lg:col-span-5 bg-gradient-to-br from-white to-eco-green/5 rounded-[4rem] p-10 md:p-14 shadow-[0_40px_80px_-15px_rgba(34,197,94,0.15)] border border-white relative overflow-hidden"
           >
-            {/* Form Background Accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-premium-gold/10 blur-3xl rounded-full -mr-16 -mt-16" />
+            {/* Animated Blob Background */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-eco-lime/10 blur-3xl rounded-full animate-pulse" />
             
-            <div className="relative z-10 mb-16">
-              <h2 className="text-5xl font-heading-premium font-normal text-premium-black mb-4">Request Quote</h2>
-              <div className="w-12 h-1 bg-premium-gold mb-6" />
-              <p className="text-premium-slate text-lg font-light leading-relaxed">Experience our bespoke environmental consultancy. Tailored for your specific industrial needs.</p>
+            <div className="relative z-10 mb-14">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 bg-eco-green text-white rounded-2xl shadow-lg shadow-eco-green/20">
+                  <ShieldCheck size={24} />
+                </div>
+                <div>
+                  <h2 className="text-4xl font-heading-organic font-bold text-slate-900 tracking-tight">Orçamento Vivo</h2>
+                  <p className="text-eco-emerald font-bold text-xs uppercase tracking-widest">Resposta em tempo real</p>
+                </div>
+              </div>
+              <p className="text-slate-500 text-lg font-light leading-relaxed">Pronto para dar o próximo passo na sua jornada eco-responsável? A nossa equipa está à espera do seu sinal.</p>
             </div>
             
-            <form className="relative z-10 space-y-12">
-              <div className="space-y-10">
+            <form className="relative z-10 space-y-10">
+              <div className="space-y-8">
                 <div className="relative group">
+                  <label className="block text-[10px] font-bold text-eco-green uppercase tracking-[0.2em] mb-2 ml-2">Identificação / Empresa</label>
                   <input
                     type="text"
                     required
-                    className="peer w-full px-0 py-4 bg-transparent border-b border-premium-slate/10 focus:border-premium-gold outline-none transition-all font-medium text-premium-black text-xl placeholder:text-transparent"
-                    placeholder="Full Name"
-                    id="name"
+                    className="w-full px-6 py-4 bg-white/50 backdrop-blur-sm border-2 border-slate-100 rounded-2xl focus:border-eco-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-lg shadow-sm"
+                    placeholder="Quem nos contacta?"
                   />
-                  <label 
-                    htmlFor="name"
-                    className="absolute left-0 top-4 text-premium-slate/40 pointer-events-none transition-all duration-300 peer-focus:-top-6 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-premium-gold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-premium-gold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.2em]"
-                  >
-                    Identificação / Empresa
-                  </label>
                 </div>
 
                 <div className="relative group">
+                  <label className="block text-[10px] font-bold text-eco-green uppercase tracking-[0.2em] mb-2 ml-2">E-mail Institucional</label>
                   <input
                     type="email"
                     required
-                    className="peer w-full px-0 py-4 bg-transparent border-b border-premium-slate/10 focus:border-premium-gold outline-none transition-all font-medium text-premium-black text-xl placeholder:text-transparent"
-                    placeholder="Email"
-                    id="email"
+                    className="w-full px-6 py-4 bg-white/50 backdrop-blur-sm border-2 border-slate-100 rounded-2xl focus:border-eco-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-lg shadow-sm"
+                    placeholder="email@empresa.pt"
                   />
-                  <label 
-                    htmlFor="email"
-                    className="absolute left-0 top-4 text-premium-slate/40 pointer-events-none transition-all duration-300 peer-focus:-top-6 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-premium-gold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-premium-gold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.2em]"
-                  >
-                    E-mail Institucional
-                  </label>
                 </div>
 
-                <div className="space-y-4">
-                  <p className="text-[10px] font-bold text-premium-gold uppercase tracking-[0.2em]">Serviço de Interesse</p>
+                <div className="space-y-3">
+                  <label className="block text-[10px] font-bold text-eco-green uppercase tracking-[0.2em] mb-2 ml-2">Serviço de Interesse</label>
                   <div className="relative">
-                    <select className="w-full px-0 py-4 bg-transparent border-b border-premium-slate/10 focus:border-premium-gold outline-none transition-all font-medium text-premium-black text-xl appearance-none cursor-pointer">
+                    <select className="w-full px-6 py-4 bg-white/50 backdrop-blur-sm border-2 border-slate-100 rounded-2xl focus:border-eco-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-lg appearance-none cursor-pointer shadow-sm">
                       {services.map((service, idx) => (
                         <option key={idx} value={service}>{service}</option>
                       ))}
                     </select>
-                    <ChevronRight className="absolute right-0 top-1/2 -translate-y-1/2 rotate-90 text-premium-gold pointer-events-none" size={20} />
+                    <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-eco-green pointer-events-none" size={20} />
                   </div>
                 </div>
 
                 <div className="relative group">
+                  <label className="block text-[10px] font-bold text-eco-green uppercase tracking-[0.2em] mb-2 ml-2">Detalhes do Pedido</label>
                   <textarea
                     required
-                    className="peer w-full px-0 py-4 bg-transparent border-b border-premium-slate/10 focus:border-premium-gold outline-none transition-all font-medium text-premium-black text-xl placeholder:text-transparent h-32 resize-none"
-                    placeholder="Details"
-                    id="details"
+                    className="w-full px-6 py-4 bg-white/50 backdrop-blur-sm border-2 border-slate-100 rounded-2xl focus:border-eco-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-lg shadow-sm h-32 resize-none"
+                    placeholder="Como podemos ajudar hoje?"
                   ></textarea>
-                  <label 
-                    htmlFor="details"
-                    className="absolute left-0 top-4 text-premium-slate/40 pointer-events-none transition-all duration-300 peer-focus:-top-6 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-premium-gold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:text-premium-gold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.2em]"
-                  >
-                    Detalhes do Pedido
-                  </label>
                 </div>
               </div>
 
-              {/* Minimal Upload */}
+              {/* Vibrant Upload Zone */}
               <div className="space-y-4">
-                <p className="text-[10px] font-bold text-premium-gold uppercase tracking-[0.2em]">Documentation / Assets</p>
-                <label className="flex items-center gap-6 p-8 border border-premium-slate/10 rounded-3xl hover:border-premium-gold/30 hover:bg-premium-gold/5 cursor-pointer transition-all group">
-                  <div className="w-14 h-14 rounded-2xl bg-premium-white border border-premium-slate/5 flex items-center justify-center text-premium-slate group-hover:bg-premium-black group-hover:text-premium-gold transition-all duration-500">
-                    <Upload size={22} strokeWidth={1.5} />
+                <label className="flex items-center gap-6 p-6 border-2 border-dashed border-eco-green/20 rounded-3xl hover:border-eco-green/50 hover:bg-eco-green/5 cursor-pointer transition-all group">
+                  <div className="w-14 h-14 rounded-2xl bg-eco-green text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Upload size={22} strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="font-medium text-premium-black">Attach files</p>
-                    <p className="text-xs text-premium-slate/60">Upload relevant site photos</p>
+                    <p className="font-bold text-slate-800">Fotos do Resíduo</p>
+                    <p className="text-xs text-slate-400 italic">Ajuda na precisão do orçamento</p>
                   </div>
                   <input type="file" className="hidden" multiple accept="image/*" />
                 </label>
               </div>
 
-              <div className="pt-8">
-                <button className="group w-full h-24 bg-premium-black text-premium-white hover:text-premium-gold rounded-3xl flex items-center justify-between px-10 transition-all duration-500 shadow-2xl shadow-premium-black/20 overflow-hidden relative">
-                  <span className="relative z-10 text-xl font-medium tracking-tight">Initiate Partnership</span>
-                  <div className="relative z-10 w-12 h-12 bg-premium-gold rounded-full flex items-center justify-center text-premium-black group-hover:scale-110 transition-transform duration-500">
-                    <ArrowRight size={22} strokeWidth={2.5} />
-                  </div>
+              <div className="pt-6">
+                <button className="group w-full h-20 bg-gradient-to-r from-eco-green to-eco-emerald text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-4 shadow-xl shadow-eco-green/20 hover:shadow-eco-green/40 hover:-translate-y-1 transition-all duration-500 overflow-hidden relative">
+                  <span className="relative z-10">Enviar Orçamento agora</span>
+                  <Send className="relative z-10 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" size={18} />
                   
-                  {/* Fill Animation */}
-                  <div className="absolute inset-0 bg-premium-gold/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  {/* Gloss Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
                 </button>
                 
-                <p className="text-center mt-10 text-[10px] text-premium-slate/40 font-bold uppercase tracking-[0.4em]">
-                  Guaranteed response within 24h
+                <p className="text-center mt-8 text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-2">
+                  <Clock size={12} className="text-eco-green" />
+                  Compromisso 20Recolher: Resposta em 24h
                 </p>
               </div>
             </form>
           </motion.div>
         </div>
       </Container>
+
+      <style jsx global>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 5s ease infinite;
+        }
+        @keyframes shimmer {
+          100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+        .animate-spin-slow {
+          animation: spin 8s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

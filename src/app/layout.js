@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Geist, Geist_Mono, Quicksand, Nunito, Bodoni_Moda, Jost } from "next/font/google";
+import { Geist, Geist_Mono, Quicksand, Nunito, Bodoni_Moda, Jost, Lora, Raleway } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { BRAND } from "@/constants/brand";
@@ -24,6 +24,18 @@ const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const bodoniModa = Bodoni_Moda({
@@ -78,7 +90,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${nunito.variable} ${bodoniModa.variable} ${jost.variable}`}>
+    <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${nunito.variable} ${bodoniModa.variable} ${jost.variable} ${lora.variable} ${raleway.variable}`}>
       <body className="antialiased flex flex-col min-h-screen selection:bg-primary-green/20 selection:text-dark-green font-body bg-green-mist bg-grain text-foreground">
         <Navbar />
         <main className="flex-grow">
