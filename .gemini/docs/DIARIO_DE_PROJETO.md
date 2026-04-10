@@ -15,7 +15,7 @@ Para simplificar a experiência do utilizador na página de **Contactos**, decid
   - Ajuste do nível de zoom inicial de **18** para **17** para proporcionar uma melhor contextualização da localização na zona industrial.
   - Implementação de **Animação de Zoom-In Imersiva**: O mapa inicia com zoom **13** e transita suavemente para **17** (`flyTo`) durante 4 segundos.
   - **Ativação por Scroll (Intersection Observer)**: A animação de aproximação agora só é disparada quando o mapa entra efetivamente no campo de visão do utilizador (viewport), garantindo que o efeito visual não é desperdiçado antes de ser visível.
-  - **Aparição Diferida do Marcador**: O marcador da sede (pin) só é renderizado após a conclusão do efeito de zoom (4 segundos), surgindo com uma suave animação de fade-in/zoom-in para um toque final de polimento.
+  - **Aparição Diferida do Marcador**: O marcador da sede (pin) só é renderizado após a conclusão do efeito de zoom (4 segundos), surgindo com uma animação ultra-suave de **fade-in, scale e slide-up** via Framer Motion para um toque final de polimento.
 - **Manutenção de Funcionalidades Críticas:**
   - O marcador vibrante com animação de pulso e o seu popup interativo (`Popup`) permanecem ativos e funcionais via clique.
   - O efeito de escala local no pin (`group-hover/pin`) foi mantido para fornecer feedback visual ao utilizador antes do clique.

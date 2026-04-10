@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
+import { motion } from 'framer-motion';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { CONTACTS } from '@/constants/contact';
 
@@ -112,7 +113,16 @@ export default function CustomMap() {
               setShowPopup(true);
             }}
           >
-            <div className="group/pin cursor-pointer relative animate-in fade-in zoom-in duration-700">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                duration: 1.5, 
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.1 
+              }}
+              className="group/pin cursor-pointer relative"
+            >
               <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
               
               <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
@@ -120,7 +130,7 @@ export default function CustomMap() {
               </div>
               
               <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
-            </div>
+            </motion.div>
           </Marker>
         )}
 
