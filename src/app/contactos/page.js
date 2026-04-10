@@ -2,9 +2,16 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight, ExternalLink, Leaf, Recycle, ShieldCheck, Zap } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { CONTACTS } from "@/constants/contact";
+
+// Importar o mapa de forma dinâmica para evitar erros de SSR com Leaflet
+const CustomMap = dynamic(() => import('@/components/ui/CustomMap'), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-eco-green/5 animate-pulse rounded-[4rem]" />
+});
 
 export default function ContactPage() {
   const contactItems = [
@@ -109,22 +116,10 @@ export default function ContactPage() {
               transition={{ duration: 1 }}
               className="relative aspect-[4/5] md:aspect-[4/3] rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)] group"
             >
-              <iframe
-                src={CONTACTS.mapsIframe}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="opacity-80 group-hover:opacity-100 transition-all duration-1000 scale-110 group-hover:scale-100 contrast-[1.1] saturate-[1.1]"
-              ></iframe>
-              
-              {/* Overlay Gradient for depth */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-eco-green/10 via-transparent to-eco-lime/5 pointer-events-none" />
+              <CustomMap />
               
               {/* Floating Glass Control Panel */}
-              <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/90 backdrop-blur-2xl rounded-[3rem] border border-white/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+              <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/90 backdrop-blur-2xl rounded-[3rem] border border-white/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 z-10">
                 <div className="flex items-center gap-5">
                   <div className="relative">
                     <div className="w-14 h-14 bg-eco-green/10 rounded-2xl flex items-center justify-center text-eco-green">
