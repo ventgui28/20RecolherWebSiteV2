@@ -221,17 +221,46 @@ export default function ContactPage() {
               </div>
 
               {/* Vibrant Upload Zone */}
-              <div className="space-y-4">
-                <label className="flex items-center gap-6 p-6 border-2 border-dashed border-eco-green/20 rounded-3xl hover:border-eco-green/50 hover:bg-eco-green/5 cursor-pointer transition-all group">
-                  <div className="w-14 h-14 rounded-2xl bg-eco-green text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Upload size={22} strokeWidth={2} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-800">Fotos do Resíduo</p>
-                    <p className="text-xs text-slate-400 italic">Ajuda na precisão do orçamento</p>
-                  </div>
-                  <input type="file" className="hidden" multiple accept="image/*" />
-                </label>
+              <div className="space-y-6">
+                <label className="block text-[10px] font-bold text-eco-green uppercase tracking-[0.2em] mb-2 ml-2">Fotos do Resíduo (Opcional)</label>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <AnimatePresence>
+                    {images.map((img) => (
+                      <motion.div
+                        key={img.id}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-md group/img"
+                      >
+                        <img src={img.url} alt="Preview" className="w-full h-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(img.id)}
+                          className="absolute top-2 right-2 w-8 h-8 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 shadow-lg opacity-0 group-hover/img:opacity-100 transition-all hover:bg-red-500 hover:text-white"
+                        >
+                          <X size={16} strokeWidth={3} />
+                        </button>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+
+                  <label className="flex flex-col items-center justify-center aspect-square border-2 border-dashed border-eco-green/20 rounded-3xl hover:border-eco-green/50 hover:bg-eco-green/5 cursor-pointer transition-all group">
+                    <div className="w-12 h-12 rounded-2xl bg-eco-green/10 text-eco-green flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Upload size={20} strokeWidth={2} />
+                    </div>
+                    <p className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-eco-green transition-colors">Adicionar</p>
+                    <input 
+                      type="file" 
+                      className="hidden" 
+                      multiple 
+                      accept="image/*" 
+                      onChange={handleImageChange}
+                    />
+                  </label>
+                </div>
+                <p className="text-[10px] text-slate-400 italic px-2">Ajuda na precisão do orçamento e triagem inicial.</p>
               </div>
 
               <div className="pt-6">
