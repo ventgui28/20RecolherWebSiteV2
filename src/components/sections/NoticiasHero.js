@@ -18,17 +18,17 @@ export default function NoticiasHero({ title, subtitle, badge, count = 0 }) {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             {badge && (
-              <span className="inline-flex mb-8 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] bg-emerald-600 text-white rounded-md shadow-lg shadow-emerald-900/10">
+              <span className="inline-flex mb-8 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-full shadow-sm">
                 {badge}
               </span>
             )}
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter mb-10">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1] tracking-tighter mb-10">
               {title}
             </h1>
 
             <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-start md:items-end">
-              <p className="text-xl md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-500 max-w-2xl font-medium leading-[1.6]">
                 {subtitle}
               </p>
               

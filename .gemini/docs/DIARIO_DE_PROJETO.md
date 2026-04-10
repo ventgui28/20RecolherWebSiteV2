@@ -4,6 +4,29 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Navegação & UI/UX Notícias)
+### 💬 O que conversámos (Intenção)
+A sessão de hoje foi focada na escalabilidade e refinamento da Sala de Imprensa. O objetivo foi transformar a listagem simples de notícias num sistema robusto de navegação com paginação, scroll inteligente e filtros de alta fidelidade, garantindo que o portal se mantém utilizável e elegante mesmo com dezenas de artigos.
+
+### 🚀 O que mudou no Site (Execução)
+- **Sistema de Paginação & Navegação:**
+  - Implementação de `Paginação Truncada`: Interface limpa que oculta intervalos de páginas com reticências (`...`), mostrando apenas as extremidades e vizinhos da página atual.
+  - **Scroll Automático:** Adição de efeito suave que reposiciona o utilizador no topo da grelha ao mudar de página, eliminando a fricção de ficar "preso" no fundo do ecrã.
+  - Lógica de destaque (Featured) configurada para aparecer apenas na primeira página.
+- **Overhaul de UI/UX de Filtros:**
+  - **Contadores Reais:** Cada categoria agora exibe dinamicamente o número de artigos publicados.
+  - **Design "Floating Premium":** Substituição de botões básicos por cards flutuantes com sombras dinâmicas e estados ativos em preto profundo (`slate-900`).
+  - **Pesquisa Imersiva:** Barra de pesquisa alargada com brilho (glow) de foco e indicação de "Pesquisa em tempo real".
+- **Otimização de Assets de Notícias:**
+  - Substituição de fallbacks genéricos por imagens reais de logística e triagem (`recolha.jpg`, `triagem.jpg`) na biblioteca de padrões do Admin.
+
+### 🎯 Estado da Entrega
+- **Sala de Imprensa:** [SISTEMA COMPLETO] Design, navegação e performance 100% otimizados.
+- **Gestão de Imagens:** [CONSOLIDADA] Biblioteca de padrões integrada com ativos oficiais.
+
+
+---
+
 ## 📅 QUINTA-FEIRA, 9 DE ABRIL DE 2026 (Imagens & Rigor Editorial)
 ### 💬 O que conversámos (Intenção)
 Para elevar a qualidade visual do portal de notícias e evitar "buracos" no design, decidimos eliminar os ícones de reserva (Inbox) e implementar a **obrigatoriedade de imagem**. O objetivo é garantir que cada artigo publicado tenha sempre um impacto visual profissional, oferecendo ao administrador ferramentas rápidas para selecionar imagens padrão de alta qualidade sem precisar de sair do editor.

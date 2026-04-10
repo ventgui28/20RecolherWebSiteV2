@@ -22,12 +22,6 @@ export default function RevisionsModal({ isOpen, onClose, noticiaId, onRestore }
   const [selectedRevision, setSelectedRevision] = useState(null)
   const supabase = createClient()
 
-  useEffect(() => {
-    if (isOpen && noticiaId) {
-      fetchRevisoes()
-    }
-  }, [isOpen, noticiaId])
-
   const fetchRevisoes = async () => {
     setLoading(true)
     const { data, error } = await supabase
@@ -41,6 +35,14 @@ export default function RevisionsModal({ isOpen, onClose, noticiaId, onRestore }
     else setRevisoes(data)
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (isOpen && noticiaId) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchRevisoes()
+    }
+  }, [isOpen, noticiaId])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)

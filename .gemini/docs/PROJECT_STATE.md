@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 09/04/2026.
+Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -11,6 +11,7 @@ Registo do progresso atual e ficheiros criados até à data de 09/04/2026.
   - `Sobre Nós`: [CONCLUÍDA] Com dados históricos reais e design institucional sólido.
   - `Serviços`: [CONCLUÍDA] Design imersivo com fotografia em alta fidelidade, glassmorphism e micro-interações de parallax.
   - `Contactos`: Info, mapa e formulário.
+  - `Notícias`: [CONCLUÍDA] Sistema de listagem com pesquisa, categorias e Paginação.
   - `404`: Página de erro personalizada com design premium.
 - [x] **Git:** Branch única `main` consolidada com histórico limpo.
 
@@ -18,279 +19,41 @@ Registo do progresso atual e ficheiros criados até à data de 09/04/2026.
 - `src/app/`: Páginas e layouts.
 - `src/components/ui/`: Botões, containers e títulos.
 - `src/components/layout/`: Navbar e Footer.
-- `src/components/sections/`: Blocos modulares (ex: HomeHero, ProcessTimeline).
-- `src/constants/`: Ficheiros de dados dinâmicos (brand, services, stats, process).
-- `src/lib/`: Utilidade `cn()` para classes CSS.
+- `src/components/sections/`: Blocos modulares (ex: HomeHero, ProcessTimeline, NoticiasGrid).
+- `src/constants/`: Ficheiros de dados dinâmicos (brand, services, stats, process, news).
+- `src/lib/`: Utilidade `cn()` para classes CSS e clientes Supabase.
 
 ## 3. Comandos Importantes
 - `npm run dev`: Inicia o servidor local.
 - `git status`: Verifica alterações.
 
 
-### Última Sincronização: 31/03/2026, 15:45:22
+### Última Sincronização: 10/04/2026, 11:30:00
 **Alterações Recentes (Git):**
 ```
-9a278e1 docs: add session handoff wiki in .gemini/docs
-15d9774 chore: initial commit with Next.js 15 and Tailwind v4 setup
-e790304 Initial commit from Create Next App
-```
-
-### Última Sincronização: 31/03/2026, 15:49:34
-**Alterações Recentes (Git):**
-```
-b971ab1 chore: implement auto-update state synchronization scripts
-9a278e1 docs: add session handoff wiki in .gemini/docs
-15d9774 chore: initial commit with Next.js 15 and Tailwind v4 setup
-e790304 Initial commit from Create Next App
-```
-
-### Última Sincronização: 31/03/2026, 15:56:19
-**Alterações Recentes (Git):**
-```
-fdf91f7 chore: install framer-motion and update design roadmap
-b971ab1 chore: implement auto-update state synchronization scripts
-9a278e1 docs: add session handoff wiki in .gemini/docs
-15d9774 chore: initial commit with Next.js 15 and Tailwind v4 setup
-e790304 Initial commit from Create Next App
-```
-
-### Última Sincronização: 31/03/2026, 16:01:12
-**Alterações Recentes (Git):**
-```
-f861850 style: implement Premium Editorial design overhaul for Home page
-fdf91f7 chore: install framer-motion and update design roadmap
-b971ab1 chore: implement auto-update state synchronization scripts
-9a278e1 docs: add session handoff wiki in .gemini/docs
-15d9774 chore: initial commit with Next.js 15 and Tailwind v4 setup
-```
-
-### Última Sincronização: 31/03/2026, 16:07:05
-**Alterações Recentes (Git):**
-```
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-f861850 style: implement Premium Editorial design overhaul for Home page
-fdf91f7 chore: install framer-motion and update design roadmap
-b971ab1 chore: implement auto-update state synchronization scripts
-9a278e1 docs: add session handoff wiki in .gemini/docs
-```
-
-### Última Sincronização: 31/03/2026, 16:15:10
-**Alterações Recentes (Git):**
-```
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-f861850 style: implement Premium Editorial design overhaul for Home page
-fdf91f7 chore: install framer-motion and update design roadmap
-b971ab1 chore: implement auto-update state synchronization scripts
-```
-
-### Última Sincronização: 31/03/2026, 16:18:18
-**Alterações Recentes (Git):**
-```
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-f861850 style: implement Premium Editorial design overhaul for Home page
-fdf91f7 chore: install framer-motion and update design roadmap
-```
-
-### Última Sincronização: 31/03/2026, 16:21:04
-**Alterações Recentes (Git):**
-```
-bb7379d docs: finalize session handoff with premium design completion
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-f861850 style: implement Premium Editorial design overhaul for Home page
-```
-
-### Última Sincronização: 31/03/2026, 16:34:21
-**Alterações Recentes (Git):**
-```
-bb7379d docs: finalize session handoff with premium design completion
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-f861850 style: implement Premium Editorial design overhaul for Home page
-```
-
-### Última Sincronização: 31/03/2026, 16:36:04
-**Alterações Recentes (Git):**
-```
-7a3bf3b feat: implement animated trust section with premium floating cards
-bb7379d docs: finalize session handoff with premium design completion
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-8d8cdec style: pivot home page to Soft & Immersive design with Quicksand and Nunito fonts
-```
-
-### Última Sincronização: 31/03/2026, 16:39:13
-**Alterações Recentes (Git):**
-```
-bf97193 style: enhance trust section with dark immersive background and glassmorphism
-7a3bf3b feat: implement animated trust section with premium floating cards
-bb7379d docs: finalize session handoff with premium design completion
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-0cf291e style: remove boxy backgrounds in Hero and About sections for a more minimalist and integrated design
-```
-
-### Última Sincronização: 31/03/2026, 16:42:11
-**Alterações Recentes (Git):**
-```
-56ee6be feat: implement staggered entry animations and scroll micro-interactions across home page
-bf97193 style: enhance trust section with dark immersive background and glassmorphism
-7a3bf3b feat: implement animated trust section with premium floating cards
-bb7379d docs: finalize session handoff with premium design completion
-b7528e4 style: refactor all secondary pages to follow the Premium Minimalist & Floating design
-```
-
-### Última Sincronização: 31/03/2026, 16:47:15
-**Alterações Recentes (Git):**
-```
-a8d1e80 style: refine hover effects on service cards and UI buttons for a premium feel
-56ee6be feat: implement staggered entry animations and scroll micro-interactions across home page
-bf97193 style: enhance trust section with dark immersive background and glassmorphism
-7a3bf3b feat: implement animated trust section with premium floating cards
-bb7379d docs: finalize session handoff with premium design completion
-```
-
-### Última Sincronização: 31/03/2026, 16:51:45
-**Alterações Recentes (Git):**
-```
-85b4dd1 feat: integrate logo image in navbar, footer and metadata
-a8d1e80 style: refine hover effects on service cards and UI buttons for a premium feel
-56ee6be feat: implement staggered entry animations and scroll micro-interactions across home page
-bf97193 style: enhance trust section with dark immersive background and glassmorphism
-7a3bf3b feat: implement animated trust section with premium floating cards
-```
-
-### Última Sincronização: 31/03/2026, 16:53:02
-**Alterações Recentes (Git):**
-```
-d382633 style: change favicon to use specialized favicon.png instead of main logo
-85b4dd1 feat: integrate logo image in navbar, footer and metadata
-a8d1e80 style: refine hover effects on service cards and UI buttons for a premium feel
-56ee6be feat: implement staggered entry animations and scroll micro-interactions across home page
-bf97193 style: enhance trust section with dark immersive background and glassmorphism
-```
-
-### Última Sincronização: 31/03/2026, 16:55:23
-**Alterações Recentes (Git):**
-```
-50c05cb seo: configure social share cards and canonical metadata
-d382633 style: change favicon to use specialized favicon.png instead of main logo
-85b4dd1 feat: integrate logo image in navbar, footer and metadata
-a8d1e80 style: refine hover effects on service cards and UI buttons for a premium feel
-56ee6be feat: implement staggered entry animations and scroll micro-interactions across home page
-```
-
-### Última Sincronização: 31/03/2026, 16:59:56
-**Alterações Recentes (Git):**
-```
-a7a5048 feat: replace service emojis with premium Lucide icons
-50c05cb seo: configure social share cards and canonical metadata
-d382633 style: change favicon to use specialized favicon.png instead of main logo
-85b4dd1 feat: integrate logo image in navbar, footer and metadata
-a8d1e80 style: refine hover effects on service cards and UI buttons for a premium feel
-```
-
-### Última Sincronização: 31/03/2026, 17:03:41
-**Alterações Recentes (Git):**
-```
-f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
-a7a5048 feat: replace service emojis with premium Lucide icons
-50c05cb seo: configure social share cards and canonical metadata
-d382633 style: change favicon to use specialized favicon.png instead of main logo
-85b4dd1 feat: integrate logo image in navbar, footer and metadata
-```
-
-### Última Sincronização: 31/03/2026, 17:06:40
-**Alterações Recentes (Git):**
-```
-a106e51 revert: remove dark mode and keep only white mode
-f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
-a7a5048 feat: replace service emojis with premium Lucide icons
-50c05cb seo: configure social share cards and canonical metadata
-d382633 style: change favicon to use specialized favicon.png instead of main logo
-```
-
-### Última Sincronização: 31/03/2026, 17:08:29
-**Alterações Recentes (Git):**
-```
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
-f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
-a7a5048 feat: replace service emojis with premium Lucide icons
-50c05cb seo: configure social share cards and canonical metadata
-```
-
-### Última Sincronização: 31/03/2026, 17:22:48
-**Alterações Recentes (Git):**
-```
-030379e feat: implement premium minimalist 404 page
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
-f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
-a7a5048 feat: replace service emojis with premium Lucide icons
-```
-
-### Última Sincronização: 31/03/2026, 17:28:48
-**Alterações Recentes (Git):**
-```
-cc582dd feat: implement animated process timeline section on home page
-030379e feat: implement premium minimalist 404 page
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
-f1dbfee feat: implement premium dark mode with theme toggle and anti-flash script
-```
-
-### Última Sincronização: 31/03/2026, 17:41:26
-**Alterações Recentes (Git):**
-```
-c908025 style: enhance home page with video background support and service images
-cc582dd feat: implement animated process timeline section on home page
-030379e feat: implement premium minimalist 404 page
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
-```
-
-### Última Sincronização: 31/03/2026, 17:57:00
-**Alterações Recentes (Git):**
-```
-c908025 style: enhance home page with video background support and service images
-cc582dd feat: implement animated process timeline section on home page
-030379e feat: implement premium minimalist 404 page
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
-```
-
-### Última Sincronização: 01/04/2026, 09:25:37
-**Alterações Recentes (Git):**
-```
-c908025 style: enhance home page with video background support and service images
-cc582dd feat: implement animated process timeline section on home page
-030379e feat: implement premium minimalist 404 page
-61cff6d style: complete removal of dark mode traces and revert HomeStats to white mode
-a106e51 revert: remove dark mode and keep only white mode
+6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
+44556b4 feat: implementar scroll automático na paginação
+5f20b9c style: otimizar interface de paginação com truncagem
+541b9d7 feat: implementar sistema de paginação na grelha de notícias
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 09/04/2026, 11:38:44
+#### Sincronização: 10/04/2026, 09:54:10
 **Commits:**
 ```
-c4703cf feat: atualizar biblioteca de imagens padrão com os novos ativos fallback
-780f23d feat: implementar obrigatoriedade de imagem e biblioteca de padrões para notícias
-a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase
-daf3b6b fix: corrigir mapeamento de campos no EditarNoticiaPage
-02afde5 fix: corrigir erro de sintaxe no EditarNoticiaPage
+6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
+44556b4 feat: implementar scroll automático na paginação
+5f20b9c style: otimizar interface de paginação com truncagem
+541b9d7 feat: implementar sistema de paginação na grelha de notícias
+aac8dbb feat: atualizar biblioteca de imagens padrão para notícias e sincronizar estado do projeto
 ```
 #### Sincronização:
-#### Sincronização: 09/04/2026, 11:04:48
+#### Sincronização: 10/04/2026, 09:54:09
 **Commits:**
 ```
-a8ab0a7 fix: implementar slugs únicos para evitar conflitos 409 no Supabase
-daf3b6b fix: corrigir mapeamento de campos no EditarNoticiaPage
-02afde5 fix: corrigir erro de sintaxe no EditarNoticiaPage
-7cedc30 fix: resolver erro 400 ao atualizar noticia no painel admin
-b507878 feat: implementar sistema de histórico de revisões e página de edição
+6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
+44556b4 feat: implementar scroll automático na paginação
+5f20b9c style: otimizar interface de paginação com truncagem
+541b9d7 feat: implementar sistema de paginação na grelha de notícias
+aac8dbb feat: atualizar biblioteca de imagens padrão para notícias e sincronizar estado do projeto
 ```
