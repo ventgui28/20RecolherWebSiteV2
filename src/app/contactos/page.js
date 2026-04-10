@@ -11,7 +11,7 @@ import { CONTACTS } from "@/constants/contact";
 // Importar o mapa de forma dinâmica para evitar erros de SSR com Leaflet
 const CustomMap = dynamic(() => import('@/components/ui/CustomMap'), { 
   ssr: false,
-  loading: () => <div className="w-full h-full bg-eco-green/5 animate-pulse rounded-[4rem]" />
+  loading: () => <div className="w-full h-full bg-premium-black/5 animate-pulse rounded-[4rem]" />
 });
 
 export default function ContactPage() {

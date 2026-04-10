@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
 import { motion } from 'framer-motion';
+import { MapPin, ExternalLink, Building2 } from 'lucide-react';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { CONTACTS } from '@/constants/contact';
 
@@ -87,7 +88,7 @@ export default function CustomMap() {
     return () => observer.disconnect();
   }, [isMounted, hasAnimated]);
 
-  if (!isMounted) return <div className="w-full h-full bg-slate-900 animate-pulse rounded-[4rem]" />;
+  if (!isMounted) return <div className="w-full h-full bg-premium-black animate-pulse rounded-[4rem]" />;
 
   return (
     <div ref={containerRef} className="w-full h-full relative">
@@ -126,13 +127,22 @@ export default function CustomMap() {
               }}
               className="group/pin cursor-pointer relative"
             >
-              <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
+              {/* Liquid Pulse Effect */}
+              <div className="absolute inset-0 bg-premium-gold/30 blur-2xl rounded-full scale-150 animate-pulse mix-blend-screen" />
               
-              <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
-                <div className="w-3 h-3 bg-white rounded-full animate-ping" />
+              {/* Outer Glass Ring */}
+              <div className="absolute -inset-4 border border-premium-gold/20 rounded-full animate-[spin_10s_linear_infinite] opacity-50" />
+              
+              {/* Main Pin Container (Liquid Glass) */}
+              <div className="relative w-14 h-14 bg-premium-black/60 backdrop-blur-xl rounded-2xl flex items-center justify-center border-2 border-premium-gold/40 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(161,98,7,0.2)] transform transition-all duration-500 group-hover/pin:scale-110 group-hover/pin:-translate-y-2 group-hover/pin:border-premium-gold/80">
+                <MapPin size={28} className="text-premium-gold drop-shadow-[0_0_8px_rgba(161,98,7,0.6)]" />
+                
+                {/* Secondary Pulse */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-premium-gold/0 group-hover/pin:animate-ping opacity-20" />
               </div>
               
-              <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
+              {/* Shadow Anchor */}
+              <div className="w-6 h-2 bg-black/60 rounded-full blur-md mx-auto mt-2 scale-x-125" />
             </motion.div>
           </Marker>
         )}
@@ -146,36 +156,44 @@ export default function CustomMap() {
             closeButton={false}
             className="premium-popup"
           >
-            <div className="p-3 text-center min-w-[150px]">
-              <h3 className="font-bold text-slate-900 text-sm mb-1 font-sans">20Recolher HQ</h3>
-              <p className="text-[10px] text-slate-500 mb-3 leading-tight font-sans italic">Instalações centrais.</p>
-              <a 
-                href={CONTACTS.googleMapsUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block w-full py-2 bg-eco-green text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-eco-emerald transition-colors font-sans shadow-lg shadow-eco-green/20"
-              >
-                Como Chegar
-              </a>
+            <div className="p-5 text-center min-w-[200px] bg-premium-black/95 backdrop-blur-2xl border border-premium-gold/30 rounded-3xl shadow-2xl overflow-hidden relative group">
+              {/* Background Accent */}
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-premium-gold/10 blur-2xl rounded-full transition-transform duration-700 group-hover:scale-150" />
+              
+              <div className="relative z-10">
+                <div className="w-10 h-10 bg-premium-gold/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-premium-gold/30">
+                  <Building2 size={20} className="text-premium-gold" />
+                </div>
+                
+                <h3 className="font-heading-premium font-bold text-premium-gold text-lg mb-1">20Recolher HQ</h3>
+                <p className="text-[10px] text-premium-white/60 mb-5 leading-tight font-body-premium uppercase tracking-[0.2em]">Cantanhede Industrial Hub</p>
+                
+                <a 
+                  href={CONTACTS.googleMapsUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-premium-gold text-premium-black text-[11px] font-black uppercase tracking-[0.15em] rounded-xl hover:bg-premium-white transition-all duration-300 font-body-premium shadow-lg shadow-premium-gold/20"
+                >
+                  Ver no Maps
+                  <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           </Popup>
         )}
       </Map>
 
-      <div className="absolute inset-0 pointer-events-none border-[3px] border-white/20 rounded-[4rem] ring-1 ring-inset ring-black/10" />
+      <div className="absolute inset-0 pointer-events-none border-[3px] border-premium-gold/10 rounded-[4rem] ring-1 ring-inset ring-premium-black/20" />
 
       <style jsx global>{`
         .maplibregl-popup-content {
           padding: 0;
-          border-radius: 1.5rem;
-          overflow: hidden;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(12px);
-          background: rgba(255, 255, 255, 0.9);
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
         }
         .maplibregl-popup-tip {
-          border-top-color: rgba(255, 255, 255, 0.9) !important;
+          display: none;
         }
       `}</style>
     </div>
