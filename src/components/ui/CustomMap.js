@@ -1,20 +1,10 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { CONTACTS } from '@/constants/contact';
-
-// Componente para aplicar filtros customizados ao mapa (Organic/Green look)
-function MapStyle() {
-  const map = useMap();
-  useEffect(() => {
-    const container = map.getContainer();
-    container.style.filter = 'saturate(1.2) hue-rotate(85deg) brightness(0.9) contrast(1.1)';
-  }, [map]);
-  return null;
-}
 
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
@@ -34,68 +24,61 @@ export default function CustomMap() {
     });
   }, []);
 
-  if (!isMounted) return <div className="w-full h-full bg-eco-green/5 animate-pulse rounded-[4rem]" />;
+  if (!isMounted) return <div className="w-full h-full bg-slate-50 animate-pulse rounded-[4rem]" />;
 
-  // Criar ícone customizado Vibrante
+  // Criar ícone customizado Simples e Elegante
   const customIcon = new L.DivIcon({
     className: 'custom-div-icon',
-    html: `<div class="w-12 h-12 bg-white rounded-2xl shadow-2xl flex items-center justify-center border-4 border-eco-green animate-bounce">
-            <div class="w-4 h-4 bg-eco-green rounded-full"></div>
-            <div class="absolute -inset-2 bg-eco-green/20 rounded-3xl animate-ping"></div>
+    html: `<div class="w-10 h-10 bg-eco-green rounded-full shadow-xl flex items-center justify-center border-4 border-white animate-pulse">
+            <div class="w-2 h-2 bg-white rounded-full"></div>
            </div>`,
-    iconSize: [48, 48],
-    iconAnchor: [24, 48],
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
   });
 
   return (
-    <div className="w-full h-full relative group">
+    <div className="w-full h-full relative">
       <MapContainer 
         center={position} 
-        zoom={14} 
+        zoom={15} 
         scrollWheelZoom={false}
         className="w-full h-full rounded-[4rem] overflow-hidden z-0"
       >
-        {/* Tiles Premium (Voyager Style - Light & Clean) */}
+        {/* Tiles Super-Simples e Limpas (CartoDB Positron) */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        
-        <MapStyle />
 
         <Marker position={position} icon={customIcon}>
-          <Popup className="custom-popup">
-            <div className="p-2 text-center">
-              <h3 className="font-bold text-slate-900 mb-1">20Recolher HQ</h3>
-              <p className="text-xs text-slate-500 italic">Onde a tecnologia ganha vida.</p>
+          <Popup className="simple-popup">
+            <div className="p-1 text-center font-sans">
+              <h3 className="font-bold text-slate-900">20Recolher</h3>
+              <p className="text-[10px] text-slate-500 mb-2">Zona Industrial de Cantanhede</p>
               <a 
                 href={CONTACTS.googleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="mt-3 inline-block px-4 py-1.5 bg-eco-green text-white text-[10px] font-bold uppercase rounded-lg"
+                className="text-[10px] font-bold text-eco-green hover:underline uppercase"
               >
-                Abrir GPS
+                Como Chegar →
               </a>
             </div>
           </Popup>
         </Marker>
       </MapContainer>
 
-      {/* Overlay Glass effect for interaction hint */}
-      <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-slate-900/5 rounded-[4rem]" />
+      {/* Overlay Border para acabamento premium */}
+      <div className="absolute inset-0 pointer-events-none border border-slate-200/50 rounded-[4rem]" />
       
       <style jsx global>{`
-        .custom-popup .leaflet-popup-content-wrapper {
-          border-radius: 1.5rem;
-          padding: 8px;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-          border: 1px solid rgba(34,197,94,0.1);
-        }
-        .custom-popup .leaflet-popup-tip {
-          background: white;
+        .simple-popup .leaflet-popup-content-wrapper {
+          border-radius: 1rem;
+          padding: 4px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
         .leaflet-container {
-          background: #f0f4f0 !important;
+          background: #f8fafc !important;
         }
       `}</style>
     </div>
