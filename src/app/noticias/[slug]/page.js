@@ -144,39 +144,6 @@ export default async function ArtigoPage({ params }) {
                 dangerouslySetInnerHTML={{ __html: noticia.conteudo }}
               />
 
-              <style jsx global>{`
-                .article-content {
-                  font-size: 1.125rem;
-                  line-height: 1.8;
-                  color: #334155;
-                }
-                .article-content h1 { font-size: 3rem; font-weight: 900; color: #0f172a; margin-top: 3.5rem; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: -0.02em; }
-                .article-content h2 { font-size: 2.25rem; font-weight: 900; color: #0f172a; margin-top: 3rem; margin-bottom: 1.25rem; line-height: 1.2; letter-spacing: -0.02em; }
-                .article-content h3 { font-size: 1.5rem; font-weight: 800; color: #1e293b; margin-top: 2.5rem; margin-bottom: 1rem; }
-                .article-content p { margin-bottom: 1.5rem; }
-                .article-content p:first-of-type { font-size: 1.25rem; color: #1e293b; font-weight: 500; line-height: 1.6; }
-                .article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
-                .article-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
-                .article-content li { margin-bottom: 0.75rem; }
-                .article-content blockquote { 
-                  border-left: 4px solid #10b981; 
-                  padding: 2.5rem 3rem; 
-                  background: #f8fafc; 
-                  border-radius: 0 2rem 2rem 0; 
-                  font-style: italic; 
-                  color: #0f172a; 
-                  margin: 3rem 0; 
-                  font-size: 1.875rem; 
-                  font-weight: 700; 
-                  line-height: 1.3;
-                  letter-spacing: -0.02em;
-                }
-                .article-content a { color: #059669; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; transition: all 0.2s; }
-                .article-content a:hover { color: #047857; background: #ecfdf5; }
-                .article-content img { border-radius: 2rem; margin: 3.5rem 0; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; }
-                .article-content strong { color: #0f172a; font-weight: 800; }
-              `}</style>
-
               {/* Author Footer & Mobile Share */}
               <footer className="mt-24 pt-16 border-t border-slate-100">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-12 bg-slate-50/80 backdrop-blur-sm p-10 md:p-14 rounded-[3rem] border border-slate-100/50">

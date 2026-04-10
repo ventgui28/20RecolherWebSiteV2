@@ -1,18 +1,17 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight } from 'lucide-react';
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { CONTACTS } from "@/constants/contact";
 
 export default function ContactPage() {
   const contactItems = [
-    { label: "Onde estamos", value: CONTACTS.address, icon: MapPin },
-    { label: "Linha Direta", value: CONTACTS.phone, icon: Phone },
-    { label: "E-mail Geral", value: CONTACTS.email, icon: Mail },
-    { label: "Disponibilidade", value: CONTACTS.workingHours, icon: Clock },
+    { label: "Sede em Cantanhede", value: CONTACTS.address, icon: MapPin, delay: 0.1 },
+    { label: "Linha de Atendimento", value: CONTACTS.phone, icon: Phone, delay: 0.2 },
+    { label: "E-mail Institucional", value: CONTACTS.email, icon: Mail, delay: 0.3 },
+    { label: "Horário de Operação", value: CONTACTS.workingHours, icon: Clock, delay: 0.4 },
   ];
 
   const services = [
@@ -27,52 +26,71 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="py-24 md:py-36 bg-green-mist bg-grain overflow-hidden relative min-h-screen">
-      {/* Background Elements - Optimized Blobs (Removed pulse for better GPU performance) */}
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-primary-green/5 rounded-full blur-[140px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[120px] translate-x-1/4 translate-y-1/4 pointer-events-none" />
+    <div className="relative min-h-screen bg-[#F8FAFC] overflow-hidden">
+      {/* Liquid Background Elements */}
+      <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-primary-green/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-emerald-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <Container className="relative z-10">
-        <SectionHeading 
-          centered
-          title="Vamos Conversar?"
-          subtitle="A nossa equipa técnica está disponível para responder às suas questões e fornecer orçamentos detalhados em menos de 24 horas."
-        />
+      <Container className="pt-32 pb-24 md:pt-48 md:pb-36 relative z-10">
+        {/* Editorial Hero Header */}
+        <header className="max-w-4xl mb-24 md:mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+              Contacto Direto
+            </span>
+            <h1 className="text-6xl md:text-8xl font-heading font-bold text-slate-900 leading-[0.95] tracking-[-0.04em] mb-10">
+              Vamos projetar o <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green to-emerald-600">seu futuro sustentável.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl">
+              Equipa técnica especializada pronta para responder ao seu pedido em menos de 24 horas úteis.
+            </p>
+          </motion.div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 items-start mt-16 md:mt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 xl:gap-32 items-start">
           
-          {/* Column 1: Info & Map */}
-          <div className="lg:col-span-5 space-y-16">
+          {/* Column 1: Editorial Info & Map */}
+          <div className="space-y-20">
             
             {/* Contact Details Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            <div className="space-y-4">
               {contactItems.map((item, i) => (
                 <motion.div 
                   key={i} 
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className="group flex items-center gap-6 p-8 rounded-[2.5rem] bg-white/40 hover:bg-white transition-all duration-700 border border-white/20 hover:border-primary-green/20 hover:shadow-[0_20px_40px_-15px_rgba(14,103,44,0.08)] will-change-transform"
+                  transition={{ delay: item.delay, duration: 0.8 }}
+                  className="group flex items-center justify-between p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-emerald-500/20 hover:shadow-[0_20px_50px_-12px_rgba(16,185,129,0.1)] transition-all duration-500"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-green-50 group-hover:bg-primary-green group-hover:text-white transition-all duration-700 shrink-0">
-                    <item.icon size={22} strokeWidth={1.5} />
+                  <div className="flex items-center gap-6">
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                      <item.icon size={20} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{item.label}</p>
+                      <p className="text-lg font-bold text-slate-800 tracking-tight">{item.value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] mb-1">{item.label}</p>
-                    <p className="text-lg font-bold text-dark-green leading-tight">{item.value}</p>
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <ArrowRight className="text-emerald-500" size={20} />
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Map Card - Optimized Style & Loading */}
+            {/* Map Section with Glass Frame */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative h-[400px] w-full rounded-[3.5rem] overflow-hidden shadow-2xl border-[6px] border-white group will-change-transform"
+              className="relative aspect-square md:aspect-video lg:aspect-square w-full rounded-[3rem] overflow-hidden shadow-2xl border-[8px] border-white group"
             >
               <iframe
                 src={CONTACTS.mapsIframe}
@@ -82,101 +100,99 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[0.4] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
+                className="grayscale-[0.2] opacity-95 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100"
               ></iframe>
-              <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-dark-green/5 rounded-[3.5rem]" />
+              <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-slate-900/5 rounded-[3rem]" />
               
-              {/* Overlay Label - Simplified for performance */}
-              <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white flex items-center gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                <div className="w-2 h-2 bg-primary-green rounded-full" />
-                <span className="text-xs font-black text-dark-green uppercase tracking-widest">Sede em Cantanhede</span>
+              <div className="absolute bottom-10 left-10 right-10 p-6 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 flex items-center justify-between transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
+                  <span className="text-xs font-black text-slate-800 uppercase tracking-widest">Sede Principal</span>
+                </div>
+                <Button variant="outline" className="h-10 px-4 text-[10px] rounded-lg">Ver no Google Maps</Button>
               </div>
             </motion.div>
           </div>
 
-          {/* Column 2: Advanced Form - Optimized Glassmorphism */}
+          {/* Column 2: The Liquid Form */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="lg:col-span-7 bg-white/60 backdrop-blur-xl rounded-[4rem] p-10 md:p-16 lg:p-20 shadow-[0_60px_120px_-30px_rgba(14,103,44,0.15)] border border-white/50 relative overflow-hidden will-change-transform"
+            className="bg-white rounded-[3.5rem] p-10 md:p-16 xl:p-20 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.08)] border border-slate-100 relative"
           >
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-12">
-                <div className="w-12 h-1 bg-primary-green rounded-full" />
-                <h2 className="text-4xl font-heading text-dark-green">Pedido de Orçamento</h2>
+            <div className="mb-16">
+              <h2 className="text-4xl font-heading font-bold text-slate-900 tracking-tight mb-4">Novo Orçamento</h2>
+              <p className="text-slate-500 font-medium">Preencha os dados abaixo e entraremos em contacto brevemente.</p>
+            </div>
+            
+            <form className="space-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Identificação</label>
+                  <input
+                    type="text"
+                    className="w-full px-0 py-4 bg-transparent border-b-2 border-slate-100 focus:border-emerald-500 outline-none transition-all font-bold text-slate-900 text-lg placeholder:text-slate-300"
+                    placeholder="Nome ou Empresa"
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">E-mail para Resposta</label>
+                  <input
+                    type="email"
+                    className="w-full px-0 py-4 bg-transparent border-b-2 border-slate-100 focus:border-emerald-500 outline-none transition-all font-bold text-slate-900 text-lg placeholder:text-slate-300"
+                    placeholder="email@exemplo.pt"
+                  />
+                </div>
               </div>
               
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Nome ou Empresa</label>
-                    <input
-                      type="text"
-                      className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
-                      placeholder="Identifique-se"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Contacto E-mail</label>
-                    <input
-                      type="email"
-                      className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400"
-                      placeholder="email@contacto.pt"
-                    />
-                  </div>
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Categoria de Serviço</label>
+                <div className="relative group">
+                  <select className="w-full px-0 py-4 bg-transparent border-b-2 border-slate-100 focus:border-emerald-500 outline-none transition-all font-bold text-slate-900 text-lg appearance-none cursor-pointer">
+                    {services.map((service, idx) => (
+                      <option key={idx}>{service}</option>
+                    ))}
+                  </select>
+                  <ChevronRight className="absolute right-0 top-1/2 -translate-y-1/2 rotate-90 text-slate-400 pointer-events-none transition-transform group-hover:scale-110" size={18} />
                 </div>
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Detalhes do Pedido</label>
+                <textarea
+                  className="w-full px-0 py-4 bg-transparent border-b-2 border-slate-100 focus:border-emerald-500 outline-none transition-all font-bold text-slate-900 text-lg placeholder:text-slate-300 h-32 resize-none leading-relaxed"
+                  placeholder="Descreva brevemente os resíduos e quantidades..."
+                ></textarea>
+              </div>
+
+              {/* Photo Upload - Minimal Style */}
+              <div className="space-y-4">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Fotografias (Recomendado)</label>
+                <label className="flex items-center gap-6 p-6 border-2 border-dashed border-slate-100 rounded-2xl hover:border-emerald-500/30 hover:bg-emerald-50/10 cursor-pointer transition-all group">
+                  <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-all">
+                    <Upload size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-700">Anexar ficheiros</p>
+                    <p className="text-xs text-slate-400">Arraste para aqui ou clique para selecionar</p>
+                  </div>
+                  <input type="file" className="hidden" multiple accept="image/*" />
+                </label>
+              </div>
+
+              <div className="pt-6">
+                <Button className="w-full h-20 text-lg font-bold rounded-2xl bg-slate-900 hover:bg-emerald-600 shadow-xl hover:shadow-emerald-500/20 transition-all duration-500 flex items-center justify-center gap-4">
+                  Enviar Pedido
+                  <Send className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" size={20} strokeWidth={2} />
+                </Button>
                 
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Serviço Pretendido</label>
-                  <div className="relative group">
-                    <select className="w-full px-8 py-5 rounded-2xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green appearance-none cursor-pointer">
-                      {services.map((service, idx) => (
-                        <option key={idx}>{service}</option>
-                      ))}
-                    </select>
-                    <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none transition-transform group-hover:scale-110" size={18} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Descrição dos Resíduos</label>
-                  <textarea
-                    className="w-full px-8 py-6 rounded-3xl bg-white/80 border border-dark-green/10 focus:border-primary-green focus:bg-white focus:ring-4 focus:ring-green-100 outline-none transition-all font-bold text-dark-green placeholder:text-gray-400 h-44 resize-none leading-relaxed"
-                    placeholder="Descreva a quantidade aproximada e o estado dos equipamentos..."
-                  ></textarea>
-                </div>
-
-                {/* Advanced: Photo Upload */}
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-primary-green/60 uppercase tracking-[0.2em] ml-2">Anexar Fotografias (Opcional)</label>
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-dark-green/20 rounded-3xl bg-white/40 hover:bg-white hover:border-primary-green/30 cursor-pointer transition-all group">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Upload className="text-primary-green/40 group-hover:text-primary-green mb-2 transition-colors" size={24} />
-                      <p className="text-xs font-bold text-gray-400 group-hover:text-dark-green transition-colors uppercase tracking-widest">Clique para selecionar imagens</p>
-                    </div>
-                    <input type="file" className="hidden" multiple accept="image/*" />
-                  </label>
-                </div>
-
-                <div className="pt-6">
-                  <Button className="w-full h-24 text-2xl font-black shadow-[0_30px_60px_-15px_rgba(14,103,44,0.3)] hover:shadow-[0_40px_80px_-20px_rgba(14,103,44,0.4)] hover:scale-[1.02] active:scale-[0.98] transform transition-all group flex items-center justify-center gap-4">
-                    Enviar Pedido de Orçamento
-                    <Send className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" size={24} strokeWidth={2.5} />
-                  </Button>
-                  
-                  <div className="flex items-center justify-center gap-4 mt-10">
-                    <div className="h-px flex-1 bg-green-100" />
-                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em]">Resposta em 24h</p>
-                    <div className="h-px flex-1 bg-green-100" />
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            {/* Ambient detail inside the form */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <p className="text-center mt-8 text-[10px] text-slate-400 font-black uppercase tracking-[0.3em]">
+                  Compromisso de resposta em 24h
+                </p>
+              </div>
+            </form>
           </motion.div>
         </div>
       </Container>
