@@ -9,8 +9,8 @@ import { CONTACTS } from '@/constants/contact';
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
   
-  // Localização exata da 20recolher (Zona Industrial Núcleo 1)
-  const position = [40.3545, -8.6085];
+  // Localização exata da 20recolher (Núcleo 1, Lote 2)
+  const position = [40.3611, -8.6055];
 
   useEffect(() => {
     setIsMounted(true);
