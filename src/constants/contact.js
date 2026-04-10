@@ -6,5 +6,6 @@ export const CONTACTS = {
   social: [
     { name: "Facebook", url: "https://www.facebook.com/20Recolher?locale=pt_PT" }
   ],
-  mapsIframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.567894561234!2d-8.5945678!3d40.3456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22300000000000%3A0x00000000000000!2sZona%20Industrial%20de%20Cantanhede!5e0!3m2!1spt-PT!2spt!4v1700000000000!5m2!1spt-PT!2spt"
+  mapsIframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.567894561234!2d-8.5945678!3d40.3456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22300000000000%3A0x00000000000000!2sZona%20Industrial%20de%20Cantanhede!5e0!3m2!1spt-PT!2spt!4v1700000000000!5m2!1spt-PT!2spt",
+  googleMapsUrl: "https://maps.app.goo.gl/rzhsuWxZicpQq9hu5"
 };

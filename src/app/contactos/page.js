@@ -101,13 +101,13 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Map Section - Organic Frame */}
+            {/* Map Section - Organic Biophilic Glass Frame */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-video rounded-[3.5rem] overflow-hidden border-8 border-white shadow-2xl group"
+              className="relative aspect-video rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)] group"
             >
               <iframe
                 src={CONTACTS.mapsIframe}
@@ -117,29 +117,35 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="opacity-90 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="opacity-80 group-hover:opacity-100 transition-all duration-1000 scale-110 group-hover:scale-100 contrast-[1.1] saturate-[1.1]"
               ></iframe>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-eco-emerald/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Overlay Gradient for depth */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-eco-green/10 via-transparent to-eco-lime/5 pointer-events-none" />
               
-              <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/95 backdrop-blur-md rounded-3xl border border-white shadow-xl flex items-center justify-between transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-eco-green/10 rounded-xl text-eco-green">
-                    <Recycle size={20} className="animate-spin-slow" />
+              {/* Floating Glass Control Panel */}
+              <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/90 backdrop-blur-2xl rounded-[3rem] border border-white/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                <div className="flex items-center gap-5">
+                  <div className="relative">
+                    <div className="w-14 h-14 bg-eco-green/10 rounded-2xl flex items-center justify-center text-eco-green">
+                      <MapPin size={24} />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-eco-green rounded-full border-2 border-white animate-bounce" />
                   </div>
-                  <div className="space-y-0.5">
-                    <p className="text-[10px] font-bold text-eco-green uppercase tracking-widest">Ponto de Valorização</p>
-                    <p className="text-slate-800 font-bold">Cantanhede, Portugal</p>
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black text-eco-emerald uppercase tracking-[0.3em]">Centro de Operações</p>
+                    <p className="text-slate-900 font-black text-lg">Cantanhede, Portugal</p>
                   </div>
                 </div>
+                
                 <a 
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACTS.address)}`} 
+                  href={CONTACTS.googleMapsUrl}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-eco-green text-white rounded-xl font-bold text-xs hover:bg-eco-emerald transition-colors flex items-center gap-2"
+                  className="w-full md:w-auto px-8 h-16 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-eco-green hover:shadow-xl hover:shadow-eco-green/20 transition-all duration-500 flex items-center justify-center gap-3 group/btn"
                 >
-                  Abrir Mapa
-                  <ExternalLink size={14} />
+                  Abrir no Google Maps
+                  <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                 </a>
               </div>
             </motion.div>
