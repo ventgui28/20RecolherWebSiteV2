@@ -32,7 +32,9 @@ const satelliteStyle = {
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const mapRef = useRef();
+  const containerRef = useRef();
   
   // Coordenadas exatas fornecidas pelo utilizador (40°21'17.1"N 8°36'17.5"W)
   const longitude = -8.604861;
@@ -40,31 +42,48 @@ export default function CustomMap() {
 
   useEffect(() => {
     setIsMounted(true);
-
-    // Pequeno delay para garantir que o mapa está pronto antes de iniciar a animação
-    const timer = setTimeout(() => {
-      if (mapRef.current) {
-        mapRef.current.getMap().flyTo({
-          zoom: 16,
-          duration: 4000, // Animação suave de 4 segundos
-          essential: true
-        });
-      }
-    }, 800);
-
-    return () => clearTimeout(timer);
   }, []);
+
+  // Intersection Observer para disparar a animação apenas quando visível
+  useEffect(() => {
+    if (!isMounted || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && mapRef.current) {
+          // Pequeno delay após entrar no viewport para suavidade
+          setTimeout(() => {
+            if (mapRef.current) {
+              mapRef.current.getMap().flyTo({
+                zoom: 16,
+                duration: 4000,
+                essential: true
+              });
+              setHasAnimated(true);
+            }
+          }, 500);
+        }
+      },
+      { threshold: 0.3 } // Dispara quando 30% do mapa estiver visível
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isMounted, hasAnimated]);
 
   if (!isMounted) return <div className="w-full h-full bg-slate-900 animate-pulse rounded-[4rem]" />;
 
   return (
-    <div className="w-full h-full relative">
+    <div ref={containerRef} className="w-full h-full relative">
       <Map
         ref={mapRef}
         initialViewState={{
           longitude: longitude,
           latitude: latitude,
-          zoom: 13, // Começa mais afastado para a animação
+          zoom: 13,
           pitch: 0,
           bearing: 0
         }}
@@ -84,15 +103,12 @@ export default function CustomMap() {
           }}
         >
           <div className="group/pin cursor-pointer relative">
-            {/* Efeito de Brilho (Glow) para destacar sobre o satélite */}
             <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
             
-            {/* Marcador Vibrante */}
             <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
               <div className="w-3 h-3 bg-white rounded-full animate-ping" />
             </div>
             
-            {/* Sombra projetada */}
             <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
           </div>
         </Marker>
@@ -122,7 +138,6 @@ export default function CustomMap() {
         )}
       </Map>
 
-      {/* Overlay Glass Border para contraste com o mapa escuro */}
       <div className="absolute inset-0 pointer-events-none border-[3px] border-white/20 rounded-[4rem] ring-1 ring-inset ring-black/10" />
 
       <style jsx global>{`
