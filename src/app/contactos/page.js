@@ -33,27 +33,33 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-white font-body-organic overflow-hidden">
-      {/* Vibrant Organic Background Elements */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          rotate: [0, 90, 0],
-          x: [0, 50, 0]
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-eco-lime/20 rounded-full blur-[120px] pointer-events-none" 
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.3, 1],
-          rotate: [0, -90, 0],
-          y: [0, 100, 0]
-        }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-eco-emerald/15 rounded-full blur-[150px] pointer-events-none" 
-      />
-      <div className="absolute top-[20%] right-[-5%] w-[40vw] h-[40vw] bg-eco-yellow/10 rounded-full blur-[100px] pointer-events-none" />
+    <div className="relative min-h-screen bg-[#fcfdfc] font-body-organic overflow-hidden">
+      {/* Immersive Mesh Gradient Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Animated Mesh Blobs */}
+        <motion.div 
+          animate={{ 
+            x: [-100, 100, -100],
+            y: [-50, 50, -50],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[20%] -left-[10%] w-[100vw] h-[100vw] bg-gradient-radial from-eco-green/20 via-eco-emerald/5 to-transparent rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            x: [100, -100, 100],
+            y: [50, -50, 50],
+            scale: [1.2, 1, 1.2],
+          }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-[20%] -right-[10%] w-[90vw] h-[90vw] bg-gradient-radial from-eco-lime/15 via-eco-teal/5 to-transparent rounded-full blur-[150px]" 
+        />
+        <div className="absolute top-[20%] right-[10%] w-[50vw] h-[50vw] bg-eco-yellow/10 rounded-full blur-[100px]" />
+        
+        {/* Noise Texture Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/p6.png')]" />
+      </div>
 
       <Container className="pt-24 pb-32 relative z-10">
         {/* Vibrant Hero Header */}
