@@ -4,6 +4,23 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Refinação de Interação: Mapa de Contactos)
+### 💬 O que conversámos (Intenção)
+Para simplificar a experiência do utilizador na página de **Contactos**, decidimos remover a camada de interação (Floating Glass Control Panel) que surgia ao passar o rato sobre o mapa. O objetivo era tornar o mapa mais limpo e direto, mantendo apenas a funcionalidade de clique no marcador (pin) para abrir o popup de informações e o botão de navegação para o Google Maps.
+
+### 🚀 O que mudou no Site (Execução)
+- **Simplificação de Interação no Mapa:**
+  - Remoção total do painel de vidro flutuante (`Floating Glass Control Panel`) em `src/app/contactos/page.js`.
+  - Limpeza das classes de `group` no contentor do mapa para eliminar estados de hover globais desnecessários.
+- **Manutenção de Funcionalidades Críticas:**
+  - O marcador vibrante com animação de pulso e o seu popup interativo (`Popup`) permanecem ativos e funcionais via clique.
+  - O efeito de escala local no pin (`group-hover/pin`) foi mantido para fornecer feedback visual ao utilizador antes do clique.
+
+### 🎯 Estado da Entrega
+- **Mapa de Contactos:** [OTIMIZADO] Interface mais limpa e focada na funcionalidade de clique.
+
+---
+
 ## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (UI/UX Pro Max - Premium Minimalist Bento Grid)
 ### 💬 O que conversámos (Intenção)
 Nesta sessão, o utilizador deu ordens explícitas para ignorar as regras anteriores de design (baseadas no verde da marca) e seguir estritamente as recomendações da skill **UI/UX Pro Max**. O objetivo foi elevar a página de **Contactos** para um padrão de luxo industrial, utilizando a estética "Liquid Glass" e o padrão "Bento Grid Showcase" para comunicar exclusividade e profissionalismo.

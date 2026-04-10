@@ -5,11 +5,35 @@ import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { CONTACTS } from '@/constants/contact';
 
+// Estilo customizado de Satélite usando Esri World Imagery
+const satelliteStyle = {
+  version: 8,
+  sources: {
+    'esri-satellite': {
+      type: 'raster',
+      tiles: [
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+      ],
+      tileSize: 256,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community'
+    }
+  },
+  layers: [
+    {
+      id: 'satellite',
+      type: 'raster',
+      source: 'esri-satellite',
+      minzoom: 0,
+      maxzoom: 20
+    }
+  ]
+};
+
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   
-  // Coordenadas exatas fornecidas (MapLibre usa [longitude, latitude])
+  // Coordenadas exatas fornecidas pelo utilizador (40°21'17.1"N 8°36'17.5"W)
   const longitude = -8.604861;
   const latitude = 40.35475;
 
@@ -17,20 +41,19 @@ export default function CustomMap() {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return <div className="w-full h-full bg-slate-50 animate-pulse rounded-[4rem]" />;
+  if (!isMounted) return <div className="w-full h-full bg-slate-900 animate-pulse rounded-[4rem]" />;
 
   return (
-    <div className="w-full h-full relative group">
+    <div className="w-full h-full relative">
       <Map
         initialViewState={{
           longitude: longitude,
           latitude: latitude,
-          zoom: 15,
-          pitch: 45,
-          bearing: -17.6
+          zoom: 18, // Zoom próximo para ver o pavilhão
+          pitch: 0,
+          bearing: 0
         }}
-        // Estilo vetorial gratuito e premium da CartoDB (Positron)
-        mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+        mapStyle={satelliteStyle}
         className="w-full h-full rounded-[4rem] overflow-hidden"
         scrollZoom={false}
       >
@@ -45,11 +68,17 @@ export default function CustomMap() {
             setShowPopup(true);
           }}
         >
-          <div className="group/pin cursor-pointer">
-            <div className="w-12 h-12 bg-eco-green rounded-2xl shadow-2xl flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
-              <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
+          <div className="group/pin cursor-pointer relative">
+            {/* Efeito de Brilho (Glow) para destacar sobre o satélite */}
+            <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
+            
+            {/* Marcador Vibrante */}
+            <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
+              <div className="w-3 h-3 bg-white rounded-full animate-ping" />
             </div>
-            <div className="w-4 h-1.5 bg-black/20 rounded-full blur-sm mx-auto mt-1" />
+            
+            {/* Sombra projetada */}
+            <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
           </div>
         </Marker>
 
@@ -63,41 +92,36 @@ export default function CustomMap() {
             className="premium-popup"
           >
             <div className="p-3 text-center min-w-[150px]">
-              <h3 className="font-bold text-slate-900 text-sm mb-1 font-sans">20Recolher</h3>
-              <p className="text-[10px] text-slate-500 mb-3 leading-tight font-sans">Zona Industrial de Cantanhede</p>
+              <h3 className="font-bold text-slate-900 text-sm mb-1 font-sans">20Recolher HQ</h3>
+              <p className="text-[10px] text-slate-500 mb-3 leading-tight font-sans italic">Instalações centrais.</p>
               <a 
                 href={CONTACTS.googleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block w-full py-2 bg-eco-green text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-eco-emerald transition-colors font-sans"
+                className="inline-block w-full py-2 bg-eco-green text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-eco-emerald transition-colors font-sans shadow-lg shadow-eco-green/20"
               >
-                Abrir GPS
+                Como Chegar
               </a>
             </div>
           </Popup>
         )}
       </Map>
 
-      {/* Overlay Glass Border */}
-      <div className="absolute inset-0 pointer-events-none border border-slate-200/50 rounded-[4rem] ring-1 ring-inset ring-white/20" />
+      {/* Overlay Glass Border para contraste com o mapa escuro */}
+      <div className="absolute inset-0 pointer-events-none border-[3px] border-white/20 rounded-[4rem] ring-1 ring-inset ring-black/10" />
 
       <style jsx global>{`
         .maplibregl-popup-content {
           padding: 0;
           border-radius: 1.5rem;
           overflow: hidden;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
           border: 1px solid rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(10px);
-          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          background: rgba(255, 255, 255, 0.9);
         }
         .maplibregl-popup-tip {
-          border-top-color: rgba(255, 255, 255, 0.95) !important;
-        }
-        .maplibregl-ctrl-group {
-          border-radius: 1rem !important;
-          border: none !important;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+          border-top-color: rgba(255, 255, 255, 0.9) !important;
         }
       `}</style>
     </div>

@@ -147,35 +147,9 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-[4/5] md:aspect-[4/3] rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)] group"
+              className="relative aspect-[4/5] md:aspect-[4/3] rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)]"
             >
               <CustomMap />
-              
-              {/* Floating Glass Control Panel */}
-              <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/90 backdrop-blur-2xl rounded-[3rem] border border-white/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 z-10">
-                <div className="flex items-center gap-5">
-                  <div className="relative">
-                    <div className="w-14 h-14 bg-eco-green/10 rounded-2xl flex items-center justify-center text-eco-green">
-                      <MapPin size={24} />
-                    </div>
-                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-eco-green rounded-full border-2 border-white animate-bounce" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-black text-eco-emerald uppercase tracking-[0.3em]">Centro de Operações</p>
-                    <p className="text-slate-900 font-black text-lg">Cantanhede, Portugal</p>
-                  </div>
-                </div>
-                
-                <a 
-                  href={CONTACTS.googleMapsUrl}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full md:w-auto px-8 h-16 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-eco-green hover:shadow-xl hover:shadow-eco-green/20 transition-all duration-500 flex items-center justify-center gap-3 group/btn"
-                >
-                  Abrir no Google Maps
-                  <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                </a>
-              </div>
             </motion.div>
           </div>
 
