@@ -107,7 +107,7 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-video rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)] group"
+              className="relative aspect-[4/5] md:aspect-[4/3] rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(34,197,94,0.2)] group"
             >
               <iframe
                 src={CONTACTS.mapsIframe}
