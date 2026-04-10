@@ -41,7 +41,15 @@ export default function NoticiasGrid({ noticias }) {
   }, [currentPage]);
 
   const categories = useMemo(() => {
-    return ['Todas', ...new Set(noticias.map(n => n.categoria))];
+    const counts = noticias.reduce((acc, n) => {
+      acc[n.categoria] = (acc[n.categoria] || 0) + 1;
+      return acc;
+    }, {});
+    
+    return [
+      { name: 'Todas', count: noticias.length },
+      ...Object.entries(counts).map(([name, count]) => ({ name, count }))
+    ];
   }, [noticias]);
 
   const filteredNoticias = useMemo(() => {
@@ -78,46 +86,60 @@ export default function NoticiasGrid({ noticias }) {
 
   return (
     <div id="noticias-grid-start" className="pt-16 pb-32 space-y-16 lg:space-y-24">
-      {/* Professional Filter Bar & Search */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-b border-slate-100 pb-12">
-        <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-12">
+      {/* Premium Filter & Search Bar */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 border-b border-slate-100 pb-16">
+        <div className="space-y-6 flex-grow max-w-4xl">
           <div className="flex items-center gap-4 text-slate-900">
-            <div className="w-10 h-10 bg-slate-900 text-white rounded-lg flex items-center justify-center">
-              <Filter size={18} />
+            <div className="w-12 h-12 bg-emerald-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-900/20">
+              <Filter size={20} />
             </div>
             <div>
-              <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400">Filtrar por</span>
-              <span className="block text-lg font-bold leading-none">Categorias</span>
+              <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600">Explorar por</span>
+              <span className="block text-2xl font-black text-slate-900 leading-none mt-1">Categorias</span>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {categories.map((cat) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2.5 rounded-lg text-xs font-bold transition-all border ${
-                  activeCategory === cat 
-                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-900/10' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600'
+                key={cat.name}
+                onClick={() => setActiveCategory(cat.name)}
+                className={`group flex items-center gap-3 px-6 py-3.5 rounded-2xl text-xs font-black transition-all duration-300 border ${
+                  activeCategory === cat.name 
+                    ? 'bg-slate-900 border-slate-900 text-white shadow-2xl shadow-slate-900/20 translate-y-[-2px]' 
+                    : 'bg-white border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/30'
                 }`}
               >
-                {cat}
+                {cat.name}
+                <span className={`flex items-center justify-center min-w-[24px] h-6 px-2 rounded-lg text-[10px] transition-colors ${
+                  activeCategory === cat.name
+                    ? 'bg-white/10 text-white'
+                    : 'bg-slate-100 text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-600'
+                }`}>
+                  {cat.count}
+                </span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full lg:w-80">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
-          <input 
-            type="text" 
-            placeholder="Pesquisar artigos..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-100 px-12 py-4 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all placeholder:text-slate-400"
-          />
+        {/* Enhanced Search Bar */}
+        <div className="relative w-full lg:w-96 group">
+          <div className="absolute inset-0 bg-emerald-500/5 blur-2xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
+          <div className="relative">
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-emerald-500 transition-colors" size={20} />
+            <input 
+              type="text" 
+              placeholder="Pesquisar no arquivo..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-slate-50 border border-slate-100 pl-14 pr-6 py-5 rounded-2xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:bg-white focus:border-emerald-200 transition-all placeholder:text-slate-400 shadow-sm"
+            />
+          </div>
+          <div className="mt-3 flex items-center gap-2 px-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Pesquisa em tempo real</span>
+          </div>
         </div>
       </div>
 
