@@ -29,6 +29,17 @@ export default function NoticiasGrid({ noticias }) {
     setCurrentPage(1);
   }, [activeCategory, searchQuery]);
 
+  // Scroll automático para o topo da secção ao mudar de página
+  useEffect(() => {
+    // Apenas faz scroll se não estivermos na primeira renderização ou se a página mudar
+    const section = document.getElementById('noticias-grid-start');
+    if (section) {
+      const yOffset = -100; // Offset para não ficar colado ao topo (considerando a navbar)
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [currentPage]);
+
   const categories = useMemo(() => {
     return ['Todas', ...new Set(noticias.map(n => n.categoria))];
   }, [noticias]);
@@ -66,7 +77,7 @@ export default function NoticiasGrid({ noticias }) {
   const gridItems = showFeatured ? paginatedNoticias.slice(1) : paginatedNoticias;
 
   return (
-    <div className="pt-16 pb-32 space-y-16 lg:space-y-24">
+    <div id="noticias-grid-start" className="pt-16 pb-32 space-y-16 lg:space-y-24">
       {/* Professional Filter Bar & Search */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-b border-slate-100 pb-12">
         <div className="flex flex-col md:flex-row md:items-center gap-8 lg:gap-12">
