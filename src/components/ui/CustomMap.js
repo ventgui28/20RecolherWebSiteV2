@@ -33,6 +33,7 @@ export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [showMarker, setShowMarker] = useState(false);
   const mapRef = useRef();
   const containerRef = useRef();
   
@@ -54,17 +55,25 @@ export default function CustomMap() {
           // Pequeno delay após entrar no viewport para suavidade
           setTimeout(() => {
             if (mapRef.current) {
+              const zoomDuration = 4000;
+              
               mapRef.current.getMap().flyTo({
                 zoom: 16,
-                duration: 4000,
+                duration: zoomDuration,
                 essential: true
               });
+              
               setHasAnimated(true);
+
+              // Mostrar o marcador apenas quando a animação de zoom terminar
+              setTimeout(() => {
+                setShowMarker(true);
+              }, zoomDuration);
             }
           }, 500);
         }
       },
-      { threshold: 0.3 } // Dispara quando 30% do mapa estiver visível
+      { threshold: 0.3 }
     );
 
     if (containerRef.current) {
@@ -93,25 +102,27 @@ export default function CustomMap() {
       >
         <NavigationControl position="top-right" />
 
-        <Marker 
-          longitude={longitude} 
-          latitude={latitude} 
-          anchor="bottom"
-          onClick={e => {
-            e.originalEvent.stopPropagation();
-            setShowPopup(true);
-          }}
-        >
-          <div className="group/pin cursor-pointer relative">
-            <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
-            
-            <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
-              <div className="w-3 h-3 bg-white rounded-full animate-ping" />
+        {showMarker && (
+          <Marker 
+            longitude={longitude} 
+            latitude={latitude} 
+            anchor="bottom"
+            onClick={e => {
+              e.originalEvent.stopPropagation();
+              setShowPopup(true);
+            }}
+          >
+            <div className="group/pin cursor-pointer relative animate-in fade-in zoom-in duration-700">
+              <div className="absolute inset-0 bg-eco-lime/40 blur-xl rounded-full scale-150 animate-pulse" />
+              
+              <div className="relative w-12 h-12 bg-eco-lime rounded-2xl shadow-[0_0_25px_rgba(132,204,22,0.6)] flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
+                <div className="w-3 h-3 bg-white rounded-full animate-ping" />
+              </div>
+              
+              <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
             </div>
-            
-            <div className="w-4 h-1.5 bg-black/40 rounded-full blur-sm mx-auto mt-1" />
-          </div>
-        </Marker>
+          </Marker>
+        )}
 
         {showPopup && (
           <Popup
