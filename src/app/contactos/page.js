@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight, ExternalLink, Leaf, Recycle, ShieldCheck, Zap } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock, Upload, ChevronRight, Send, ArrowRight, ExternalLink, Leaf, Recycle, ShieldCheck, Zap, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { CONTACTS } from "@/constants/contact";
@@ -14,6 +15,32 @@ const CustomMap = dynamic(() => import('@/components/ui/CustomMap'), {
 });
 
 export default function ContactPage() {
+  const [images, setImages] = useState([]);
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    const newImages = files.map(file => ({
+      id: Math.random().toString(36).substr(2, 9),
+      url: URL.createObjectURL(file),
+      file
+    }));
+    setImages(prev => [...prev, ...newImages]);
+    
+    // Resetar o valor do input para permitir selecionar a mesma imagem novamente
+    e.target.value = '';
+  };
+
+  const removeImage = (id) => {
+    setImages(prev => {
+      const filtered = prev.filter(img => img.id !== id);
+      const imageToRemove = prev.find(img => img.id === id);
+      if (imageToRemove) URL.revokeObjectURL(imageToRemove.url);
+      return filtered;
+    });
+  };
+
   const contactItems = [
     { label: "Onde Estamos", value: CONTACTS.address, icon: MapPin, color: "bg-eco-emerald", delay: 0.1 },
     { label: "Atendimento", value: CONTACTS.phone, icon: Phone, color: "bg-eco-green", delay: 0.2 },

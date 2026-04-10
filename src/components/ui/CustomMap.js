@@ -1,84 +1,107 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import Map, { Marker, NavigationControl, Popup } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { CONTACTS } from '@/constants/contact';
+
+// NOTA: Para produção, deves colocar este token no ficheiro .env.local como NEXT_PUBLIC_MAPBOX_TOKEN
+const MAPBOX_TOKEN = "pk.eyJ1IjoiMjByZWNvbGhlciIsImEiOiJjbTlxNXZ6ZmcwMDFqMm5zYmExN3RndDNqIn0.X_X_X_PLACEHOLDER_X_X_X"; 
 
 export default function CustomMap() {
   const [isMounted, setIsMounted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   
-  // Localização exata fornecida pelo utilizador (40°21'17.1"N 8°36'17.5"W)
-  const position = [40.35475, -8.604861];
+  // Coordenadas exatas (Mapbox usa [longitude, latitude])
+  const longitude = -8.604861;
+  const latitude = 40.35475;
 
   useEffect(() => {
     setIsMounted(true);
-    
-    // Fix para ícones do Leaflet que por vezes não carregam em Next.js
-    delete L.Icon.Default.prototype._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-      shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-    });
   }, []);
 
   if (!isMounted) return <div className="w-full h-full bg-slate-50 animate-pulse rounded-[4rem]" />;
 
-  // Criar ícone customizado Simples e Elegante
-  const customIcon = new L.DivIcon({
-    className: 'custom-div-icon',
-    html: `<div class="w-10 h-10 bg-eco-green rounded-full shadow-xl flex items-center justify-center border-4 border-white animate-pulse">
-            <div class="w-2 h-2 bg-white rounded-full"></div>
-           </div>`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-  });
-
   return (
-    <div className="w-full h-full relative">
-      <MapContainer 
-        center={position} 
-        zoom={15} 
-        scrollWheelZoom={false}
-        className="w-full h-full rounded-[4rem] overflow-hidden z-0"
+    <div className="w-full h-full relative group">
+      <Map
+        initialViewState={{
+          longitude: longitude,
+          latitude: latitude,
+          zoom: 15,
+          pitch: 45, // Adiciona perspectiva 3D
+          bearing: -17.6
+        }}
+        mapStyle="mapbox://styles/mapbox/light-v11"
+        mapboxAccessToken={MAPBOX_TOKEN}
+        className="w-full h-full rounded-[4rem] overflow-hidden"
+        scrollZoom={false}
       >
-        {/* Tiles Super-Simples e Limpas (CartoDB Positron) */}
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        />
+        <NavigationControl position="top-right" />
 
-        <Marker position={position} icon={customIcon}>
-          <Popup className="simple-popup">
-            <div className="p-1 text-center font-sans">
-              <h3 className="font-bold text-slate-900">20Recolher</h3>
-              <p className="text-[10px] text-slate-500 mb-2">Zona Industrial de Cantanhede</p>
+        <Marker 
+          longitude={longitude} 
+          latitude={latitude} 
+          anchor="bottom"
+          onClick={e => {
+            e.originalEvent.stopPropagation();
+            setShowPopup(true);
+          }}
+        >
+          <div className="group/pin cursor-pointer">
+            <div className="w-12 h-12 bg-eco-green rounded-2xl shadow-2xl flex items-center justify-center border-4 border-white transform transition-transform group-hover/pin:scale-110 group-hover/pin:-translate-y-1">
+              <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
+            </div>
+            {/* Indicador de sombra */}
+            <div className="w-4 h-1.5 bg-black/20 rounded-full blur-sm mx-auto mt-1" />
+          </div>
+        </Marker>
+
+        {showPopup && (
+          <Popup
+            longitude={longitude}
+            latitude={latitude}
+            anchor="top"
+            onClose={() => setShowPopup(false)}
+            closeButton={false}
+            className="premium-popup"
+          >
+            <div className="p-3 text-center min-w-[150px]">
+              <h3 className="font-bold text-slate-900 text-sm mb-1">20Recolher</h3>
+              <p className="text-[10px] text-slate-500 mb-3 leading-tight">Zona Industrial de Cantanhede</p>
               <a 
                 href={CONTACTS.googleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[10px] font-bold text-eco-green hover:underline uppercase"
+                className="inline-block w-full py-2 bg-eco-green text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-eco-emerald transition-colors"
               >
-                Como Chegar →
+                Abrir GPS
               </a>
             </div>
           </Popup>
-        </Marker>
-      </MapContainer>
+        )}
+      </Map>
 
-      {/* Overlay Border para acabamento premium */}
-      <div className="absolute inset-0 pointer-events-none border border-slate-200/50 rounded-[4rem]" />
-      
+      {/* Overlay Glass Border */}
+      <div className="absolute inset-0 pointer-events-none border border-slate-200/50 rounded-[4rem] ring-1 ring-inset ring-white/20" />
+
       <style jsx global>{`
-        .simple-popup .leaflet-popup-content-wrapper {
-          border-radius: 1rem;
-          padding: 4px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        .mapboxgl-popup-content {
+          padding: 0;
+          border-radius: 1.5rem;
+          overflow: hidden;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.95);
         }
-        .leaflet-container {
-          background: #f8fafc !important;
+        .mapboxgl-popup-tip {
+          border-top-color: rgba(255, 255, 255, 0.95) !important;
+        }
+        .mapboxgl-ctrl-group {
+          border-radius: 1rem !important;
+          border: none !important;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
         }
       `}</style>
     </div>
