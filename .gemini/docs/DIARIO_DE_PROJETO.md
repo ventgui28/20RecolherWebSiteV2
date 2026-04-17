@@ -4,6 +4,30 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium da Sala de Imprensa)
+### 💬 O que conversámos (Intenção)
+Nesta sessão, o utilizador notou que o design da Sala de Imprensa, embora estruturado, utilizava cores genéricas (ardósia e verde esmeralda padrão) que fugiam à estética oficial da **20recolher**. A diretiva foi muito clara: refazer a interface para ter um aspeto premium e moderno ("Liquid Glass / Eco-Premium"), mas usando **estritamente** a paleta de cores estabelecida nos restantes ficheiros (como o `globals.css` e `HomeHero.js`).
+
+### 🚀 O que mudou no Site (Execução)
+- **Hero Imersivo:**
+  - O ecrã de topo (`NoticiasHero`) deixou de ser branco para adotar um fundo denso `dark-green` com textura `bg-grain`.
+  - Tipografia de impacto e contadores (Publicações e Impacto) envolvidos num estilo de "vidro fosco" (`backdrop-blur-md`).
+- **Grelha Consistente:**
+  - Em `NoticiasGrid`, todos os realces em `emerald` foram mapeados para a cor viva da marca: `primary-green`.
+  - O cartão do artigo em "Destaque" mudou de cinzento escuro para `forest-green`, dando-lhe um peso editorial que respeita o branding.
+  - O input de pesquisa brilha agora com a aura do `primary-green`.
+- **Experiência de Leitura (`[slug]/page.js`):**
+  - Integração da paleta oficial em todos os botões, links de regresso ("Sala de Imprensa") e blocos de meta-dados (data/autor).
+  - A secção final de "Artigos Relacionados" adotou o `dark-green` e `bg-grain` para uniformidade visual.
+- **Harmonização do CTA:**
+  - O componente de Newsletter alinhou as cores dos botões (`dark-green` hover `primary-green`) garantindo que nenhuma secção fique desenquadrada do ecossistema.
+
+### 🎯 Estado da Entrega
+- **Identidade Visual:** [RESTAURADA] Design 100% fiel ao esquema de cores corporativo da 20recolher.
+- **UI/UX:** [PREMIUM] Interface moderna e altamente elegante.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Auditoria e Otimização da Sala de Imprensa)
 ### 💬 O que conversámos (Intenção)
 Nesta sessão, o utilizador pediu uma análise profunda da página de Notícias com foco em design, performance, boas práticas e acessibilidade. O objetivo era elevar o site a um nível profissional (Premium / Pro Max) de forma autónoma, garantindo que o layout permanecesse limpo e sem quebrar funcionalidades existentes.

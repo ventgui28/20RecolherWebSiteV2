@@ -73,9 +73,9 @@ export default async function ArtigoPage({ params }) {
             <Link 
               href="/noticias"
               aria-label="Voltar para a sala de imprensa"
-              className="inline-flex items-center gap-3 text-slate-400 hover:text-emerald-600 transition-all mb-12 group"
+              className="inline-flex items-center gap-3 text-slate-400 hover:text-primary-green transition-all mb-12 group"
             >
-              <div className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 group-hover:border-emerald-200 group-hover:bg-emerald-50 transition-colors">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 group-hover:border-primary-green/30 group-hover:bg-primary-green/10 transition-colors">
                 <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               </div>
               <span className="text-xs font-black uppercase tracking-[0.2em]">Sala de Imprensa</span>
@@ -83,19 +83,19 @@ export default async function ArtigoPage({ params }) {
 
             <div className="space-y-12">
               <div className="flex flex-wrap items-center gap-6">
-                <span className="bg-emerald-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg shadow-emerald-900/10">
+                <span className="bg-primary-green text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg shadow-primary-green/20">
                   {noticia.categoria}
                 </span>
                 <div className="flex items-center gap-6 text-slate-400 text-[11px] font-bold uppercase tracking-widest">
                   <div className="flex items-center gap-2.5">
-                    <Calendar size={14} className="text-emerald-500" />
+                    <Calendar size={14} className="text-primary-green" />
                     {new Date(noticia.created_at).toLocaleDateString('pt-PT', { 
                       day: 'numeric', month: 'long', year: 'numeric' 
                     })}
                   </div>
                   <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
                   <div className="flex items-center gap-2.5">
-                    <Clock size={14} className="text-emerald-500" />
+                    <Clock size={14} className="text-primary-green" />
                     {calculateReadingTime(noticia.conteudo)} min de leitura
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default async function ArtigoPage({ params }) {
         {/* Cinematic Cover Image - Ultra Large Layout */}
         <div className="mb-24 px-4 md:px-8">
           <Container size="full">
-            <div className="aspect-[16/9] md:aspect-[21/9] rounded-[3rem] md:rounded-[4rem] overflow-hidden bg-slate-100 shadow-2xl shadow-emerald-900/5 relative border border-slate-100">
+            <div className="aspect-[16/9] md:aspect-[21/9] rounded-[3rem] md:rounded-[4rem] overflow-hidden bg-slate-100 shadow-2xl shadow-dark-green/10 relative border border-slate-100">
               <Image 
                 src={noticia.imagem_url || fallbackImage} 
                 alt={noticia.titulo}
@@ -155,11 +155,11 @@ export default async function ArtigoPage({ params }) {
               <footer className="mt-24 pt-16 border-t border-slate-100">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-12 bg-slate-50/80 backdrop-blur-sm p-10 md:p-14 rounded-[3rem] border border-slate-100/50">
                   <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 bg-white border border-slate-100 rounded-full flex items-center justify-center text-emerald-600 shadow-xl shadow-slate-200/50">
+                    <div className="w-20 h-20 bg-white border border-slate-100 rounded-full flex items-center justify-center text-primary-green shadow-xl shadow-slate-200/50">
                       <User size={32} />
                     </div>
                     <div>
-                      <span className="block text-[11px] text-emerald-600 uppercase tracking-[0.3em] font-black mb-1.5">Publicado por</span>
+                      <span className="block text-[11px] text-primary-green uppercase tracking-[0.3em] font-black mb-1.5">Publicado por</span>
                       <span className="block text-2xl font-black text-slate-900 leading-none">{noticia.autor}</span>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ export default async function ArtigoPage({ params }) {
                      </div>
                      <Link 
                         href="/noticias"
-                        className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors"
+                        className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-primary-green transition-colors"
                      >
                         Ver todos os artigos
                      </Link>
@@ -185,14 +185,14 @@ export default async function ArtigoPage({ params }) {
 
       {/* Related Articles - High End Magazine Layout */}
       {relacionados && relacionados.length > 0 && (
-        <section className="mt-40 pt-32 pb-24 bg-slate-900 text-white rounded-t-[5rem]">
+        <section className="mt-40 pt-32 pb-24 bg-dark-green bg-grain text-white rounded-t-[5rem]">
           <Container size="lg">
             <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-20 gap-8">
               <div>
-                <span className="text-emerald-500 text-[11px] font-black uppercase tracking-[0.4em] mb-6 block">Leituras Recomendadas</span>
+                <span className="text-primary-green text-[11px] font-black uppercase tracking-[0.4em] mb-6 block">Leituras Recomendadas</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none">Artigos Relacionados</h2>
               </div>
-              <Link href="/noticias" className="flex items-center gap-3 text-slate-400 hover:text-white font-bold text-sm uppercase tracking-widest transition-all group border-b-2 border-slate-800 pb-2 hover:border-emerald-500">
+              <Link href="/noticias" className="flex items-center gap-3 text-slate-400 hover:text-white font-bold text-sm uppercase tracking-widest transition-all group border-b-2 border-slate-800 pb-2 hover:border-primary-green">
                 Explorar Sala de Imprensa
                 <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -205,14 +205,14 @@ export default async function ArtigoPage({ params }) {
                   href={`/noticias/${rel.slug}`}
                   className="group flex flex-col h-full bg-transparent"
                 >
-                  <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 bg-slate-800 relative ring-1 ring-white/10 group-hover:ring-emerald-500/50 transition-all duration-500">
+                  <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 bg-forest-green relative ring-1 ring-white/10 group-hover:ring-primary-green/50 transition-all duration-500">
                     <Image 
                       src={rel.imagem_url || fallbackImage} 
                       alt={rel.titulo}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-60 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-green/80 to-transparent opacity-60" />
                     <div className="absolute top-6 left-6">
                       <span className="bg-white/10 backdrop-blur-md text-white text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full border border-white/10">
                         {rel.categoria}
@@ -221,11 +221,11 @@ export default async function ArtigoPage({ params }) {
                   </div>
                   
                   <div className="px-2">
-                    <h3 className="text-2xl font-black text-white mb-4 leading-tight group-hover:text-emerald-400 transition-colors line-clamp-2 tracking-tight">
+                    <h3 className="text-2xl font-black text-white mb-4 leading-tight group-hover:text-primary-green transition-colors line-clamp-2 tracking-tight">
                       {rel.titulo}
                     </h3>
                     <div className="flex items-center gap-3 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
-                      <Calendar size={14} className="text-emerald-500" />
+                      <Calendar size={14} className="text-primary-green" />
                       {new Date(rel.created_at).toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </div>
                   </div>

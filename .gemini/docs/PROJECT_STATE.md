@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 17/04/2026, 13:00:25
+#### Sincronização: 17/04/2026, 14:38:50
 **Commits:**
 ```
+5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
+6cb66ef perf: implementar next/image e revalidação estática nas notícias
 4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
 6854322 feat: implementar centro de apoio com sistema de FAQ interativo
 c27dc97 style: consolidar marca e refinar hierarquia visual nas páginas core
-3ca96c8 security: implementar Content Security Policy (CSP) e Permissions-Policy
-2277ba1 security: implementar honeypot anti-spam no formulário de contactos
 ```
 #### Sincronização:
-#### Sincronização: 17/04/2026, 12:59:43
+#### Sincronização: 17/04/2026, 14:37:54
 **Commits:**
 ```
+6cb66ef perf: implementar next/image e revalidação estática nas notícias
 4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
 6854322 feat: implementar centro de apoio com sistema de FAQ interativo
 c27dc97 style: consolidar marca e refinar hierarquia visual nas páginas core
 3ca96c8 security: implementar Content Security Policy (CSP) e Permissions-Policy
-2277ba1 security: implementar honeypot anti-spam no formulário de contactos
 ```

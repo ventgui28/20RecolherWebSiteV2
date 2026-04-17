@@ -16,10 +16,10 @@ export default function NewsletterCTA() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 mb-4 block">Subscreva as Atualizações</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-4 block">Subscreva as Atualizações</span>
               <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-6">
                 Acompanhe o percurso <br /> 
-                <span className="text-emerald-600">da 20recolher.</span>
+                <span className="text-primary-green">da 20recolher.</span>
               </h2>
               <p className="text-lg text-slate-500 max-w-xl font-medium leading-relaxed">
                 Subscreva para receber em primeira mão as nossas novidades corporativas, novos serviços licenciados e relatórios de impacto ambiental da nossa operação.
@@ -43,14 +43,14 @@ export default function NewsletterCTA() {
                     <input 
                       type="email" 
                       placeholder="exemplo@empresa.com" 
-                      className="w-full bg-slate-50 border border-slate-100 text-slate-900 px-12 py-5 rounded-xl font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all"
+                      className="w-full bg-slate-50 border border-slate-100 text-slate-900 px-12 py-5 rounded-xl font-bold focus:outline-none focus:ring-2 focus:ring-primary-green/20 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-slate-900 hover:bg-emerald-600 text-white font-black py-5 rounded-xl flex items-center justify-center gap-3 transition-all group"
+                  className="w-full bg-dark-green hover:bg-primary-green text-white font-black py-5 rounded-xl flex items-center justify-center gap-3 transition-all group"
                 >
                   Subscrever Boletim
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

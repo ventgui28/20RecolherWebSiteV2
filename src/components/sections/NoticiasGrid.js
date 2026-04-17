@@ -74,12 +74,12 @@ export default function NoticiasGrid({ noticias }) {
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 pb-12 border-b border-slate-100">
         <div className="space-y-8 flex-grow max-w-4xl">
           <div className="flex items-center gap-4 text-slate-900">
-            <div className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-900/20">
+            <div className="w-12 h-12 bg-dark-green text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-dark-green/20">
               <Filter size={20} />
             </div>
             <div>
               <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Filtrar por</span>
-              <span className="block text-3xl font-black text-slate-900 leading-none mt-1 tracking-tight">Categorias</span>
+              <span className="block text-3xl font-black text-dark-green leading-none mt-1 tracking-tight">Categorias</span>
             </div>
           </div>
 
@@ -93,15 +93,15 @@ export default function NoticiasGrid({ noticias }) {
                 }}
                 className={`group flex items-center gap-3 px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 border ${
                   activeCategory === cat.name 
-                    ? 'bg-slate-900 border-slate-900 text-white shadow-lg shadow-slate-900/20 scale-105' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50/50'
+                    ? 'bg-dark-green border-dark-green text-white shadow-lg shadow-dark-green/20 scale-105' 
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-primary-green hover:text-dark-green hover:bg-primary-green/5'
                 }`}
               >
                 {cat.name}
                 <span className={`flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full text-[10px] font-black transition-colors ${
                   activeCategory === cat.name
                     ? 'bg-white/20 text-white'
-                    : 'bg-slate-100 text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-700'
+                    : 'bg-slate-100 text-slate-400 group-hover:bg-primary-green/20 group-hover:text-dark-green'
                 }`}>
                   {cat.count}
                 </span>
@@ -112,16 +112,16 @@ export default function NoticiasGrid({ noticias }) {
 
         {/* Liquid Glass Search Bar */}
         <div className="relative w-full lg:w-96 group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary-green/20 to-lime-green/20 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
           <div className="relative">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors duration-300" size={20} />
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary-green transition-colors duration-300" size={20} />
             <input 
               type="text" 
               placeholder="Pesquisar publicações..." 
               aria-label="Pesquisar publicações"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-50/80 backdrop-blur-xl border border-slate-200/60 pl-16 pr-6 py-4 rounded-full text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:bg-white focus:border-emerald-300 transition-all duration-300 placeholder:text-slate-400 shadow-sm"
+              className="w-full bg-slate-50/80 backdrop-blur-xl border border-slate-200/60 pl-16 pr-6 py-4 rounded-full text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-primary-green/10 focus:bg-white focus:border-primary-green/50 transition-all duration-300 placeholder:text-slate-400 shadow-sm"
             />
           </div>
         </div>
@@ -145,11 +145,11 @@ export default function NoticiasGrid({ noticias }) {
             >
               <Link 
                 href={`/noticias/${featured.slug}`}
-                className="group relative block rounded-[2.5rem] overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl shadow-emerald-900/10"
+                className="group relative block rounded-[2.5rem] overflow-hidden bg-forest-green border border-dark-green shadow-2xl shadow-dark-green/20"
               >
                 {/* Imagem */}
                 <div className="relative aspect-[16/10] lg:aspect-[21/9] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-green via-dark-green/60 to-transparent z-10" />
                   <Image 
                     src={featured.imagem_url || fallbackImage} 
                     alt={featured.titulo}
@@ -158,7 +158,7 @@ export default function NoticiasGrid({ noticias }) {
                     className="object-cover group-hover:scale-105 group-hover:rotate-1 transition-transform duration-[1.5s] ease-out opacity-80"
                   />
                   <div className="absolute top-8 left-8 z-20">
-                    <span className="bg-emerald-500 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg shadow-emerald-900/50 backdrop-blur-md">
+                    <span className="bg-primary-green text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg shadow-dark-green/50 backdrop-blur-md">
                       Destaque
                     </span>
                   </div>
@@ -167,7 +167,7 @@ export default function NoticiasGrid({ noticias }) {
                 {/* Content - Overlapping the image at the bottom */}
                 <div className="absolute bottom-0 left-0 w-full p-8 lg:p-16 z-20">
                   <div className="max-w-4xl">
-                    <div className="flex items-center gap-4 text-emerald-400 text-xs mb-6 font-bold uppercase tracking-widest">
+                    <div className="flex items-center gap-4 text-primary-green text-xs mb-6 font-bold uppercase tracking-widest">
                       <span className="text-white">{featured.categoria}</span>
                       <span className="w-1 h-1 rounded-full bg-slate-500" />
                       <span className="flex items-center gap-1.5 text-slate-300">
@@ -182,7 +182,7 @@ export default function NoticiasGrid({ noticias }) {
                       </span>
                     </div>
                     
-                    <h2 className="text-3xl lg:text-5xl font-black text-white mb-6 leading-[1.1] tracking-tighter group-hover:text-emerald-300 transition-colors duration-300">
+                    <h2 className="text-3xl lg:text-5xl font-black text-white mb-6 leading-[1.1] tracking-tighter group-hover:text-primary-green transition-colors duration-300">
                       {featured.titulo}
                     </h2>
                     
@@ -190,7 +190,7 @@ export default function NoticiasGrid({ noticias }) {
                       {featured.subtitulo}
                     </p>
 
-                    <div className="inline-flex items-center gap-3 text-white font-bold text-sm uppercase tracking-widest group-hover:text-emerald-400 transition-colors">
+                    <div className="inline-flex items-center gap-3 text-white font-bold text-sm uppercase tracking-widest group-hover:text-primary-green transition-colors">
                       Ler o Artigo
                       <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-300" />
                     </div>
@@ -214,7 +214,7 @@ export default function NoticiasGrid({ noticias }) {
                     href={`/noticias/${noticia.slug}`}
                     className="group flex flex-col h-full bg-transparent"
                   >
-                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 border border-slate-200/50 shadow-sm group-hover:shadow-2xl group-hover:shadow-emerald-900/10 transition-all duration-500">
+                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 border border-slate-200/50 shadow-sm group-hover:shadow-2xl group-hover:shadow-dark-green/10 transition-all duration-500">
                       <Image 
                         src={noticia.imagem_url || fallbackImage} 
                         alt={noticia.titulo}
@@ -231,14 +231,14 @@ export default function NoticiasGrid({ noticias }) {
                     <div className="flex flex-col flex-grow px-2">
                       <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
                         <span className="flex items-center gap-1.5">
-                          <Clock size={12} className="text-emerald-500" />
+                          <Clock size={12} className="text-primary-green" />
                           {calculateReadingTime(noticia.conteudo)} min
                         </span>
                         <span className="w-1 h-1 rounded-full bg-slate-200" />
                         <span>{new Date(noticia.created_at).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
                       </div>
                       
-                      <h3 className="text-2xl font-black text-slate-900 mb-3 leading-[1.2] tracking-tight group-hover:text-emerald-600 transition-colors line-clamp-3">
+                      <h3 className="text-2xl font-black text-slate-900 mb-3 leading-[1.2] tracking-tight group-hover:text-dark-green transition-colors line-clamp-3">
                         {noticia.titulo}
                       </h3>
                       
@@ -274,7 +274,7 @@ export default function NoticiasGrid({ noticias }) {
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
                   aria-label="Página anterior"
-                  className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all disabled:opacity-30 disabled:pointer-events-none"
+                  className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-primary-green hover:text-dark-green hover:bg-primary-green/10 transition-all disabled:opacity-30 disabled:pointer-events-none"
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -314,7 +314,7 @@ export default function NoticiasGrid({ noticias }) {
                           aria-label={`Página ${pageNum}`}
                           className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-black transition-all ${
                             currentPage === pageNum
-                              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20'
+                              ? 'bg-primary-green text-white shadow-lg shadow-primary-green/20'
                               : 'bg-transparent text-slate-600 hover:bg-slate-100'
                           }`}
                         >
@@ -329,7 +329,7 @@ export default function NoticiasGrid({ noticias }) {
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
                   aria-label="Página seguinte"
-                  className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all disabled:opacity-30 disabled:pointer-events-none"
+                  className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-primary-green hover:text-dark-green hover:bg-primary-green/10 transition-all disabled:opacity-30 disabled:pointer-events-none"
                 >
                   <ChevronRight size={18} />
                 </button>
