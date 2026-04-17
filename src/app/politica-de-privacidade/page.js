@@ -37,8 +37,8 @@ export default function PoliticaPrivacidadePage() {
           <p className="mb-6 opacity-80">
             Contudo, aquando da necessidade da recolha de informação pessoal para disponibilizarmos os nossos serviços ou quando cada utilizador decidir fornecer alguns dos seus dados pessoais, o uso dos ditos será realizado de acordo com a legislação aplicável sobre proteção de dados pessoais – Lei 67/98 de 26 de Outubro, Lei de Proteção de Dados – para que deste modo seja assegurada a segurança e confidencialidade dos dados pessoais fornecidos.
           </p>
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
-            <h4 className="text-white font-black text-sm uppercase tracking-widest mb-6 flex items-center gap-3">
+          <div className="bg-slate-50 border border-slate-100 rounded-3xl p-8">
+            <h4 className="text-dark-green font-black text-sm uppercase tracking-widest mb-6 flex items-center gap-3">
               <Database className="text-primary-green" size={18} />
               Os seus Direitos Legais:
             </h4>
@@ -49,7 +49,7 @@ export default function PoliticaPrivacidadePage() {
                 'Direito à portabilidade dos dados',
                 'Direito de oposição'
               ].map((right, i) => (
-                <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
+                <li key={i} className="flex items-center gap-3 text-slate-500 font-bold">
                   <div className="w-1.5 h-1.5 bg-primary-green rounded-full shadow-[0_0_8px_rgba(142,179,31,0.5)]" />
                   {right}
                 </li>
@@ -77,14 +77,12 @@ export default function PoliticaPrivacidadePage() {
   ]
 
   return (
-    <main className="min-h-screen bg-dark-green bg-grain pt-40 pb-32 relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-primary-green/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-emerald-500/5 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
-
-      <Container size="md">
-        {/* Header Section */}
-        <div className="mb-20">
+    <main className="min-h-screen bg-white relative overflow-hidden">
+      {/* Hero Section - Dark Premium */}
+      <section className="bg-dark-green bg-grain pt-40 pb-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary-green/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        
+        <Container size="md" className="relative z-10">
           <Link 
             href="/"
             className="group flex items-center gap-3 text-white/40 hover:text-primary-green transition-colors mb-12 inline-flex"
@@ -95,62 +93,68 @@ export default function PoliticaPrivacidadePage() {
           
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-1 bg-primary-green rounded-full" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-green">Transparência Digital</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-green">Conformidade & Ética</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
-            Política de <br />
-            <span className="text-primary-green italic">Privacidade.</span>
+          <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] mb-8">
+            Privacidade <br />
+            <span className="text-primary-green italic">& Transparência.</span>
           </h1>
           <p className="text-xl text-slate-400 font-medium max-w-2xl leading-relaxed">
-            Na 20Recolher, levamos a segurança dos seus dados tão a sério quanto a reciclagem tecnológica. Conheça as nossas normas e direitos.
+            Na 20Recolher, o tratamento dos seus dados segue os mesmos padrões de excelência que aplicamos à valorização de resíduos tecnológicos.
           </p>
-        </div>
+        </Container>
+      </section>
 
-        {/* Content Sections */}
-        <div className="space-y-12">
-          {sections.map((section, index) => (
-            <motion.section
-              key={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white/[0.03] backdrop-blur-xl rounded-[3rem] p-8 md:p-16 border border-white/10 hover:border-white/20 transition-all group"
-            >
-              <div className="flex flex-col md:flex-row gap-10">
-                <div className="shrink-0">
-                  <div className="w-16 h-16 bg-primary-green/20 rounded-2xl flex items-center justify-center text-primary-green border border-primary-green/30 group-hover:scale-110 transition-transform">
-                    <section.icon size={32} />
+      {/* Content Section - Light & Clean */}
+      <section className="py-24 bg-slate-50/50 relative">
+        <div className="absolute inset-0 bg-grain opacity-[0.02] pointer-events-none" />
+        
+        <Container size="md">
+          <div className="space-y-10">
+            {sections.map((section, index) => (
+              <motion.section
+                key={section.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-[3rem] p-8 md:p-16 border border-slate-100 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-20px_rgba(142,179,31,0.1)] transition-all group"
+              >
+                <div className="flex flex-col md:flex-row gap-12">
+                  <div className="shrink-0">
+                    <div className="w-16 h-16 bg-slate-50 text-dark-green rounded-2xl flex items-center justify-center border border-slate-100 group-hover:bg-primary-green group-hover:text-white group-hover:border-primary-green transition-all duration-500 shadow-sm">
+                      <section.icon size={32} />
+                    </div>
+                    <span className="block mt-4 text-[10px] font-black text-slate-300 uppercase tracking-[0.5em] text-center md:text-left">
+                      Artigo {section.id}
+                    </span>
                   </div>
-                  <span className="block mt-4 text-[10px] font-black text-white/20 uppercase tracking-[0.5em] text-center md:text-left">
-                    Artigo {section.id}
-                  </span>
-                </div>
-                
-                <div className="flex-1">
-                  <h2 className="text-2xl md:text-3xl font-black text-white mb-8 tracking-tight">
-                    {section.title}
-                  </h2>
-                  <div className="text-slate-400 font-medium text-lg leading-relaxed">
-                    {section.content}
+                  
+                  <div className="flex-1">
+                    <h2 className="text-2xl md:text-4xl font-black text-dark-green mb-8 tracking-tighter">
+                      {section.title}
+                    </h2>
+                    <div className="text-slate-500 font-medium text-lg leading-relaxed space-y-4">
+                      {section.content}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.section>
-          ))}
-        </div>
+              </motion.section>
+            ))}
+          </div>
 
-        {/* Footer Note */}
-        <div className="mt-20 text-center">
-           <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 rounded-full border border-white/5">
-              <ShieldCheck size={16} className="text-primary-green" />
-              <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">
-                Última Atualização: {new Date().toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' })}
-              </span>
-           </div>
-        </div>
-      </Container>
+          {/* Footer Note */}
+          <div className="mt-20 text-center">
+             <div className="inline-flex items-center gap-3 px-8 py-4 bg-white rounded-full border border-slate-100 shadow-sm">
+                <ShieldCheck size={18} className="text-primary-green" />
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                  Documento Atualizado em {new Date().toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' })}
+                </span>
+             </div>
+          </div>
+        </Container>
+      </section>
     </main>
   )
 }
