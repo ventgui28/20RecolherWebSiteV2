@@ -84,6 +84,29 @@ export default function DashboardPage() {
     vistas: noticias.reduce((acc, curr) => acc + (curr.views || 0), 0)
   }
 
+  // Processar dados para o gráfico de visualizações (Top 6 notícias)
+  const chartData = [...noticias]
+    .sort((a, b) => (b.views || 0) - (a.views || 0))
+    .slice(0, 6)
+    .map(n => ({
+      name: n.titulo.substring(0, 10) + '...',
+      fullTitle: n.titulo,
+      views: n.views || 0
+    }))
+    .reverse();
+
+  // Processar dados para o gráfico de categorias
+  const categoryCounts = noticias.reduce((acc, n) => {
+    acc[n.categoria] = (acc[n.categoria] || 0) + 1;
+    return acc;
+  }, {});
+
+  const categoryData = Object.entries(categoryCounts).map(([name, value], i) => ({
+    name,
+    value,
+    color: ['#8EB31F', '#14463C', '#10B981', '#F59E0B', '#3B82F6'][i % 5]
+  }));
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -227,30 +250,30 @@ export default function DashboardPage() {
               >
                 <div className="flex items-center justify-between mb-10">
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-1">Métricas de Crescimento</h4>
-                    <h3 className="text-2xl font-black text-dark-green tracking-tighter">Volume de Recolha (Kg)</h3>
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-1">Engajamento de Conteúdo</h4>
+                    <h3 className="text-2xl font-black text-dark-green tracking-tighter">Top Artigos (Visualizações)</h3>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
                     <div className="w-2 h-2 bg-primary-green rounded-full animate-pulse" />
-                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Tempo Real</span>
+                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Live de DB</span>
                   </div>
                 </div>
 
                 <div className="h-[300px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={IMPACT_DATA}>
+                    <AreaChart data={chartData}>
                       <defs>
-                        <linearGradient id="colorWeight" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#8EB31F" stopOpacity={0.3}/>
                           <stop offset="95%" stopColor="#8EB31F" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                       <XAxis 
-                        dataKey="month" 
+                        dataKey="name" 
                         axisLine={false} 
                         tickLine={false} 
-                        tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 900 }} 
+                        tick={{ fill: '#94a3b8', fontSize: 9, fontWeight: 900 }} 
                         dy={10}
                       />
                       <YAxis 
@@ -268,11 +291,11 @@ export default function DashboardPage() {
                       />
                       <Area 
                         type="monotone" 
-                        dataKey="weight" 
+                        dataKey="views" 
                         stroke="#8EB31F" 
                         strokeWidth={4} 
                         fillOpacity={1} 
-                        fill="url(#colorWeight)" 
+                        fill="url(#colorViews)" 
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -287,13 +310,13 @@ export default function DashboardPage() {
                 className="lg:col-span-4 bg-dark-green p-10 rounded-[3rem] shadow-2xl relative overflow-hidden text-white"
               >
                 <div className="absolute inset-0 bg-grain opacity-[0.05]" />
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-8 relative z-10">Mix de Resíduos</h4>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-8 relative z-10">Foco Editorial</h4>
                 
                 <div className="h-[220px] relative z-10">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
-                        data={WASTE_TYPES}
+                        data={categoryData}
                         cx="50%"
                         cy="50%"
                         innerRadius={60}
@@ -301,26 +324,26 @@ export default function DashboardPage() {
                         paddingAngle={8}
                         dataKey="value"
                       >
-                        {WASTE_TYPES.map((entry, index) => (
+                        {categoryData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
                         ))}
                       </Pie>
                     </PieChart>
                   </ResponsiveContainer>
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                    <p className="text-3xl font-black tracking-tighter">100%</p>
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40">Gestão</p>
+                    <p className="text-3xl font-black tracking-tighter">{noticias.length}</p>
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40">Posts</p>
                   </div>
                 </div>
 
                 <div className="mt-8 space-y-3 relative z-10">
-                  {WASTE_TYPES.map((type, i) => (
+                  {categoryData.map((type, i) => (
                     <div key={i} className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: type.color }} />
                         <span className="opacity-60">{type.name}</span>
                       </div>
-                      <span>{type.value}%</span>
+                      <span>{type.value}</span>
                     </div>
                   ))}
                 </div>
