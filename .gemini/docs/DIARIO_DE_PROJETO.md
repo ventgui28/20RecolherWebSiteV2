@@ -4,6 +4,26 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Portal de Login Pro Max v2.5)
+### 💬 O que conversámos (Intenção)
+Refinámos o portal de entrada administrativa para oferecer uma experiência imersiva e segura logo no primeiro contacto. O foco foi a interatividade sensorial e a percepção de segurança de alto nível.
+
+### 🚀 O que mudou no Site (Execução)
+- **Experiência Imersiva:**
+  - Implementação de um **efeito de Tilt 3D** no card de login (o painel inclina-se subtilmente seguindo o movimento do rato).
+  - Fundo dinâmico com orbes de luz pulsantes em tons de `primary-green` e `emerald`.
+- **Identidade e Segurança:**
+  - Adição de selos de segurança visual ("Encriptação AES-256") e ícones de autoridade (`ShieldCheck`).
+  - Upgrade tipográfico para títulos mais impactantes e inputs com estados de foco ultra-nítidos.
+- **Micro-interações:**
+  - Botão de entrada com transição de cor suave e ícone animado.
+  - Feedback de erro com animação de vibração lateral para maior clareza visual.
+
+### 🎯 Estado da Entrega
+- O portal de login é agora uma peça de design por si só, transmitindo confiança e sofisticação tecnológica antes mesmo do utilizador entrar no sistema.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Upgrade Dashboard Pro Max v2.5)
 ### 💬 O que conversámos (Intenção)
 Elevámos o dashboard administrativo de um "painel de gestão" para um verdadeiro **Command Center**. O objetivo foi adicionar camadas de informação dinâmica, indicadores visuais de performance e um centro de atividade em tempo real para o gestor.
