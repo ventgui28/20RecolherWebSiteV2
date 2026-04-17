@@ -240,112 +240,126 @@ export default function DashboardPage() {
         {/* Main Dashboard Layout - Grid with Sidebar */}
         <div className="grid lg:grid-cols-12 gap-10 mb-20">
           <div className="lg:col-span-9 space-y-10">
-            {/* Real-Time Impact Analytics Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
-              {/* Main Line Chart - Growth */}
+            {/* Luxury Analytics Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+              {/* Content Performance - Minimalist Area Chart */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="lg:col-span-8 bg-white/40 backdrop-blur-2xl p-10 rounded-[3.5rem] border border-white/60 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.04)] relative overflow-hidden group"
               >
-                <div className="flex items-center justify-between mb-10">
+                <div className="flex items-center justify-between mb-12 relative z-10">
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-1">Engajamento de Conteúdo</h4>
-                    <h3 className="text-2xl font-black text-dark-green tracking-tighter">Top Artigos (Visualizações)</h3>
+                    <h4 className="text-[9px] font-black uppercase tracking-[0.5em] text-primary-green mb-2 opacity-80">Performance Digital</h4>
+                    <h3 className="text-3xl font-black text-dark-green tracking-tighter">Engajamento de Público</h3>
                   </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
-                    <div className="w-2 h-2 bg-primary-green rounded-full animate-pulse" />
-                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Live de DB</span>
+                  <div className="p-4 bg-dark-green rounded-2xl text-primary-green shadow-xl">
+                    <Eye size={20} strokeWidth={3} />
                   </div>
                 </div>
 
-                <div className="h-[300px] w-full">
+                <div className="h-[320px] w-full relative z-10">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={chartData}>
+                    <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
-                        <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#8EB31F" stopOpacity={0.3}/>
+                        <linearGradient id="luxuryGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#8EB31F" stopOpacity={0.4}/>
                           <stop offset="95%" stopColor="#8EB31F" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                       <XAxis 
                         dataKey="name" 
                         axisLine={false} 
                         tickLine={false} 
-                        tick={{ fill: '#94a3b8', fontSize: 9, fontWeight: 900 }} 
-                        dy={10}
-                      />
-                      <YAxis 
-                        axisLine={false} 
-                        tickLine={false} 
-                        tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 900 }}
+                        tick={{ fill: '#14463C', fontSize: 10, fontWeight: 800, opacity: 0.3 }} 
+                        dy={15}
                       />
                       <Tooltip 
-                        contentStyle={{ 
-                          borderRadius: '20px', 
-                          border: 'none', 
-                          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-                          padding: '15px'
+                        cursor={{ stroke: '#8EB31F', strokeWidth: 1, strokeDasharray: '5 5' }}
+                        content={({ active, payload }) => {
+                          if (active && payload && payload.length) {
+                            return (
+                              <div className="bg-dark-green/95 backdrop-blur-xl p-5 rounded-3xl border border-white/10 shadow-2xl">
+                                <p className="text-[9px] font-black text-primary-green uppercase tracking-widest mb-1">{payload[0].payload.name}</p>
+                                <p className="text-xl font-black text-white tracking-tighter">{payload[0].value} <span className="text-[10px] opacity-40">Views</span></p>
+                              </div>
+                            )
+                          }
+                          return null
                         }}
                       />
                       <Area 
                         type="monotone" 
                         dataKey="views" 
                         stroke="#8EB31F" 
-                        strokeWidth={4} 
+                        strokeWidth={5} 
                         fillOpacity={1} 
-                        fill="url(#colorViews)" 
+                        fill="url(#luxuryGradient)" 
+                        animationDuration={2000}
                       />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
               </motion.div>
 
-              {/* Pie Chart - Distribution */}
+              {/* Editorial Category Mix */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="lg:col-span-4 bg-dark-green p-10 rounded-[3rem] shadow-2xl relative overflow-hidden text-white"
+                className="lg:col-span-4 bg-dark-green p-10 rounded-[3.5rem] shadow-[0_40px_80px_-20px_rgba(20,70,60,0.3)] relative overflow-hidden group"
               >
-                <div className="absolute inset-0 bg-grain opacity-[0.05]" />
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-8 relative z-10">Foco Editorial</h4>
-                
-                <div className="h-[220px] relative z-10">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={categoryData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={80}
-                        paddingAngle={8}
-                        dataKey="value"
-                      >
-                        {categoryData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
-                        ))}
-                      </Pie>
-                    </PieChart>
-                  </ResponsiveContainer>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                    <p className="text-3xl font-black tracking-tighter">{noticias.length}</p>
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40">Posts</p>
-                  </div>
-                </div>
-
-                <div className="mt-8 space-y-3 relative z-10">
-                  {categoryData.map((type, i) => (
-                    <div key={i} className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: type.color }} />
-                        <span className="opacity-60">{type.name}</span>
-                      </div>
-                      <span>{type.value}</span>
+                <div className="absolute inset-0 bg-grain opacity-[0.03]" />
+                <div className="relative z-10">
+                  <h4 className="text-[9px] font-black uppercase tracking-[0.5em] text-primary-green/60 mb-8">Arquitetura de Conteúdo</h4>
+                  
+                  <div className="h-[240px] mb-10 flex items-center justify-center">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={categoryData}
+                          innerRadius={70}
+                          outerRadius={95}
+                          paddingAngle={10}
+                          dataKey="value"
+                          stroke="none"
+                        >
+                          {categoryData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip 
+                           content={({ active, payload }) => {
+                            if (active && payload && payload.length) {
+                              return (
+                                <div className="bg-white p-4 rounded-2xl shadow-xl border-none">
+                                  <p className="text-[10px] font-black text-dark-green uppercase">{payload[0].name}</p>
+                                  <p className="text-lg font-black text-primary-green">{payload[0].value}</p>
+                                </div>
+                              )
+                            }
+                            return null
+                          }}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <div className="absolute flex flex-col items-center">
+                      <span className="text-4xl font-black text-white tracking-tighter">{noticias.length}</span>
+                      <span className="text-[8px] font-black uppercase tracking-[0.3em] text-primary-green">Total</span>
                     </div>
-                  ))}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {categoryData.slice(0, 4).map((type, i) => (
+                      <div key={i} className="bg-white/5 p-4 rounded-2xl border border-white/5 group-hover:bg-white/10 transition-colors">
+                        <div className="flex items-center gap-2 mb-2">
+                           <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: type.color }} />
+                           <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">{type.name}</span>
+                        </div>
+                        <p className="text-xl font-black text-white">{type.value}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </div>
