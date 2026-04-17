@@ -5,19 +5,6 @@ Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
 - [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
-- [x] **Central de Dados:** Constantes criadas para a marca, serviços e contactos (`src/constants/`).
-- [x] **Páginas Implementadas:**
-  - `Home`: [CONCLUÍDA] 100% otimizada e com imagens locais.
-  - `Sobre Nós`: [CONCLUÍDA] Com dados históricos reais e design institucional sólido.
-  - `Serviços`: [CONCLUÍDA] Design imersivo com fotografia em alta fidelidade, glassmorphism e micro-interações de parallax.
-  - `Contactos`: Info, mapa e formulário.
-  - `Notícias`: [CONCLUÍDA] Sistema de listagem com pesquisa, categorias e Paginação.
-  - `404`: Página de erro personalizada com design premium.
-- [x] **Git:** Branch única `main` consolidada com histórico limpo.
-
-## 2. Estrutura de Pastas Atual
-- `src/app/`: Páginas e layouts.
-- `src/components/ui/`: Botões, containers e títulos.
 - `src/components/layout/`: Navbar e Footer.
 - `src/components/sections/`: Blocos modulares (ex: HomeHero, ProcessTimeline, NoticiasGrid).
 - `src/constants/`: Ficheiros de dados dinâmicos (brand, services, stats, process, news).
@@ -38,10 +25,13 @@ Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 17/04/2026, 15:54:59
+#### Sincronização: 17/04/2026, 16:07:00
 **Commits:**
 ```
+d5e0148 feat: redesign premium do admin dashboard e login
 8e7910a feat: redesign premium da pagina de servicos com bento grid
+```
+#### Sincronização: 17/04/2026, 15:54:59
 ab35399 fix: remover barra de scroll visual dos filtros de categorias
 2019385 feat: redesign ultra-premium da grelha de noticias com command center flutuante
 00cfdf3 feat: redesign premium da sala de imprensa com paleta oficial
