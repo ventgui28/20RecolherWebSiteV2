@@ -30,10 +30,6 @@ export default function LoginPage() {
   const router = useRouter()
   const supabase = createClient()
 
-  // Diagnóstico
-  useEffect(() => {
-    console.log('🛡️ Turnstile Site Key:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? 'Configurada ✅' : 'Em falta ❌')
-  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -233,14 +229,10 @@ export default function LoginPage() {
 
             {/* Cloudflare Turnstile Widget */}
             {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
-              <div className="flex justify-center py-2 min-h-[70px] relative z-[100] border border-dashed border-white/5">
+              <div className="flex justify-center py-2 min-h-[70px] relative z-[100]">
                 <Turnstile 
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} 
-                  onSuccess={(token) => {
-                    console.log('✅ Token gerado com sucesso')
-                    setCaptchaToken(token)
-                  }}
-                  onError={() => console.error('❌ Erro ao carregar Turnstile')}
+                  onSuccess={(token) => setCaptchaToken(token)}
                   options={{
                     theme: 'dark',
                     appearance: 'always',
