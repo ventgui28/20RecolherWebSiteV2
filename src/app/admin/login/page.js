@@ -228,12 +228,13 @@ export default function LoginPage() {
 
             {/* Cloudflare Turnstile Widget */}
             {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
-              <div className="flex justify-center py-2">
+              <div className="flex justify-center py-2 min-h-[65px]">
                 <Turnstile 
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} 
                   onSuccess={(token) => setCaptchaToken(token)}
                   options={{
                     theme: 'dark',
+                    appearance: 'always',
                   }}
                 />
               </div>
