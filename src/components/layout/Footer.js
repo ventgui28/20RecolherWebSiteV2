@@ -121,8 +121,8 @@ export default function Footer() {
           </p>
           
           <div className="flex gap-6">
-            <Link href="#" className="text-[10px] font-black text-white/20 uppercase tracking-widest hover:text-primary-green transition-colors">Privacidade</Link>
-            <Link href="#" className="text-[10px] font-black text-white/20 uppercase tracking-widest hover:text-primary-green transition-colors">Termos</Link>
+            <Link href="/politica-de-privacidade" className="text-[10px] font-black text-white/20 uppercase tracking-widest hover:text-primary-green transition-colors">Privacidade</Link>
+            <Link href="/politica-de-privacidade" className="text-[10px] font-black text-white/20 uppercase tracking-widest hover:text-primary-green transition-colors">Termos</Link>
           </div>
 
           <div className="flex items-center space-x-2 opacity-50">
