@@ -15,6 +15,7 @@ import {
   FileText
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import DOMPurify from 'isomorphic-dompurify'
 
 export default function RevisionsModal({ isOpen, onClose, noticiaId, onRestore }) {
   const [revisoes, setRevisoes] = useState([])
@@ -172,7 +173,7 @@ export default function RevisionsModal({ isOpen, onClose, noticiaId, onRestore }
                     <h5 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Conteúdo do Artigo</h5>
                     <div 
                       className="prose prose-slate max-w-none text-slate-600 font-medium leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: selectedRevision.conteudo }}
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedRevision.conteudo) }}
                     />
                   </div>
 

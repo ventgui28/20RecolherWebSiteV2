@@ -8,6 +8,7 @@ import ClientShareButton from '@/components/ui/ClientShareButton'
 import ClientViewCounter from '@/components/ui/ClientViewCounter'
 import { NEWS_DEFAULT_IMAGES } from '@/constants/news'
 import { calculateReadingTime } from '@/lib/utils'
+import DOMPurify from 'isomorphic-dompurify'
 
 export async function generateMetadata({ params }) {
   const { slug } = await params
@@ -141,7 +142,7 @@ export default async function ArtigoPage({ params }) {
             <div className="max-w-[720px] mx-auto lg:mx-0">
               <div 
                 className="article-content"
-                dangerouslySetInnerHTML={{ __html: noticia.conteudo }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(noticia.conteudo) }}
               />
 
               {/* Author Footer & Mobile Share */}

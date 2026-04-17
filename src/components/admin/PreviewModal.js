@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Smartphone, Monitor, Calendar, User, Clock } from 'lucide-react';
 import { useState } from 'react';
 import Container from '@/components/ui/Container';
+import DOMPurify from 'isomorphic-dompurify';
 
 export default function PreviewModal({ isOpen, onClose, data }) {
   const [device, setDevice] = useState('desktop');
@@ -82,7 +83,7 @@ export default function PreviewModal({ isOpen, onClose, data }) {
                       prose-headings:text-slate-900 prose-headings:font-black
                       prose-p:text-slate-600 prose-p:leading-relaxed
                       prose-blockquote:border-emerald-500 prose-blockquote:bg-slate-50 prose-blockquote:rounded-2xl"
-                    dangerouslySetInnerHTML={{ __html: data.conteudo || '<p className="text-slate-300">O conteúdo do seu artigo aparecerá aqui...</p>' }}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.conteudo || '<p className="text-slate-300">O conteúdo do seu artigo aparecerá aqui...</p>') }}
                   />
                 </Container>
               </div>
