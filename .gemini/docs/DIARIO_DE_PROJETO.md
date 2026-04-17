@@ -4,6 +4,26 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Login Split Layout & Brand Storytelling)
+### 💬 O que conversámos (Intenção)
+Corrigimos a largura excessiva do formulário e elevámos a estética do login para um formato de **Split Layout**. O objetivo foi equilibrar a funcionalidade com o *storytelling* da marca, transformando uma página funcional num portal de autoridade.
+
+### 🚀 O que mudou no Site (Execução)
+- **Arquitetura de Layout:**
+  - Substituição do ecrã centrado por um **Layout Dividido (40/60)**.
+  - **Lado Esquerdo:** Dedicado à narrativa da marca, com a missão da empresa, citações inspiradoras e orbes de luz dinâmicos. Inclui um link de retorno ao site público com animação.
+  - **Lado Direito:** Formulário de login compacto e ultra-nítido, focado na produtividade.
+- **Refinação de Design:**
+  - O formulário agora ocupa apenas uma coluna elegante (`max-w-md`), eliminando a sensação de "esticanço" visual.
+  - Adição de elementos de branding (folhas, globos) e selos de encriptação reforçados.
+- **UX Otimizada:**
+  - Melhoria nas margens, paddings e hierarquia visual, garantindo que o utilizador se sente num ambiente de software profissional.
+
+### 🎯 Estado da Entrega
+- A página de login é agora uma peça central de design que reforça os valores de sustentabilidade e tecnologia da 20Recolher antes de qualquer interação administrativa.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Portal de Login Pro Max v2.5)
 ### 💬 O que conversámos (Intenção)
 Refinámos o portal de entrada administrativa para oferecer uma experiência imersiva e segura logo no primeiro contacto. O foco foi a interatividade sensorial e a percepção de segurança de alto nível.
