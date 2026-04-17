@@ -4,6 +4,28 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Contactos Pro Max v2.5)
+### 💬 O que conversámos (Intenção)
+Elevámos a página de contactos para uma experiência de "Concierge Ambiental". O objetivo foi transformar um simples formulário num canal de comunicação de alta fidelidade que transmite confiança imediata.
+
+### 🚀 O que mudou no Site (Execução)
+- **Header Imersivo:**
+  - Redesign do cabeçalho para um formato split com tipografia monumental (`text-9xl`).
+  - Adição de um **Selo de Confiança Dinâmico** (Rotating Stamp) que destaca o licenciamento da empresa.
+  - Orbes de luz animados em segundo plano que criam profundidade.
+- **Formulário Editorial:**
+  - Upgrade dos inputs para um estilo mais "limpo" e tátil.
+  - Adição de ícones de autoridade (`ShieldCheck`) e estados de foco aprimorados.
+  - Botão de submissão com animação de levitação e sombras complexas.
+- **Elementos de Confiança:**
+  - Indicador de disponibilidade em tempo real (Pulsing Dot).
+  - Reforço visual do tempo de resposta (menos de 24h).
+
+### 🎯 Estado da Entrega
+- A página de contactos deixou de ser uma barreira para ser um convite à colaboração, assegurando que o potencial cliente sente o profissionalismo da 20Recolher desde o primeiro clique.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Política de Privacidade Premium)
 ### 💬 O que conversámos (Intenção)
 Implementámos a página de conformidade legal da 20Recolher, garantindo que os textos oficiais são apresentados num layout que mantém a autoridade e a estética de luxo do resto do projeto.
