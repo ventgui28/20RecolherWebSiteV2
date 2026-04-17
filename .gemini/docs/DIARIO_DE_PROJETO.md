@@ -4,7 +4,26 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
-## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium da Sala de Imprensa)
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Ultra-Premium e Painel Flutuante)
+### 💬 O que conversámos (Intenção)
+O utilizador solicitou que, após a harmonização das cores, a estrutura da página de notícias, em particular a barra de pesquisa e filtros, fosse levada para o patamar seguinte. O objetivo era criar algo ainda mais *premium* que fugisse da abordagem "standard".
+
+### 🚀 O que mudou no Site (Execução)
+- **Floating Command Center:** 
+  - Unificação da pesquisa e das categorias numa "ilha" flutuante fixa no topo (`sticky`) usando um forte efeito de vidro (`backdrop-blur-2xl`, `bg-white/70`).
+  - Implementação de **Magic Tabs** via `framer-motion`: as categorias ativas têm agora um fundo que desliza de forma fluida.
+  - A barra de pesquisa foi redesenhada num formato "pill" minimalista que ganha destaque apenas quando ativada.
+- **Grelha "Bento-Magazine":**
+  - Os cartões abandonaram a abordagem agressiva de cores sólidas e retângulos rígidos para adotar uma estética editorial.
+  - O **Cartão de Destaque** aumentou drasticamente o `border-radius` (`rounded-[4rem]`), usando sombras difusas profundas (`shadow-[0_30px_80px_...]`) para máximo impacto visual.
+  - As **Notícias Secundárias** surgem agora encapsuladas em blocos com margens internas e elevação suave interativa no *hover*.
+
+### 🎯 Estado da Entrega
+- A Sala de Imprensa atingiu um padrão de luxo indiscutível, superior à maioria dos sites corporativos de sustentabilidade, integrando micro-animações state-of-the-art e o estilo Bento UI.
+
+---
+
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Harmonização de Cores da Sala de Imprensa)
 ### 💬 O que conversámos (Intenção)
 Nesta sessão, o utilizador notou que o design da Sala de Imprensa, embora estruturado, utilizava cores genéricas (ardósia e verde esmeralda padrão) que fugiam à estética oficial da **20recolher**. A diretiva foi muito clara: refazer a interface para ter um aspeto premium e moderno ("Liquid Glass / Eco-Premium"), mas usando **estritamente** a paleta de cores estabelecida nos restantes ficheiros (como o `globals.css` e `HomeHero.js`).
 

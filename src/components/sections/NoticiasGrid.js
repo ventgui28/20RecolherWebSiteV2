@@ -70,60 +70,66 @@ export default function NoticiasGrid({ noticias }) {
 
   return (
     <div id="noticias-grid-start" className="pt-16 pb-32 space-y-16 lg:space-y-24">
-      {/* Premium Filter & Search Bar - Floating Glassmorphism Style */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 pb-12 border-b border-slate-100">
-        <div className="space-y-8 flex-grow max-w-4xl">
-          <div className="flex items-center gap-4 text-slate-900">
-            <div className="w-12 h-12 bg-dark-green text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-dark-green/20">
-              <Filter size={20} />
-            </div>
-            <div>
-              <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Filtrar por</span>
-              <span className="block text-3xl font-black text-dark-green leading-none mt-1 tracking-tight">Categorias</span>
+      {/* Ultra-Premium Floating Command Center */}
+      <div className="sticky top-24 z-40 mb-16 lg:mb-24 px-4 md:px-0">
+        <div className="mx-auto max-w-6xl bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.08)] rounded-[3rem] p-3 lg:p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-500">
+          
+          {/* Magic Tabs - Categories */}
+          <div className="flex-1 overflow-x-auto no-scrollbar pb-2 lg:pb-0 -mx-2 px-2 lg:mx-0 lg:px-0">
+            <div className="flex items-center gap-1 min-w-max relative">
+              {categories.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => {
+                    setActiveCategory(cat.name);
+                    setCurrentPage(1);
+                  }}
+                  className={`relative group px-6 py-3.5 rounded-full text-[13px] font-bold transition-colors duration-300 ${
+                    activeCategory === cat.name 
+                      ? 'text-white' 
+                      : 'text-slate-500 hover:text-dark-green'
+                  }`}
+                >
+                  {activeCategory === cat.name && (
+                    <motion.div
+                      layoutId="activeCategoryTab"
+                      className="absolute inset-0 bg-dark-green rounded-full shadow-xl shadow-dark-green/20"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <div className="relative z-10 flex items-center gap-2.5">
+                    {cat.name}
+                    <span className={`flex items-center justify-center min-w-[22px] h-5 px-1.5 rounded-full text-[10px] font-black transition-colors duration-300 ${
+                      activeCategory === cat.name
+                        ? 'bg-white/20 text-white'
+                        : 'bg-slate-100 text-slate-400 group-hover:bg-primary-green/20 group-hover:text-dark-green'
+                    }`}>
+                      {cat.count}
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
-            {categories.map((cat) => (
-              <button
-                key={cat.name}
-                onClick={() => {
-                  setActiveCategory(cat.name);
-                  setCurrentPage(1);
-                }}
-                className={`group flex items-center gap-3 px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 border ${
-                  activeCategory === cat.name 
-                    ? 'bg-dark-green border-dark-green text-white shadow-lg shadow-dark-green/20 scale-105' 
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-primary-green hover:text-dark-green hover:bg-primary-green/5'
-                }`}
-              >
-                {cat.name}
-                <span className={`flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full text-[10px] font-black transition-colors ${
-                  activeCategory === cat.name
-                    ? 'bg-white/20 text-white'
-                    : 'bg-slate-100 text-slate-400 group-hover:bg-primary-green/20 group-hover:text-dark-green'
-                }`}>
-                  {cat.count}
-                </span>
-              </button>
-            ))}
+          {/* Minimalist Search Pill */}
+          <div className="relative w-full lg:w-80 group shrink-0">
+            <div className="absolute inset-0 bg-slate-50 rounded-full border border-slate-200/60 group-focus-within:bg-white group-focus-within:border-primary-green/30 group-focus-within:ring-4 group-focus-within:ring-primary-green/10 transition-all duration-300" />
+            <div className="relative flex items-center">
+              <div className="w-12 h-12 flex items-center justify-center text-slate-400 group-focus-within:text-primary-green transition-colors">
+                <Search size={18} />
+              </div>
+              <input 
+                type="text" 
+                placeholder="Pesquisar publicações..." 
+                aria-label="Pesquisar publicações"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent border-none py-3 pr-6 text-[14px] font-medium text-slate-900 focus:outline-none placeholder:text-slate-400"
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Liquid Glass Search Bar */}
-        <div className="relative w-full lg:w-96 group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary-green/20 to-lime-green/20 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
-          <div className="relative">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary-green transition-colors duration-300" size={20} />
-            <input 
-              type="text" 
-              placeholder="Pesquisar publicações..." 
-              aria-label="Pesquisar publicações"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-50/80 backdrop-blur-xl border border-slate-200/60 pl-16 pr-6 py-4 rounded-full text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-primary-green/10 focus:bg-white focus:border-primary-green/50 transition-all duration-300 placeholder:text-slate-400 shadow-sm"
-            />
-          </div>
         </div>
       </div>
 
@@ -134,7 +140,7 @@ export default function NoticiasGrid({ noticias }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4 }}
-          className="space-y-16 lg:space-y-24"
+          className="space-y-12 lg:space-y-16"
         >
           {/* Corporate Featured Section (Apenas na página 1) - Overlapping Design */}
           {featured && (
@@ -145,7 +151,7 @@ export default function NoticiasGrid({ noticias }) {
             >
               <Link 
                 href={`/noticias/${featured.slug}`}
-                className="group relative block rounded-[2.5rem] overflow-hidden bg-forest-green border border-dark-green shadow-2xl shadow-dark-green/20"
+                className="group relative block rounded-[3rem] lg:rounded-[4rem] overflow-hidden bg-forest-green border border-dark-green shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_80px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-2 transition-all duration-700"
               >
                 {/* Imagem */}
                 <div className="relative aspect-[16/10] lg:aspect-[21/9] overflow-hidden">
@@ -157,8 +163,8 @@ export default function NoticiasGrid({ noticias }) {
                     priority
                     className="object-cover group-hover:scale-105 group-hover:rotate-1 transition-transform duration-[1.5s] ease-out opacity-80"
                   />
-                  <div className="absolute top-8 left-8 z-20">
-                    <span className="bg-primary-green text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg shadow-dark-green/50 backdrop-blur-md">
+                  <div className="absolute top-8 left-8 lg:top-12 lg:left-12 z-20">
+                    <span className="bg-primary-green text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg shadow-dark-green/50 backdrop-blur-md border border-white/20">
                       Destaque
                     </span>
                   </div>
@@ -212,9 +218,9 @@ export default function NoticiasGrid({ noticias }) {
                 >
                   <Link 
                     href={`/noticias/${noticia.slug}`}
-                    className="group flex flex-col h-full bg-transparent"
+                    className="group flex flex-col h-full bg-white rounded-[2.5rem] p-4 lg:p-5 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500"
                   >
-                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 border border-slate-200/50 shadow-sm group-hover:shadow-2xl group-hover:shadow-dark-green/10 transition-all duration-500">
+                    <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 bg-slate-100 transition-all duration-500">
                       <Image 
                         src={noticia.imagem_url || fallbackImage} 
                         alt={noticia.titulo}
@@ -222,13 +228,13 @@ export default function NoticiasGrid({ noticias }) {
                         className="object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-md text-slate-900 text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                        <span className="bg-white/90 backdrop-blur-md text-slate-900 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-sm border border-slate-100/50">
                           {noticia.categoria}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col flex-grow px-2">
+                    <div className="flex flex-col flex-grow px-3 pb-3">
                       <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
                         <span className="flex items-center gap-1.5">
                           <Clock size={12} className="text-primary-green" />
@@ -238,7 +244,7 @@ export default function NoticiasGrid({ noticias }) {
                         <span>{new Date(noticia.created_at).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
                       </div>
                       
-                      <h3 className="text-2xl font-black text-slate-900 mb-3 leading-[1.2] tracking-tight group-hover:text-dark-green transition-colors line-clamp-3">
+                      <h3 className="text-xl lg:text-2xl font-black text-slate-900 mb-3 leading-[1.2] tracking-tight group-hover:text-dark-green transition-colors line-clamp-3">
                         {noticia.titulo}
                       </h3>
                       
