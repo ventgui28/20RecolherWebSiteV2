@@ -25,6 +25,37 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { 
+  ResponsiveContainer, 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  PieChart, 
+  Pie, 
+  Cell,
+  BarChart,
+  Bar
+} from 'recharts'
+
+const IMPACT_DATA = [
+  { month: 'Jan', weight: 450, volume: 320 },
+  { month: 'Fev', weight: 520, volume: 380 },
+  { month: 'Mar', weight: 480, volume: 410 },
+  { month: 'Abr', weight: 610, volume: 450 },
+  { month: 'Mai', weight: 750, volume: 520 },
+  { month: 'Jun', weight: 890, volume: 600 },
+];
+
+const WASTE_TYPES = [
+  { name: 'Informática', value: 45, color: '#8EB31F' },
+  { name: 'Eletrodomésticos', value: 25, color: '#14463C' },
+  { name: 'Toners', value: 20, color: '#10B981' },
+  { name: 'Outros', value: 10, color: '#F59E0B' },
+];
+
 
 export default function DashboardPage() {
   const [noticias, setNoticias] = useState([])
@@ -186,13 +217,123 @@ export default function DashboardPage() {
         {/* Main Dashboard Layout - Grid with Sidebar */}
         <div className="grid lg:grid-cols-12 gap-10 mb-20">
           <div className="lg:col-span-9 space-y-10">
+            {/* Real-Time Impact Analytics Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+              {/* Main Line Chart - Growth */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="lg:col-span-8 bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden"
+              >
+                <div className="flex items-center justify-between mb-10">
+                  <div>
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-1">Métricas de Crescimento</h4>
+                    <h3 className="text-2xl font-black text-dark-green tracking-tighter">Volume de Recolha (Kg)</h3>
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+                    <div className="w-2 h-2 bg-primary-green rounded-full animate-pulse" />
+                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Tempo Real</span>
+                  </div>
+                </div>
+
+                <div className="h-[300px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={IMPACT_DATA}>
+                      <defs>
+                        <linearGradient id="colorWeight" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#8EB31F" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#8EB31F" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                      <XAxis 
+                        dataKey="month" 
+                        axisLine={false} 
+                        tickLine={false} 
+                        tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 900 }} 
+                        dy={10}
+                      />
+                      <YAxis 
+                        axisLine={false} 
+                        tickLine={false} 
+                        tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 900 }}
+                      />
+                      <Tooltip 
+                        contentStyle={{ 
+                          borderRadius: '20px', 
+                          border: 'none', 
+                          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                          padding: '15px'
+                        }}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="weight" 
+                        stroke="#8EB31F" 
+                        strokeWidth={4} 
+                        fillOpacity={1} 
+                        fill="url(#colorWeight)" 
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              </motion.div>
+
+              {/* Pie Chart - Distribution */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="lg:col-span-4 bg-dark-green p-10 rounded-[3rem] shadow-2xl relative overflow-hidden text-white"
+              >
+                <div className="absolute inset-0 bg-grain opacity-[0.05]" />
+                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green mb-8 relative z-10">Mix de Resíduos</h4>
+                
+                <div className="h-[220px] relative z-10">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={WASTE_TYPES}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        paddingAngle={8}
+                        dataKey="value"
+                      >
+                        {WASTE_TYPES.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                    <p className="text-3xl font-black tracking-tighter">100%</p>
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-40">Gestão</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 space-y-3 relative z-10">
+                  {WASTE_TYPES.map((type, i) => (
+                    <div key={i} className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: type.color }} />
+                        <span className="opacity-60">{type.name}</span>
+                      </div>
+                      <span>{type.value}%</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
             {/* Bento Stats Grid - Asymmetric Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
               {[
                 { label: 'Total de Artigos', value: stats.total, icon: FileText, grid: 'lg:col-span-4', color: 'text-primary-green', bg: 'bg-primary-green/5', progress: 100 },
                 { label: 'Publicadas', value: stats.publicadas, icon: CheckCircle2, grid: 'lg:col-span-3', color: 'text-emerald-500', bg: 'bg-emerald-50', progress: (stats.publicadas / (stats.total || 1)) * 100 },
                 { label: 'Rascunhos', value: stats.rascunhos, icon: AlertCircle, grid: 'lg:col-span-2', color: 'text-amber-500', bg: 'bg-amber-50', progress: (stats.rascunhos / (stats.total || 1)) * 100 },
-                { label: 'Visualizações', value: stats.vistas, icon: Eye, grid: 'lg:col-span-3', color: 'text-dark-green', bg: 'bg-dark-green/5', progress: 85 },
+                { label: 'Vistas Totais', value: stats.vistas, icon: Eye, grid: 'lg:col-span-3', color: 'text-dark-green', bg: 'bg-dark-green/5', progress: 85 },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
