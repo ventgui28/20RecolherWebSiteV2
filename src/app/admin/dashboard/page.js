@@ -157,15 +157,6 @@ export default function DashboardPage() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white/5 rounded-3xl p-6 border border-white/5">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles size={14} className="text-primary-green" />
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Suporte Pro</span>
-            </div>
-            <p className="text-[11px] leading-relaxed opacity-60 font-medium mb-4">A sua plataforma está atualizada na versão v3.0.4.</p>
-            <button className="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl text-[9px] font-black uppercase tracking-widest transition-colors">Ler Update</button>
-          </div>
-
           <button 
             onClick={handleLogout}
             className="flex items-center gap-4 px-6 py-4 w-full text-white/30 hover:text-red-400 transition-colors group"
