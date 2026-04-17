@@ -76,133 +76,163 @@ export default function ContactPage() {
   return (
     <div className="relative min-h-screen bg-white font-body overflow-hidden">
       {/* Immersive Background Mesh */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-15%] left-[-10%] w-[100vw] h-[100vw] bg-gradient-radial from-primary-green/10 via-transparent to-transparent blur-[120px]" />
-        <div className="absolute bottom-[-15%] right-[-10%] w-[100vw] h-[100vw] bg-gradient-radial from-emerald-green/10 via-transparent to-transparent blur-[120px]" />
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-20%] right-[-10%] w-[80vw] h-[80vw] bg-primary-green/10 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.3, 1],
+            x: [0, -40, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[-15%] left-[-10%] w-[70vw] h-[70vw] bg-emerald-green/5 rounded-full blur-[100px]" 
+        />
+        <div className="absolute inset-0 bg-grain opacity-[0.02]" />
       </div>
 
-      <Container className="pt-24 pb-20 relative z-10">
-        {/* Balanced Header */}
-        <header className="max-w-4xl mb-16 mx-auto text-center">
+      <Container className="pt-32 pb-32 relative z-10">
+        {/* Pro-Max Header */}
+        <div className="grid lg:grid-cols-2 gap-20 mb-24 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary-green/10 text-primary-green text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-primary-green/20">
-              <MessageSquare size={14} className="animate-pulse" />
-              Atendimento Personalizado
-            </span>
-            <h1 className="text-6xl md:text-8xl font-heading font-bold text-slate-900 leading-[1.1] tracking-tight mb-8">
-              Fale com a nossa <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green via-emerald-green to-dark-green">Equipa de Especialistas.</span>
+            <div className="flex items-center gap-4 mb-8">
+               <div className="w-12 h-1 bg-primary-green rounded-full shadow-[0_0_15px_rgba(142,179,31,0.6)]" />
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-green">Suporte & Logística</span>
+            </div>
+            <h1 className="text-6xl md:text-9xl font-black text-slate-900 tracking-tighter leading-[0.85] mb-10">
+              Vamos <br />
+              <span className="text-primary-green italic">Conectar.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl mx-auto italic">
-              &quot;Esclareça as suas dúvidas, solicite orçamentos ou agende a sua recolha com total segurança e rapidez.&quot;
+            <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-xl leading-relaxed">
+              Solicite a sua recolha tecnológica com um operador certificado. Resposta garantida em menos de 24 horas.
             </p>
           </motion.div>
-        </header>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            {/* Visual Branding Element - Rotating Stamp */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="w-64 h-64 border border-primary-green/20 rounded-full flex items-center justify-center relative"
+            >
+              <div className="absolute inset-4 border-2 border-dashed border-primary-green/10 rounded-full" />
+              <span className="text-[8px] font-black text-primary-green uppercase tracking-[0.3em] absolute">20Recolher • Operador Licenciado • 2026</span>
+              <Recycle size={48} className="text-primary-green opacity-40" />
+            </motion.div>
+            
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/50 backdrop-blur-xl p-8 rounded-3xl border border-white shadow-2xl">
+               <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-primary-green rounded-full animate-ping" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-dark-green">Disponível para recolha</span>
+               </div>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Symmetry Grid (6+6) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
           
           {/* Left: Professional Form (6 Columns) */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-6 bg-white rounded-[3rem] p-10 md:p-14 shadow-[0_40px_100px_-20px_rgba(142,179,31,0.1)] border border-slate-100 relative overflow-hidden"
+            className="lg:col-span-6 bg-white rounded-[3.5rem] p-10 md:p-16 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.08)] border border-slate-100 relative overflow-hidden group"
           >
-             <div className="relative z-10 mb-12">
-              <div className="flex items-center gap-5 mb-6">
-                <div className="p-4 bg-primary-green text-white rounded-[1.2rem] shadow-xl shadow-primary-green/20">
-                  <ShieldCheck size={24} />
+             <div className="relative z-10 mb-14">
+              <div className="flex items-center gap-6 mb-4">
+                <div className="w-16 h-16 bg-dark-green text-primary-green rounded-2xl flex items-center justify-center shadow-2xl shadow-dark-green/20 group-hover:rotate-6 transition-transform">
+                  <ShieldCheck size={32} />
                 </div>
                 <div>
-                  <h2 className="text-4xl font-heading font-bold text-slate-900 tracking-tight">Pedido de Orçamento</h2>
-                  <p className="text-emerald-green font-bold text-xs uppercase tracking-widest">Resposta em 24 horas</p>
+                  <h2 className="text-4xl font-black text-dark-green tracking-tighter">Pedido Digital.</h2>
+                  <p className="text-primary-green font-black text-[10px] uppercase tracking-[0.3em]">Canais Encriptados</p>
                 </div>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
-              {/* Honeypot Field (Anti-Spam) */}
-              <div className="hidden" aria-hidden="true">
-                <input 
-                  type="text" 
-                  name="hp_field" 
-                  tabIndex="-1" 
-                  autoComplete="off" 
-                  value={formData.hp_field}
-                  onChange={(e) => setFormData({...formData, hp_field: e.target.value})}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Identificação</label>
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.4em] ml-2">Identificação</label>
                   <input
                     type="text"
                     required
                     maxLength={100}
                     value={formData.nome}
                     onChange={(e) => setFormData({...formData, nome: e.target.value})}
-                    className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
-                    placeholder="Nome ou Empresa"
+                    className="w-full px-8 py-5 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-dark-green text-sm shadow-sm"
+                    placeholder="Nome Completo ou Empresa"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Contacto Digital</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.4em] ml-2">Email</label>
                   <input
                     type="email"
                     required
                     maxLength={100}
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
-                    placeholder="email@empresa.pt"
+                    className="w-full px-8 py-5 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-dark-green text-sm shadow-sm"
+                    placeholder="contacto@exemplo.pt"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Serviço Pretendido</label>
-                <div className="relative">
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.4em] ml-2">Finalidade do Contacto</label>
+                <div className="relative group/select">
                   <select 
                     value={formData.servico}
                     onChange={(e) => setFormData({...formData, servico: e.target.value})}
-                    className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm appearance-none cursor-pointer"
+                    className="w-full px-8 py-5 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-dark-green text-sm appearance-none cursor-pointer"
                   >
                     {services.map((service, idx) => (
                       <option key={idx} value={service}>{service}</option>
                     ))}
                   </select>
-                  <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none" size={18} />
+                  <ChevronRight className="absolute right-8 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none group-focus-within/select:rotate-[270deg] transition-transform" size={18} strokeWidth={3} />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Detalhes do Pedido</label>
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.4em] ml-2">Mensagem</label>
                 <textarea
                   required
                   maxLength={2000}
                   value={formData.mensagem}
                   onChange={(e) => setFormData({...formData, mensagem: e.target.value})}
-                  className="w-full h-40 px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm resize-none shadow-sm"
-                  placeholder="Descreva as suas necessidades de gestão de resíduos..."
+                  className="w-full h-44 px-8 py-6 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-dark-green text-sm resize-none shadow-sm"
+                  placeholder="Como podemos ajudar na sua gestão de resíduos?"
                 ></textarea>
               </div>
 
-              <div className="pt-4 flex flex-col md:flex-row gap-4">
-                <label className="flex-1 h-16 flex items-center justify-center border-2 border-dashed border-primary-green/20 rounded-2xl hover:border-primary-green/50 hover:bg-primary-green/5 cursor-pointer transition-all group">
-                  <Upload size={18} className="text-primary-green mr-3 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-black text-slate-400 group-hover:text-primary-green uppercase tracking-widest transition-colors">Anexar Fotos</span>
+              <div className="pt-6 flex flex-col sm:flex-row gap-6">
+                <label className="flex-1 h-20 flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl hover:border-primary-green hover:bg-primary-green/5 cursor-pointer transition-all group/upload">
+                  <Upload size={20} className="text-slate-400 mr-3 group-hover/upload:text-primary-green group-hover/upload:scale-110 transition-all" />
+                  <span className="text-[10px] font-black text-slate-400 group-hover/upload:text-primary-green uppercase tracking-[0.3em] transition-colors">Anexar Fotos</span>
                   <input type="file" className="hidden" multiple accept="image/*" onChange={handleImageChange} />
                 </label>
                 
-                <button className="flex-[1.5] h-16 bg-gradient-to-r from-primary-green to-emerald-green text-white rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-primary-green/40 hover:-translate-y-1 transition-all group">
-                  Enviar Mensagem
-                  <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <button className="flex-[1.5] h-20 bg-dark-green text-white rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] flex items-center justify-center gap-4 hover:bg-primary-green hover:shadow-[0_20px_40px_-10px_rgba(142,179,31,0.4)] hover:-translate-y-1 transition-all group/btn">
+                  Submeter Pedido
+                  <Send size={18} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                 </button>
               </div>
 
