@@ -75,7 +75,7 @@ export default function NoticiasGrid({ noticias }) {
         <div className="mx-auto max-w-6xl bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.08)] rounded-[3rem] p-3 lg:p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-500">
           
           {/* Magic Tabs - Categories */}
-          <div className="flex-1 overflow-x-auto no-scrollbar pb-2 lg:pb-0 -mx-2 px-2 lg:mx-0 lg:px-0">
+          <div className="flex-1 overflow-x-auto scrollbar-hide pb-2 lg:pb-0 -mx-2 px-2 lg:mx-0 lg:px-0">
             <div className="flex items-center gap-1 min-w-max relative">
               {categories.map((cat) => (
                 <button
