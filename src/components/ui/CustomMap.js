@@ -193,7 +193,7 @@ export default function CustomMap() {
                   <Building2 size={20} className="text-primary-green" />
                 </div>
                 
-                <h3 className="font-heading font-bold text-slate-900 text-lg mb-1">20Recolher HQ</h3>
+                <h3 className="font-heading font-bold text-slate-900 text-lg mb-1">20 Recolher</h3>
                 <p className="text-[10px] text-slate-500 mb-5 leading-tight font-body uppercase tracking-[0.2em]">Zona Industrial de Cantanhede</p>
                 
                 <a 

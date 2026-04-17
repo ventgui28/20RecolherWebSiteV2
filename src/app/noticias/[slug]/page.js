@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import ReadingProgress from '@/components/ui/ReadingProgress'
@@ -9,6 +10,8 @@ import ClientViewCounter from '@/components/ui/ClientViewCounter'
 import { NEWS_DEFAULT_IMAGES } from '@/constants/news'
 import { calculateReadingTime } from '@/lib/utils'
 import DOMPurify from 'isomorphic-dompurify'
+
+export const revalidate = 3600
 
 export async function generateMetadata({ params }) {
   const { slug } = await params
@@ -69,6 +72,7 @@ export default async function ArtigoPage({ params }) {
           <Container size="md">
             <Link 
               href="/noticias"
+              aria-label="Voltar para a sala de imprensa"
               className="inline-flex items-center gap-3 text-slate-400 hover:text-emerald-600 transition-all mb-12 group"
             >
               <div className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 group-hover:border-emerald-200 group-hover:bg-emerald-50 transition-colors">
@@ -114,10 +118,12 @@ export default async function ArtigoPage({ params }) {
         <div className="mb-24 px-4 md:px-8">
           <Container size="full">
             <div className="aspect-[16/9] md:aspect-[21/9] rounded-[3rem] md:rounded-[4rem] overflow-hidden bg-slate-100 shadow-2xl shadow-emerald-900/5 relative border border-slate-100">
-              <img 
+              <Image 
                 src={noticia.imagem_url || fallbackImage} 
                 alt={noticia.titulo}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                className="object-cover"
               />
             </div>
           </Container>
@@ -200,10 +206,11 @@ export default async function ArtigoPage({ params }) {
                   className="group flex flex-col h-full bg-transparent"
                 >
                   <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 bg-slate-800 relative ring-1 ring-white/10 group-hover:ring-emerald-500/50 transition-all duration-500">
-                    <img 
+                    <Image 
                       src={rel.imagem_url || fallbackImage} 
                       alt={rel.titulo}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-60 group-hover:opacity-100"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out opacity-60 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60" />
                     <div className="absolute top-6 left-6">

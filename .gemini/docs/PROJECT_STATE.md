@@ -1,6 +1,6 @@
 # Estado Atual do Projeto - 20recolher
 
-Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
+Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 10/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 10/04/2026, 13:02:39
+#### Sincronização: 17/04/2026, 13:00:25
 **Commits:**
 ```
-2e4ecc8 style: suavizar aparicao do marcador com Framer Motion
-fd61438 style: aumentar zoom final da animacao para 17
-7ab8444 feat: diferir a aparicao do marcador ate ao fim do zoom
-618eefa feat: disparar animacao de zoom do mapa apenas via scroll
-50b393f feat: implementar animacao de zoom-in imersiva no mapa
+4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
+6854322 feat: implementar centro de apoio com sistema de FAQ interativo
+c27dc97 style: consolidar marca e refinar hierarquia visual nas páginas core
+3ca96c8 security: implementar Content Security Policy (CSP) e Permissions-Policy
+2277ba1 security: implementar honeypot anti-spam no formulário de contactos
 ```
 #### Sincronização:
-#### Sincronização: 10/04/2026, 13:02:27
+#### Sincronização: 17/04/2026, 12:59:43
 **Commits:**
 ```
-2e4ecc8 style: suavizar aparicao do marcador com Framer Motion
-fd61438 style: aumentar zoom final da animacao para 17
-7ab8444 feat: diferir a aparicao do marcador ate ao fim do zoom
-618eefa feat: disparar animacao de zoom do mapa apenas via scroll
-50b393f feat: implementar animacao de zoom-in imersiva no mapa
+4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
+6854322 feat: implementar centro de apoio com sistema de FAQ interativo
+c27dc97 style: consolidar marca e refinar hierarquia visual nas páginas core
+3ca96c8 security: implementar Content Security Policy (CSP) e Permissions-Policy
+2277ba1 security: implementar honeypot anti-spam no formulário de contactos
 ```

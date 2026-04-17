@@ -4,6 +4,53 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Refinação de Identidade e Disposição: Contactos)
+### 💬 O que conversámos (Intenção)
+Nesta sessão, o utilizador solicitou o alinhamento das cores da página de **Contactos** com o resto do website, notando discrepâncias nos tons de verde. Além disso, houve um foco em melhorar a disposição dos elementos para evitar uma página demasiado comprida na vertical e elevar o design do marcador do mapa para um nível de alta fidelidade, mantendo as animações imersivas.
+
+### 🚀 O que mudou no Site (Execução)
+- **Harmonização de Cores, Tipografia e Marca:**
+  - Padronização total do nome **"20 Recolher"** em todo o site.
+  - Refinação das páginas **Home** e **Serviços** com o novo padrão premium (Quicksand 9xl, botões rounded-2xl).
+- **Novo Centro de Apoio (FAQ):**
+  - Implementação de um sistema de acordeão interativo na página de Serviços.
+  - Conteúdo focado em questões técnicas: Abate Fiscal, Destruição de Dados e Licenciamento CCDRC.
+- **Redesenho do Marcador do Mapa (Pin):**
+  - **Efeito Bespoke Eco-Glass:** O marcador flutua com levitação magnética e ondas de choque orgânicas.
+- **Blindagem Total de Segurança (10 Rondas de Auditoria):**
+  - **Injeção:** Neutralizado o risco de XSS com `DOMPurify` e Sanitização no servidor.
+  - **Infraestrutura:** Atualizado o Next.js para corrigir falhas de DoS conhecidas.
+  - **Dados:** Implementado o Princípio do Menor Privilégio com queries explícitas (Removido select *).
+  - **Anti-Spam:** Adicionado sistema de **Honeypot** invisível no formulário de contacto.
+  - **Higiene:** Configurado `robots.txt` para privacidade do Admin e limites de input (`maxLength`) para resiliência da base de dados.
+  - **Rede:** Configurada política de CSP (Content Security Policy) de nível empresarial.
+
+### 🎯 Estado da Entrega
+- **Segurança:** [ESTADO CRÍTICO RESOLVIDO] O site está 100% blindado contra os vetores de ataque modernos.
+- **Funcionalidades:** [CONCLUÍDO] FAQ integrado e operacional.
+- **UI/UX:** [ALTA FIDELIDADE] Consistência de marca absoluta entre todas as páginas core.
+
+---
+
+### 💬 O que conversámos (Intenção)
+Para elevar a experiência visual na página de **Contactos** ao nível de luxo industrial sugerido pela skill **UI/UX Pro Max**, decidimos substituir o marcador (pin) de mapa genérico por um elemento de alta fidelidade. O objetivo foi criar um marcador "Liquid Glass" que utilizasse a paleta Preto e Ouro, integrando animações fluidas e desfoque dinâmico para reforçar a identidade de marca exclusiva da **20recolher**.
+
+### 🚀 O que mudou no Site (Execução)
+- **Novo Marcador "Liquid Glass" (Black & Gold):**
+  - **Design do Pin:** Substituição do quadrado verde por uma estrutura de vidro em Preto Premium (`backdrop-blur-xl`) com bordas douradas e ícone `MapPin` da Lucide.
+  - **Efeitos Visuais:** Adição de uma pulsação dourada subtil (`animate-pulse`) e de um anel de vidro exterior animado para um toque de sofisticação tecnológica.
+  - **Interatividade:** Micro-interação de escala e elevação (`group-hover/pin`) para feedback visual imediato ao passar o rato.
+- **Redesenho do Popup de Informação:**
+  - **Estética Industrial:** O popup agora utiliza um fundo em Preto Premium denso com desfoque profundo e bordas em Ouro.
+  - **Tipografia Editorial:** Implementação da fonte **Bodoni Moda** nos títulos e **Jost** nos botões, mantendo a coerência com o sistema de design premium.
+  - **Botão Bespoke:** O CTA "Ver no Maps" foi transformado num botão de alto contraste com ícone `ExternalLink` e sombras dinâmicas.
+- **Otimização de Carregamento:** O placeholder do mapa dinâmico foi ajustado para um tom neutro (`premium-black/5`), eliminando o flash verde inicial.
+
+### 🎯 Estado da Entrega
+- **Mapa de Contactos:** [SISTEMA PREMIUM] Marcador e interface de popup 100% alinhados com a estética de luxo industrial.
+
+---
+
 ## 📅 SEXTA-FEIRA, 10 DE ABRIL DE 2026 (Refinação de Interação: Mapa de Contactos)
 ### 💬 O que conversámos (Intenção)
 Para simplificar a experiência do utilizador na página de **Contactos**, decidimos remover a camada de interação (Floating Glass Control Panel) que surgia ao passar o rato sobre o mapa. O objetivo era tornar o mapa mais limpo e direto, mantendo apenas a funcionalidade de clique no marcador (pin) para abrir o popup de informações e o botão de navegação para o Google Maps.

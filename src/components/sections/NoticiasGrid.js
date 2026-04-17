@@ -3,17 +3,12 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ArrowRight, Filter, Search, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { NEWS_DEFAULT_IMAGES } from '@/constants/news';
+import { calculateReadingTime } from '@/lib/utils';
 
 const ITEMS_PER_PAGE = 6;
-
-const calculateReadingTime = (content) => {
-  const wordsPerMinute = 200;
-  const text = content.replace(/<[^>]*>/g, '');
-  const wordCount = text.split(/\s+/).length;
-  return Math.ceil(wordCount / wordsPerMinute);
-};
 
 export default function NoticiasGrid({ noticias }) {
   const [activeCategory, setActiveCategory] = useState('Todas');
@@ -26,7 +21,7 @@ export default function NoticiasGrid({ noticias }) {
     const section = document.getElementById('noticias-grid-start');
     if (section) {
       const yOffset = -100;
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }, [currentPage]);
@@ -123,6 +118,7 @@ export default function NoticiasGrid({ noticias }) {
             <input 
               type="text" 
               placeholder="Pesquisar publicações..." 
+              aria-label="Pesquisar publicações"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-slate-50/80 backdrop-blur-xl border border-slate-200/60 pl-16 pr-6 py-4 rounded-full text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:bg-white focus:border-emerald-300 transition-all duration-300 placeholder:text-slate-400 shadow-sm"
@@ -154,10 +150,12 @@ export default function NoticiasGrid({ noticias }) {
                 {/* Imagem */}
                 <div className="relative aspect-[16/10] lg:aspect-[21/9] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-10" />
-                  <img 
+                  <Image 
                     src={featured.imagem_url || fallbackImage} 
                     alt={featured.titulo}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 group-hover:rotate-1 transition-transform duration-[1.5s] ease-out opacity-80"
+                    fill
+                    priority
+                    className="object-cover group-hover:scale-105 group-hover:rotate-1 transition-transform duration-[1.5s] ease-out opacity-80"
                   />
                   <div className="absolute top-8 left-8 z-20">
                     <span className="bg-emerald-500 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg shadow-emerald-900/50 backdrop-blur-md">
@@ -217,10 +215,11 @@ export default function NoticiasGrid({ noticias }) {
                     className="group flex flex-col h-full bg-transparent"
                   >
                     <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 border border-slate-200/50 shadow-sm group-hover:shadow-2xl group-hover:shadow-emerald-900/10 transition-all duration-500">
-                      <img 
+                      <Image 
                         src={noticia.imagem_url || fallbackImage} 
                         alt={noticia.titulo}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-white/90 backdrop-blur-md text-slate-900 text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
@@ -274,6 +273,7 @@ export default function NoticiasGrid({ noticias }) {
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
+                  aria-label="Página anterior"
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all disabled:opacity-30 disabled:pointer-events-none"
                 >
                   <ChevronLeft size={18} />
@@ -311,6 +311,7 @@ export default function NoticiasGrid({ noticias }) {
                         <button
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
+                          aria-label={`Página ${pageNum}`}
                           className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-black transition-all ${
                             currentPage === pageNum
                               ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20'
@@ -327,6 +328,7 @@ export default function NoticiasGrid({ noticias }) {
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
+                  aria-label="Página seguinte"
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all disabled:opacity-30 disabled:pointer-events-none"
                 >
                   <ChevronRight size={18} />

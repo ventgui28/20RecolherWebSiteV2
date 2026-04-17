@@ -4,7 +4,14 @@ import NoticiasGrid from '@/components/sections/NoticiasGrid'
 import NoticiasHero from '@/components/sections/NoticiasHero'
 import NewsletterCTA from '@/components/sections/NewsletterCTA'
 
-// Esta página é renderizada no servidor para melhor SEO
+// Esta página é renderizada no servidor com ISR para alta performance
+export const revalidate = 3600
+
+export const metadata = {
+  title: 'Notícias & Destaques | 20recolher',
+  description: 'Acompanhe a atividade oficial da nossa empresa: novos investimentos, marcos operacionais e a nossa evolução contínua no setor da economia circular.',
+}
+
 export default async function NoticiasPage() {
   const supabase = await createClient()
 
