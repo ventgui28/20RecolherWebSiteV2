@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -29,6 +29,11 @@ export default function LoginPage() {
   const [error, setError] = useState(null)
   const router = useRouter()
   const supabase = createClient()
+
+  // Diagnóstico
+  useEffect(() => {
+    console.log('🛡️ Turnstile Site Key:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? 'Configurada ✅' : 'Em falta ❌')
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
