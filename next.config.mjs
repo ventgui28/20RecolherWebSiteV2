@@ -3,15 +3,16 @@ const nextConfig = {
   async headers() {
     const cspHeader = `
       default-src 'self';
-      script-src 'self' 'unsafe-eval' 'unsafe-inline';
+      script-src 'self' 'unsafe-eval' 'unsafe-inline' https://challenges.cloudflare.com;
       style-src 'self' 'unsafe-inline' https://server.arcgisonline.com;
       img-src 'self' blob: data: https://*.supabase.co https://images.unsplash.com https://server.arcgisonline.com;
       font-src 'self' data:;
       object-src 'none';
       base-uri 'self';
       form-action 'self';
+      frame-src 'self' https://challenges.cloudflare.com;
       frame-ancestors 'none';
-      connect-src 'self' https://*.supabase.co https://server.arcgisonline.com;
+      connect-src 'self' https://*.supabase.co https://server.arcgisonline.com https://challenges.cloudflare.com;
       upgrade-insecure-requests;
     `.replace(/\s{2,}/g, ' ').trim();
 
@@ -41,7 +42,7 @@ const nextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(self), browsing-topics=()',
+            value: 'camera=(), microphone=(), geolocation=(self)',
           },
         ],
       },
