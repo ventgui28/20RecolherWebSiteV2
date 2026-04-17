@@ -233,10 +233,14 @@ export default function LoginPage() {
 
             {/* Cloudflare Turnstile Widget */}
             {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
-              <div className="flex justify-center py-2 min-h-[65px]">
+              <div className="flex justify-center py-2 min-h-[70px] relative z-[100] border border-dashed border-white/5">
                 <Turnstile 
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} 
-                  onSuccess={(token) => setCaptchaToken(token)}
+                  onSuccess={(token) => {
+                    console.log('✅ Token gerado com sucesso')
+                    setCaptchaToken(token)
+                  }}
+                  onError={() => console.error('❌ Erro ao carregar Turnstile')}
                   options={{
                     theme: 'dark',
                     appearance: 'always',
