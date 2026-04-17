@@ -228,57 +228,60 @@ export default function NovaNoticiaPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50/50 pt-24 pb-20">
+    <main className="min-h-screen bg-slate-50/30 pt-32 pb-20 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-primary-green/5 rounded-full blur-[100px] -z-10" />
+      
       <Container size="xl">
         <div className="max-w-7xl mx-auto">
-          {/* Sticky Header */}
-          <div className="sticky top-24 z-40 bg-slate-50/80 backdrop-blur-md pb-8 -mx-4 px-4 mb-4">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
+          {/* Sticky Header - Premium Glass */}
+          <div className="sticky top-24 z-40 bg-white/40 backdrop-blur-xl pb-8 -mx-4 px-4 mb-4 border-b border-white/20">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-4">
+              <div className="flex items-center gap-6">
                 <button 
                   onClick={() => router.back()}
-                  className="p-4 bg-white border border-slate-100 text-slate-400 hover:text-emerald-600 rounded-2xl transition-all shadow-sm group"
+                  className="w-14 h-14 flex items-center justify-center bg-white border border-slate-100 text-slate-400 hover:text-primary-green rounded-2xl transition-all shadow-sm hover:shadow-primary-green/10 group"
                 >
                   <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-8 h-0.5 bg-emerald-500 rounded-full" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">Nova Publicação</span>
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="w-8 h-1 bg-primary-green rounded-full shadow-[0_0_10px_rgba(142,179,31,0.5)]" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-green">Redação Editorial</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight line-clamp-1 max-w-md">
-                    {formData.titulo || 'Nova Notícia'}
+                  <h1 className="text-3xl font-black text-dark-green tracking-tighter line-clamp-1 max-w-md">
+                    {formData.titulo || 'Nova Publicação'}
                   </h1>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="hidden lg:flex items-center gap-6 px-6 py-3 bg-white/50 border border-slate-100 rounded-2xl mr-2">
+              <div className="flex items-center gap-4">
+                <div className="hidden lg:flex items-center gap-8 px-8 py-3 bg-white/80 border border-slate-100 rounded-[2rem] shadow-sm">
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Palavras</span>
-                    <span className="text-sm font-black text-slate-900">{readingMetrics.words}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Palavras</span>
+                    <span className="text-sm font-black text-dark-green">{readingMetrics.words}</span>
                   </div>
                   <div className="w-px h-6 bg-slate-100" />
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Leitura</span>
-                    <span className="text-sm font-black text-slate-900">{readingMetrics.time} min</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Tempo</span>
+                    <span className="text-sm font-black text-dark-green">{readingMetrics.time} min</span>
                   </div>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setIsPreviewOpen(true)}
-                  className="p-3 bg-white border border-slate-100 text-slate-400 hover:text-emerald-600 rounded-2xl transition-all shadow-sm"
+                  className="w-14 h-14 flex items-center justify-center bg-white border border-slate-100 text-slate-400 hover:text-primary-green rounded-2xl transition-all shadow-sm hover:shadow-primary-green/10"
                   title="Pré-visualizar"
                 >
-                  <Eye size={20} />
+                  <Eye size={22} />
                 </button>
                 <Button
                   onClick={handleSubmit}
                   disabled={loading || !formData.titulo || !formData.conteudo || (!image && !imagePreview)}
-                  className="px-8 py-4 flex items-center gap-2 font-black shadow-xl shadow-emerald-500/10 active:scale-95 transition-all text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-14 px-10 bg-dark-green text-white hover:bg-primary-green rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-2xl shadow-dark-green/10 hover:shadow-primary-green/20 active:scale-95 transition-all flex items-center gap-3 disabled:opacity-50"
                 >
-                  {loading ? <Loader2 className="animate-spin" size={20} strokeWidth={3} /> : <Save size={20} strokeWidth={3} />}
+                  {loading ? <Loader2 className="animate-spin" size={18} strokeWidth={3} /> : <Save size={18} strokeWidth={3} />}
                   {formData.publicado ? 'Publicar Agora' : 'Guardar Rascunho'}
                 </Button>
               </div>
@@ -291,32 +294,32 @@ export default function NovaNoticiaPage() {
               <section className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100 space-y-10">
                 <div className="space-y-6">
                   <div>
-                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 ml-1">
-                      <Type size={14} className="text-emerald-600" />
-                      Título da Notícia
+                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 ml-1">
+                      <Type size={14} className="text-primary-green" />
+                      Título do Artigo
                     </label>
                     <input
                       type="text"
                       required
                       maxLength={100}
-                      placeholder="Título de impacto..."
+                      placeholder="Escreva algo impactante..."
                       value={formData.titulo}
                       onChange={(e) => setFormData({...formData, titulo: e.target.value})}
-                      className="w-full px-0 py-2 bg-transparent border-b-2 border-slate-50 focus:border-emerald-500 outline-none transition-all text-3xl md:text-4xl font-black text-slate-900 placeholder:text-slate-200"
+                      className="w-full px-0 py-2 bg-transparent border-b-2 border-slate-50 focus:border-primary-green outline-none transition-all text-3xl md:text-5xl font-black text-dark-green placeholder:text-slate-100 tracking-tighter"
                     />
                   </div>
 
                   <div>
-                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 ml-1">
-                      <FileText size={14} className="text-emerald-600" />
-                      Subtítulo / Lead
+                    <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 ml-1">
+                      <FileText size={14} className="text-primary-green" />
+                      Subtítulo / Lead Editorial
                     </label>
                     <textarea
-                      placeholder="Um breve resumo para captar a atenção..."
+                      placeholder="Um breve resumo para captar a atenção do leitor..."
                       maxLength={300}
                       value={formData.subtitulo}
                       onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
-                      className="w-full px-6 py-5 bg-slate-50/50 border border-slate-100 rounded-3xl focus:ring-4 focus:ring-emerald-500/5 focus:bg-white focus:border-emerald-500 outline-none transition-all h-32 resize-none font-bold text-slate-600 leading-relaxed placeholder:text-slate-300"
+                      className="w-full px-8 py-6 bg-slate-50/50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-primary-green/5 focus:bg-white focus:border-primary-green outline-none transition-all h-36 resize-none font-bold text-dark-green/70 leading-relaxed placeholder:text-slate-200"
                     />
                   </div>
                 </div>
@@ -448,36 +451,34 @@ export default function NovaNoticiaPage() {
                 </div>
               </section>
 
-              {/* SEO Engine Card */}
-              <section className="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-slate-300/50 space-y-6 text-white overflow-hidden relative group">
-                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Globe size={100} strokeWidth={1} />
-                </div>
+              {/* SEO Engine Card - Dark Mode Premium */}
+              <section className="bg-dark-green bg-grain rounded-[2.5rem] p-10 shadow-2xl shadow-dark-green/20 space-y-8 text-white overflow-hidden relative group border border-white/5">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-green/20 rounded-full blur-[80px] group-hover:bg-primary-green/30 transition-colors" />
                 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-8">
-                    <Search size={14} strokeWidth={3} />
-                    SEO Engine
+                  <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-primary-green mb-10">
+                    <Globe size={16} strokeWidth={3} />
+                    SEO Engine v2
                   </div>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-3 ml-1">Meta Title</label>
+                      <label className="block text-[9px] font-black uppercase tracking-[0.3em] text-white/30 mb-4 ml-1">Meta Title</label>
                       <input
                         type="text"
-                        placeholder="Título para motores de busca..."
+                        placeholder="Título Otimizado..."
                         value={formData.seo_title}
                         onChange={(e) => setFormData({...formData, seo_title: e.target.value})}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-sm text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/20 focus:bg-white/10 transition-all placeholder:text-white/20 font-bold"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-sm text-white focus:outline-none focus:ring-4 focus:ring-primary-green/20 focus:bg-white/10 focus:border-primary-green/50 transition-all placeholder:text-white/10 font-bold"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-3 ml-1">Meta Description</label>
+                      <label className="block text-[9px] font-black uppercase tracking-[0.3em] text-white/30 mb-4 ml-1">Meta Description</label>
                       <textarea
-                        placeholder="Descrição curta e cativante..."
+                        placeholder="Snippet para o Google..."
                         value={formData.seo_description}
                         onChange={(e) => setFormData({...formData, seo_description: e.target.value})}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-sm text-white focus:outline-none focus:ring-4 focus:ring-emerald-500/20 focus:bg-white/10 transition-all h-28 resize-none placeholder:text-white/20 font-medium leading-relaxed"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-sm text-white focus:outline-none focus:ring-4 focus:ring-primary-green/20 focus:bg-white/10 focus:border-primary-green/50 transition-all h-32 resize-none placeholder:text-white/10 font-medium leading-relaxed"
                       />
                     </div>
                   </div>

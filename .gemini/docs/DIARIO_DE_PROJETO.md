@@ -4,6 +4,28 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium do Backoffice/Admin)
+### 💬 O que conversámos (Intenção)
+Com o site público no seu auge estético, identificámos que a área administrativa ainda utilizava um design funcional mas genérico. O objetivo desta intervenção foi estender a identidade **Ultra-Premium** (Dark-Green + Glassmorphism) ao painel de controlo, transformando o backoffice numa ferramenta de gestão de elite.
+
+### 🚀 O que mudou no Site (Execução)
+- **Portal de Login Imersivo:**
+  - Substituição do ecrã cinzento por um fundo `dark-green` com textura `bg-grain` e uma aura de luz central.
+  - O formulário de entrada foi transformado num bloco de **Liquid Glass** com bordas ultra-arredondadas (`rounded-[3rem]`) e inputs minimalistas de alto contraste.
+- **Dashboard Bento UI:**
+  - As estatísticas rápidas (Total de Artigos, Views, etc.) foram convertidas numa **Bento Grid assimétrica**.
+  - A listagem de notícias abandonou o aspeto de "tabela de base de dados" para adotar um formato de **Cards Editoriais Horizontais**, com imagens de miniatura arredondadas e badges de status com brilho dinâmico.
+- **Command Center Flutuante:**
+  - Implementação de uma barra de ações em massa que flutua no fundo do ecrã, inspirada nos interfaces móveis mais modernos, permitindo publicar ou eliminar múltiplos artigos com elegância.
+- **Editores "Zen" (Nova/Editar):**
+  - Refinação total das páginas de escrita: cabeçalhos fixos com efeito de vidro, tipografia de grande escala para títulos e uma secção de SEO redesenhada em modo escuro para focar a atenção do administrador.
+  - Substituição de todas as referências cromáticas `emerald` pelo `primary-green` oficial da 20recolher.
+
+### 🎯 Estado da Entrega
+- O ecossistema digital da 20recolher está agora 100% coeso. Desde o primeiro contacto do cliente até à gestão interna por parte da equipa, a marca comunica solidez, inovação e luxo técnico.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium da Página de Serviços)
 ### 💬 O que conversámos (Intenção)
 Avaliámos as pendências de *design* no Backlog e decidimos atacar a **Página de Serviços**, que ainda mantinha um *layout* clássico e mecânico (Z-Pattern simples e grelha de 3 colunas padrão). O objetivo foi aplicar a mesma linguagem geométrica (Bento Grid) e as texturas premium (Dark Green + Grain) estreadas nas restantes páginas.

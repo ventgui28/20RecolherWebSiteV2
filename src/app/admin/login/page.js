@@ -37,26 +37,30 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center py-20 px-4">
-      <Container size="xs">
+    <main className="min-h-screen bg-dark-green bg-grain flex items-center justify-center py-20 px-4 relative overflow-hidden">
+      {/* Decorative background aura */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-primary-green/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <Container size="xs" className="relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-slate-100"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-white/5 backdrop-blur-2xl rounded-[3rem] p-10 md:p-14 border border-white/10 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)]"
         >
-          <div className="flex flex-col items-center mb-8 text-center">
-            <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mb-4 text-emerald-600">
-              <Lock size={32} />
+          <div className="flex flex-col items-center mb-12 text-center">
+            <div className="w-20 h-20 bg-primary-green/20 rounded-[1.5rem] flex items-center justify-center mb-6 text-primary-green border border-primary-green/30 shadow-lg shadow-primary-green/10">
+              <Lock size={32} strokeWidth={2.5} />
             </div>
-            <h1 className="text-2xl font-bold text-slate-900">Área de Administração</h1>
-            <p className="text-slate-500 text-sm mt-2">Acesso restrito para gestão de conteúdos.</p>
+            <h1 className="text-3xl font-black text-white tracking-tighter uppercase mb-2">Administração</h1>
+            <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">Acesso Seguro 20Recolher</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+          <form onSubmit={handleLogin} className="space-y-8">
+            <div className="space-y-3">
+              <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] ml-1">Identificador Digital</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary-green transition-colors">
                   <Mail size={18} />
                 </div>
                 <input
@@ -64,16 +68,16 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none text-slate-900"
+                  className="w-full pl-14 pr-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-primary-green/50 focus:bg-white/10 focus:border-primary-green transition-all outline-none text-white font-bold"
                   placeholder="admin@20recolher.pt"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Password</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+            <div className="space-y-3">
+              <label className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] ml-1">Chave de Segurança</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary-green transition-colors">
                   <Lock size={18} />
                 </div>
                 <input
@@ -81,35 +85,46 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none text-slate-900"
+                  className="w-full pl-14 pr-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-primary-green/50 focus:bg-white/10 focus:border-primary-green transition-all outline-none text-white font-bold"
                   placeholder="••••••••"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 text-red-600 text-sm animate-shake">
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }} 
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold"
+              >
                 <AlertCircle size={16} />
                 {error}
-              </div>
+              </motion.div>
             )}
 
             <Button
               type="submit"
               fullWidth
               disabled={loading}
-              className="py-4 rounded-xl font-bold flex items-center justify-center gap-2"
+              className="h-16 rounded-2xl bg-primary-green hover:bg-white hover:text-dark-green transition-all duration-300 font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-2xl shadow-primary-green/20 border-none"
             >
               {loading ? (
                 <>
                   <Loader2 className="animate-spin" size={20} />
-                  A autenticar...
+                  Verificando...
                 </>
               ) : (
-                'Entrar no Painel'
+                <>
+                  Entrar no Sistema
+                  <ChevronRight size={18} strokeWidth={3} />
+                </>
               )}
             </Button>
           </form>
+          
+          <div className="mt-12 pt-8 border-t border-white/5 text-center">
+             <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em]">&copy; {new Date().getFullYear()} 20Recolher v2.0</p>
+          </div>
         </motion.div>
       </Container>
     </main>
