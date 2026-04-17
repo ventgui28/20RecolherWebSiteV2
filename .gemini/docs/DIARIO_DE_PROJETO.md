@@ -4,6 +4,25 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Segurança Pro Max: Anti-Brute Force)
+### 💬 O que conversámos (Intenção)
+Implementámos uma camada de segurança ativa no login para prevenir ataques de força bruta e bots automatizados. Escolhemos o **Cloudflare Turnstile** por ser uma solução gratuita, premium e invisível para o utilizador legítimo.
+
+### 🚀 O que mudou no Site (Execução)
+- **Integração Cloudflare Turnstile:**
+  - Adição do componente `@marsidev/react-turnstile` ao formulário de login.
+  - O widget só aparece se a variável de ambiente `NEXT_PUBLIC_TURNSTILE_SITE_KEY` estiver configurada.
+- **Validação de Segurança:**
+  - O botão de login é condicionado à resolução do desafio de segurança.
+  - O token gerado é enviado para o Supabase Auth para validação do lado do servidor (se ativado no painel).
+- **UX Protegida:**
+  - Uso do tema `dark` do Turnstile para manter a estética do nosso Split Layout.
+
+### 🎯 Estado da Entrega
+- O Backoffice da 20Recolher está agora protegido contra tentativas de invasão automatizada, cumprindo as melhores práticas de cibersegurança moderna sem custos adicionais.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Contactos Pro Max v2.5)
 ### 💬 O que conversámos (Intenção)
 Elevámos a página de contactos para uma experiência de "Concierge Ambiental". O objetivo foi transformar um simples formulário num canal de comunicação de alta fidelidade que transmite confiança imediata.
