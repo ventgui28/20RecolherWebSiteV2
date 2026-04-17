@@ -38,7 +38,7 @@ export default function DashboardPage() {
   const fetchNoticias = async () => {
     const { data, error } = await supabase
       .from('noticias')
-      .select('*')
+      .select('id, titulo, created_at, categoria, publicado, views, autor, imagem_url')
       .order('created_at', { ascending: false })
 
     if (error) console.error('Erro ao carregar notícias:', error)

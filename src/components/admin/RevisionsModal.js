@@ -27,7 +27,7 @@ export default function RevisionsModal({ isOpen, onClose, noticiaId, onRestore }
     setLoading(true)
     const { data, error } = await supabase
       .from('revisoes_noticias')
-      .select('*')
+      .select('id, noticia_id, titulo, resumo, conteudo, categoria, criado_em, imagem_url, meta_title, meta_description')
       .eq('noticia_id', noticiaId)
       .order('criado_em', { ascending: false })
       .limit(10)

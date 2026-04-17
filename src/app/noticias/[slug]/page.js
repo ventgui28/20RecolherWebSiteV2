@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   
   const { data: noticia } = await supabase
     .from('noticias')
-    .select('*')
+    .select('id, titulo, subtitulo, slug, imagem_url, conteudo, created_at, categoria, autor')
     .eq('slug', slug)
     .single()
 
@@ -42,7 +42,7 @@ export default async function ArtigoPage({ params }) {
 
   const { data: noticia, error } = await supabase
     .from('noticias')
-    .select('*')
+    .select('id, titulo, subtitulo, slug, imagem_url, conteudo, created_at, categoria, autor')
     .eq('slug', slug)
     .single()
 

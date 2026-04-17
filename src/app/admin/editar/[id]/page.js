@@ -71,7 +71,7 @@ export default function EditarNoticiaPage({ params }) {
   const fetchNoticia = async () => {
     const { data, error } = await supabase
       .from('noticias')
-      .select('*')
+      .select('id, titulo, subtitulo, categoria, conteudo, publicado, seo_title, seo_description, imagem_url, slug, autor')
       .eq('id', id)
       .single()
 

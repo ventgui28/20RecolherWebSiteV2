@@ -11,7 +11,7 @@ export default async function NoticiasPage() {
   // Obter apenas notícias publicadas
   const { data: noticias, error } = await supabase
     .from('noticias')
-    .select('*')
+    .select('id, titulo, subtitulo, slug, imagem_url, created_at, categoria, autor')
     .eq('publicado', true)
     .order('created_at', { ascending: false })
 
