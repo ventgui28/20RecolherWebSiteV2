@@ -56,6 +56,23 @@ export default function ContactPage() {
     "Outros Resíduos"
   ];
 
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    servico: 'Recolha REEE\'s (Eletrónicos)',
+    mensagem: '',
+    hp_field: '' // Honeypot field
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.hp_field) return; // Se preenchido, é um bot
+    
+    // Lógica de envio real aqui
+    console.log("Formulário válido:", formData);
+    alert("Mensagem enviada com sucesso!");
+  };
+
   return (
     <div className="relative min-h-screen bg-white font-body overflow-hidden">
       {/* Immersive Background Mesh */}
@@ -108,13 +125,27 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <form className="relative z-10 space-y-8">
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
+              {/* Honeypot Field (Anti-Spam) */}
+              <div className="hidden" aria-hidden="true">
+                <input 
+                  type="text" 
+                  name="hp_field" 
+                  tabIndex="-1" 
+                  autoComplete="off" 
+                  value={formData.hp_field}
+                  onChange={(e) => setFormData({...formData, hp_field: e.target.value})}
+                />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Identificação</label>
                   <input
                     type="text"
                     required
+                    value={formData.nome}
+                    onChange={(e) => setFormData({...formData, nome: e.target.value})}
                     className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
                     placeholder="Nome ou Empresa"
                   />
@@ -124,6 +155,8 @@ export default function ContactPage() {
                   <input
                     type="email"
                     required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
                     placeholder="email@empresa.pt"
                   />
@@ -133,12 +166,16 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Serviço Pretendido</label>
                 <div className="relative">
-                  <select className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm appearance-none cursor-pointer">
+                  <select 
+                    value={formData.servico}
+                    onChange={(e) => setFormData({...formData, servico: e.target.value})}
+                    className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm appearance-none cursor-pointer"
+                  >
                     {services.map((service, idx) => (
                       <option key={idx} value={service}>{service}</option>
                     ))}
                   </select>
-                  <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green" size={18} />
+                  <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 rotate-90 text-primary-green pointer-events-none" size={18} />
                 </div>
               </div>
 
@@ -146,6 +183,8 @@ export default function ContactPage() {
                 <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Detalhes do Pedido</label>
                 <textarea
                   required
+                  value={formData.mensagem}
+                  onChange={(e) => setFormData({...formData, mensagem: e.target.value})}
                   className="w-full h-40 px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm resize-none shadow-sm"
                   placeholder="Descreva as suas necessidades de gestão de resíduos..."
                 ></textarea>
