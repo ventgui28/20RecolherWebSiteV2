@@ -24,7 +24,7 @@ export const SERVICES = [
   {
     id: "componentes",
     title: "Componentes Informáticos",
-    desc: "Recolha e valorização e reciclagem de componentes informático e electrónicos (placas, processadores, memórias, discos, etc) em quantidade.",
+    desc: "Recolha e valorização e reciclagem de componentes informático e electrónicos (placas, processadores, memórias, discos, etc).",
     badge: "02",
     advantage: "Especialistas em Hardware",
     icon: "Cpu",
@@ -64,17 +64,17 @@ export const SERVICES = [
   {
     id: "consultadoria",
     title: "Consultadoria Ambiental",
-    desc: "Ajudamos no registo no Siliamb e emissão de E-gar. Esclareça dúvidas ambientais ou legais com a nossa Engenheira do Ambiente.",
+    desc: "Ajudamos no registo no Siliamb e emissão de E-gar. Esclareça dúvidas ambientais ou legais connosco.",
     badge: "06",
     advantage: "Apoio Especializado",
     icon: "ClipboardCheck",
     image: "/images/imagem-arvore.jpg",
-    items: ["Registo Siliamb", "Validação de E-gar", "Consultoria Jurídica Ambiental"]
+    items: ["Registo Siliamb", "Validação de E-gar"]
   },
   {
     id: "destruicao",
     title: "Destruição de Dados",
-    desc: "Destruímos no local do cliente ou nas nossas instalações, discos rígidos e outros dispositivos de armazenamento e equipamentos.",
+    desc: "Destruímos discos rígidos e outros dispositivos de armazenamento e equipamentos.",
     badge: "07",
     advantage: "Segurança Absoluta",
     icon: "ShieldAlert",

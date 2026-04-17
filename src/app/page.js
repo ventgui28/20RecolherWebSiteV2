@@ -58,17 +58,6 @@ export default function Home() {
                </motion.div>
                
                <div className="absolute w-[80%] h-[80%] bg-primary-green/10 rounded-full blur-[100px] pointer-events-none" />
-               
-               <motion.div 
-                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="absolute top-0 right-0 md:-right-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-[2.5rem] shadow-2xl border border-green-50 max-w-[200px] z-30"
-               >
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Nosso Foco</p>
-                  <p className="text-base font-bold text-dark-green leading-snug">Economia Circular em Portugal 🇵🇹</p>
-               </motion.div>
 
                <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-primary-green/5 rounded-full blur-2xl animate-pulse" />
             </motion.div>
@@ -81,13 +70,13 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:w-1/2"
             >
-              <h2 className="text-4xl md:text-6xl font-heading text-dark-green mb-10 leading-tight tracking-tight">
-                A sustentabilidade não é uma escolha, <br /> é o <span className="text-primary-green italic underline decoration-green-100 decoration-[12px] underline-offset-4">nosso futuro.</span>
+              <h2 className="text-4xl md:text-6xl font-heading font-bold text-slate-900 mb-10 leading-tight tracking-tight">
+                A sustentabilidade não é uma escolha, <br /> é o <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green to-emerald-green italic">nosso futuro.</span>
               </h2>
               
-              <div className="space-y-8 text-lg text-gray-500 font-medium leading-relaxed mb-12">
+              <div className="space-y-8 text-lg text-slate-500 font-medium leading-relaxed mb-12">
                 <p>
-                  Na 20recolher, transformamos a forma como as empresas gerem os seus ativos tecnológicos. Mais do que recolher, garantimos que cada componente volta a integrar o ciclo produtivo.
+                  Na 20 Recolher, transformamos a forma como as empresas gerem os seus ativos tecnológicos. Mais do que recolher, garantimos que cada componente volta a integrar o ciclo produtivo.
                 </p>
                 
                 <motion.blockquote 
@@ -95,7 +84,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
-                  className="border-l-8 border-primary-green pl-8 py-2 text-dark-green font-bold text-xl italic bg-green-50/30 rounded-r-3xl"
+                  className="border-l-4 border-primary-green pl-8 py-2 text-slate-700 text-2xl font-light italic"
                 >
                    &ldquo;{BRAND.mission}&rdquo;
                 </motion.blockquote>

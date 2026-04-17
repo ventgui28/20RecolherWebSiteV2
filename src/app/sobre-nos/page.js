@@ -134,7 +134,7 @@ export default function AboutPage() {
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 text-center md:text-left">
             <motion.div {...fadeInUp} className="bg-white p-12 md:p-16 rounded-[3.5rem] shadow-sm border border-green-50">
-              <h3 className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] mb-6">Nosso Objetivo</h3>
+              <h3 className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] mb-6">O Nosso Objetivo</h3>
               <h4 className="text-3xl font-heading text-dark-green mb-8">Missão</h4>
               <p className="text-lg text-gray-500 font-medium leading-relaxed italic">
                 &ldquo;{BRAND.mission}&rdquo;
@@ -142,7 +142,7 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="bg-white p-12 md:p-16 rounded-[3.5rem] shadow-sm border border-green-50">
-              <h3 className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] mb-6">Nossa Ambição</h3>
+              <h3 className="text-[10px] font-black text-primary-green uppercase tracking-[0.3em] mb-6">A Nossa Ambição</h3>
               <h4 className="text-3xl font-heading text-dark-green mb-8">Visão</h4>
               <p className="text-lg text-gray-500 font-medium leading-relaxed italic">
                 &ldquo;{BRAND.vision}&rdquo;

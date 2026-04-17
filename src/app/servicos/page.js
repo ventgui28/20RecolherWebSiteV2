@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { SERVICES, RECYCLING_MASTER_LIST } from "@/constants/services";
+import FAQSection from "@/components/sections/FAQSection";
 import { 
   Monitor, 
   Cpu, 
@@ -97,14 +98,6 @@ export default function ServicesPage() {
             className="w-full lg:w-[45%] relative h-[600px] md:h-[900px] rounded-[5rem] lg:rounded-bl-[20rem] overflow-hidden shadow-[0_100px_100px_-50px_rgba(14,103,44,0.15)]"
           >
             <Image src="/images/triagem.jpg" alt="Triagem REEE" fill className="object-cover scale-105" priority />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-green/40 via-transparent to-transparent" />
-            <div className="absolute top-12 right-12 p-8 bg-white/95 backdrop-blur-xl rounded-[3rem] border border-white/50 shadow-2xl max-w-[280px]">
-               <div className="w-16 h-16 bg-primary-green rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-green/20">
-                  <Factory className="w-8 h-8 text-white" />
-               </div>
-               <h3 className="text-xl font-black text-dark-green mb-2 uppercase tracking-tighter">Capacidade Técnica</h3>
-               <p className="text-sm font-medium text-gray-500 leading-relaxed">Operações licenciadas para o tratamento de resíduos perigosos e não perigosos.</p>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -230,6 +223,9 @@ export default function ServicesPage() {
         </Container>
       </section>
 
+      {/* FAQ SECTION */}
+      <FAQSection className="bg-white/40" />
+
       {/* CTA SECTION */}
       <section className="py-24 md:py-48">
         <Container>
@@ -244,15 +240,15 @@ export default function ServicesPage() {
               </div>
 
               <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
-                 <h2 className="text-5xl md:text-8xl font-heading mb-10 leading-[0.9] tracking-tighter w-full">
-                   Responsabilidade <br /><span className="text-primary-green italic">Garantida.</span>
+                 <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-tight mb-8">
+                  Responsabilidade <br /><span className="text-primary-green italic">Garantida.</span>        
                  </h2>
                  <p className="text-xl md:text-2xl text-green-50/70 mb-12 leading-relaxed max-w-3xl mx-auto font-medium">
-                   Emitimos o Certificado de Destruição e Reciclagem em 48 horas. Segurança máxima, esforço zero para a sua empresa.
+                  Emitimos o Certificado de Destruição e Reciclagem. Segurança máxima e conformidade total para a sua empresa.
                  </p>
                  <Link href="/contactos" className="inline-block">
-                    <Button className="h-24 px-16 bg-white text-dark-green hover:bg-primary-green hover:text-white rounded-full text-2xl font-black shadow-2xl transform hover:scale-105 transition-all">
-                       Agendar Recolha Agora
+                    <Button className="h-20 px-16 bg-white text-primary-green hover:bg-primary-green hover:text-white rounded-2xl text-xl font-black shadow-2xl shadow-black/20 transform hover:scale-105 transition-all uppercase tracking-widest">
+                       Solicitar Orçamento
                     </Button>
                  </Link>
               </div>

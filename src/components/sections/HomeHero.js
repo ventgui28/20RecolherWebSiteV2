@@ -122,37 +122,24 @@ export default function HomeHero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-5xl md:text-8xl font-heading text-white leading-[0.95] mb-10 tracking-tighter">
-              Transformamos <br />
-              <span className="text-primary-green italic">tecnologia</span> em <br />
-              <span className="relative inline-block">
-                sustentabilidade.
-                <motion.svg 
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, delay: 1 }}
-                  className="absolute -bottom-2 left-0 w-full h-3" 
-                  viewBox="0 0 200 8" 
-                  fill="none"
-                >
-                  <path d="M1 5.5C40 2 120 2 199 5.5" stroke="#8eb31f" strokeWidth="4" strokeLinecap="round"/>
-                </motion.svg>
-              </span>
+            <h1 className="text-6xl md:text-9xl font-heading font-black text-white leading-[0.9] tracking-tight mb-10">
+              Valorização <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green via-emerald-green to-dark-green">Sustentável.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-xl font-medium">
-              A 20recolher lidera a economia circular em Portugal, garantindo o ciclo de vida total dos seus ativos tecnológicos.
+            <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-12 max-w-xl font-medium italic">
+              A 20 Recolher lidera a economia circular em Portugal, garantindo o ciclo de vida total dos seus ativos tecnológicos.
             </p>
             
             <div className="flex flex-wrap gap-6">
               <Link href="/contactos">
-                <Button className="h-20 px-14 text-xl rounded-2xl bg-primary-green text-white shadow-2xl shadow-primary-green/40 hover:scale-105 transition-transform font-black uppercase tracking-widest">
-                  Solicitar Recolha
+                <Button className="h-20 px-14 text-xl rounded-2xl bg-primary-green text-white shadow-2xl shadow-primary-green/40 hover:scale-105 transition-all font-black uppercase tracking-widest">
+                  Pedir Recolha
                 </Button>
               </Link>
               <Link href="/servicos">
                 <Button variant="outline" className="h-20 px-14 text-xl rounded-2xl border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-black uppercase tracking-widest">
-                  Nossos Serviços
+                  Ver Serviços
                 </Button>
               </Link>
             </div>

@@ -22,7 +22,7 @@ export const PROCESS_STEPS = [
   {
     id: 3,
     title: "Valorização",
-    description: "Processamento avançado que evita a extração mineira de novos recursos finitos da Terra.",
+    description: "Processamento que evita a extração mineira de novos recursos finitos da Terra.",
     icon: Recycle,
     image: "/images/valorizacao.avif",
     color: "bg-green-200/30",
