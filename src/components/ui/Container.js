@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 
 const sizes = {
+  xs: "max-w-md",
   sm: "max-w-3xl",
   md: "max-w-5xl",
   lg: "max-w-6xl",
