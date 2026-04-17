@@ -128,12 +128,18 @@ export default function EditarNoticiaPage({ params }) {
   }
 
   const optimizeImage = (file) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith('image/')) {
+        reject(new Error('O ficheiro selecionado não é uma imagem válida.'));
+        return;
+      }
+
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (event) => {
         const img = new Image();
         img.src = event.target.result;
+        
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const MAX_WIDTH = 1200;
@@ -158,7 +164,13 @@ export default function EditarNoticiaPage({ params }) {
             resolve(optimizedFile);
           }, 'image/jpeg', 0.8);
         };
+        
+        img.onerror = () => {
+          reject(new Error('Falha ao processar a imagem. O ficheiro pode estar corrompido.'));
+        };
       };
+      
+      reader.onerror = () => reject(new Error('Falha ao ler o ficheiro.'));
     });
   }
 
@@ -166,11 +178,16 @@ export default function EditarNoticiaPage({ params }) {
     const file = e.target.files[0]
     if (file) {
       setSaving(true);
-      const optimized = await optimizeImage(file);
-      setImage(optimized);
-      setImagePreview(URL.createObjectURL(optimized));
-      setIsUsingDefault(false);
-      setSaving(false);
+      try {
+        const optimized = await optimizeImage(file);
+        setImage(optimized);
+        setImagePreview(URL.createObjectURL(optimized));
+        setIsUsingDefault(false);
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        setSaving(false);
+      }
     }
   }
 
@@ -195,8 +212,8 @@ export default function EditarNoticiaPage({ params }) {
       let imagemUrl = imagePreview
 
       if (image) {
-        const fileExt = image.name.split('.').pop()
-        const fileName = `${Math.random()}.${fileExt}`
+        const fileExt = image.name.split('.').pop().toLowerCase()
+        const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`
         const filePath = `noticias/${fileName}`
 
         const { error: uploadError } = await supabase.storage
