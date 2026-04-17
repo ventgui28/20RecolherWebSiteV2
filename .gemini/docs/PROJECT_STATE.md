@@ -4,46 +4,42 @@ Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 
 ## 1. Funcionalidades Concluídas
 - [x] **Setup do Projeto:** Next.js 15, Tailwind v4 e estrutura de pastas.
-- [x] **Organização Modular:** Criação de componentes UI Atómicos (`Button`, `Container`, `SectionHeading`).
-- `src/components/layout/`: Navbar e Footer.
-- `src/components/sections/`: Blocos modulares (ex: HomeHero, ProcessTimeline, NoticiasGrid).
-- `src/constants/`: Ficheiros de dados dinâmicos (brand, services, stats, process, news).
-- `src/lib/`: Utilidade `cn()` para classes CSS e clientes Supabase.
+- [x] **Organização Modular:** Componentes UI Atómicos e Layout (Navbar/Footer).
+- [x] **Notícias Públicas:** Grelha ultra-premium, paginação, filtros e Next/Image.
+- [x] **Admin Dashboard v3.0:** Redesign Bento Grid, Sidebar flutuante e Gestão de Conteúdo.
+- [x] **Analytics Central:** Página dedicada em `/admin/analytics` com Recharts.
+- [x] **Segurança:** Autenticação Supabase Auth consolidada e estável.
 
-## 3. Comandos Importantes
-- `npm run dev`: Inicia o servidor local.
-- `git status`: Verifica alterações.
+## 2. Estrutura de Ficheiros Chave
+- `src/app/admin/dashboard/`: Gestão Operacional de Notícias.
+- `src/app/admin/analytics/`: Business Intelligence (Gráficos).
+- `src/app/noticias/`: Frontend público das notícias.
+- `src/middleware.js`: Controlo de acesso e segurança.
 
+## 3. Próximos Passos
+- [ ] **SEO Otimizado:** Sitemap dinâmico e robots.txt.
+- [ ] **Logística Real:** Tabela de recolhas no Supabase para métricas de peso real.
 
-### Última Sincronização: 10/04/2026, 11:30:00
+---
+
+### Última Sincronização: 17/04/2026, 17:59:00
 **Alterações Recentes (Git):**
 ```
-6b31e7a style: overhaul na interface de filtros e pesquisa de notícias
-44556b4 feat: implementar scroll automático na paginação
-5f20b9c style: otimizar interface de paginação com truncagem
-541b9d7 feat: implementar sistema de paginação na grelha de notícias
+c26ea34 feat: separar dashboard em gestao e analytics dedicado
+ea6bf2b design: redesign editorial/premium dos graficos do dashboard
+f79d824 feat: dashboard agora mostra metricas REAIS de performance do website
+cc89bf1 feat: upgrade pro-max do dashboard administrativo com graficos Recharts
 ```
 
+
 ### Histórico de Sincronização
-#### Sincronização: 17/04/2026, 16:07:00
+
+#### Sincronização: 17/04/2026, 17:59:35
 **Commits:**
 ```
-d5e0148 feat: redesign premium do admin dashboard e login
-8e7910a feat: redesign premium da pagina de servicos com bento grid
-```
-#### Sincronização: 17/04/2026, 15:54:59
-ab35399 fix: remover barra de scroll visual dos filtros de categorias
-2019385 feat: redesign ultra-premium da grelha de noticias com command center flutuante
-00cfdf3 feat: redesign premium da sala de imprensa com paleta oficial
-5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
-```
-#### Sincronização:
-#### Sincronização: 17/04/2026, 15:26:33
-**Commits:**
-```
-ab35399 fix: remover barra de scroll visual dos filtros de categorias
-2019385 feat: redesign ultra-premium da grelha de noticias com command center flutuante
-00cfdf3 feat: redesign premium da sala de imprensa com paleta oficial
-5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
-6cb66ef perf: implementar next/image e revalidação estática nas notícias
+c26ea34 feat: separar dashboard em gestao e analytics dedicado
+0f1c0c3 revert: restaurar card de ativos no dashboard
+971fe11 clean: remover card de ativos e expandir card de vistas
+ceb0ef4 clean: remover bloco de suporte da sidebar do admin
+dc674be design: upgrade total dashboard admin v3.0 bento layout
 ```

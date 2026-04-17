@@ -4,6 +4,27 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Admin & Analytics Pro Max)
+### 💬 O que conversámos (Intenção)
+O objetivo de hoje foi transformar o backoffice numa ferramenta de gestão de classe mundial. Passámos de uma lista simples para um ecossistema dividido entre Gestão Operacional e Análise de Dados (Analytics).
+
+### 🚀 O que mudou no Site (Execução)
+- **Dashboard Admin v3.0:**
+  - Implementação de Layout Bento Grid.
+  - Nova Sidebar flutuante para navegação premium.
+  - Limpeza visual (remoção de elementos de suporte e rascunhos desnecessários).
+- **Nova Página `/admin/analytics`:**
+  - Visualização dedicada de tráfego e mix editorial.
+  - Integração total com dados reais do Supabase (Views).
+- **Segurança e Estabilização:**
+  - Remoção total do Cloudflare Turnstile (a pedido do utilizador para simplificar UX).
+  - Restauro total das políticas de segurança e middleware.
+
+### 🎯 Estado da Entrega
+- A plataforma está agora dividida e organizada. O administrador pode gerir notícias em `/admin/dashboard` e analisar performance em `/admin/analytics`.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Dashboard Analítico Pro Max)
 ### 💬 O que conversámos (Intenção)
 Transformámos o backoffice de uma simples lista de notícias num verdadeiro centro de comando administrativo. O objetivo foi fornecer uma visão analítica imediata sobre o impacto ambiental e o crescimento da empresa.
