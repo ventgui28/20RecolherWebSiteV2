@@ -281,15 +281,23 @@ export default function DashboardPage() {
           </div>
 
           {/* Quick Stats Bento */}
-          <div className="col-span-2">
-             <div className="h-full bg-primary-green rounded-[3rem] p-8 text-dark-green relative overflow-hidden group flex flex-col justify-center">
+          <div className="col-span-2 grid grid-rows-2 gap-8">
+             <div className="bg-primary-green rounded-[3rem] p-8 text-dark-green relative overflow-hidden group">
                <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
-               <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-4">Vistas Totais</p>
-               <h2 className="text-5xl font-black tracking-tighter mb-2">{stats.vistas.toLocaleString()}</h2>
-               <div className="w-full h-1.5 bg-dark-green/10 rounded-full overflow-hidden mt-6">
-                  <div className="w-[85%] h-full bg-dark-green" />
+               <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-4">Vistas</p>
+               <h2 className="text-4xl font-black tracking-tighter mb-2">{stats.vistas.toLocaleString()}</h2>
+               <div className="w-full h-1 bg-dark-green/10 rounded-full overflow-hidden mt-4">
+                  <div className="w-[80%] h-full bg-dark-green" />
                </div>
-               <p className="text-[9px] font-black uppercase tracking-widest opacity-60 mt-4">+12% vs mês anterior</p>
+             </div>
+
+             <div className="bg-white rounded-[3rem] p-8 border border-slate-100 flex flex-col justify-center">
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 mb-2">Estado</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                  <h2 className="text-3xl font-black tracking-tighter text-dark-green">{stats.publicadas}</h2>
+                </div>
+                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Ativos</p>
              </div>
           </div>
         </section>
