@@ -4,6 +4,25 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Dashboard Analítico Pro Max)
+### 💬 O que conversámos (Intenção)
+Transformámos o backoffice de uma simples lista de notícias num verdadeiro centro de comando administrativo. O objetivo foi fornecer uma visão analítica imediata sobre o impacto ambiental e o crescimento da empresa.
+
+### 🚀 O que mudou no Site (Execução)
+- **Integração Recharts:**
+  - Instalação e configuração da biblioteca de gráficos de alta performance.
+- **Visualização de Dados:**
+  - **Gráfico de Área (Crescimento):** Mostra a evolução mensal do volume de recolhas (Kg) com gradientes e suavização.
+  - **Gráfico de Donut (Mix de Resíduos):** Apresenta a distribuição percentual por categoria (Informática, Eletrodomésticos, etc.).
+- **Layout Bento Grid Expandido:**
+  - Organização dos gráficos e estatísticas num sistema de grelha assimétrica que prioriza a informação mais importante.
+  - Adição de indicadores de "Tempo Real" para uma sensação de monitorização contínua.
+
+### 🎯 Estado da Entrega
+- O administrador tem agora uma ferramenta de BI (*Business Intelligence*) integrada, permitindo tomar decisões baseadas em dados visuais logo ao entrar na plataforma.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Segurança Pro Max: Anti-Brute Force)
 ### 💬 O que conversámos (Intenção)
 Implementámos uma camada de segurança ativa no login para prevenir ataques de força bruta e bots automatizados. Escolhemos o **Cloudflare Turnstile** por ser uma solução gratuita, premium e invisível para o utilizador legítimo.
