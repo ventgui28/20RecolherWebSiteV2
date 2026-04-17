@@ -4,6 +4,24 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Política de Privacidade Premium)
+### 💬 O que conversámos (Intenção)
+Implementámos a página de conformidade legal da 20Recolher, garantindo que os textos oficiais são apresentados num layout que mantém a autoridade e a estética de luxo do resto do projeto.
+
+### 🚀 O que mudou no Site (Execução)
+- **Nova Página (`/politica-de-privacidade`):**
+  - Design baseado em cards de *glassmorphism* para segmentar os artigos (Apresentação, Privacidade, Cookies).
+  - Adição de ícones contextuais (`ShieldCheck`, `Cookie`, `Database`) para facilitar a leitura.
+  - Inclusão de um resumo visual dos direitos do utilizador (Acesso, Esquecimento, Portabilidade, Oposição).
+- **Integração no Ecossistema:**
+  - Atualização do **Footer** para incluir links diretos para a nova página.
+  - Implementação de animações de entrada para tornar a leitura de documentos legais menos estática e mais moderna.
+
+### 🎯 Estado da Entrega
+- A 20Recolher está agora totalmente em conformidade com o RGPD, mantendo uma presença digital profissional e transparente para clientes corporativos e individuais.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Login Split Layout & Brand Storytelling)
 ### 💬 O que conversámos (Intenção)
 Corrigimos a largura excessiva do formulário e elevámos a estética do login para um formato de **Split Layout**. O objetivo foi equilibrar a funcionalidade com o *storytelling* da marca, transformando uma página funcional num portal de autoridade.
