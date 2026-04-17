@@ -144,6 +144,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
+                    maxLength={100}
                     value={formData.nome}
                     onChange={(e) => setFormData({...formData, nome: e.target.value})}
                     className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
@@ -155,6 +156,7 @@ export default function ContactPage() {
                   <input
                     type="email"
                     required
+                    maxLength={100}
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm shadow-sm"
@@ -183,6 +185,7 @@ export default function ContactPage() {
                 <label className="text-[10px] font-black text-primary-green uppercase tracking-widest ml-1">Detalhes do Pedido</label>
                 <textarea
                   required
+                  maxLength={2000}
                   value={formData.mensagem}
                   onChange={(e) => setFormData({...formData, mensagem: e.target.value})}
                   className="w-full h-40 px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-primary-green focus:bg-white outline-none transition-all font-bold text-slate-800 text-sm resize-none shadow-sm"

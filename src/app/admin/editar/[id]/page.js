@@ -362,6 +362,7 @@ export default function EditarNoticiaPage({ params }) {
                     <input
                       type="text"
                       required
+                      maxLength={100}
                       placeholder="Título de impacto..."
                       value={formData.titulo}
                       onChange={(e) => setFormData({...formData, titulo: e.target.value})}
@@ -376,6 +377,7 @@ export default function EditarNoticiaPage({ params }) {
                     </label>
                     <textarea
                       placeholder="Um breve resumo para captar a atenção..."
+                      maxLength={300}
                       value={formData.subtitulo}
                       onChange={(e) => setFormData({...formData, subtitulo: e.target.value})}
                       className="w-full px-6 py-5 bg-slate-50/50 border border-slate-100 rounded-3xl focus:ring-4 focus:ring-emerald-500/5 focus:bg-white focus:border-emerald-500 outline-none transition-all h-32 resize-none font-bold text-slate-600 leading-relaxed placeholder:text-slate-300"
