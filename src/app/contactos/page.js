@@ -149,21 +149,6 @@ export default function ContactPage() {
                 </div>
               </motion.div>
 
-              {/* Front Floating Elements */}
-              <motion.div
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-10 -right-4 bg-dark-green text-white p-6 rounded-3xl shadow-2xl z-20 flex items-center gap-4 border border-white/10"
-              >
-                <div className="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center text-dark-green">
-                  <Zap size={20} fill="currentColor" />
-                </div>
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest opacity-50 leading-none mb-1">Resposta</p>
-                  <p className="text-sm font-black uppercase tracking-tight leading-none text-primary-green">Express <br/>24 Horas</p>
-                </div>
-              </motion.div>
-
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
