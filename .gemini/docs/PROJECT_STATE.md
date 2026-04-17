@@ -38,22 +38,22 @@ Registo do progresso atual e ficheiros criados até à data de 17/04/2026.
 ```
 
 ### Histórico de Sincronização
-#### Sincronização: 17/04/2026, 15:17:23
+#### Sincronização: 17/04/2026, 15:26:33
 **Commits:**
 ```
+ab35399 fix: remover barra de scroll visual dos filtros de categorias
+2019385 feat: redesign ultra-premium da grelha de noticias com command center flutuante
+00cfdf3 feat: redesign premium da sala de imprensa com paleta oficial
+5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
+6cb66ef perf: implementar next/image e revalidação estática nas notícias
+```
+#### Sincronização:
+#### Sincronização: 17/04/2026, 15:23:39
+**Commits:**
+```
+2019385 feat: redesign ultra-premium da grelha de noticias com command center flutuante
 00cfdf3 feat: redesign premium da sala de imprensa com paleta oficial
 5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
 6cb66ef perf: implementar next/image e revalidação estática nas notícias
 4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
-6854322 feat: implementar centro de apoio com sistema de FAQ interativo
-```
-#### Sincronização:
-#### Sincronização: 17/04/2026, 14:38:50
-**Commits:**
-```
-5e7d9a1 docs: atualizar diário de projeto com a auditoria e otimização das notícias
-6cb66ef perf: implementar next/image e revalidação estática nas notícias
-4fbe1ac security: blindar formulários contra spam e sobrecarga de dados
-6854322 feat: implementar centro de apoio com sistema de FAQ interativo
-c27dc97 style: consolidar marca e refinar hierarquia visual nas páginas core
 ```

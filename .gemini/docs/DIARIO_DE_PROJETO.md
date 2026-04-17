@@ -4,6 +4,28 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium da Página de Serviços)
+### 💬 O que conversámos (Intenção)
+Avaliámos as pendências de *design* no Backlog e decidimos atacar a **Página de Serviços**, que ainda mantinha um *layout* clássico e mecânico (Z-Pattern simples e grelha de 3 colunas padrão). O objetivo foi aplicar a mesma linguagem geométrica (Bento Grid) e as texturas premium (Dark Green + Grain) estreadas nas restantes páginas.
+
+### 🚀 O que mudou no Site (Execução)
+- **Hero Section:**
+  - O fundo branco básico foi substituído por um profundo `dark-green` com textura `bg-grain`, alinhando-se com a grandiosidade estética do Hero da Homepage.
+  - Textos em branco puro e *tags* de licenciamento com estilos de vidro (`backdrop-blur-md`).
+- **Listagem Z-Pattern Evoluída:**
+  - As imagens foram arredondadas ao extremo (`rounded-[4rem]`).
+  - As "Vantagens" sobrepostas usam agora *glassmorphism* de alta densidade.
+  - Implementámos micro-interações: os vistos nas listas acendem a verde ao passar com o rato e os botões têm sombras de luxo responsivas.
+- **Catálogo de Reciclagem (Bento Grid):**
+  - O antigo *grid* básico de 3 colunas foi completamente destruído e reconstruído num layout assimétrico (estilo Bento UI da Apple).
+  - A categoria principal de "Informática" domina o topo (2 colunas), e as restantes categorias assumem uma geometria complementar elegante.
+  - Animações intrincadas adicionadas: cada item agora tem um *hover* focado com mudança de cor e estado.
+
+### 🎯 Estado da Entrega
+- A Página de Serviços transmite agora a sensação total de uma empresa de excelência, distanciando-se completamente dos *sites* típicos do setor e apostando forte no paradigma Premium Minimalist.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Ultra-Premium e Painel Flutuante)
 ### 💬 O que conversámos (Intenção)
 O utilizador solicitou que, após a harmonização das cores, a estrutura da página de notícias, em particular a barra de pesquisa e filtros, fosse levada para o patamar seguinte. O objetivo era criar algo ainda mais *premium* que fugisse da abordagem "standard".
@@ -17,6 +39,8 @@ O utilizador solicitou que, após a harmonização das cores, a estrutura da pá
   - Os cartões abandonaram a abordagem agressiva de cores sólidas e retângulos rígidos para adotar uma estética editorial.
   - O **Cartão de Destaque** aumentou drasticamente o `border-radius` (`rounded-[4rem]`), usando sombras difusas profundas (`shadow-[0_30px_80px_...]`) para máximo impacto visual.
   - As **Notícias Secundárias** surgem agora encapsuladas em blocos com margens internas e elevação suave interativa no *hover*.
+- **Hotfix (Scrollbar UI):**
+  - Ocultada a barra de *scroll* visual na listagem de categorias usando a classe utilitária correta do Tailwind v4 (`scrollbar-hide`).
 
 ### 🎯 Estado da Entrega
 - A Sala de Imprensa atingiu um padrão de luxo indiscutível, superior à maioria dos sites corporativos de sustentabilidade, integrando micro-animações state-of-the-art e o estilo Bento UI.
