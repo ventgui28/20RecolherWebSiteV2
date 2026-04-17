@@ -4,6 +4,27 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Upgrade Dashboard Pro Max v2.5)
+### 💬 O que conversámos (Intenção)
+Elevámos o dashboard administrativo de um "painel de gestão" para um verdadeiro **Command Center**. O objetivo foi adicionar camadas de informação dinâmica, indicadores visuais de performance e um centro de atividade em tempo real para o gestor.
+
+### 🚀 O que mudou no Site (Execução)
+- **Interface Command Center:**
+  - Layout expandido com uma **Sidebar de Atividade** lateral dedicada a notificações e dicas do sistema.
+  - Saudação dinâmica ("Olá, Gestor") e indicadores de status do servidor em tempo real com animações *pulse*.
+- **Visual Analytics:**
+  - Cada card da Bento Grid agora inclui uma **Mini Progress Bar** animada que reflete a proporção de dados (ex: % de notícias publicadas vs rascunhos).
+  - Adição de efeitos de profundidade e brilhos dinâmicos nos estados de *hover*.
+- **Toolbar Refinada:**
+  - A barra de pesquisa e filtros foi expandida para um formato mais robusto e "limpo", facilitando a triagem de grandes volumes de conteúdo.
+- **Micro-interações de Elite:**
+  - Animações de entrada mais fluidas e estados de carregamento (*skeleton*) otimizados.
+
+### 🎯 Estado da Entrega
+- O Dashboard atingiu o nível máximo de sofisticação visual e funcionalidade, posicionando a ferramenta administrativa como um produto de software de classe mundial.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Redesign Premium do Backoffice/Admin)
 ### 💬 O que conversámos (Intenção)
 Com o site público no seu auge estético, identificámos que a área administrativa ainda utilizava um design funcional mas genérico. O objetivo desta intervenção foi estender a identidade **Ultra-Premium** (Dark-Green + Glassmorphism) ao painel de controlo, transformando o backoffice numa ferramenta de gestão de elite.
