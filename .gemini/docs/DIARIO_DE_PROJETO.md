@@ -4,6 +4,28 @@ Registo histórico das conversas, decisões e implementação técnica do websit
 
 ---
 
+## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Auditoria e Otimização da Sala de Imprensa)
+### 💬 O que conversámos (Intenção)
+Nesta sessão, o utilizador pediu uma análise profunda da página de Notícias com foco em design, performance, boas práticas e acessibilidade. O objetivo era elevar o site a um nível profissional (Premium / Pro Max) de forma autónoma, garantindo que o layout permanecesse limpo e sem quebrar funcionalidades existentes.
+
+### 🚀 O que mudou no Site (Execução)
+- **Performance Extrema (next/image):**
+  - Substituição de todas as tags nativas `<img>` pelo componente `<Image>` do Next.js na grelha de notícias (`NoticiasGrid.js`) e na página individual (`[slug]/page.js`), ativando otimização automática de WebP/AVIF e lazy-loading.
+- **Cache Otimizada (ISR):**
+  - Implementado `export const revalidate = 3600` (1 hora) nas páginas de listagem e de detalhe para reduzir o Time to First Byte (TTFB) e aliviar a base de dados.
+- **Limpeza de Código (DRY):**
+  - A função de cálculo de tempo de leitura, antes duplicada no grid, foi importada diretamente de `@/lib/utils`.
+- **Acessibilidade e SEO:**
+  - Adicionado `export const metadata` na página base das notícias.
+  - Implementados `aria-labels` em controlos críticos (input de pesquisa, botões de paginação, botão de voltar).
+  - Modernizada a API de scroll (de `pageYOffset` para `scrollY`).
+
+### 🎯 Estado da Entrega
+- **Performance:** [OTIMIZADA] Carregamento da página de notícias consideravelmente mais rápido graças ao Next.js Image Optimization.
+- **Acessibilidade:** [OTIMIZADA] Leitores de ecrã conseguem navegar na grelha e ler artigos com contexto adequado.
+
+---
+
 ## 📅 SEXTA-FEIRA, 17 DE ABRIL DE 2026 (Refinação de Identidade e Disposição: Contactos)
 ### 💬 O que conversámos (Intenção)
 Nesta sessão, o utilizador solicitou o alinhamento das cores da página de **Contactos** com o resto do website, notando discrepâncias nos tons de verde. Além disso, houve um foco em melhorar a disposição dos elementos para evitar uma página demasiado comprida na vertical e elevar o design do marcador do mapa para um nível de alta fidelidade, mantendo as animações imersivas.
