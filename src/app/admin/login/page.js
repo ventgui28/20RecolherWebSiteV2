@@ -19,10 +19,12 @@ import {
 } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { BRAND } from '@/constants/brand'
+import { Turnstile } from '@marsidev/react-turnstile'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [captchaToken, setCaptchaToken] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const router = useRouter()
@@ -30,12 +32,22 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    
+    // Validar se o captcha foi resolvido se a chave estiver presente
+    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) {
+      setError('Por favor, resolva o desafio de segurança.')
+      return
+    }
+
     setLoading(true)
     setError(null)
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
+      options: {
+        captchaToken: captchaToken // Integrado com Supabase Auth se ativado no painel
+      }
     })
 
     if (error) {
@@ -212,6 +224,19 @@ export default function LoginPage() {
                 <AlertCircle size={18} />
                 {error}
               </motion.div>
+            )}
+
+            {/* Cloudflare Turnstile Widget */}
+            {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+              <div className="flex justify-center py-2">
+                <Turnstile 
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} 
+                  onSuccess={(token) => setCaptchaToken(token)}
+                  options={{
+                    theme: 'dark',
+                  }}
+                />
+              </div>
             )}
 
             <Button
