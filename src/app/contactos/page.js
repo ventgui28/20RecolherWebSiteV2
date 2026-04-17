@@ -123,24 +123,57 @@ export default function ContactPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:flex items-center justify-center min-h-[400px]"
           >
-            {/* Visual Branding Element - Rotating Stamp */}
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="w-64 h-64 border border-primary-green/20 rounded-full flex items-center justify-center relative"
-            >
-              <div className="absolute inset-4 border-2 border-dashed border-primary-green/10 rounded-full" />
-              <span className="text-[8px] font-black text-primary-green uppercase tracking-[0.3em] absolute">20Recolher • Operador Licenciado • 2026</span>
-              <Recycle size={48} className="text-primary-green opacity-40" />
-            </motion.div>
-            
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/50 backdrop-blur-xl p-8 rounded-3xl border border-white shadow-2xl">
-               <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-primary-green rounded-full animate-ping" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-dark-green">Disponível para recolha</span>
-               </div>
+            {/* Premium Tech Stack Visual */}
+            <div className="relative w-full max-w-[400px]">
+              {/* Back Plate */}
+              <motion.div
+                animate={{ y: [0, -15, 0], rotate: [0, 2, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-44 bg-primary-green/5 backdrop-blur-3xl rounded-[2.5rem] border border-primary-green/20 -rotate-6 z-0"
+              />
+              
+              {/* Middle Plate */}
+              <motion.div
+                animate={{ y: [0, 15, 0], rotate: [0, -2, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute top-10 left-1/2 -translate-x-1/2 w-80 h-48 bg-white/40 backdrop-blur-2xl rounded-[2.5rem] border border-white shadow-2xl z-10 flex flex-col items-center justify-center p-8"
+              >
+                <div className="w-12 h-12 bg-primary-green/20 rounded-xl flex items-center justify-center text-primary-green mb-4">
+                  <ShieldCheck size={24} />
+                </div>
+                <p className="text-[10px] font-black text-dark-green uppercase tracking-[0.3em] text-center">Certificação Total CCDRC</p>
+                <div className="mt-4 flex gap-1">
+                   {[1,2,3,4,5].map(i => <div key={i} className="w-1 h-1 bg-primary-green rounded-full" />)}
+                </div>
+              </motion.div>
+
+              {/* Front Floating Elements */}
+              <motion.div
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-10 -right-4 bg-dark-green text-white p-6 rounded-3xl shadow-2xl z-20 flex items-center gap-4 border border-white/10"
+              >
+                <div className="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center text-dark-green">
+                  <Zap size={20} fill="currentColor" />
+                </div>
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-widest opacity-50 leading-none mb-1">Resposta</p>
+                  <p className="text-sm font-black uppercase tracking-tight leading-none text-primary-green">Express <br/>24 Horas</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 20, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-12 -left-4 bg-white p-5 rounded-3xl shadow-xl z-20 border border-slate-100 flex items-center gap-3"
+              >
+                <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-500">
+                  <Leaf size={18} />
+                </div>
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Eco-Friendly</span>
+              </motion.div>
             </div>
           </motion.div>
         </div>
